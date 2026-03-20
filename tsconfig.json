@@ -1,0 +1,56 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts",
+    "**/*.mts",
+    ".next-demo/types/**/*.ts",
+    ".next-demo/dev/types/**/*.ts",
+    ".next-prod/types/**/*.ts",
+    ".next-prod/dev/types/**/*.ts",
+    ".next-authfix/types/**/*.ts",
+    ".next-authfix/dev/types/**/*.ts",
+    ".next-run/types/**/*.ts",
+    ".next-run/dev/types/**/*.ts",
+    ".next-run-demo/types/**/*.ts",
+    ".next-run-demo/dev/types/**/*.ts",
+    ".next-run-prod/types/**/*.ts",
+    ".next-run-prod/dev/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "playwright.config.ts",
+    "vitest.config.ts"
+  ]
+}

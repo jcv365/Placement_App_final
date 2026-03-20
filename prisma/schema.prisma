@@ -1,0 +1,515 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum TenantUserRole {
+  ADMIN
+  USER
+}
+
+enum BillingModel {
+  PER_HOUR_PER_CANDIDATE
+  PERCENTAGE
+}
+
+model Tenant {
+  id          String       @id @default(cuid())
+  tenantId    String       @unique
+  displayName String
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  users       TenantUser[]
+
+  @@index([displayName])
+}
+
+model TenantUser {
+  id               String         @id @default(cuid())
+  tenantId         String
+  fullName         String
+  email            String
+  passwordHash     String
+  role             TenantUserRole @default(USER)
+  isActive         Boolean        @default(true)
+  emailVerifiedAt  DateTime?
+  verifyTokenHash  String?
+  verifyTokenExpiry DateTime?
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+  tenant           Tenant         @relation(fields: [tenantId], references: [tenantId])
+
+  @@unique([tenantId, email])
+  @@index([tenantId, role, isActive])
+}
+
+model Company {
+  id        String   @id @default(cuid())
+  tenantId  String   @default("default")
+  name      String
+  domain    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  jobs      Job[]
+  settings  CompanySettings?
+  reports   MonthlyFinanceReport[]
+  supportTickets SupportTicket[]
+
+  @@index([tenantId, name])
+}
+
+model CompanySettings {
+  id                  String   @id @default(cuid())
+  companyId           String   @unique
+  billingModel        BillingModel @default(PERCENTAGE)
+  billingRatePerHour  Float    @default(0)
+  revenueSplitPercent Float    @default(50)
+  brandName           String?
+  logoUrl             String?
+  reportRecipientsCsv String   @default("charl.venter@dotcloud.africa")
+  outlookMailbox      String   @default("charl.venter@dotcloud.africa")
+  graphAccessTokenEncrypted String?
+  graphConnectedEmail String?
+  graphTokenExpiresAt DateTime?
+  graphConnectedAt    DateTime?
+  currency            String   @default("ZAR")
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+  company             Company  @relation(fields: [companyId], references: [id])
+}
+
+model MonthlyFinanceReport {
+  id                 String   @id @default(cuid())
+  companyId          String
+  periodStart        DateTime
+  periodEnd          DateTime
+  fileName           String
+  csvContent         String
+  recipientsCsv      String
+  totalApprovedHours Float
+  totalCharge        Float
+  currency           String   @default("ZAR")
+  generatedAt        DateTime @default(now())
+  emailedAt          DateTime?
+  emailStatus        String   @default("PENDING")
+  emailError         String?
+  company            Company  @relation(fields: [companyId], references: [id])
+
+  @@index([companyId, generatedAt])
+  @@index([periodStart, periodEnd])
+}
+
+model AuditLog {
+  id         String   @id @default(cuid())
+  tenantId   String   @default("default")
+  actor      String?
+  entityType String
+  entityId   String
+  action     String
+  beforeJson Json?
+  afterJson  Json?
+  createdAt  DateTime @default(now())
+
+  @@index([tenantId, createdAt])
+  @@index([entityType, entityId, createdAt])
+}
+
+enum ClientContactRole {
+  HIRING_MANAGER
+  BILLING
+  LEGAL
+  OTHER
+}
+
+enum VacancyStage {
+  OPEN
+  SCREENING
+  INTERVIEW
+  OFFER
+  FILLED
+  ON_HOLD
+  CLOSED
+}
+
+enum AgreementType {
+  NDA
+  TEAMING_AGREEMENT
+}
+
+enum AgreementStatus {
+  NOT_SENT
+  SENT
+  COMPLETED
+  DECLINED
+  VOIDED
+}
+
+enum VettingStatus {
+  NOT_STARTED
+  PENDING_VETTING
+  VETTED
+  REJECTED
+}
+
+enum PlacementAlertStatus {
+  OPEN
+  ACKNOWLEDGED
+  RESOLVED
+}
+
+enum TimesheetStatus {
+  DRAFT
+  SUBMITTED
+  APPROVED
+  REJECTED
+  INVOICED
+}
+
+enum InvoiceStatus {
+  DRAFT
+  SENT
+  PAID
+  VOIDED
+}
+
+enum SupportTicketCategory {
+  USER_ACCESS
+  ADMIN_ACCESS
+  BILLING
+  SUPPORT
+}
+
+enum SupportTicketPriority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+enum SupportTicketStatus {
+  OPEN
+  IN_PROGRESS
+  RESOLVED
+  CLOSED
+}
+
+model SupportTicket {
+  id              String                @id @default(cuid())
+  tenantId        String                @default("default")
+  companyId       String?
+  category        SupportTicketCategory @default(SUPPORT)
+  priority        SupportTicketPriority @default(MEDIUM)
+  subject         String
+  description     String
+  status          SupportTicketStatus   @default(OPEN)
+  createdBy       String
+  assignedTo      String?
+  slaResponseDueAt DateTime?
+  slaResolutionDueAt DateTime?
+  firstResponseAt DateTime?
+  resolutionNotes String?
+  resolvedAt      DateTime?
+  createdAt       DateTime              @default(now())
+  updatedAt       DateTime              @updatedAt
+  company         Company?              @relation(fields: [companyId], references: [id])
+  comments        SupportTicketComment[]
+
+  @@index([tenantId, status, createdAt])
+  @@index([companyId, createdAt])
+}
+
+model SupportTicketComment {
+  id             String        @id @default(cuid())
+  ticketId       String
+  tenantId       String        @default("default")
+  author         String
+  body           String
+  createdAt      DateTime      @default(now())
+  supportTicket  SupportTicket @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+
+  @@index([ticketId, createdAt])
+  @@index([tenantId, createdAt])
+}
+
+model ClientAccount {
+  id            String          @id @default(cuid())
+  tenantId      String          @default("default")
+  name          String
+  domain        String?
+  contractTerms String?
+  billingNotes  String?
+  isActive      Boolean         @default(true)
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  contacts      ClientContact[]
+  vacancies     Vacancy[]
+
+  @@index([tenantId, createdAt])
+}
+
+model ClientContact {
+  id              String            @id @default(cuid())
+  tenantId        String            @default("default")
+  clientAccountId String
+  fullName        String
+  email           String
+  phone           String?
+  role            ClientContactRole @default(OTHER)
+  notes           String?
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  clientAccount   ClientAccount     @relation(fields: [clientAccountId], references: [id])
+  managedVacancies Vacancy[]        @relation("VacancyHiringManager")
+
+  @@index([tenantId, createdAt])
+  @@index([clientAccountId])
+}
+
+model Vacancy {
+  id              String        @id @default(cuid())
+  tenantId        String        @default("default")
+  clientAccountId String
+  hiringManagerId String?
+  title           String
+  description     String
+  stage           VacancyStage  @default(OPEN)
+  slaDate         DateTime?
+  interviewFeedback String?
+  offerStatus     String?
+  reasonCode      String?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  clientAccount   ClientAccount @relation(fields: [clientAccountId], references: [id])
+  hiringManager   ClientContact? @relation("VacancyHiringManager", fields: [hiringManagerId], references: [id])
+
+  @@index([tenantId, createdAt])
+  @@index([clientAccountId, stage])
+}
+
+model Job {
+  id           String        @id @default(cuid())
+  tenantId     String        @default("default")
+  ownerUserId  String?
+  title        String
+  rawText      String
+  opportunityEmail String?
+  opportunityUrl String?
+  companyId    String?
+  company      Company?      @relation(fields: [companyId], references: [id])
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  applications Application[]
+
+  @@index([tenantId, createdAt])
+  @@index([tenantId, ownerUserId, createdAt])
+}
+
+model Candidate {
+  id           String        @id @default(cuid())
+  tenantId     String        @default("default")
+  ownerUserId  String?
+  fullName     String
+  rawCV        String
+  cvFileName   String?
+  cvMimeType   String?
+  cvFileData   Bytes?
+  cvUploadedAt DateTime?
+  isActive     Boolean       @default(true)
+  vettingStatus VettingStatus @default(NOT_STARTED)
+  vettedAt     DateTime?
+  vettingNotes String?
+  email        String?
+  phone        String?
+  skillsCsv    String        @default("")
+  certificationsCsv String   @default("")
+  suggestedRolesCsv String   @default("")
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  applications Application[]
+  agreements   CandidateAgreement[]
+
+  @@index([tenantId, createdAt])
+  @@index([tenantId, ownerUserId, createdAt])
+}
+
+model CandidateAgreement {
+  id             String          @id @default(cuid())
+  tenantId       String          @default("default")
+  candidateId    String
+  type           AgreementType
+  status         AgreementStatus @default(NOT_SENT)
+  envelopeId     String?
+  externalStatus String?
+  sentAt         DateTime?
+  signedAt       DateTime?
+  lastWebhookAt  DateTime?
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  candidate      Candidate       @relation(fields: [candidateId], references: [id])
+
+  @@index([tenantId, createdAt])
+  @@unique([tenantId, candidateId, type])
+  @@unique([tenantId, envelopeId])
+  @@index([candidateId, status])
+}
+
+enum ApplicationStage {
+  NEW
+  SHORTLISTED
+  EMAIL_DRAFTED
+  SENT_TO_CLIENT
+  INTERVIEW_1
+  INTERVIEW_2
+  OFFER
+  PLACED
+  REJECTED
+  ON_HOLD
+}
+
+model Application {
+  id           String                  @id @default(cuid())
+  tenantId     String                  @default("default")
+  ownerUserId  String?
+  jobId        String
+  candidateId  String
+  opportunityId String
+  currentStage ApplicationStage        @default(NEW)
+  c2cPartner   String
+  placedAt     DateTime?
+  agreedHourlyRate Float?
+  agreedRateLockedAt DateTime?
+  signedContractFileName String?
+  signedContractMimeType String?
+  signedContractData Bytes?
+  signedContractUploadedAt DateTime?
+  createdAt    DateTime                @default(now())
+  updatedAt    DateTime                @updatedAt
+  job          Job                     @relation(fields: [jobId], references: [id])
+  candidate    Candidate               @relation(fields: [candidateId], references: [id])
+  history      ApplicationStageHistory[]
+  notes        Note[]
+  emails       EmailDraft[]
+  placementAlerts PlacementAlert[]
+  timesheets   Timesheet[]
+
+  @@index([tenantId, updatedAt])
+  @@index([tenantId, ownerUserId, updatedAt])
+  @@unique([tenantId, opportunityId])
+  @@index([currentStage, opportunityId])
+}
+
+model ApplicationStageHistory {
+  id            String            @id @default(cuid())
+  tenantId      String            @default("default")
+  applicationId String
+  fromStage     ApplicationStage?
+  toStage       ApplicationStage
+  changedBy     String?
+  changedAt     DateTime          @default(now())
+  application   Application       @relation(fields: [applicationId], references: [id])
+
+  @@index([tenantId, changedAt])
+}
+
+model Note {
+  id            String       @id @default(cuid())
+  tenantId      String       @default("default")
+  applicationId String
+  author        String?
+  content       String
+  createdAt     DateTime     @default(now())
+  application   Application  @relation(fields: [applicationId], references: [id])
+
+  @@index([tenantId, createdAt])
+}
+
+model RuleSet {
+  id        String   @id @default(cuid())
+  tenantId  String   @default("default")
+  name      String
+  rulesJson Json
+  isDefault Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([tenantId, name])
+  @@index([tenantId, createdAt])
+}
+
+model EmailDraft {
+  id            String      @id @default(cuid())
+  tenantId      String      @default("default")
+  applicationId String
+  subject       String
+  htmlBody      String
+  generatedFrom String
+  preferredForLearning Boolean @default(false)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  application   Application @relation(fields: [applicationId], references: [id])
+
+  @@index([tenantId, createdAt])
+}
+
+model PlacementAlert {
+  id            String              @id @default(cuid())
+  tenantId      String              @default("default")
+  applicationId String
+  title         String
+  dueDate       DateTime
+  status        PlacementAlertStatus @default(OPEN)
+  notes         String?
+  createdAt     DateTime            @default(now())
+  updatedAt     DateTime            @updatedAt
+  application   Application         @relation(fields: [applicationId], references: [id])
+
+  @@index([tenantId, createdAt])
+  @@index([status, dueDate])
+  @@index([applicationId])
+}
+
+model Timesheet {
+  id             String          @id @default(cuid())
+  tenantId       String          @default("default")
+  applicationId  String
+  weekStartDate  DateTime
+  weekEndDate    DateTime
+  hoursWorked    Float
+  ratePerHour    Float
+  engineerRatePerHour Float      @default(0)
+  currency       String          @default("ZAR")
+  status         TimesheetStatus @default(DRAFT)
+  submittedAt    DateTime?
+  approvedAt     DateTime?
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  application    Application     @relation(fields: [applicationId], references: [id])
+  invoice        Invoice?
+
+  @@index([tenantId, createdAt])
+  @@index([applicationId, weekStartDate])
+}
+
+model Invoice {
+  id            String        @id @default(cuid())
+  tenantId      String        @default("default")
+  timesheetId   String        @unique
+  invoiceNumber String
+  amount        Float
+  currency      String        @default("ZAR")
+  dueDate       DateTime
+  status        InvoiceStatus @default(DRAFT)
+  issuedAt      DateTime?
+  paidAt        DateTime?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  timesheet     Timesheet     @relation(fields: [timesheetId], references: [id])
+
+  @@unique([tenantId, invoiceNumber])
+  @@index([tenantId, createdAt])
+  @@index([status, dueDate])
+}

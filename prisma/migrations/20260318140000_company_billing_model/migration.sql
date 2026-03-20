@@ -1,0 +1,5 @@
+ALTER TABLE "CompanySettings"
+ADD COLUMN "billingModel" TEXT NOT NULL DEFAULT 'PERCENTAGE';
+
+ALTER TABLE "CompanySettings"
+ADD COLUMN "billingRatePerHour" REAL NOT NULL DEFAULT 0;
