@@ -2,56 +2,47 @@ services:
   app:
     image: node:20-alpine
     working_dir: /app
+    env_file:
+      - .env.local
     command: sh -c "if [ -n \"$$SMTP_PASS_FILE\" ] && [ -f \"$$SMTP_PASS_FILE\" ]; then export SMTP_PASS=\"$$(cat \"$$SMTP_PASS_FILE\")\"; fi; npm install && npx prisma generate && npx prisma db push && npm run dev"
     ports:
       - "3000:3000"
     environment:
       - NODE_ENV=development
-      - DATABASE_URL=file:/app/data/dev.db
-      - AZURE_OPENAI_ENDPOINT=${AZURE_OPENAI_ENDPOINT:-}
-      - AZURE_OPENAI_API_KEY=${AZURE_OPENAI_API_KEY:-}
-      - AZURE_OPENAI_DEPLOYMENT=${AZURE_OPENAI_DEPLOYMENT:-gpt-4o}
-      - AI_PROVIDER=${AI_PROVIDER:-auto}
-      - USE_COPILOT_STUDIO=${USE_COPILOT_STUDIO:-false}
-      - COPILOT_STUDIO_ENDPOINT=${COPILOT_STUDIO_ENDPOINT:-}
-      - COPILOT_STUDIO_KEY=${COPILOT_STUDIO_KEY:-}
-      - GITHUB_OAUTH_CLIENT_ID=${GITHUB_OAUTH_CLIENT_ID:-}
-      - GITHUB_MODELS_ENDPOINT=${GITHUB_MODELS_ENDPOINT:-https://models.inference.ai.azure.com/chat/completions}
-      - GITHUB_MODELS_MODEL=${GITHUB_MODELS_MODEL:-gpt-5.3}
-      - GITHUB_MODELS_TOKEN=${GITHUB_MODELS_TOKEN:-}
-      - FORM_RECOGNIZER_ENDPOINT=${FORM_RECOGNIZER_ENDPOINT:-}
-      - FORM_RECOGNIZER_KEY=${FORM_RECOGNIZER_KEY:-}
-      - NEXT_PUBLIC_AAD_CLIENT_ID=${NEXT_PUBLIC_AAD_CLIENT_ID:-}
-      - NEXT_PUBLIC_AAD_TENANT_ID=${NEXT_PUBLIC_AAD_TENANT_ID:-}
-      - NEXT_PUBLIC_GRAPH_SCOPES=${NEXT_PUBLIC_GRAPH_SCOPES:-Mail.ReadWrite openid profile offline_access}
-      - DEFAULT_C2C_PARTNER_NAME=${DEFAULT_C2C_PARTNER_NAME:-C2C Partner Ltd}
-      - APP_BASE_URL=${APP_BASE_URL:-http://localhost:3000}
-      - DOCUSIGN_BASE_URI=${DOCUSIGN_BASE_URI:-}
-      - DOCUSIGN_ACCOUNT_ID=${DOCUSIGN_ACCOUNT_ID:-}
-      - DOCUSIGN_ACCESS_TOKEN=${DOCUSIGN_ACCESS_TOKEN:-}
-      - DOCUSIGN_TEMPLATE_ROLE_NAME=${DOCUSIGN_TEMPLATE_ROLE_NAME:-Signer}
-      - DOCUSIGN_NDA_ROLE_NAME=${DOCUSIGN_NDA_ROLE_NAME:-}
-      - DOCUSIGN_TEAMING_ROLE_NAME=${DOCUSIGN_TEAMING_ROLE_NAME:-}
-      - DOCUSIGN_NDA_TEMPLATE_ID=${DOCUSIGN_NDA_TEMPLATE_ID:-}
-      - DOCUSIGN_TEAMING_TEMPLATE_ID=${DOCUSIGN_TEAMING_TEMPLATE_ID:-}
-      - DOCUSIGN_NDA_DOCUMENT_PATH=${DOCUSIGN_NDA_DOCUMENT_PATH:-}
-      - DOCUSIGN_TEAMING_DOCUMENT_PATH=${DOCUSIGN_TEAMING_DOCUMENT_PATH:-}
-      - DOCUSIGN_NDA_DOCUMENT_BASE64=${DOCUSIGN_NDA_DOCUMENT_BASE64:-}
-      - DOCUSIGN_TEAMING_DOCUMENT_BASE64=${DOCUSIGN_TEAMING_DOCUMENT_BASE64:-}
-      - SMTP_HOST=${SMTP_HOST:-}
-      - SMTP_PORT=${SMTP_PORT:-587}
-      - SMTP_SECURE=${SMTP_SECURE:-false}
-      - SMTP_USER=${SMTP_USER:-}
-      - SMTP_PASS=${SMTP_PASS:-}
-      - SMTP_PASS_FILE=${SMTP_PASS_FILE:-}
-      - SMTP_FROM=${SMTP_FROM:-}
+      - DATABASE_URL=file:/app/prisma/demo.db
+      - APP_BASE_URL=${APP_BASE_URL:-https://localhost:8443}
+      - LITELLM_API_BASE=http://host.docker.internal:4001/v1
+      - EMAIL_GENERATION_DISABLED=false
+      - DEFAULT_C2C_PARTNER_NAME=DotCloud Consulting
       - WATCHPACK_POLLING=true
+      - CANDIDATE_SIGNUP_REDIRECT_URL=${CANDIDATE_SIGNUP_REDIRECT_URL:-https://localhost:8082/candidate-signup}
     volumes:
       - .:/app
       - /app/node_modules
       - /app/.next
-      - db-data:/app/data
     restart: unless-stopped
 
-volumes:
-  db-data:
+  waf:
+    image: owasp/modsecurity-crs:nginx
+    ports:
+      - "${WAF_LISTEN_ADDRESS:-192.168.1.161}:${WAF_PORT:-8443}:8443"
+      - "127.0.0.1:${WAF_HTTP_PORT:-9081}:8080"
+    environment:
+      - BACKEND=http://app:3000
+      - MODSEC_RULE_ENGINE=On
+      - PARANOIA=1
+      - ANOMALY_IN=5
+      - ANOMALY_OUT=4
+      - ALLOWED_METHODS=GET HEAD POST OPTIONS PUT PATCH DELETE
+      - MODSEC_REQ_BODY_NOFILES_LIMIT=13107200
+      - NGINX_BODY_MAX_SIZE=16m
+      - SSL_PORT=8443
+      - SSL_CERT_FILE=/etc/nginx/certs/fullchain.pem
+      - SSL_CERT_KEY_FILE=/etc/nginx/certs/privkey.pem
+    volumes:
+      - ${SSL_CERT_DIR:-./SSL/certs}/fullchain.pem:/etc/nginx/certs/fullchain.pem:ro
+      - ${SSL_CERT_DIR:-./SSL/certs}/privkey.pem:/etc/nginx/certs/privkey.pem:ro
+      - ./waf/REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf:/etc/modsecurity.d/owasp-crs/rules/REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf:ro
+    depends_on:
+      - app
+    restart: unless-stopped

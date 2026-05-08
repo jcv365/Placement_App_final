@@ -2,7 +2,9 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ErrorBanner } from "@/components/ui/error-banner";
 import { Input } from "@/components/ui/input";
+import { SuccessBanner } from "@/components/ui/success-banner";
 import { fetchJson } from "@/lib/client";
 import Link from "next/link";
 import * as React from "react";
@@ -11,6 +13,7 @@ type Application = {
   id: string;
   opportunityId: string;
   currentStage: string;
+  agreedHourlyRate: number | null;
   candidate: { id: string; fullName: string };
   job: { title: string; company?: { name: string } | null };
 };
@@ -26,8 +29,8 @@ type Invoice = {
 
 type Timesheet = {
   id: string;
-  weekStartDate: string;
-  weekEndDate: string;
+  periodStartDate: string;
+  periodEndDate: string;
   hoursWorked: number;
   ratePerHour: number;
   engineerRatePerHour: number;
@@ -44,6 +47,15 @@ const TIMESHEET_STATUSES: Timesheet["status"][] = [
   "REJECTED",
   "INVOICED",
 ];
+
+const ALLOWED_TRANSITIONS: Record<Timesheet["status"], Timesheet["status"][]> =
+  {
+    DRAFT: ["DRAFT", "SUBMITTED"],
+    SUBMITTED: ["SUBMITTED", "APPROVED", "REJECTED"],
+    APPROVED: ["APPROVED", "INVOICED"],
+    REJECTED: ["REJECTED", "DRAFT"],
+    INVOICED: ["INVOICED"],
+  };
 
 export default function TimesheetsClient() {
   const initialSearchParams = React.useMemo(() => {
@@ -67,10 +79,9 @@ export default function TimesheetsClient() {
 
   const [engineerId, setEngineerId] = React.useState("");
   const [applicationId, setApplicationId] = React.useState("");
-  const [weekStartDate, setWeekStartDate] = React.useState("");
-  const [weekEndDate, setWeekEndDate] = React.useState("");
+  const [periodStartDate, setPeriodStartDate] = React.useState("");
+  const [periodEndDate, setPeriodEndDate] = React.useState("");
   const [hoursWorked, setHoursWorked] = React.useState("");
-  const [ratePerHour, setRatePerHour] = React.useState("");
   const [engineerRatePerHour, setEngineerRatePerHour] = React.useState("");
   const [filterCompanyName, setFilterCompanyName] = React.useState(
     initialSearchParams.get("companyName") ?? "",
@@ -81,6 +92,24 @@ export default function TimesheetsClient() {
   const [filterMonth, setFilterMonth] = React.useState(
     initialSearchParams.get("month") ?? "",
   );
+  const [actionError, setActionError] = React.useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = React.useState<string | null>(
+    null,
+  );
+
+  const showError = React.useCallback((msg: string) => {
+    setActionError(msg);
+    setSuccessMessage(null);
+  }, []);
+
+  const showSuccess = React.useCallback((msg: string) => {
+    setSuccessMessage(msg);
+    setActionError(null);
+    setTimeout(
+      () => setSuccessMessage((prev) => (prev === msg ? null : prev)),
+      4000,
+    );
+  }, []);
 
   const load = React.useCallback(async () => {
     setLoading(true);
@@ -164,6 +193,11 @@ export default function TimesheetsClient() {
     }
   }, [applicationId, opportunitiesForEngineer]);
 
+  const selectedApplication = React.useMemo(
+    () => opportunitiesForEngineer.find((a) => a.id === applicationId),
+    [applicationId, opportunitiesForEngineer],
+  );
+
   const monthStart = React.useMemo(() => {
     const now = new Date();
     return new Date(now.getFullYear(), now.getMonth(), 1);
@@ -171,11 +205,11 @@ export default function TimesheetsClient() {
 
   const monthToDateTimesheets = React.useMemo(() => {
     return timesheets.filter((timesheet) => {
-      const weekStart = new Date(timesheet.weekStartDate);
+      const periodStart = new Date(timesheet.periodStartDate);
       const engineerMatches = engineerId
         ? timesheet.application.candidate.id === engineerId
         : true;
-      return engineerMatches && weekStart >= monthStart;
+      return engineerMatches && periodStart >= monthStart;
     });
   }, [engineerId, monthStart, timesheets]);
 
@@ -199,7 +233,7 @@ export default function TimesheetsClient() {
       const candidateName = timesheet.application.candidate.fullName
         .trim()
         .toLowerCase();
-      const monthKey = new Date(timesheet.weekStartDate)
+      const monthKey = new Date(timesheet.periodStartDate)
         .toISOString()
         .slice(0, 7);
 
@@ -254,7 +288,7 @@ export default function TimesheetsClient() {
 
   const handleExportMonthToDateCsv = React.useCallback(() => {
     if (monthToDateTimesheets.length === 0) {
-      alert("No month-to-date timesheets available for export.");
+      showError("No month-to-date timesheets available for export.");
       return;
     }
 
@@ -263,8 +297,8 @@ export default function TimesheetsClient() {
       "engineer",
       "opportunity_id",
       "role",
-      "week_start",
-      "week_end",
+      "period_start",
+      "period_end",
       "hours_worked",
       "rate_per_hour",
       "engineer_rate_per_hour",
@@ -285,8 +319,8 @@ export default function TimesheetsClient() {
       timesheet.application.candidate.fullName,
       timesheet.application.opportunityId,
       timesheet.application.job.title,
-      new Date(timesheet.weekStartDate).toISOString().slice(0, 10),
-      new Date(timesheet.weekEndDate).toISOString().slice(0, 10),
+      new Date(timesheet.periodStartDate).toISOString().slice(0, 10),
+      new Date(timesheet.periodEndDate).toISOString().slice(0, 10),
       timesheet.hoursWorked.toFixed(2),
       timesheet.ratePerHour.toFixed(2),
       timesheet.engineerRatePerHour.toFixed(2),
@@ -313,26 +347,30 @@ export default function TimesheetsClient() {
 
   const handleCreateTimesheet = async () => {
     if (!applicationId) {
-      alert("Select an application first.");
+      showError("Select an application first.");
       return;
     }
 
     const parsedHours = Number(hoursWorked);
-    const parsedRate = Number(ratePerHour);
     const parsedEngineerRate = Number(engineerRatePerHour);
 
     if (!Number.isFinite(parsedHours) || parsedHours <= 0) {
-      alert("Hours worked must be a positive number.");
+      showError("Hours worked must be a positive number.");
       return;
     }
 
-    if (!Number.isFinite(parsedRate) || parsedRate <= 0) {
-      alert("Rate per hour must be a positive number.");
+    if (parsedHours > 350) {
+      showError("Hours worked cannot exceed 350 per month.");
       return;
     }
 
     if (!Number.isFinite(parsedEngineerRate) || parsedEngineerRate < 0) {
-      alert("Engineer rate must be zero or a positive number.");
+      showError("Engineer rate must be zero or a positive number.");
+      return;
+    }
+
+    if (!selectedApplication?.agreedHourlyRate) {
+      showError("No agreed contract rate found on this placement.");
       return;
     }
 
@@ -343,24 +381,22 @@ export default function TimesheetsClient() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           applicationId,
-          weekStartDate: new Date(weekStartDate).toISOString(),
-          weekEndDate: new Date(weekEndDate).toISOString(),
+          periodStartDate: new Date(periodStartDate).toISOString(),
+          periodEndDate: new Date(periodEndDate).toISOString(),
           hoursWorked: parsedHours,
-          ratePerHour: parsedRate,
           engineerRatePerHour: parsedEngineerRate,
           currency: "ZAR",
         }),
       });
 
-      setWeekStartDate("");
-      setWeekEndDate("");
+      setPeriodStartDate("");
+      setPeriodEndDate("");
       setHoursWorked("");
-      setRatePerHour("");
       setEngineerRatePerHour("");
       await load();
-      alert("Timesheet created.");
+      showSuccess("Timesheet created.");
     } catch (error) {
-      alert((error as Error).message);
+      showError((error as Error).message);
     } finally {
       setCreating(false);
     }
@@ -379,7 +415,7 @@ export default function TimesheetsClient() {
       });
       await load();
     } catch (error) {
-      alert((error as Error).message);
+      showError((error as Error).message);
     } finally {
       setUpdatingTimesheetId(null);
     }
@@ -394,9 +430,9 @@ export default function TimesheetsClient() {
         body: JSON.stringify({}),
       });
       await load();
-      alert("Invoice generated.");
+      showSuccess("Invoice generated.");
     } catch (error) {
-      alert((error as Error).message);
+      showError((error as Error).message);
     } finally {
       setInvoicingTimesheetId(null);
     }
@@ -411,9 +447,9 @@ export default function TimesheetsClient() {
         body: JSON.stringify({ status: "PAID" }),
       });
       await load();
-      alert("Invoice marked paid.");
+      showSuccess("Invoice marked paid.");
     } catch (error) {
-      alert((error as Error).message);
+      showError((error as Error).message);
     } finally {
       setInvoicingTimesheetId(null);
     }
@@ -425,6 +461,8 @@ export default function TimesheetsClient() {
 
   return (
     <div className="space-y-6">
+      {actionError ? <ErrorBanner message={actionError} /> : null}
+      {successMessage ? <SuccessBanner message={successMessage} /> : null}
       <Card>
         <CardHeader>
           <CardTitle>Create timesheet</CardTitle>
@@ -475,24 +513,29 @@ export default function TimesheetsClient() {
 
           <Input
             type="date"
-            value={weekStartDate}
-            onChange={(event) => setWeekStartDate(event.target.value)}
+            value={periodStartDate}
+            onChange={(event) => setPeriodStartDate(event.target.value)}
           />
           <Input
             type="date"
-            value={weekEndDate}
-            onChange={(event) => setWeekEndDate(event.target.value)}
+            value={periodEndDate}
+            onChange={(event) => setPeriodEndDate(event.target.value)}
           />
           <Input
             value={hoursWorked}
             onChange={(event) => setHoursWorked(event.target.value)}
-            placeholder="Hours worked"
+            placeholder="Hours worked (max 350)"
           />
-          <Input
-            value={ratePerHour}
-            onChange={(event) => setRatePerHour(event.target.value)}
-            placeholder="Contract rate per hour"
-          />
+          {selectedApplication?.agreedHourlyRate != null ? (
+            <div className="flex h-9 items-center rounded-md border border-slate-200 bg-slate-50 px-3 text-sm text-slate-600">
+              Contract rate: {selectedApplication.agreedHourlyRate.toFixed(2)}{" "}
+              (from agreement)
+            </div>
+          ) : (
+            <div className="flex h-9 items-center rounded-md border border-amber-200 bg-amber-50 px-3 text-sm text-amber-700">
+              No agreed contract rate set on this placement
+            </div>
+          )}
           <Input
             value={engineerRatePerHour}
             onChange={(event) => setEngineerRatePerHour(event.target.value)}
@@ -503,8 +546,8 @@ export default function TimesheetsClient() {
             onClick={handleCreateTimesheet}
             disabled={
               creating ||
-              !weekStartDate ||
-              !weekEndDate ||
+              !periodStartDate ||
+              !periodEndDate ||
               !engineerId ||
               !applicationId ||
               placedApplications.length === 0
@@ -572,10 +615,10 @@ export default function TimesheetsClient() {
                   <tr className="border-b border-slate-200 text-left text-xs uppercase tracking-wide text-slate-500">
                     <th className="px-2 py-2">Candidate</th>
                     <th className="px-2 py-2">Role</th>
-                    <th className="px-2 py-2">Week</th>
+                    <th className="px-2 py-2">Period</th>
                     <th className="px-2 py-2">Hours</th>
                     <th className="px-2 py-2">Rates</th>
-                    <th className="px-2 py-2">Charge</th>
+                    <th className="px-2 py-2">Gross Margin</th>
                     <th className="px-2 py-2">Status</th>
                     <th className="px-2 py-2">Invoice</th>
                   </tr>
@@ -593,11 +636,11 @@ export default function TimesheetsClient() {
                         {timesheet.application.job.title}
                       </td>
                       <td className="px-2 py-2">
-                        {new Date(timesheet.weekStartDate).toLocaleDateString(
+                        {new Date(timesheet.periodStartDate).toLocaleDateString(
                           "en-GB",
                         )}{" "}
                         to{" "}
-                        {new Date(timesheet.weekEndDate).toLocaleDateString(
+                        {new Date(timesheet.periodEndDate).toLocaleDateString(
                           "en-GB",
                         )}
                       </td>
@@ -634,7 +677,11 @@ export default function TimesheetsClient() {
                           }
                           disabled={updatingTimesheetId === timesheet.id}
                         >
-                          {TIMESHEET_STATUSES.map((status) => (
+                          {(
+                            ALLOWED_TRANSITIONS[timesheet.status] ?? [
+                              timesheet.status,
+                            ]
+                          ).map((status) => (
                             <option key={status} value={status}>
                               {status.replace(/_/g, " ")}
                             </option>

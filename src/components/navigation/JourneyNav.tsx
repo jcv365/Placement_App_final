@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -13,7 +14,7 @@ const navGroups: NavGroup[] = [
     title: "Dashboard",
     items: [
       {
-        href: "/applications",
+        href: "/overview",
         label: "Overview",
         hint: "View KPIs, queue snapshots, and key actions.",
       },
@@ -47,6 +48,11 @@ const navGroups: NavGroup[] = [
         label: "Review queue",
         hint: "Review matches, inspect draft emails, and approve or reject.",
       },
+      {
+        href: "/email-log",
+        label: "Email log",
+        hint: "Search generated emails by date and candidate. See what has not been emailed yet.",
+      },
     ],
   },
   {
@@ -56,6 +62,11 @@ const navGroups: NavGroup[] = [
         href: "/applications",
         label: "Kanban board",
         hint: "Track application progression from new to placed.",
+      },
+      {
+        href: "/opportunity-recommendations",
+        label: "Opportunity recommendations",
+        hint: "Pick an engineer and rank the best-fit opportunities.",
       },
     ],
   },
@@ -90,7 +101,7 @@ const navGroups: NavGroup[] = [
       {
         href: "/settings",
         label: "AI and rules",
-        hint: "Configure AI provider, rules, tone, and templates.",
+        hint: "Configure LiteLLM, rules, tone, and templates.",
       },
       {
         href: "/admin",
@@ -160,6 +171,13 @@ export default function JourneyNav({
         {activeOption ? (
           <p className="text-[11px] text-slate-600">{activeOption.hint}</p>
         ) : null}
+        <div className="pt-1">
+          <Button asChild variant="outline">
+            <Link href="/auth/signout" prefetch={false}>
+              Sign out
+            </Link>
+          </Button>
+        </div>
       </nav>
     );
   }

@@ -1,0 +1,367 @@
+ Image contract_placements_prod-app Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 557B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 1.01kB 0.0s done
+#2 DONE 0.1s
+
+#3 [internal] load metadata for docker.io/library/node:20-alpine
+#3 DONE 0.1s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 255B done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 DONE 0.0s
+
+#6 [builder 1/7] FROM docker.io/library/node:20-alpine@sha256:f598378b5240225e6beab68fa9f356db1fb8efe55173e6d4d8153113bb8f333c
+#6 resolve docker.io/library/node:20-alpine@sha256:f598378b5240225e6beab68fa9f356db1fb8efe55173e6d4d8153113bb8f333c 0.0s done
+#6 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 8.42MB 0.6s done
+#5 DONE 0.6s
+
+#7 [builder 2/7] WORKDIR /app
+#7 CACHED
+
+#8 [builder 3/7] COPY package*.json ./
+#8 CACHED
+
+#9 [builder 4/7] RUN npm ci
+#9 CACHED
+
+#10 [builder 5/7] COPY . .
+#10 DONE 2.6s
+
+#11 [builder 6/7] RUN npx prisma generate
+#11 2.410 Prisma schema loaded from prisma/schema.prisma
+#11 3.046 
+#11 3.046 Γ£ö Generated Prisma Client (v6.19.3) to ./node_modules/@prisma/client in 267ms
+#11 3.046 
+#11 3.046 Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+#11 3.046 
+#11 3.046 Tip: Need your database queries to be 1000x faster? Accelerate offers you that and more: https://pris.ly/tip-2-accelerate
+#11 3.046 
+#11 DONE 3.1s
+
+#12 [builder 7/7] RUN npm run build
+#12 0.416 
+#12 0.416 > contract_placements@0.1.0 build
+#12 0.416 > cross-env NODE_ENV=production next build
+#12 0.416 
+#12 -0.069 Attention: Next.js now collects completely anonymous telemetry regarding usage.
+#12 -0.068 This information is used to shape Next.js' roadmap and prioritize features.
+#12 -0.068 You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+#12 -0.068 https://nextjs.org/telemetry
+#12 -0.068 
+#12 -0.045 Γû▓ Next.js 16.2.2 (Turbopack)
+#12 -0.045 
+#12 0.025 ΓÜá The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+#12 0.079   Creating an optimized production build ...
+#12 26.37 Turbopack build encountered 1 warnings:
+#12 26.37 ./next.config.ts
+#12 26.37 Encountered unexpected file in NFT list
+#12 26.37 A file was traced that indicates that the whole project was traced unintentionally. Somewhere in the import trace below, there are:
+#12 26.37 - filesystem operations (like path.join, path.resolve or fs.readFile), or
+#12 26.37 - very dynamic requires (like require('./' + foo)).
+#12 26.37 To resolve this, you can
+#12 26.37 - remove them if possible, or
+#12 26.37 - only use them in development, or
+#12 26.37 - make sure they are statically scoped to some subfolder: path.join(process.cwd(), 'data', bar), or
+#12 26.37 - add ignore comments: path.join(/*turbopackIgnore: true*/ process.cwd(), bar)
+#12 26.37 
+#12 26.37 Import trace:
+#12 26.37   App Route:
+#12 26.37     ./next.config.ts
+#12 26.37     ./src/lib/docusign.ts
+#12 26.37     ./src/app/api/candidates/[id]/agreements/route.ts
+#12 26.37 
+#12 26.37 
+#12 26.39 Γ£ô Compiled successfully in 26.0s
+#12 26.41   Running TypeScript ...
+#12 37.87   Finished TypeScript in 12.7s ...
+#12 37.88   Collecting page data using 2 workers ...
+#12 38.41 prisma:error 
+#12 38.41 Invalid `prisma.$queryRawUnsafe()` invocation:
+#12 38.41 
+#12 38.41 
+#12 38.41 error: Environment variable not found: DATABASE_URL.
+#12 38.41   -->  schema.prisma:3
+#12 38.41    | 
+#12 38.41  2 |   provider = "sqlite"
+#12 38.41  3 |   url      = env("DATABASE_URL")
+#12 38.41    | 
+#12 38.41 
+#12 38.41 Validation Error Count: 1
+#12 38.41 [PRISMA] SQLite PRAGMA tuning failed: Error [PrismaClientInitializationError]: 
+#12 38.41 Invalid `prisma.$queryRawUnsafe()` invocation:
+#12 38.41 
+#12 38.41 
+#12 38.41 error: Environment variable not found: DATABASE_URL.
+#12 38.41   -->  schema.prisma:3
+#12 38.41    | 
+#12 38.41  2 |   provider = "sqlite"
+#12 38.41  3 |   url      = env("DATABASE_URL")
+#12 38.41    | 
+#12 38.41 
+#12 38.41 Validation Error Count: 1
+#12 38.41     at <unknown> (-->  schema.prisma:3) {
+#12 38.41   clientVersion: '6.19.3',
+#12 38.41   errorCode: undefined,
+#12 38.41   retryable: undefined
+#12 38.41 }
+#12 38.45 prisma:error 
+#12 38.45 Invalid `prisma.$queryRawUnsafe()` invocation:
+#12 38.45 
+#12 38.45 
+#12 38.45 error: Environment variable not found: DATABASE_URL.
+#12 38.45   -->  schema.prisma:3
+#12 38.45    | 
+#12 38.45  2 |   provider = "sqlite"
+#12 38.45  3 |   url      = env("DATABASE_URL")
+#12 38.45    | 
+#12 38.45 
+#12 38.45 Validation Error Count: 1
+#12 38.45 [PRISMA] SQLite PRAGMA tuning failed: Error [PrismaClientInitializationError]: 
+#12 38.45 Invalid `prisma.$queryRawUnsafe()` invocation:
+#12 38.45 
+#12 38.45 
+#12 38.45 error: Environment variable not found: DATABASE_URL.
+#12 38.45   -->  schema.prisma:3
+#12 38.45    | 
+#12 38.45  2 |   provider = "sqlite"
+#12 38.45  3 |   url      = env("DATABASE_URL")
+#12 38.45    | 
+#12 38.45 
+#12 38.45 Validation Error Count: 1
+#12 38.45     at <unknown> (-->  schema.prisma:3) {
+#12 38.45   clientVersion: '6.19.3',
+#12 38.45   errorCode: undefined,
+#12 38.45   retryable: undefined
+#12 38.45 }
+#12 38.95 prisma:error 
+#12 38.95 Invalid `prisma.$queryRawUnsafe()` invocation:
+#12 38.95 
+#12 38.95 
+#12 38.95 error: Environment variable not found: DATABASE_URL.
+#12 38.95   -->  schema.prisma:3
+#12 38.95    | 
+#12 38.95  2 |   provider = "sqlite"
+#12 38.95  3 |   url      = env("DATABASE_URL")
+#12 38.95    | 
+#12 38.95 
+#12 38.95 Validation Error Count: 1
+#12 38.95 [PRISMA] SQLite PRAGMA tuning failed: Error [PrismaClientInitializationError]: 
+#12 38.95 Invalid `prisma.$queryRawUnsafe()` invocation:
+#12 38.95 
+#12 38.95 
+#12 38.95 error: Environment variable not found: DATABASE_URL.
+#12 38.95   -->  schema.prisma:3
+#12 38.95    | 
+#12 38.95  2 |   provider = "sqlite"
+#12 38.95  3 |   url      = env("DATABASE_URL")
+#12 38.95    | 
+#12 38.95 
+#12 38.95 Validation Error Count: 1
+#12 38.95     at <unknown> (-->  schema.prisma:3) {
+#12 38.95   clientVersion: '6.19.3',
+#12 38.95   errorCode: undefined,
+#12 38.95   retryable: undefined
+#12 38.95 }
+#12 38.95 prisma:error 
+#12 38.95 Invalid `prisma.$queryRawUnsafe()` invocation:
+#12 38.95 
+#12 38.95 
+#12 38.95 error: Environment variable not found: DATABASE_URL.
+#12 38.95   -->  schema.prisma:3
+#12 38.95    | 
+#12 38.95  2 |   provider = "sqlite"
+#12 38.95  3 |   url      = env("DATABASE_URL")
+#12 38.95    | 
+#12 38.95 
+#12 38.95 Validation Error Count: 1
+#12 38.96 [PRISMA] SQLite PRAGMA tuning failed: Error [PrismaClientInitializationError]: 
+#12 38.96 Invalid `prisma.$queryRawUnsafe()` invocation:
+#12 38.96 
+#12 38.96 
+#12 38.96 error: Environment variable not found: DATABASE_URL.
+#12 38.96   -->  schema.prisma:3
+#12 38.96    | 
+#12 38.96  2 |   provider = "sqlite"
+#12 38.96  3 |   url      = env("DATABASE_URL")
+#12 38.96    | 
+#12 38.96 
+#12 38.96 Validation Error Count: 1
+#12 38.96     at <unknown> (-->  schema.prisma:3) {
+#12 38.96   clientVersion: '6.19.3',
+#12 38.96   errorCode: undefined,
+#12 38.96   retryable: undefined
+#12 38.96 }
+#12 39.01   Generating static pages using 2 workers (0/83) ...
+#12 39.11   Generating static pages using 2 workers (20/83) 
+#12 39.29   Generating static pages using 2 workers (41/83) 
+#12 39.48   Generating static pages using 2 workers (62/83) 
+#12 39.50 Γ£ô Generating static pages using 2 workers (83/83) in 490ms
+#12 39.51   Finalizing page optimization ...
+#12 40.67 
+#12 40.67 Route (app)
+#12 40.67 Γöî Γùï /
+#12 40.67 Γö£ Γùï /_not-found
+#12 40.67 Γö£ ╞Æ /admin
+#12 40.67 Γö£ Γùï /admin/signin
+#12 40.67 Γö£ ╞Æ /api/admin/audit-logs
+#12 40.67 Γö£ ╞Æ /api/admin/auth/login
+#12 40.67 Γö£ ╞Æ /api/admin/auth/logout
+#12 40.67 Γö£ ╞Æ /api/admin/auth/status
+#12 40.67 Γö£ ╞Æ /api/admin/company-graph-connection
+#12 40.67 Γö£ ╞Æ /api/admin/company-settings
+#12 40.67 Γö£ ╞Æ /api/admin/company-settings/logo
+#12 40.67 Γö£ ╞Æ /api/admin/config-status
+#12 40.67 Γö£ ╞Æ /api/admin/deletion-requests
+#12 40.67 Γö£ ╞Æ /api/admin/finance/preview
+#12 40.67 Γö£ ╞Æ /api/admin/global/company-admins
+#12 40.67 Γö£ ╞Æ /api/admin/global/company-billing
+#12 40.67 Γö£ ╞Æ /api/admin/global/instance-env
+#12 40.67 Γö£ ╞Æ /api/admin/global/overview
+#12 40.67 Γö£ ╞Æ /api/admin/global/provision-tenant
+#12 40.67 Γö£ ╞Æ /api/admin/import-cleanup
+#12 40.67 Γö£ ╞Æ /api/admin/reports
+#12 40.67 Γö£ ╞Æ /api/admin/reports/[id]
+#12 40.67 Γö£ ╞Æ /api/admin/support-tickets
+#12 40.67 Γö£ ╞Æ /api/admin/support-tickets/[ticketId]
+#12 40.67 Γö£ ╞Æ /api/admin/support-tickets/[ticketId]/comments
+#12 40.67 Γö£ ╞Æ /api/admin/users
+#12 40.67 Γö£ ╞Æ /api/ai/status
+#12 40.67 Γö£ ╞Æ /api/applications
+#12 40.67 Γö£ ╞Æ /api/applications/[id]
+#12 40.67 Γö£ ╞Æ /api/applications/[id]/notes
+#12 40.67 Γö£ ╞Æ /api/applications/[id]/placement
+#12 40.67 Γö£ ╞Æ /api/applications/[id]/stage
+#12 40.67 Γö£ ╞Æ /api/auth/github/device/disconnect
+#12 40.67 Γö£ ╞Æ /api/auth/github/device/poll
+#12 40.67 Γö£ ╞Æ /api/auth/github/device/start
+#12 40.67 Γö£ ╞Æ /api/auth/github/device/sync
+#12 40.67 Γö£ ╞Æ /api/auth/tenant/login
+#12 40.67 Γö£ ╞Æ /api/auth/tenant/logout
+#12 40.67 Γö£ ╞Æ /api/auth/tenant/register-company
+#12 40.67 Γö£ ╞Æ /api/auth/tenant/register-user
+#12 40.67 Γö£ ╞Æ /api/auth/tenant/status
+#12 40.67 Γö£ ╞Æ /api/auth/tenant/verify-email
+#12 40.67 Γö£ ╞Æ /api/candidates
+#12 40.67 Γö£ ╞Æ /api/candidates/[id]
+#12 40.67 Γö£ ╞Æ /api/candidates/[id]/agreements
+#12 40.67 Γö£ ╞Æ /api/candidates/[id]/ats-fix
+#12 40.67 Γö£ ╞Æ /api/candidates/[id]/ats-match
+#12 40.67 Γö£ ╞Æ /api/candidates/[id]/criminal-record
+#12 40.67 Γö£ ╞Æ /api/candidates/[id]/cv-contact-privacy
+#12 40.67 Γö£ ╞Æ /api/candidates/[id]/documents
+#12 40.67 Γö£ ╞Æ /api/candidates/[id]/formatted-cv
+#12 40.67 Γö£ ╞Æ /api/candidates/[id]/roles
+#12 40.67 Γö£ ╞Æ /api/candidates/[id]/vetting
+#12 40.67 Γö£ ╞Æ /api/client-accounts
+#12 40.67 Γö£ ╞Æ /api/client-accounts/[id]
+#12 40.67 Γö£ ╞Æ /api/client-contacts
+#12 40.67 Γö£ ╞Æ /api/deletion-requests
+#12 40.67 Γö£ ╞Æ /api/demo/login
+#12 40.67 Γö£ ╞Æ /api/docusign/webhook
+#12 40.67 Γö£ ╞Æ /api/email/draft
+#12 40.67 Γö£ ╞Æ /api/email/generate
+#12 40.67 Γö£ ╞Æ /api/email/learn
+#12 40.67 Γö£ ╞Æ /api/email/log
+#12 40.67 Γö£ ╞Æ /api/email/repair-drafts
+#12 40.67 Γö£ ╞Æ /api/email/send
+#12 40.67 Γö£ ╞Æ /api/jobs
+#12 40.67 Γö£ ╞Æ /api/match/score
+#12 40.67 Γö£ ╞Æ /api/match/score/cached
+#12 40.67 Γö£ ╞Æ /api/opportunities/recommendations
+#12 40.67 Γö£ ╞Æ /api/opportunities/upload
+#12 40.67 Γö£ ╞Æ /api/placement-alerts
+#12 40.67 Γö£ ╞Æ /api/placement-alerts/[id]
+#12 40.67 Γö£ ╞Æ /api/public/candidate-signup
+#12 40.67 Γö£ ╞Æ /api/public/contact
+#12 40.67 Γö£ ╞Æ /api/rulesets
+#12 40.67 Γö£ ╞Æ /api/rulesets/[id]
+#12 40.67 Γö£ ╞Æ /api/seed
+#12 40.67 Γö£ ╞Æ /api/settings/env-status
+#12 40.67 Γö£ ╞Æ /api/timesheets
+#12 40.67 Γö£ ╞Æ /api/timesheets/[id]
+#12 40.67 Γö£ ╞Æ /api/timesheets/[id]/invoice
+#12 40.67 Γö£ ╞Æ /api/upload/cv
+#12 40.67 Γö£ ╞Æ /api/upload/jd
+#12 40.67 Γö£ ╞Æ /api/upload/progress
+#12 40.67 Γö£ ╞Æ /api/vacancies
+#12 40.67 Γö£ ╞Æ /api/vacancies/[id]
+#12 40.67 Γö£ ╞Æ /applications
+#12 40.67 Γö£ ╞Æ /ats-window
+#12 40.67 Γö£ Γùï /auth/signin
+#12 40.67 Γö£ ╞Æ /auth/signout
+#12 40.67 Γö£ Γùï /candidate-signup
+#12 40.67 Γö£ ╞Æ /candidates
+#12 40.67 Γö£ ╞Æ /clients
+#12 40.67 Γö£ Γùï /contact
+#12 40.67 Γö£ Γùï /demo
+#12 40.67 Γö£ ╞Æ /email-log
+#12 40.67 Γö£ ╞Æ /ingest/linkedin-feed
+#12 40.67 Γö£ ╞Æ /jobs
+#12 40.67 Γö£ ╞Æ /match-review
+#12 40.67 Γö£ ╞Æ /opportunity-recommendations
+#12 40.67 Γö£ ╞Æ /overview
+#12 40.67 Γö£ ╞Æ /placement-alerts
+#12 40.67 Γö£ ╞Æ /settings
+#12 40.67 Γö£ ╞Æ /super-admin
+#12 40.67 Γö£ ╞Æ /timesheets
+#12 40.67 Γöö ╞Æ /vacancies
+#12 40.67 
+#12 40.67 
+#12 40.67 ╞Æ Proxy (Middleware)
+#12 40.67 
+#12 40.67 Γùï  (Static)   prerendered as static content
+#12 40.67 ╞Æ  (Dynamic)  server-rendered on demand
+#12 40.67 
+#12 DONE 40.9s
+
+#13 [runner  3/10] RUN addgroup --system --gid 1001 nodejs &&     adduser --system --uid 1001 nextjs
+#13 CACHED
+
+#14 [runner  4/10] COPY --from=builder /app/public ./public
+#14 CACHED
+
+#15 [runner  5/10] COPY --from=builder /app/.next/standalone ./
+#15 DONE 0.8s
+
+#16 [runner  6/10] COPY --from=builder /app/.next/static ./.next/static
+#16 DONE 0.1s
+
+#17 [runner  7/10] COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
+#17 DONE 0.1s
+
+#18 [runner  8/10] COPY --from=builder /app/prisma ./prisma
+#18 DONE 0.2s
+
+#19 [runner  9/10] COPY package*.json ./
+#19 DONE 0.1s
+
+#20 [runner 10/10] RUN chown -R nextjs:nodejs /app
+#20 DONE 12.9s
+
+#21 exporting to image
+#21 exporting layers
+#21 exporting layers 11.2s done
+#21 exporting manifest sha256:82e486e9b2dddcf9f61020642ab92885cd8191cc6b0c58ca4cf412194b0c7a96
+#21 exporting manifest sha256:82e486e9b2dddcf9f61020642ab92885cd8191cc6b0c58ca4cf412194b0c7a96 0.0s done
+#21 exporting config sha256:300b8c26e164c705d6592feade3e132736049a6873ff767ab5cd57ba7e6a3b26 0.0s done
+#21 exporting attestation manifest sha256:23b90691cc35ceb819a3a2bbf9f8464279ab1f1343a48ce871d1a5017b491957 0.1s done
+#21 exporting manifest list sha256:6c976f0460896fc9bf91eca5b9260dcea0d38eff9c97b30bde6428bd3db5e15b
+#21 exporting manifest list sha256:6c976f0460896fc9bf91eca5b9260dcea0d38eff9c97b30bde6428bd3db5e15b 0.0s done
+#21 naming to docker.io/library/contract_placements_prod-app:latest done
+#21 unpacking to docker.io/library/contract_placements_prod-app:latest
+#21 unpacking to docker.io/library/contract_placements_prod-app:latest 4.6s done
+#21 DONE 16.0s
+
+#22 resolving provenance for metadata file
+#22 DONE 0.0s
+ Image contract_placements_prod-app Built 

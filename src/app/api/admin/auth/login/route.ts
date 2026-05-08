@@ -1,12 +1,14 @@
 import {
   ADMIN_SESSION_COOKIE,
   createAdminSessionTokenForTenant,
+  isMasterTenantId,
   validateAdminCredentials,
 } from "@/lib/adminAuth";
 import { jsonError, jsonOk } from "@/lib/apiResponses";
 import { getAppSessionFromRequest, verifyPassword } from "@/lib/appAuth";
 import { shouldUseSecureCookies } from "@/lib/cookies";
 import { prisma } from "@/lib/prisma";
+import { checkRateLimit, getClientIp } from "@/lib/rateLimiter";
 import { TENANT_COOKIE } from "@/lib/tenant";
 import { adminLoginSchema } from "@/lib/validation";
 
@@ -37,6 +39,20 @@ function getCookieValue(request: Request, name: string): string | undefined {
 
 export async function POST(request: Request) {
   try {
+    const ip = getClientIp(request);
+    const { allowed, retryAfterMs } = checkRateLimit(
+      `admin-login:${ip}`,
+      10,
+      60_000,
+    );
+    if (!allowed) {
+      return jsonError(
+        "Too many login attempts. Please try again later.",
+        429,
+        { retryAfterMs },
+      );
+    }
+
     const secureCookies = shouldUseSecureCookies(request);
     const body = adminLoginSchema.parse(await request.json());
     const requestedTenantId = normaliseTenantId(body.tenantId);
@@ -49,7 +65,14 @@ export async function POST(request: Request) {
     const inferredTenantId =
       requestedTenantId || sessionTenantId || cookieTenantId;
 
-    const valid = validateAdminCredentials(body.username, body.password);
+    let valid = false;
+    try {
+      valid = validateAdminCredentials(body.username, body.password);
+    } catch (error) {
+      // Super-admin env credentials are optional for tenant admin login.
+      // If they are not configured, continue with tenant-admin lookup below.
+      console.warn("[ADMIN_LOGIN] Super-admin credentials not configured");
+    }
     if (valid) {
       const tenantId = inferredTenantId || "default";
       const token = createAdminSessionTokenForTenant(body.username, tenantId, {
@@ -130,9 +153,11 @@ export async function POST(request: Request) {
     }
 
     const tenantId = matchedAdmin.tenantId;
+    const isSuperAdmin = isMasterTenantId(tenantId);
     const token = createAdminSessionTokenForTenant(
       matchedAdmin.fullName || matchedAdmin.email,
       tenantId,
+      isSuperAdmin ? { superAdmin: true } : undefined,
     );
     const response = jsonOk({
       authenticated: true,
@@ -162,8 +187,7 @@ export async function POST(request: Request) {
 
     return response;
   } catch (error) {
-    return jsonError("Unable to sign in as admin", 400, {
-      message: (error as Error).message,
-    });
+    console.error("[ADMIN_LOGIN]", (error as Error).message);
+    return jsonError("Unable to sign in as admin", 400);
   }
 }

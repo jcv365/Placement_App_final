@@ -1,17 +1,17 @@
 import { requireAdminContextFromRequest } from "@/lib/adminAuth";
 import { jsonError, jsonOk } from "@/lib/apiResponses";
+import { DEFAULT_OUTLOOK_MAILBOX } from "@/lib/constants";
 import {
-    DOTCLOUD_PARTNER_NAME,
-    ensureCompanySettings,
-    getDefaultRecipient,
-    normaliseRecipients,
+  PARTNER_NAME,
+  ensureCompanySettings,
+  getDefaultRecipient,
+  normaliseRecipients,
 } from "@/lib/financeReports";
 import { isGraphConnectionUsable } from "@/lib/graphConnectionStore";
 import { prisma } from "@/lib/prisma";
 import { companySettingsUpdateSchema } from "@/lib/validation";
 
 export const runtime = "nodejs";
-const DEFAULT_OUTLOOK_MAILBOX = "charl.venter@dotcloud.africa";
 
 export async function GET(request: Request) {
   try {
@@ -51,8 +51,8 @@ export async function GET(request: Request) {
           companyId: company.id,
           companyName: company.name,
           revenueSplitPercent: settings.revenueSplitPercent,
-          splitLabel: `${settings.revenueSplitPercent}/${settings.revenueSplitPercent}`,
-          splitParties: `${DOTCLOUD_PARTNER_NAME} | ${company.name}`,
+          splitLabel: `${settings.revenueSplitPercent}/${100 - settings.revenueSplitPercent}`,
+          splitParties: `${PARTNER_NAME} | ${company.name}`,
           billingModel: settings.billingModel,
           billingRatePerHour: settings.billingRatePerHour,
           brandName: settings.brandName,
@@ -85,9 +85,7 @@ export async function GET(request: Request) {
       return jsonError("Admin sign-in is required", 401);
     }
 
-    return jsonError("Unable to load company settings", 400, {
-      message: (error as Error).message,
-    });
+    return jsonError("Unable to load company settings", 400);
   }
 }
 
@@ -121,23 +119,27 @@ export async function PATCH(request: Request) {
       where: { companyId: body.companyId },
       create: {
         companyId: body.companyId,
-        revenueSplitPercent: previous.revenueSplitPercent,
-        billingModel: previous.billingModel,
-        billingRatePerHour: previous.billingRatePerHour,
+        revenueSplitPercent:
+          body.revenueSplitPercent ?? previous.revenueSplitPercent,
+        billingModel: body.billingModel ?? previous.billingModel,
+        billingRatePerHour:
+          body.billingRatePerHour ?? previous.billingRatePerHour,
         brandName: body.brandName,
         logoUrl: previous.logoUrl,
         reportRecipientsCsv: recipients.join(", "),
         outlookMailbox,
-        currency: "ZAR",
+        currency: body.currency ?? previous.currency ?? "ZAR",
       },
       update: {
-        revenueSplitPercent: previous.revenueSplitPercent,
-        billingModel: previous.billingModel,
-        billingRatePerHour: previous.billingRatePerHour,
+        revenueSplitPercent:
+          body.revenueSplitPercent ?? previous.revenueSplitPercent,
+        billingModel: body.billingModel ?? previous.billingModel,
+        billingRatePerHour:
+          body.billingRatePerHour ?? previous.billingRatePerHour,
         brandName: body.brandName,
         reportRecipientsCsv: recipients.join(", "),
         outlookMailbox,
-        currency: "ZAR",
+        currency: body.currency ?? previous.currency ?? "ZAR",
       },
     });
 
@@ -156,8 +158,8 @@ export async function PATCH(request: Request) {
     return jsonOk({
       companyId: body.companyId,
       revenueSplitPercent: settings.revenueSplitPercent,
-      splitLabel: `${settings.revenueSplitPercent}/${settings.revenueSplitPercent}`,
-      splitParties: `${DOTCLOUD_PARTNER_NAME} | ${company.name}`,
+      splitLabel: `${settings.revenueSplitPercent}/${100 - settings.revenueSplitPercent}`,
+      splitParties: `${PARTNER_NAME} | ${company.name}`,
       billingModel: settings.billingModel,
       billingRatePerHour: settings.billingRatePerHour,
       brandName: settings.brandName,
@@ -178,8 +180,6 @@ export async function PATCH(request: Request) {
       return jsonError("Admin sign-in is required", 401);
     }
 
-    return jsonError("Unable to update company settings", 400, {
-      message: (error as Error).message,
-    });
+    return jsonError("Unable to update company settings", 400);
   }
 }

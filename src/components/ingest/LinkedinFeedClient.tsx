@@ -4,10 +4,10 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
-    Dialog,
-    DialogContent,
-    DialogHeader,
-    DialogTitle,
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
 } from "@/components/ui/dialog";
 import { fetchJson } from "@/lib/client";
 import Link from "next/link";
@@ -46,13 +46,35 @@ function estimateConfidence(job: Job): number {
   return Math.min(95, Math.max(45, score));
 }
 
-function getSourceUrl(job: Job): string | null {
-  if (job.opportunityUrl?.trim()) {
-    return job.opportunityUrl.trim();
+function sanitiseSourceUrl(value: string): string | null {
+  const trimmed = value.trim();
+  if (!trimmed) {
+    return null;
   }
 
-  const match = job.rawText.match(/https?:\/\/[^\s)\]]+/i);
-  return match?.[0] ?? null;
+  const cleaned = trimmed
+    .replace(/[|,;]+$/g, "")
+    .replace(/[)\]]+$/g, "")
+    .trim();
+
+  if (!/^https?:\/\//i.test(cleaned)) {
+    return null;
+  }
+
+  try {
+    return new URL(cleaned).toString();
+  } catch {
+    return null;
+  }
+}
+
+function getSourceUrl(job: Job): string | null {
+  if (job.opportunityUrl?.trim()) {
+    return sanitiseSourceUrl(job.opportunityUrl);
+  }
+
+  const match = job.rawText.match(/https?:\/\/[^\s|)\]]+/i);
+  return match ? sanitiseSourceUrl(match[0]) : null;
 }
 
 function getSourceType(job: Job): "job" | "post" | "group" {
@@ -141,7 +163,19 @@ export default function LinkedinFeedClient() {
                       {new Date(job.createdAt).toLocaleString("en-GB")}
                     </p>
                     <p className="text-xs text-slate-500">
-                      Source URL: {sourceUrl ?? "Not available"}
+                      Source URL:{" "}
+                      {sourceUrl ? (
+                        <Link
+                          href={sourceUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="underline underline-offset-2"
+                        >
+                          {sourceUrl}
+                        </Link>
+                      ) : (
+                        "Not available"
+                      )}
                     </p>
                     <p className="mt-2 line-clamp-3 text-sm text-slate-600">
                       {job.rawText.length > 260
@@ -198,7 +232,21 @@ export default function LinkedinFeedClient() {
                 Ingested:{" "}
                 {new Date(previewJob.createdAt).toLocaleString("en-GB")}
               </p>
-              <p>Source URL: {getSourceUrl(previewJob) ?? "Not available"}</p>
+              <p>
+                Source URL:{" "}
+                {getSourceUrl(previewJob) ? (
+                  <Link
+                    href={getSourceUrl(previewJob) as string}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="underline underline-offset-2"
+                  >
+                    {getSourceUrl(previewJob)}
+                  </Link>
+                ) : (
+                  "Not available"
+                )}
+              </p>
               <p className="whitespace-pre-wrap rounded-md border border-slate-200 p-3">
                 {previewJob.rawText}
               </p>

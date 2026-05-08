@@ -1,6 +1,9 @@
 import { jsonError, jsonOk } from "@/lib/apiResponses";
 import { prisma } from "@/lib/prisma";
-import { resolveTenantIdFromRequest } from "@/lib/tenant";
+import {
+  requireAuthenticatedTenantId,
+  resolveTenantIdFromRequest,
+} from "@/lib/tenant";
 import { clientContactCreateSchema } from "@/lib/validation";
 
 export const runtime = "nodejs";
@@ -22,7 +25,7 @@ export async function GET(request: Request) {
 
 export async function POST(request: Request) {
   try {
-    const tenantId = resolveTenantIdFromRequest(request);
+    const tenantId = requireAuthenticatedTenantId(request);
     const body = clientContactCreateSchema.parse(await request.json());
 
     const account = await prisma.clientAccount.findFirst({
@@ -55,8 +58,10 @@ export async function POST(request: Request) {
 
     return jsonOk(contact, { status: 201 });
   } catch (error) {
-    return jsonError("Unable to create client contact", 400, {
-      message: (error as Error).message,
-    });
+    if ((error as Error).message === "UNAUTHENTICATED") {
+      return jsonError("Authentication required", 401);
+    }
+    console.error("[CLIENT_CONTACT_CREATE]", error);
+    return jsonError("Unable to create client contact", 400);
   }
 }

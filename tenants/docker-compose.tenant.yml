@@ -1,0 +1,35 @@
+# Tenant instance compose template
+# Used by the provisioning script to spin up isolated per-tenant stacks.
+# The provisioning script copies this into tenants/<slug>/docker-compose.yml
+# and creates a .env file alongside it.
+
+services:
+  app:
+    image: ${TENANT_APP_IMAGE:-contract_placements:latest}
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=file:/app/data/prisma/prod.db?connection_limit=1&busy_timeout=15000
+      - MASTER_TENANT_ID=${TENANT_SLUG}
+      - APP_SESSION_SECRET=${APP_SESSION_SECRET}
+      - ADMIN_USERNAME=${ADMIN_EMAIL}
+      - ADMIN_PASSWORD_HASH=${ADMIN_PASSWORD_HASH}
+      - APP_BASE_URL=https://${TENANT_SLUG}-placements.dotcloud.africa
+      - LITELLM_API_BASE=http://host.docker.internal:4001/v1
+      - EMAIL_GENERATION_DISABLED=false
+      - DEFAULT_C2C_PARTNER_NAME=DotCloud Consulting
+      - PLATFORM_PARTNER_NAME=${COMPANY_NAME}
+      - SMTP_HOST=${SMTP_HOST:-}
+      - SMTP_PORT=${SMTP_PORT:-587}
+      - SMTP_FROM=${SMTP_FROM:-}
+      - SMTP_PASS=${SMTP_PASS:-}
+      - GITHUB_MODELS_TOKEN=${GITHUB_MODELS_TOKEN:-}
+    command: sh -c "PORT=3000 node server.js"
+    volumes:
+      - ./data:/app/data
+    networks:
+      - placements_gateway
+    restart: unless-stopped
+
+networks:
+  placements_gateway:
+    external: true

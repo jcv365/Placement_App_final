@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+@theme {
+  /* Shift light slate greys to pass WCAG AA contrast on white backgrounds */
+  --color-slate-400: #64748b; /* was #94a3b8 (2.5:1) → now slate-500 shade (3.6:1) */
+  --color-slate-500: #475569; /* was #64748b (3.6:1) → now slate-600 shade (5.7:1) */
+}
+
 :root {
   --brand-1: #111827;
   --brand-2: #f9fafb;
@@ -8,7 +14,7 @@
 }
 
 body {
-  background: #f9fafb;
+  background: var(--brand-2);
   color: var(--brand-1);
   font-family: Inter, "Segoe UI", system-ui, sans-serif;
 }
@@ -22,7 +28,7 @@ h1 {
   font-size: 2rem;
   line-height: 2.5rem;
   font-weight: 700;
-  color: #111827;
+  color: var(--brand-1);
 }
 
 h2 {
@@ -35,4 +41,30 @@ h3 {
   font-size: 1.125rem;
   line-height: 1.75rem;
   font-weight: 600;
+}
+
+/* Demo toast slide-in animation */
+@keyframes fadeSlide {
+  0% {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  85% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+/* Prevent text selection in demo shell */
+.demo-nocopy * {
+  -webkit-user-select: none !important;
+  user-select: none !important;
 }

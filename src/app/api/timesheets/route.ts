@@ -1,44 +1,66 @@
-import { jsonError, jsonOk } from "@/lib/apiResponses";
+import { handleAuthError, jsonError, jsonOk } from "@/lib/apiResponses";
+import { parsePagination } from "@/lib/pagination";
 import { prisma } from "@/lib/prisma";
-import { resolveTenantIdFromRequest } from "@/lib/tenant";
+import {
+  requireAuthenticatedTenantId,
+  resolveTenantIdFromRequest,
+} from "@/lib/tenant";
 import { timesheetCreateSchema } from "@/lib/validation";
 
 export const runtime = "nodejs";
 
-export async function GET(request: Request) {
-  const tenantId = resolveTenantIdFromRequest(request);
-  const timesheets = await prisma.timesheet.findMany({
-    where: { tenantId },
-    include: {
-      invoice: true,
-      application: {
+const TIMESHEET_INCLUDE = {
+  invoice: true,
+  application: {
+    select: {
+      id: true,
+      opportunityId: true,
+      agreedHourlyRate: true,
+      candidate: { select: { id: true, fullName: true } },
+      job: {
         select: {
           id: true,
-          opportunityId: true,
-          candidate: { select: { id: true, fullName: true } },
-          job: {
+          title: true,
+          company: {
             select: {
-              id: true,
-              title: true,
-              company: {
-                select: {
-                  name: true,
-                },
-              },
+              name: true,
             },
           },
         },
       },
     },
-    orderBy: [{ weekStartDate: "desc" }, { createdAt: "desc" }],
+  },
+} as const;
+
+export async function GET(request: Request) {
+  const tenantId = resolveTenantIdFromRequest(request);
+  const { searchParams } = new URL(request.url);
+  const pagination = parsePagination(searchParams);
+
+  const where = { tenantId };
+  const timesheets = await prisma.timesheet.findMany({
+    where,
+    include: TIMESHEET_INCLUDE,
+    orderBy: [{ periodStartDate: "desc" }, { createdAt: "desc" }],
+    ...(pagination ? { take: pagination.take, skip: pagination.skip } : {}),
   });
+
+  if (pagination) {
+    const total = await prisma.timesheet.count({ where });
+    return jsonOk({
+      items: timesheets,
+      total,
+      page: pagination.page,
+      pageSize: pagination.pageSize,
+    });
+  }
 
   return jsonOk(timesheets);
 }
 
 export async function POST(request: Request) {
   try {
-    const tenantId = resolveTenantIdFromRequest(request);
+    const tenantId = requireAuthenticatedTenantId(request);
     const body = timesheetCreateSchema.parse(await request.json());
 
     const application = await prisma.application.findFirst({
@@ -46,7 +68,7 @@ export async function POST(request: Request) {
         id: body.applicationId,
         tenantId,
       },
-      select: { id: true, currentStage: true },
+      select: { id: true, currentStage: true, agreedHourlyRate: true },
     });
 
     if (!application) {
@@ -60,13 +82,37 @@ export async function POST(request: Request) {
       );
     }
 
-    const weekStartDate = new Date(body.weekStartDate);
-    const weekEndDate = new Date(body.weekEndDate);
-
-    if (weekEndDate < weekStartDate) {
+    if (application.agreedHourlyRate == null) {
       return jsonError(
-        "Week end date must be on or after week start date",
+        "An agreed contract rate must be set on the placement before creating timesheets",
         400,
+      );
+    }
+
+    const periodStartDate = new Date(body.periodStartDate);
+    const periodEndDate = new Date(body.periodEndDate);
+
+    if (periodEndDate < periodStartDate) {
+      return jsonError(
+        "Period end date must be on or after period start date",
+        400,
+      );
+    }
+
+    const overlap = await prisma.timesheet.findFirst({
+      where: {
+        applicationId: body.applicationId,
+        tenantId,
+        periodStartDate: { lt: periodEndDate },
+        periodEndDate: { gt: periodStartDate },
+      },
+      select: { id: true },
+    });
+
+    if (overlap) {
+      return jsonError(
+        "A timesheet already exists for this period. Please check for overlapping dates.",
+        409,
       );
     }
 
@@ -74,34 +120,14 @@ export async function POST(request: Request) {
       data: {
         tenantId,
         applicationId: body.applicationId,
-        weekStartDate,
-        weekEndDate,
+        periodStartDate,
+        periodEndDate,
         hoursWorked: body.hoursWorked,
-        ratePerHour: body.ratePerHour,
+        ratePerHour: application.agreedHourlyRate,
         engineerRatePerHour: body.engineerRatePerHour,
         currency: (body.currency ?? "ZAR").toUpperCase(),
       },
-      include: {
-        invoice: true,
-        application: {
-          select: {
-            id: true,
-            opportunityId: true,
-            candidate: { select: { id: true, fullName: true } },
-            job: {
-              select: {
-                id: true,
-                title: true,
-                company: {
-                  select: {
-                    name: true,
-                  },
-                },
-              },
-            },
-          },
-        },
-      },
+      include: TIMESHEET_INCLUDE,
     });
 
     await prisma.auditLog.create({
@@ -123,8 +149,8 @@ export async function POST(request: Request) {
 
     return jsonOk(timesheet, { status: 201 });
   } catch (error) {
-    return jsonError("Unable to create timesheet", 400, {
-      message: (error as Error).message,
-    });
+    return (
+      handleAuthError(error) ?? jsonError("Unable to create timesheet", 400)
+    );
   }
 }

@@ -2,6 +2,7 @@ import { requireAdminContextFromRequest } from "@/lib/adminAuth";
 import { jsonError, jsonOk } from "@/lib/apiResponses";
 import { generateMonthlyReportForCompany } from "@/lib/financeReports";
 import { prisma } from "@/lib/prisma";
+import { z } from "zod";
 
 export const runtime = "nodejs";
 
@@ -37,9 +38,7 @@ export async function GET(request: Request) {
       return jsonError("Admin sign-in is required", 401);
     }
 
-    return jsonError("Unable to load reports", 400, {
-      message: (error as Error).message,
-    });
+    return jsonError("Unable to load reports", 400);
   }
 }
 
@@ -47,9 +46,9 @@ export async function POST(request: Request) {
   try {
     const { username: actor, tenantId } =
       requireAdminContextFromRequest(request);
-    const body = (await request.json()) as {
-      companyId?: string;
-    };
+    const body = z
+      .object({ companyId: z.string().trim().min(1) })
+      .parse(await request.json());
 
     if (!body.companyId?.trim()) {
       return jsonError("companyId is required", 400);
@@ -78,9 +77,10 @@ export async function POST(request: Request) {
     if ((error as Error).message === "UNAUTHORISED_ADMIN") {
       return jsonError("Admin sign-in is required", 401);
     }
-
-    return jsonError("Unable to generate report", 400, {
-      message: (error as Error).message,
-    });
+    if (error instanceof z.ZodError) {
+      return jsonError("Invalid request body", 400);
+    }
+    console.error("[REPORTS_POST]", error);
+    return jsonError("Unable to generate report", 400);
   }
 }

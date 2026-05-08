@@ -52,6 +52,8 @@ export async function PATCH(
         skillsCsv: parsed.data.skillsCsv,
         certificationsCsv: parsed.data.certificationsCsv,
         suggestedRolesCsv: parsed.data.suggestedRolesCsv,
+        preferredRolesCsv: parsed.data.preferredRolesCsv ?? "",
+        selfReportedHourlyRate: parsed.data.selfReportedHourlyRate ?? undefined,
         isActive: parsed.data.status === "ACTIVE",
       },
     });
@@ -62,9 +64,8 @@ export async function PATCH(
 
     return jsonOk(updatedCandidate);
   } catch (error) {
-    return jsonError("Unable to update candidate", 400, {
-      message: (error as Error).message,
-    });
+    console.error("[CANDIDATE_PATCH]", error);
+    return jsonError("Unable to update candidate", 400);
   }
 }
 
@@ -76,7 +77,7 @@ export async function DELETE(
     const scope = resolveTenantAccessScope(request);
     const { id } = await context.params;
 
-    await prisma.candidate.deleteMany({
+    const result = await prisma.candidate.deleteMany({
       where: {
         id,
         tenantId: scope.tenantId,
@@ -84,10 +85,13 @@ export async function DELETE(
       },
     });
 
+    if (result.count === 0) {
+      return jsonError("Candidate not found or could not be deleted", 404);
+    }
+
     return jsonOk({ deleted: true });
   } catch (error) {
-    return jsonError("Unable to delete candidate", 400, {
-      message: (error as Error).message,
-    });
+    console.error("[CANDIDATE_DELETE]", error);
+    return jsonError("Unable to delete candidate", 400);
   }
 }

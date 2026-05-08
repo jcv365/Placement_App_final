@@ -1,0 +1,25 @@
+services:
+  gateway:
+    image: traefik:v3.4
+    command:
+      - "--api.dashboard=false"
+      - "--providers.file.directory=/etc/traefik/dynamic"
+      - "--providers.file.watch=true"
+      - "--entrypoints.websecure.address=:10443"
+      - "--entrypoints.web.address=:1080"
+      - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
+      - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
+    ports:
+      - "${GATEWAY_LISTEN_ADDRESS:-192.168.1.161}:10443:10443"
+      - "${GATEWAY_LISTEN_ADDRESS:-192.168.1.161}:1080:1080"
+    volumes:
+      - ../SSL/certs:/etc/traefik/certs:ro
+      - ./dynamic:/etc/traefik/dynamic:ro
+    networks:
+      - placements_gateway
+    restart: unless-stopped
+
+networks:
+  placements_gateway:
+    name: placements_gateway
+    driver: bridge

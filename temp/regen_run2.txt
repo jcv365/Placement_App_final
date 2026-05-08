@@ -1,0 +1,397 @@
+Mode: LIVE
+Batch size: 1 | Delay between batches: 4000ms
+
+Found 81 reset application(s).
+
+Applications to regenerate:
+  [SHORTLISTED] "DevOps Engineer" ΓåÆ vaishali.d@sdnaglobal.com | Simphiwe Sikhonde
+  [EMAIL_DRAFTED] "DevOps Engineer" ΓåÆ vaishali.d@sdnaglobal.com | James Tladi Tladi
+  [SHORTLISTED] "Solution Architect" ΓåÆ david@vintageglobal.net | Lesiba Serite
+  [SHORTLISTED] "Network Security Architect Lead" ΓåÆ sanjana.t@smartedgesolutions.co.uk | Juliet Ngoni
+  [SHORTLISTED] "Azure Architect" ΓåÆ bindu@thoughtwavesoft.com | Paul Stegemann
+  [SHORTLISTED] "IT Lead" ΓåÆ sobana@nityo.com | Vuyelwa Lushaba
+  [SHORTLISTED] "IT Lead" ΓåÆ sobana@nityo.com | mr landile
+  [EMAIL_DRAFTED] "IT Lead" ΓåÆ sobana@nityo.com | Petunia Motlhakane
+  [SHORTLISTED] "1 Data Engineer ΓÇô AWS / Redshift / PySpark" ΓåÆ support@staffrex.in | Njabulo
+  [SHORTLISTED] "1 Data Engineer ΓÇô AWS / Redshift / PySpark" ΓåÆ support@staffrex.in | Everswick Dambaza
+  [SHORTLISTED] "1 Data Engineer ΓÇô AWS / Redshift / PySpark" ΓåÆ support@staffrex.in | Petunia Motlhakane
+  [SHORTLISTED] "Senior DevOps Engineer" ΓåÆ jason@paradigmrecruitment.co.za | James Tladi Tladi
+  [EMAIL_DRAFTED] "Senior DevOps Engineer" ΓåÆ jason@paradigmrecruitment.co.za | Keagile Nduli
+  [EMAIL_DRAFTED] "Senior DevOps Engineer" ΓåÆ jason@paradigmrecruitment.co.za | Liliyosa Mbakureya
+  [SHORTLISTED] "Senior DevOps Engineer" ΓåÆ jason@paradigmrecruitment.co.za | Tanyaradzwa Tanatswa Mushonga
+  [SHORTLISTED] "Senior Data Analyst" ΓåÆ jason@paradigmrecruitment.co.za | Everswick Dambaza
+  [SHORTLISTED] "Senior Data Analyst" ΓåÆ jason@paradigmrecruitment.co.za | Njabulo
+  [SHORTLISTED] "Senior Data Analyst" ΓåÆ jason@paradigmrecruitment.co.za | Jonas Mokgaola Nkosinathi Thamane
+  [SHORTLISTED] "Senior Data Analyst" ΓåÆ jason@paradigmrecruitment.co.za | Vuyelwa Lushaba
+  [SHORTLISTED] "Senior Data Engineer" ΓåÆ jason@paradigmrecruitment.co.za | Everswick Dambaza
+  [EMAIL_DRAFTED] "Senior Data Engineer" ΓåÆ jason@paradigmrecruitment.co.za | Njabulo
+  [SHORTLISTED] "Senior Data Engineer" ΓåÆ jason@paradigmrecruitment.co.za | Jonas Mokgaola Nkosinathi Thamane
+  [SHORTLISTED] "Senior Data Engineer" ΓåÆ jason@paradigmrecruitment.co.za | Petunia Motlhakane
+  [SHORTLISTED] "Senior Data Engineer" ΓåÆ jason@paradigmrecruitment.co.za | Isaac Rantu Mongae
+  [SHORTLISTED] "Cloud DevOps Engineer" ΓåÆ jason@paradigmrecruitment.co.za | Everswick Dambaza
+  [SHORTLISTED] "Cloud DevOps Engineer" ΓåÆ jason@paradigmrecruitment.co.za | James Tladi Tladi
+  [SHORTLISTED] "Cloud DevOps Engineer" ΓåÆ jason@paradigmrecruitment.co.za | Keagile Nduli
+  [EMAIL_DRAFTED] "Cloud DevOps Engineer" ΓåÆ jason@paradigmrecruitment.co.za | Liliyosa Mbakureya
+  [EMAIL_DRAFTED] "Senior DevOps Engineer" ΓåÆ lucy@marutlethrone.co.za | Lesley Charinda
+  [SHORTLISTED] "Senior DevOps Engineer" ΓåÆ lucy@marutlethrone.co.za | MPHO MORABA
+  [SHORTLISTED] "Cloud DevOps Engineer" ΓåÆ lucy@marutlethrone.co.za | MPHO MORABA
+  [SHORTLISTED] "Cloud DevOps Engineer" ΓåÆ lucy@marutlethrone.co.za | Tanyaradzwa Tanatswa Mushonga
+  [SHORTLISTED] "Cloud DevOps Engineer" ΓåÆ lucy@marutlethrone.co.za | Lesley Charinda
+  [SHORTLISTED] "Senior DevOps Engineer GCP Focused" ΓåÆ sales@ecsgrp.co.uk | James Tladi Tladi
+  [SHORTLISTED] "Senior DevOps Engineer GCP Focused" ΓåÆ sales@ecsgrp.co.uk | Simphiwe Sikhonde
+  [SHORTLISTED] "Senior Python Developer" ΓåÆ a.george-taylor@gravitasgroup.com | Tonderai Muchada
+  [SHORTLISTED] "Data Engineer" ΓåÆ support@staffrex.in | Everswick Dambaza
+  [SHORTLISTED] "Data Engineer" ΓåÆ support@staffrex.in | Njabulo
+  [SHORTLISTED] "Data Engineer" ΓåÆ support@staffrex.in | Jonas Mokgaola Nkosinathi Thamane
+  [SHORTLISTED] "Data Engineer" ΓåÆ support@staffrex.in | Isaac Rantu Mongae
+  [SHORTLISTED] "Full Stack Developer" ΓåÆ jason@paradigmrecruitment.co.za | Keagile Nduli
+  [SHORTLISTED] "Full Stack Developer" ΓåÆ jason@paradigmrecruitment.co.za | Tanyaradzwa Tanatswa Mushonga
+  [SHORTLISTED] "Full Stack Developer" ΓåÆ jason@paradigmrecruitment.co.za | Lesley Charinda
+  [SHORTLISTED] "Full Stack Developer" ΓåÆ jason@paradigmrecruitment.co.za | Kudzai Murimi
+  [SHORTLISTED] "Full Stack Developer" ΓåÆ jason@paradigmrecruitment.co.za | MPHO MORABA
+  [SHORTLISTED] "Full Stack Developer" ΓåÆ lucy@marutlethrone.co.za | Tonderai Muchada
+  [SHORTLISTED] "Azure Cloud Engineer" ΓåÆ brendan.mccann@emagine.org | Everswick Dambaza
+  [SHORTLISTED] "Azure Cloud Engineer" ΓåÆ brendan.mccann@emagine.org | Lesiba Serite
+  [SHORTLISTED] "Azure Cloud Engineer" ΓåÆ brendan.mccann@emagine.org | James Tladi Tladi
+  [SHORTLISTED] "Data Engineer GCP &amp; BigQuery" ΓåÆ mattrandall@spectrumit.co.uk | Everswick Dambaza
+  [SHORTLISTED] "Data Engineer GCP &amp; BigQuery" ΓåÆ mattrandall@spectrumit.co.uk | Njabulo
+  [SHORTLISTED] "Data Engineer GCP &amp; BigQuery" ΓåÆ mattrandall@spectrumit.co.uk | Jonas Mokgaola Nkosinathi Thamane
+  [SHORTLISTED] "Data Engineer GCP &amp; BigQuery" ΓåÆ mattrandall@spectrumit.co.uk | Petunia Motlhakane
+  [SHORTLISTED] "Software Engineer" ΓåÆ peter.bebee@fruitiongroup.com | Lesley Charinda
+  [SHORTLISTED] "Software Engineer" ΓåÆ peter.bebee@fruitiongroup.com | MPHO MORABA
+  [SHORTLISTED] "Software Engineer" ΓåÆ peter.bebee@fruitiongroup.com | Kudzai Murimi
+  [SHORTLISTED] "Senior AI Engineer" ΓåÆ hr@pivot2ai.org | Everswick Dambaza
+  [SHORTLISTED] "Senior AI Engineer" ΓåÆ hr@pivot2ai.org | Petunia Motlhakane
+  [SHORTLISTED] "Infrastructure Security &amp; Migration Engineer" ΓåÆ support@staffrex.in | Lesiba Serite
+  [SHORTLISTED] "AI Engineer" ΓåÆ tana.mushambadope@signify-tech.com | Everswick Dambaza
+  [SHORTLISTED] "AI Engineer" ΓåÆ tana.mushambadope@signify-tech.com | Petunia Motlhakane
+  [SHORTLISTED] "Azure DevOps Engineer" ΓåÆ tana.mushambadope@signify-tech.com | James Tladi Tladi
+  [SHORTLISTED] "Azure DevOps Engineer" ΓåÆ tana.mushambadope@signify-tech.com | Tanyaradzwa Tanatswa Mushonga
+  [SHORTLISTED] "Azure DevOps Engineer" ΓåÆ tana.mushambadope@signify-tech.com | MPHO MORABA
+  [SHORTLISTED] "Solution Architect Service Designer Product Manager Test Engineer Front End Developer Azure DevOps Engineer Lead Azure DevOps Engineer" ΓåÆ neelesh.maroo@stealth-it.com | James Tladi Tladi
+  [SHORTLISTED] "Solution Architect Service Designer Product Manager Test Engineer Front End Developer Azure DevOps Engineer Lead Azure DevOps Engineer" ΓåÆ neelesh.maroo@stealth-it.com | MPHO MORABA
+  [SHORTLISTED] "Solution Architect Service Designer Product Manager Test Engineer Front End Developer Azure DevOps Engineer Lead Azure DevOps Engineer" ΓåÆ neelesh.maroo@stealth-it.com | Keagile Nduli
+  [SHORTLISTED] "Full Stack Engineer" ΓåÆ lauren.millane@prism-digital.com | Tanyaradzwa Tanatswa Mushonga
+  [SHORTLISTED] "Full Stack Engineer" ΓåÆ lauren.millane@prism-digital.com | Kudzai Murimi
+  [SHORTLISTED] "Full Stack Engineer" ΓåÆ lauren.millane@prism-digital.com | MPHO MORABA
+  [SHORTLISTED] "Full Stack Engineer" ΓåÆ lauren.millane@prism-digital.com | Tonderai Muchada
+  [SHORTLISTED] "Full Stack Engineer" ΓåÆ lauren.millane@prism-digital.com | Keagile Nduli
+  [SHORTLISTED] "Lead JAVA AWS Developer at Confidential" ΓåÆ hr@futureitservice.info | Everswick Dambaza
+  [SHORTLISTED] "Lead JAVA AWS Developer at Confidential" ΓåÆ hr@futureitservice.info | MPHO MORABA
+  [SHORTLISTED] "Lead JAVA AWS Developer at Confidential" ΓåÆ hr@futureitservice.info | Tonderai Muchada
+  [SHORTLISTED] "Lead JAVA AWS Developer" ΓåÆ hr@futureitservice.info | Tonderai Muchada
+  [SHORTLISTED] "Lead JAVA AWS Developer" ΓåÆ hr@futureitservice.info | MPHO MORABA
+  [SHORTLISTED] "Lead JAVA AWS Developer" ΓåÆ hr@futureitservice.info | Everswick Dambaza
+  [SHORTLISTED] "Data Engineer ΓÇô AWS / Redshift / PySpark" ΓåÆ support@staffrex.in | Njabulo
+  [SHORTLISTED] "Data Engineer ΓÇô AWS / Redshift / PySpark" ΓåÆ support@staffrex.in | Jonas Mokgaola Nkosinathi Thamane
+  [SHORTLISTED] "Data Engineer ΓÇô AWS / Redshift / PySpark" ΓåÆ support@staffrex.in | Petunia Motlhakane
+
+Skipping 7 application(s) not at SHORTLISTED:
+  [EMAIL_DRAFTED] cmnu6n0tm005srx012kplqrl3 ΓÇö "DevOps Engineer" / James Tladi Tladi
+  [EMAIL_DRAFTED] cmnu6s1zw007irx01bkhi08kx ΓÇö "IT Lead" / Petunia Motlhakane
+  [EMAIL_DRAFTED] cmnu6uvrb008irx01jlf6wmir ΓÇö "Senior DevOps Engineer" / Keagile Nduli
+  [EMAIL_DRAFTED] cmnu6vdpr008orx013u3u0jea ΓÇö "Senior DevOps Engineer" / Liliyosa Mbakureya
+  [EMAIL_DRAFTED] cmnu6yf6k009urx01kx1hunhi ΓÇö "Senior Data Engineer" / Njabulo
+  [EMAIL_DRAFTED] cmnu71hfx00b0rx01unr8tag6 ΓÇö "Cloud DevOps Engineer" / Liliyosa Mbakureya
+  [EMAIL_DRAFTED] cmnu72c9000bbrx019ywo4ggv ΓÇö "Senior DevOps Engineer" / Lesley Charinda
+
+Eligible for regeneration: 74
+
+
+Batch 1/74 ΓÇö processing 1 item(s)...
+  FAIL  "DevOps Engineer" / Simphiwe Sikhonde ΓÇö HTTP 502: AI email generation failed
+
+Batch 2/74 ΓÇö processing 1 item(s)...
+  FAIL  "Solution Architect" / Lesiba Serite ΓÇö HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+
+Batch 3/74 ΓÇö processing 1 item(s)...
+  FAIL  "Network Security Architect Lead" / Juliet Ngoni ΓÇö HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+
+Batch 4/74 ΓÇö processing 1 item(s)...
+  FAIL  "Azure Architect" / Paul Stegemann ΓÇö HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+
+Batch 5/74 ΓÇö processing 1 item(s)...
+  FAIL  "IT Lead" / Vuyelwa Lushaba ΓÇö HTTP 502: AI email generation failed
+
+Batch 6/74 ΓÇö processing 1 item(s)...
+  FAIL  "IT Lead" / mr landile ΓÇö HTTP 502: AI email generation failed
+
+Batch 7/74 ΓÇö processing 1 item(s)...
+  FAIL  "1 Data Engineer ΓÇô AWS / Redshift / PySpark" / Njabulo ΓÇö HTTP 502: AI email generation failed
+
+Batch 8/74 ΓÇö processing 1 item(s)...
+  FAIL  "1 Data Engineer ΓÇô AWS / Redshift / PySpark" / Everswick Dambaza ΓÇö HTTP 502: AI email generation failed
+
+Batch 9/74 ΓÇö processing 1 item(s)...
+  FAIL  "1 Data Engineer ΓÇô AWS / Redshift / PySpark" / Petunia Motlhakane ΓÇö HTTP 502: AI email generation failed
+
+Batch 10/74 ΓÇö processing 1 item(s)...
+  FAIL  "Senior DevOps Engineer" / James Tladi Tladi ΓÇö HTTP 502: AI email generation failed
+
+Batch 11/74 ΓÇö processing 1 item(s)...
+  FAIL  "Senior DevOps Engineer" / Tanyaradzwa Tanatswa Mushonga ΓÇö HTTP 502: AI email generation failed
+
+Batch 12/74 ΓÇö processing 1 item(s)...
+  FAIL  "Senior Data Analyst" / Everswick Dambaza ΓÇö HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+
+Batch 13/74 ΓÇö processing 1 item(s)...
+  FAIL  "Senior Data Analyst" / Njabulo ΓÇö HTTP 502: AI email generation failed
+
+Batch 14/74 ΓÇö processing 1 item(s)...
+  FAIL  "Senior Data Analyst" / Jonas Mokgaola Nkosinathi Thamane ΓÇö HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+
+Batch 15/74 ΓÇö processing 1 item(s)...
+  FAIL  "Senior Data Analyst" / Vuyelwa Lushaba ΓÇö HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+
+Batch 16/74 ΓÇö processing 1 item(s)...
+  FAIL  "Senior Data Engineer" / Everswick Dambaza ΓÇö HTTP 502: AI email generation failed
+
+Batch 17/74 ΓÇö processing 1 item(s)...
+  FAIL  "Senior Data Engineer" / Jonas Mokgaola Nkosinathi Thamane ΓÇö HTTP 502: AI email generation failed
+
+Batch 18/74 ΓÇö processing 1 item(s)...
+  FAIL  "Senior Data Engineer" / Petunia Motlhakane ΓÇö HTTP 502: AI email generation failed
+
+Batch 19/74 ΓÇö processing 1 item(s)...
+  FAIL  "Senior Data Engineer" / Isaac Rantu Mongae ΓÇö HTTP 502: AI email generation failed
+
+Batch 20/74 ΓÇö processing 1 item(s)...
+  FAIL  "Cloud DevOps Engineer" / Everswick Dambaza ΓÇö HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+
+Batch 21/74 ΓÇö processing 1 item(s)...
+  FAIL  "Cloud DevOps Engineer" / James Tladi Tladi ΓÇö HTTP 502: AI email generation failed
+
+Batch 22/74 ΓÇö processing 1 item(s)...
+  FAIL  "Cloud DevOps Engineer" / Keagile Nduli ΓÇö HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+
+Batch 23/74 ΓÇö processing 1 item(s)...
+Batch 24/74 ΓÇö processing 1 item(s)...
+  FAIL  "Cloud DevOps Engineer" / MPHO MORABA ΓÇö HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+
+Batch 25/74 ΓÇö processing 1 item(s)...
+Batch 26/74 ΓÇö processing 1 item(s)...
+  FAIL  "Cloud DevOps Engineer" / Lesley Charinda ΓÇö HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+
+Batch 27/74 ΓÇö processing 1 item(s)...
+  FAIL  "Senior DevOps Engineer GCP Focused" / James Tladi Tladi ΓÇö HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+
+Batch 28/74 ΓÇö processing 1 item(s)...
+  FAIL  "Senior DevOps Engineer GCP Focused" / Simphiwe Sikhonde ΓÇö HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+
+Batch 29/74 ΓÇö processing 1 item(s)...
+  FAIL  "Senior Python Developer" / Tonderai Muchada ΓÇö HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+
+Batch 30/74 ΓÇö processing 1 item(s)...
+  FAIL  "Data Engineer" / Everswick Dambaza ΓÇö HTTP 502: AI email generation failed
+
+Batch 31/74 ΓÇö processing 1 item(s)...
+  FAIL  "Data Engineer" / Njabulo ΓÇö HTTP 502: AI email generation failed
+
+Batch 32/74 ΓÇö processing 1 item(s)...
+  FAIL  "Data Engineer" / Jonas Mokgaola Nkosinathi Thamane ΓÇö HTTP 502: AI email generation failed
+
+Batch 33/74 ΓÇö processing 1 item(s)...
+  FAIL  "Data Engineer" / Isaac Rantu Mongae ΓÇö HTTP 502: AI email generation failed
+
+Batch 34/74 ΓÇö processing 1 item(s)...
+  FAIL  "Full Stack Developer" / Keagile Nduli ΓÇö HTTP 502: AI email generation failed
+
+Batch 35/74 ΓÇö processing 1 item(s)...
+  FAIL  "Full Stack Developer" / Tanyaradzwa Tanatswa Mushonga ΓÇö HTTP 502: AI email generation failed
+
+Batch 36/74 ΓÇö processing 1 item(s)...
+  FAIL  "Full Stack Developer" / Lesley Charinda ΓÇö HTTP 502: AI email generation failed
+
+Batch 37/74 ΓÇö processing 1 item(s)...
+  FAIL  "Full Stack Developer" / Kudzai Murimi ΓÇö HTTP 502: AI email generation failed
+
+Batch 38/74 ΓÇö processing 1 item(s)...
+  FAIL  "Full Stack Developer" / MPHO MORABA ΓÇö HTTP 502: AI email generation failed
+
+Batch 39/74 ΓÇö processing 1 item(s)...
+  FAIL  "Full Stack Developer" / Tonderai Muchada ΓÇö HTTP 502: AI email generation failed
+
+Batch 40/74 ΓÇö processing 1 item(s)...
+  FAIL  "Azure Cloud Engineer" / Everswick Dambaza ΓÇö HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+
+Batch 41/74 ΓÇö processing 1 item(s)...
+  FAIL  "Azure Cloud Engineer" / Lesiba Serite ΓÇö HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+
+Batch 42/74 ΓÇö processing 1 item(s)...
+  FAIL  "Azure Cloud Engineer" / James Tladi Tladi ΓÇö HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+
+Batch 43/74 ΓÇö processing 1 item(s)...
+  FAIL  "Data Engineer GCP &amp; BigQuery" / Everswick Dambaza ΓÇö HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+
+Batch 44/74 ΓÇö processing 1 item(s)...
+  FAIL  "Data Engineer GCP &amp; BigQuery" / Njabulo ΓÇö HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+
+Batch 45/74 ΓÇö processing 1 item(s)...
+  FAIL  "Data Engineer GCP &amp; BigQuery" / Jonas Mokgaola Nkosinathi Thamane ΓÇö HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+
+Batch 46/74 ΓÇö processing 1 item(s)...
+  FAIL  "Data Engineer GCP &amp; BigQuery" / Petunia Motlhakane ΓÇö HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+
+Batch 47/74 ΓÇö processing 1 item(s)...
+  FAIL  "Software Engineer" / Lesley Charinda ΓÇö HTTP 502: AI email generation failed
+
+Batch 48/74 ΓÇö processing 1 item(s)...
+  FAIL  "Software Engineer" / MPHO MORABA ΓÇö HTTP 502: AI email generation failed
+
+Batch 49/74 ΓÇö processing 1 item(s)...
+  FAIL  "Software Engineer" / Kudzai Murimi ΓÇö HTTP 502: AI email generation failed
+
+Batch 50/74 ΓÇö processing 1 item(s)...
+  FAIL  "Senior AI Engineer" / Everswick Dambaza ΓÇö HTTP 502: AI email generation failed
+
+Batch 51/74 ΓÇö processing 1 item(s)...
+  FAIL  "Senior AI Engineer" / Petunia Motlhakane ΓÇö HTTP 502: AI email generation failed
+
+Batch 52/74 ΓÇö processing 1 item(s)...
+  FAIL  "Infrastructure Security &amp; Migration Engineer" / Lesiba Serite ΓÇö HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+
+Batch 53/74 ΓÇö processing 1 item(s)...
+  FAIL  "AI Engineer" / Everswick Dambaza ΓÇö HTTP 502: AI email generation failed
+
+Batch 54/74 ΓÇö processing 1 item(s)...
+  FAIL  "AI Engineer" / Petunia Motlhakane ΓÇö HTTP 502: AI email generation failed
+
+Batch 55/74 ΓÇö processing 1 item(s)...
+  FAIL  "Azure DevOps Engineer" / James Tladi Tladi ΓÇö HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+
+Batch 56/74 ΓÇö processing 1 item(s)...
+  FAIL  "Azure DevOps Engineer" / Tanyaradzwa Tanatswa Mushonga ΓÇö HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+
+Batch 57/74 ΓÇö processing 1 item(s)...
+  FAIL  "Azure DevOps Engineer" / MPHO MORABA ΓÇö HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+
+Batch 58/74 ΓÇö processing 1 item(s)...
+  FAIL  "Solution Architect Service Designer Product Manager Test Engineer Front End Developer Azure DevOps Engineer Lead Azure DevOps Engineer" / James Tladi Tladi ΓÇö HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+
+Batch 59/74 ΓÇö processing 1 item(s)...
+  FAIL  "Solution Architect Service Designer Product Manager Test Engineer Front End Developer Azure DevOps Engineer Lead Azure DevOps Engineer" / MPHO MORABA ΓÇö HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+
+Batch 60/74 ΓÇö processing 1 item(s)...
+  FAIL  "Solution Architect Service Designer Product Manager Test Engineer Front End Developer Azure DevOps Engineer Lead Azure DevOps Engineer" / Keagile Nduli ΓÇö HTTP 502: AI email generation failed
+
+Batch 61/74 ΓÇö processing 1 item(s)...
+  FAIL  "Full Stack Engineer" / Tanyaradzwa Tanatswa Mushonga ΓÇö HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+
+Batch 62/74 ΓÇö processing 1 item(s)...
+  FAIL  "Full Stack Engineer" / Kudzai Murimi ΓÇö HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+
+Batch 63/74 ΓÇö processing 1 item(s)...
+  FAIL  "Full Stack Engineer" / MPHO MORABA ΓÇö HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+
+Batch 64/74 ΓÇö processing 1 item(s)...
+  FAIL  "Full Stack Engineer" / Tonderai Muchada ΓÇö HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+
+Batch 65/74 ΓÇö processing 1 item(s)...
+  FAIL  "Full Stack Engineer" / Keagile Nduli ΓÇö HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+
+Batch 66/74 ΓÇö processing 1 item(s)...
+  FAIL  "Lead JAVA AWS Developer at Confidential" / Everswick Dambaza ΓÇö HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+
+Batch 67/74 ΓÇö processing 1 item(s)...
+  FAIL  "Lead JAVA AWS Developer at Confidential" / MPHO MORABA ΓÇö HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+
+Batch 68/74 ΓÇö processing 1 item(s)...
+  FAIL  "Lead JAVA AWS Developer at Confidential" / Tonderai Muchada ΓÇö HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+
+Batch 69/74 ΓÇö processing 1 item(s)...
+  FAIL  "Lead JAVA AWS Developer" / Tonderai Muchada ΓÇö HTTP 502: AI email generation failed
+
+Batch 70/74 ΓÇö processing 1 item(s)...
+  FAIL  "Lead JAVA AWS Developer" / MPHO MORABA ΓÇö HTTP 502: AI email generation failed
+
+Batch 71/74 ΓÇö processing 1 item(s)...
+  FAIL  "Lead JAVA AWS Developer" / Everswick Dambaza ΓÇö HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+
+Batch 72/74 ΓÇö processing 1 item(s)...
+  FAIL  "Data Engineer ΓÇô AWS / Redshift / PySpark" / Njabulo ΓÇö HTTP 502: AI email generation failed
+
+Batch 73/74 ΓÇö processing 1 item(s)...
+  FAIL  "Data Engineer ΓÇô AWS / Redshift / PySpark" / Jonas Mokgaola Nkosinathi Thamane ΓÇö HTTP 502: AI email generation failed
+
+Batch 74/74 ΓÇö processing 1 item(s)...
+  FAIL  "Data Engineer ΓÇô AWS / Redshift / PySpark" / Petunia Motlhakane ΓÇö HTTP 502: AI email generation failed
+
+
+=== Complete ===
+  Generated:    2
+  Skipped (API): 0 (no opportunity email)
+  Failed:        72
+
+Failures:
+  - "DevOps Engineer" / Simphiwe Sikhonde: HTTP 502: AI email generation failed
+  - "Solution Architect" / Lesiba Serite: HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+  - "Network Security Architect Lead" / Juliet Ngoni: HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+  - "Azure Architect" / Paul Stegemann: HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+  - "IT Lead" / Vuyelwa Lushaba: HTTP 502: AI email generation failed
+  - "IT Lead" / mr landile: HTTP 502: AI email generation failed
+  - "1 Data Engineer ΓÇô AWS / Redshift / PySpark" / Njabulo: HTTP 502: AI email generation failed
+  - "1 Data Engineer ΓÇô AWS / Redshift / PySpark" / Everswick Dambaza: HTTP 502: AI email generation failed
+  - "1 Data Engineer ΓÇô AWS / Redshift / PySpark" / Petunia Motlhakane: HTTP 502: AI email generation failed
+  - "Senior DevOps Engineer" / James Tladi Tladi: HTTP 502: AI email generation failed
+  - "Senior DevOps Engineer" / Tanyaradzwa Tanatswa Mushonga: HTTP 502: AI email generation failed
+  - "Senior Data Analyst" / Everswick Dambaza: HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+  - "Senior Data Analyst" / Njabulo: HTTP 502: AI email generation failed
+  - "Senior Data Analyst" / Jonas Mokgaola Nkosinathi Thamane: HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+  - "Senior Data Analyst" / Vuyelwa Lushaba: HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+  - "Senior Data Engineer" / Everswick Dambaza: HTTP 502: AI email generation failed
+  - "Senior Data Engineer" / Jonas Mokgaola Nkosinathi Thamane: HTTP 502: AI email generation failed
+  - "Senior Data Engineer" / Petunia Motlhakane: HTTP 502: AI email generation failed
+  - "Senior Data Engineer" / Isaac Rantu Mongae: HTTP 502: AI email generation failed
+  - "Cloud DevOps Engineer" / Everswick Dambaza: HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+  - "Cloud DevOps Engineer" / James Tladi Tladi: HTTP 502: AI email generation failed
+  - "Cloud DevOps Engineer" / Keagile Nduli: HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+  - "Cloud DevOps Engineer" / MPHO MORABA: HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+  - "Cloud DevOps Engineer" / Lesley Charinda: HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+  - "Senior DevOps Engineer GCP Focused" / James Tladi Tladi: HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+  - "Senior DevOps Engineer GCP Focused" / Simphiwe Sikhonde: HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+  - "Senior Python Developer" / Tonderai Muchada: HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+  - "Data Engineer" / Everswick Dambaza: HTTP 502: AI email generation failed
+  - "Data Engineer" / Njabulo: HTTP 502: AI email generation failed
+  - "Data Engineer" / Jonas Mokgaola Nkosinathi Thamane: HTTP 502: AI email generation failed
+  - "Data Engineer" / Isaac Rantu Mongae: HTTP 502: AI email generation failed
+  - "Full Stack Developer" / Keagile Nduli: HTTP 502: AI email generation failed
+  - "Full Stack Developer" / Tanyaradzwa Tanatswa Mushonga: HTTP 502: AI email generation failed
+  - "Full Stack Developer" / Lesley Charinda: HTTP 502: AI email generation failed
+  - "Full Stack Developer" / Kudzai Murimi: HTTP 502: AI email generation failed
+  - "Full Stack Developer" / MPHO MORABA: HTTP 502: AI email generation failed
+  - "Full Stack Developer" / Tonderai Muchada: HTTP 502: AI email generation failed
+  - "Azure Cloud Engineer" / Everswick Dambaza: HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+  - "Azure Cloud Engineer" / Lesiba Serite: HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+  - "Azure Cloud Engineer" / James Tladi Tladi: HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+  - "Data Engineer GCP &amp; BigQuery" / Everswick Dambaza: HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+  - "Data Engineer GCP &amp; BigQuery" / Njabulo: HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+  - "Data Engineer GCP &amp; BigQuery" / Jonas Mokgaola Nkosinathi Thamane: HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+  - "Data Engineer GCP &amp; BigQuery" / Petunia Motlhakane: HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+  - "Software Engineer" / Lesley Charinda: HTTP 502: AI email generation failed
+  - "Software Engineer" / MPHO MORABA: HTTP 502: AI email generation failed
+  - "Software Engineer" / Kudzai Murimi: HTTP 502: AI email generation failed
+  - "Senior AI Engineer" / Everswick Dambaza: HTTP 502: AI email generation failed
+  - "Senior AI Engineer" / Petunia Motlhakane: HTTP 502: AI email generation failed
+  - "Infrastructure Security &amp; Migration Engineer" / Lesiba Serite: HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+  - "AI Engineer" / Everswick Dambaza: HTTP 502: AI email generation failed
+  - "AI Engineer" / Petunia Motlhakane: HTTP 502: AI email generation failed
+  - "Azure DevOps Engineer" / James Tladi Tladi: HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+  - "Azure DevOps Engineer" / Tanyaradzwa Tanatswa Mushonga: HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+  - "Azure DevOps Engineer" / MPHO MORABA: HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+  - "Solution Architect Service Designer Product Manager Test Engineer Front End Developer Azure DevOps Engineer Lead Azure DevOps Engineer" / James Tladi Tladi: HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+  - "Solution Architect Service Designer Product Manager Test Engineer Front End Developer Azure DevOps Engineer Lead Azure DevOps Engineer" / MPHO MORABA: HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+  - "Solution Architect Service Designer Product Manager Test Engineer Front End Developer Azure DevOps Engineer Lead Azure DevOps Engineer" / Keagile Nduli: HTTP 502: AI email generation failed
+  - "Full Stack Engineer" / Tanyaradzwa Tanatswa Mushonga: HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+  - "Full Stack Engineer" / Kudzai Murimi: HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+  - "Full Stack Engineer" / MPHO MORABA: HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+  - "Full Stack Engineer" / Tonderai Muchada: HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+  - "Full Stack Engineer" / Keagile Nduli: HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+  - "Lead JAVA AWS Developer at Confidential" / Everswick Dambaza: HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+  - "Lead JAVA AWS Developer at Confidential" / MPHO MORABA: HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+  - "Lead JAVA AWS Developer at Confidential" / Tonderai Muchada: HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+  - "Lead JAVA AWS Developer" / Tonderai Muchada: HTTP 502: AI email generation failed
+  - "Lead JAVA AWS Developer" / MPHO MORABA: HTTP 502: AI email generation failed
+  - "Lead JAVA AWS Developer" / Everswick Dambaza: HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+  - "Data Engineer ΓÇô AWS / Redshift / PySpark" / Njabulo: HTTP 502: AI email generation failed
+  - "Data Engineer ΓÇô AWS / Redshift / PySpark" / Jonas Mokgaola Nkosinathi Thamane: HTTP 502: AI email generation failed
+  - "Data Engineer ΓÇô AWS / Redshift / PySpark" / Petunia Motlhakane: HTTP 502: AI email generation failed

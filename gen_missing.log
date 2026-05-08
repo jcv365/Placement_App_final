@@ -1,0 +1,13 @@
+Using user: charl.venter@dotcloud.africa cmmutgwan0003v69wp9wutd49
+Token length: 174
+Apps to generate: 8
+[FAIL 409] Kudzai Murimi | Software Engineer Multiple Roles => Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+[FAIL 409] Jeanre Swanepoel | Senior Data Engineer => Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+[FAIL 409] Riaan Snyders | Modern Workplace and DEX Principal Consultant => Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+[FAIL 409] Riaan Snyders | Advisory Architect => Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+[FAIL 409] Jonathan Wagener | Azure Architect => Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+[FAIL 409] Riaan Snyders | Cloud DevOps Engineer => Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+[FAIL 409] Riaan Snyders | Head of Business Development => Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+[FAIL 409] Liliyosa Mbakureya | Front End Developer => Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+
+Result: 0/8 OK, 8 failed

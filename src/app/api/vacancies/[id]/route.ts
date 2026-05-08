@@ -1,6 +1,7 @@
 import { jsonError, jsonOk } from "@/lib/apiResponses";
+import { writeAuditLog } from "@/lib/auditLog";
 import { prisma } from "@/lib/prisma";
-import { resolveTenantIdFromRequest } from "@/lib/tenant";
+import { requireAuthenticatedTenantId } from "@/lib/tenant";
 import { vacancyUpdateSchema } from "@/lib/validation";
 
 export const runtime = "nodejs";
@@ -10,7 +11,7 @@ export async function PATCH(
   context: { params: Promise<{ id: string }> },
 ) {
   try {
-    const tenantId = resolveTenantIdFromRequest(request);
+    const tenantId = requireAuthenticatedTenantId(request);
     const { id } = await context.params;
     const body = vacancyUpdateSchema.parse(await request.json());
 
@@ -69,10 +70,19 @@ export async function PATCH(
       },
     });
 
+    await writeAuditLog({
+      tenantId,
+      entityType: "vacancy",
+      entityId: vacancy.id,
+      action: "UPDATE",
+    });
+
     return jsonOk(vacancy);
   } catch (error) {
-    return jsonError("Unable to update vacancy", 400, {
-      message: (error as Error).message,
-    });
+    if ((error as Error).message === "UNAUTHENTICATED") {
+      return jsonError("Authentication required", 401);
+    }
+    console.error("[VACANCY_UPDATE]", error);
+    return jsonError("Unable to update vacancy", 400);
   }
 }

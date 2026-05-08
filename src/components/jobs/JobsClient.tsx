@@ -3,6 +3,7 @@
 import UploadPanel from "@/components/forms/UploadPanel";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ConfirmDialog } from "@/components/ui/confirm-dialog";
 import {
     Dialog,
     DialogContent,
@@ -17,7 +18,7 @@ import Link from "next/link";
 import * as React from "react";
 
 type JobsUploadSummary = {
-  uploadOutcome: "success" | "partial" | "no_changes";
+  uploadOutcome: "success" | "partial" | "no_changes" | "queued";
   uploadMessage: string;
   uploadedOpportunities: number;
   createdJobs: number;
@@ -25,6 +26,13 @@ type JobsUploadSummary = {
   generatedEmails: number;
   failedEmails: number;
   skippedExistingOpportunities: number;
+  skippedDuplicateInUpload: number;
+  skippedAlreadyExistsInSystem: number;
+  skippedOpportunities: Array<{
+    role: string;
+    companyName: string;
+    reason: "duplicate_in_upload" | "already_exists_in_system";
+  }>;
 };
 
 type OpportunitiesUploadResponse = {
@@ -45,6 +53,7 @@ type UploadProgressResponse = {
   percent: number;
   message: string;
   updatedAt: number;
+  summary?: Record<string, unknown> | null;
 };
 
 type DeletionRequestResponse = {
@@ -65,6 +74,9 @@ type PendingDeletionRequest = {
 type Job = {
   id: string;
   title: string;
+  description?: string | null;
+  requiredSkillsCsv?: string | null;
+  requiredCertificationsCsv?: string | null;
   rawText: string;
   opportunityEmail?: string | null;
   opportunityUrl?: string | null;
@@ -96,6 +108,17 @@ function truncateText(value: string, limit: number): string {
   return `${value.slice(0, Math.max(0, limit - 3)).trim()}...`;
 }
 
+function parseCsvItems(value?: string | null): string[] {
+  if (!value) {
+    return [];
+  }
+
+  return value
+    .split(/[\n,;|]+/)
+    .map((item) => item.trim())
+    .filter(Boolean);
+}
+
 function normaliseRoleTitle(title: string, rawText: string): string {
   const cleanTitle = cleanText(title).replace(/^linkedin opportunity:\s*/i, "");
   if (
@@ -120,6 +143,7 @@ export default function JobsClient() {
   const [search, setSearch] = React.useState("");
   const [jobCompanyName, setJobCompanyName] = React.useState("");
   const [jobRoleTitle, setJobRoleTitle] = React.useState("");
+  const [jobOpportunityEmail, setJobOpportunityEmail] = React.useState("");
   const [opportunityFile, setOpportunityFile] = React.useState<File | null>(
     null,
   );
@@ -203,20 +227,7 @@ export default function JobsClient() {
           : `${Date.now()}${Math.random().toString(16).slice(2)}`;
       formData.append("uploadId", uploadId);
 
-      const githubAccessToken =
-        typeof window !== "undefined"
-          ? localStorage.getItem("githubAccessToken")
-          : null;
-      const aiProvider =
-        typeof window !== "undefined"
-          ? localStorage.getItem("aiProvider")
-          : null;
-      if (githubAccessToken) {
-        formData.append("githubAccessToken", githubAccessToken);
-      }
-      if (aiProvider) {
-        formData.append("aiProvider", aiProvider);
-      }
+      // Removed legacy AI provider/token fields
 
       let shouldPoll = true;
       const pollServerProgress = async () => {
@@ -294,7 +305,7 @@ export default function JobsClient() {
 
       if (!result.ok || payload?.ok === false) {
         if (requiresInvestigation) {
-          alert(popupMessage);
+          setErrorMessage(popupMessage);
         }
         throw new Error(
           payload?.error?.details?.message ??
@@ -308,6 +319,52 @@ export default function JobsClient() {
         throw new Error("Upload succeeded but no summary was returned");
       }
       setOpportunitiesUploadTransferPercent(100);
+
+      if (summary.uploadOutcome === "queued") {
+        // Background processing — poll progress until completed or failed.
+        setOpportunitiesUploadProcessingPercent(25);
+        setOpportunitiesUploadPhaseMessage("Processing in background…");
+        setSuccessMessage("Upload accepted — processing in the background.");
+
+        const deadline = Date.now() + 5 * 60 * 1000;
+        while (Date.now() < deadline) {
+          await new Promise<void>((resolve) => {
+            window.setTimeout(resolve, 1500);
+          });
+          try {
+            const resp = await fetch(
+              `/api/upload/progress?uploadId=${encodeURIComponent(uploadId)}`,
+              { cache: "no-store" },
+            );
+            if (!resp.ok) continue;
+            const prog = (await resp.json()) as {
+              ok?: boolean;
+              data?: UploadProgressResponse;
+            };
+            if (!prog.ok || !prog.data) continue;
+            setOpportunitiesUploadProcessingPercent(prog.data.percent);
+            setOpportunitiesUploadPhaseMessage(prog.data.message);
+            if (prog.data.status === "completed") {
+              setOpportunitiesUploadProcessingPercent(100);
+              setOpportunitiesUploadPhaseMessage("Upload complete.");
+              setSuccessMessage(prog.data.message);
+              if (prog.data.summary) {
+                setUploadSummary(prog.data.summary as JobsUploadSummary);
+              }
+              await load();
+              break;
+            }
+            if (prog.data.status === "failed") {
+              setErrorMessage(prog.data.message || "Upload processing failed.");
+              break;
+            }
+          } catch {
+            // Transient poll failure — keep waiting.
+          }
+        }
+        return;
+      }
+
       setOpportunitiesUploadProcessingPercent(100);
       setOpportunitiesUploadPhaseMessage("Upload complete.");
       setUploadSummary(summary);
@@ -334,13 +391,18 @@ export default function JobsClient() {
     }
   };
 
+  const [confirmDeleteJobId, setConfirmDeleteJobId] = React.useState<
+    string | null
+  >(null);
+
   const handleRequestDeleteJob = async (jobId: string) => {
-    const proceed = window.confirm(
-      "Submit a deletion request for this record? An admin must approve it before anything is removed.",
-    );
-    if (!proceed) {
-      return;
-    }
+    setConfirmDeleteJobId(jobId);
+  };
+
+  const executeRequestDeleteJob = async () => {
+    const jobId = confirmDeleteJobId;
+    setConfirmDeleteJobId(null);
+    if (!jobId) return;
 
     setRequestingJobId(jobId);
     setErrorMessage(null);
@@ -398,6 +460,14 @@ export default function JobsClient() {
         helper="Paste the JD or upload a file and ChatGPT 5.3 will extract role and company."
         metadataFields={[
           {
+            key: "opportunityEmail",
+            label: "Opportunity email",
+            value: jobOpportunityEmail,
+            onChange: setJobOpportunityEmail,
+            placeholder: "recruiter@company.com",
+            required: true,
+          },
+          {
             key: "companyName",
             label: "Company name",
             value: jobCompanyName,
@@ -412,7 +482,14 @@ export default function JobsClient() {
             placeholder: "Optional hint for AI",
           },
         ]}
-        onSuccess={() => load()}
+        onSuccess={(data) => {
+          const result = data as { warning?: string } | undefined;
+          if (result?.warning) {
+            setErrorMessage(result.warning);
+          }
+          setJobOpportunityEmail("");
+          load();
+        }}
       />
 
       <Card>
@@ -469,6 +546,39 @@ export default function JobsClient() {
                 Existing opportunities skipped:{" "}
                 {uploadSummary.skippedExistingOpportunities}
               </p>
+              <p>
+                Duplicate rows in upload:{" "}
+                {uploadSummary.skippedDuplicateInUpload}
+              </p>
+              <p>
+                Already in system: {uploadSummary.skippedAlreadyExistsInSystem}
+              </p>
+              {uploadSummary.skippedOpportunities.length > 0 ? (
+                <div className="mt-2 rounded border border-slate-200 bg-slate-50 p-2">
+                  <p className="font-medium">Skipped opportunities (sample):</p>
+                  {uploadSummary.skippedOpportunities
+                    .slice(0, 10)
+                    .map((item) => (
+                      <p
+                        key={`${item.reason}-${item.companyName}-${item.role}`}
+                        className="text-xs"
+                      >
+                        {item.companyName || "Unknown company"} -{" "}
+                        {item.role || "Unknown role"} (
+                        {item.reason === "duplicate_in_upload"
+                          ? "duplicate in upload"
+                          : "already exists"}
+                        )
+                      </p>
+                    ))}
+                  {uploadSummary.skippedOpportunities.length > 10 ? (
+                    <p className="text-xs text-slate-500">
+                      +{uploadSummary.skippedOpportunities.length - 10} more
+                      skipped items in response
+                    </p>
+                  ) : null}
+                </div>
+              ) : null}
             </div>
           ) : null}
 
@@ -512,6 +622,23 @@ export default function JobsClient() {
                       <td className="px-2 py-2 font-medium text-slate-900">
                         <div className="max-w-[340px]">
                           {normaliseRoleTitle(job.title, job.rawText)}
+                          {parseCsvItems(job.requiredSkillsCsv).length > 0 ? (
+                            <p className="mt-1 text-xs font-normal text-slate-500">
+                              Skills:{" "}
+                              {parseCsvItems(job.requiredSkillsCsv)
+                                .slice(0, 3)
+                                .join(", ")}
+                            </p>
+                          ) : null}
+                          {parseCsvItems(job.requiredCertificationsCsv).length >
+                          0 ? (
+                            <p className="mt-1 text-xs font-normal text-slate-500">
+                              Certs:{" "}
+                              {parseCsvItems(job.requiredCertificationsCsv)
+                                .slice(0, 2)
+                                .join(", ")}
+                            </p>
+                          ) : null}
                         </div>
                       </td>
                       <td className="px-2 py-2 text-slate-700">
@@ -595,8 +722,23 @@ export default function JobsClient() {
                 {previewJob.opportunityEmail?.trim() || "Unknown"}
               </p>
               <p className="whitespace-pre-wrap rounded-md border border-slate-200 p-3">
-                {cleanText(previewJob.rawText)}
+                {cleanText(previewJob.description || previewJob.rawText)}
               </p>
+              {parseCsvItems(previewJob.requiredSkillsCsv).length > 0 ? (
+                <p>
+                  Required skills:{" "}
+                  {parseCsvItems(previewJob.requiredSkillsCsv).join(", ")}
+                </p>
+              ) : null}
+              {parseCsvItems(previewJob.requiredCertificationsCsv).length >
+              0 ? (
+                <p>
+                  Required certifications:{" "}
+                  {parseCsvItems(previewJob.requiredCertificationsCsv).join(
+                    ", ",
+                  )}
+                </p>
+              ) : null}
               {previewJob.opportunityUrl ? (
                 <Button
                   asChild
@@ -622,6 +764,15 @@ export default function JobsClient() {
           ) : null}
         </DialogContent>
       </Dialog>
+
+      <ConfirmDialog
+        open={!!confirmDeleteJobId}
+        title="Request deletion"
+        message="Submit a deletion request for this record? An admin must approve it before anything is removed."
+        confirmLabel="Submit request"
+        onConfirm={executeRequestDeleteJob}
+        onCancel={() => setConfirmDeleteJobId(null)}
+      />
     </div>
   );
 }

@@ -1,63 +1,15 @@
+import { fetchWithTimeout, getAiRequestTimeoutMs } from "@/lib/aiJson";
+import { extractMessageContent } from "@/lib/aiUtils";
+import {
+    isAiGatewayConfigured,
+    requireAiGatewayConfig,
+    resolveAiGatewayModel,
+} from "@/lib/liteLlm";
+
 type InferredMetadata = {
   roleTitle?: string;
   candidateName?: string;
 };
-
-type Provider = "github-models" | "azure-openai";
-
-function extractMessageContent(data: unknown): string | undefined {
-  const payload = data as {
-    output_text?: string;
-    choices?: Array<{
-      text?: string;
-      message?: {
-        content?:
-          | string
-          | { text?: string }
-          | Array<{ text?: string; content?: string; value?: string }>;
-      };
-    }>;
-  };
-
-  if (typeof payload?.output_text === "string" && payload.output_text.trim()) {
-    return payload.output_text;
-  }
-
-  const firstChoice = payload?.choices?.[0];
-  if (!firstChoice) return undefined;
-
-  if (typeof firstChoice.text === "string" && firstChoice.text.trim()) {
-    return firstChoice.text;
-  }
-
-  const messageContent = firstChoice.message?.content;
-  if (typeof messageContent === "string" && messageContent.trim()) {
-    return messageContent;
-  }
-
-  if (
-    messageContent &&
-    typeof messageContent === "object" &&
-    !Array.isArray(messageContent)
-  ) {
-    const fromObject = (messageContent as { text?: string }).text;
-    if (typeof fromObject === "string" && fromObject.trim()) {
-      return fromObject;
-    }
-  }
-
-  if (Array.isArray(messageContent)) {
-    const merged = messageContent
-      .map((part) => part?.text ?? part?.content ?? part?.value ?? "")
-      .filter(Boolean)
-      .join("\n")
-      .trim();
-
-    return merged || undefined;
-  }
-
-  return undefined;
-}
 
 function parseInferenceJson(raw: string): InferredMetadata {
   const trimmed = raw.trim();
@@ -84,74 +36,30 @@ function parseInferenceJson(raw: string): InferredMetadata {
   };
 }
 
-function getAvailableProviders(): Provider[] {
-  const hasGithub = Boolean(process.env.GITHUB_MODELS_TOKEN?.trim());
-  if (hasGithub) return ["github-models"];
-  return [];
+function isGatewayConfigured(): boolean {
+  return isAiGatewayConfigured();
 }
 
-async function inferWithGithubModels(
+async function inferWithGateway(
   systemPrompt: string,
   userPrompt: string,
-  accessToken?: string,
+  modelOverride?: string,
 ): Promise<InferredMetadata> {
-  const endpoint =
-    process.env.GITHUB_MODELS_ENDPOINT ??
-    "https://models.inference.ai.azure.com/chat/completions";
-  const model = process.env.GITHUB_MODELS_MODEL?.trim() || "gpt-5.3";
-  const token = (accessToken ?? process.env.GITHUB_MODELS_TOKEN) as string;
+  const { apiBase, apiKey } = requireAiGatewayConfig(
+    "AI metadata inference is not configured",
+  );
+  const model = resolveAiGatewayModel(modelOverride);
 
-  const response = await fetch(endpoint, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify({
-      model,
-      messages: [
-        { role: "system", content: systemPrompt },
-        { role: "user", content: userPrompt },
-      ],
-      response_format: { type: "json_object" },
-      max_completion_tokens: 500,
-      temperature: 0,
-    }),
-  });
-
-  if (!response.ok) {
-    const message = await response.text();
-    throw new Error(
-      `GitHub Models inference error: ${response.status} ${message}`,
-    );
-  }
-
-  const data = (await response.json()) as unknown;
-  const content = extractMessageContent(data);
-  if (!content) {
-    throw new Error("GitHub Models inference returned empty content");
-  }
-
-  return parseInferenceJson(content);
-}
-
-async function inferWithAzureOpenAI(
-  systemPrompt: string,
-  userPrompt: string,
-): Promise<InferredMetadata> {
-  const endpoint = process.env.AZURE_OPENAI_ENDPOINT as string;
-  const apiKey = process.env.AZURE_OPENAI_API_KEY as string;
-  const deployment = process.env.AZURE_OPENAI_DEPLOYMENT as string;
-
-  const response = await fetch(
-    `${endpoint}/openai/deployments/${deployment}/chat/completions?api-version=2024-06-01`,
+  const response = await fetchWithTimeout(
+    `${apiBase}/chat/completions`,
     {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "api-key": apiKey,
+        Authorization: `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
+        model,
         temperature: 0,
         max_tokens: 500,
         messages: [
@@ -161,22 +69,19 @@ async function inferWithAzureOpenAI(
         response_format: { type: "json_object" },
       }),
     },
+    getAiRequestTimeoutMs(),
   );
 
   if (!response.ok) {
-    const message = await response.text();
-    throw new Error(
-      `Azure OpenAI inference error: ${response.status} ${message}`,
-    );
+    const message = await response.text().catch(() => "(no body)");
+    throw new Error(`LiteLLM inference error: ${response.status} ${message}`);
   }
 
-  const data = (await response.json()) as {
-    choices?: Array<{ message?: { content?: string } }>;
-  };
-
-  const content = data.choices?.[0]?.message?.content;
+  const data = (await response.json()) as unknown;
+  const dump = JSON.stringify(data).slice(0, 2000);
+  const content = extractMessageContent(data);
   if (!content) {
-    throw new Error("Azure OpenAI inference returned empty content");
+    throw new Error(`LiteLLM inference returned empty content. Raw: ${dump}`);
   }
 
   return parseInferenceJson(content);
@@ -185,19 +90,11 @@ async function inferWithAzureOpenAI(
 export async function inferMetadataFromUploadedText(params: {
   jobText?: string;
   candidateText?: string;
-  githubAccessToken?: string;
+  model?: string;
 }): Promise<InferredMetadata> {
-  const hasDirectGithubToken = Boolean(params.githubAccessToken?.trim());
-  const providers = hasDirectGithubToken
-    ? ([
-        "github-models",
-        ...getAvailableProviders().filter((p) => p !== "github-models"),
-      ] as Provider[])
-    : getAvailableProviders();
-
-  if (providers.length === 0) {
+  if (!isGatewayConfigured()) {
     throw new Error(
-      "AI metadata inference is not configured. Connect GitHub Models.",
+      "AI metadata inference is not configured. Set LITELLM_API_BASE and LITELLM_API_KEY in the app environment.",
     );
   }
 
@@ -206,23 +103,5 @@ export async function inferMetadataFromUploadedText(params: {
 
   const userPrompt = `JOB TEXT:\n${params.jobText ?? ""}\n\nCANDIDATE TEXT:\n${params.candidateText ?? ""}\n\nRules:\n- roleTitle must be the actual role title only.\n- candidateName must be a person name only.\n- Never use lines like 'Thank you for applying' as a role title.\n- Never use certifications like CISM/CCIE as candidate name.\n\nReturn JSON only: { "roleTitle": "", "candidateName": "" }`;
 
-  let lastError: string | undefined;
-
-  for (const provider of providers) {
-    try {
-      if (provider === "github-models") {
-        return await inferWithGithubModels(
-          systemPrompt,
-          userPrompt,
-          params.githubAccessToken,
-        );
-      }
-
-      return await inferWithAzureOpenAI(systemPrompt, userPrompt);
-    } catch (error) {
-      lastError = (error as Error).message;
-    }
-  }
-
-  throw new Error(lastError ?? "AI metadata inference failed");
+  return inferWithGateway(systemPrompt, userPrompt, params.model);
 }

@@ -1,6 +1,57 @@
 import { expect, test } from "@playwright/test";
+import crypto from "node:crypto";
+
+function createSessionToken(params: {
+  userId: string;
+  tenantId: string;
+  role: "ADMIN" | "USER";
+}): string {
+  const payload = {
+    uid: params.userId,
+    tid: params.tenantId,
+    role: params.role,
+    exp: Date.now() + 24 * 60 * 60 * 1000,
+  };
+
+  const encodedPayload = Buffer.from(JSON.stringify(payload), "utf8").toString(
+    "base64url",
+  );
+  const signature = crypto
+    .createHmac(
+      "sha256",
+      process.env.APP_SESSION_SECRET ?? "local-app-session-secret",
+    )
+    .update(encodedPayload)
+    .digest("base64url");
+
+  return `${encodedPayload}.${signature}`;
+}
 
 test.describe("placement flow @smoke", () => {
+  test.beforeEach(async ({ context }) => {
+    const appSession = createSessionToken({
+      userId: "smoke-admin",
+      tenantId: "default",
+      role: "ADMIN",
+    });
+
+    await context.addCookies([
+      {
+        name: "appSession",
+        value: appSession,
+        domain: "127.0.0.1",
+        path: "/",
+        httpOnly: true,
+      },
+      {
+        name: "tenantId",
+        value: "default",
+        domain: "127.0.0.1",
+        path: "/",
+      },
+    ]);
+  });
+
   test("board supports core interactions", async ({ page }) => {
     await page.route("**/api/applications", async (route) => {
       await route.fulfill({
@@ -11,10 +62,15 @@ test.describe("placement flow @smoke", () => {
           data: [
             {
               id: "app-1",
+              opportunityId: "opp-1",
               currentStage: "NEW",
               placedAt: null,
               agreedHourlyRate: null,
               agreedRateLockedAt: null,
+              placementBillingModel: null,
+              placementFeePercent: null,
+              annualCtc: null,
+              contractValue: null,
               signedContractFileName: null,
               signedContractMimeType: null,
               signedContractUploadedAt: null,
@@ -22,6 +78,9 @@ test.describe("placement flow @smoke", () => {
                 id: "job-1",
                 title: "Data Engineer",
                 rawText: "",
+                opportunityEmail: null,
+                opportunityUrl: null,
+                company: { id: "co-1", name: "Acme Corp" },
               },
               candidate: {
                 id: "cand-1",
@@ -47,10 +106,15 @@ test.describe("placement flow @smoke", () => {
           ok: true,
           data: {
             id: "app-1",
+            opportunityId: "opp-1",
             currentStage: "NEW",
             placedAt: null,
             agreedHourlyRate: null,
             agreedRateLockedAt: null,
+            placementBillingModel: null,
+            placementFeePercent: null,
+            annualCtc: null,
+            contractValue: null,
             signedContractFileName: null,
             signedContractMimeType: null,
             signedContractUploadedAt: null,
@@ -58,6 +122,9 @@ test.describe("placement flow @smoke", () => {
               id: "job-1",
               title: "Data Engineer",
               rawText: "",
+              opportunityEmail: null,
+              opportunityUrl: null,
+              company: { id: "co-1", name: "Acme Corp" },
             },
             candidate: {
               id: "cand-1",
@@ -144,6 +211,17 @@ test.describe("placement flow @smoke", () => {
         }),
       });
     });
+
+    await page.route(
+      "**/api/deletion-requests?resourceType=job",
+      async (route) => {
+        await route.fulfill({
+          status: 200,
+          contentType: "application/json",
+          body: JSON.stringify({ ok: true, data: [] }),
+        });
+      },
+    );
 
     await page.goto("/jobs");
     await page.getByRole("button", { name: "Preview" }).click();
@@ -301,6 +379,17 @@ test.describe("placement flow @smoke", () => {
         body: JSON.stringify({ ok: true, data: {} }),
       });
     });
+
+    await page.route(
+      "**/api/deletion-requests?resourceType=vacancy",
+      async (route) => {
+        await route.fulfill({
+          status: 200,
+          contentType: "application/json",
+          body: JSON.stringify({ ok: true, data: [] }),
+        });
+      },
+    );
 
     await page.goto("/clients");
     await page

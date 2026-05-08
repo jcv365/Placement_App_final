@@ -1,15 +1,22 @@
 import { jsonError, jsonOk } from "@/lib/apiResponses";
 import { shouldUseSecureCookies } from "@/lib/cookies";
 import { writeSharedGithubAccessToken } from "@/lib/githubAuthStore";
+import { z } from "zod";
 
 export const runtime = "nodejs";
 
+const pollBodySchema = z.object({
+  deviceCode: z.string().min(1).optional(),
+  clientId: z.string().min(1).optional(),
+});
+
 export async function POST(request: Request) {
   const secureCookies = shouldUseSecureCookies(request);
-  const body = (await request.json()) as {
-    deviceCode?: string;
-    clientId?: string;
-  };
+  const parsed = pollBodySchema.safeParse(
+    await request.json().catch(() => ({})),
+  );
+  if (!parsed.success) return jsonError("Invalid request body", 400);
+  const body = parsed.data;
 
   const clientId = body.clientId ?? process.env.GITHUB_OAUTH_CLIENT_ID;
   if (!clientId) {

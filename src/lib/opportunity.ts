@@ -18,9 +18,9 @@ function normaliseOpportunityPart(value: string | null | undefined): string {
 export function computeOpportunityId(input: OpportunityIdInput): string {
   const candidate = normaliseOpportunityPart(input.candidateName);
   const role = normaliseOpportunityPart(input.roleTitle);
-  const company = normaliseOpportunityPart(input.companyName);
 
-  const fingerprintSource = [candidate, role, company].join("|");
+  // Exclude companyName from hash so the ID stays stable if company is renamed
+  const fingerprintSource = [candidate, role].join("|");
   const hash = crypto
     .createHash("sha256")
     .update(fingerprintSource)

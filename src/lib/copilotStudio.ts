@@ -7,11 +7,7 @@ type GenerateEmailParams = {
 
 type EmailResult = { subject: string; html: string };
 
-function sanitiseHtml(input: string): string {
-  return input
-    .replace(/<script[\s\S]*?>[\s\S]*?<\/script>/gi, "")
-    .replace(/ on\w+="[^"]*"/gi, "");
-}
+import { sanitiseHtml } from "@/lib/sanitiseHtml";
 
 export async function generateEmailViaCopilotStudio({
   systemPrompt,

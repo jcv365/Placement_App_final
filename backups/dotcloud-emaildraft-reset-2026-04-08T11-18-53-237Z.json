@@ -1,0 +1,290 @@
+{
+  "tenantId": "dotcloudconsulting",
+  "start": "2026-04-07T22:00:00.000Z",
+  "end": "2026-04-08T22:00:00.000Z",
+  "count": 47,
+  "rows": [
+    {
+      "id": "cmnpv9yn60004s601asxlxv76",
+      "applicationId": "cmnpv9ylo0001s601lc1wohxd",
+      "subject": "Lead DevOps Engineer – 500+ Workloads, 99.9% Uptime",
+      "createdAt": "2026-04-08T09:49:51.138Z"
+    },
+    {
+      "id": "cmnpvcqi80007s601vltwlwva",
+      "applicationId": "cmnohsyc800fkkx01y1cgc14y",
+      "subject": "Infrastructure Engineer/SRE – Multicloud Kubernetes & Reliability",
+      "createdAt": "2026-04-08T09:52:00.560Z"
+    },
+    {
+      "id": "cmnpvdoqe000as60124f4sw0z",
+      "applicationId": "cmnohsy8x00fhkx012u8sv4qf",
+      "subject": "Infrastructure Engineer/SRE – 33-Cluster Multi-Cloud Kubernetes",
+      "createdAt": "2026-04-08T09:52:44.918Z"
+    },
+    {
+      "id": "cmnpvegkw000ds601pw738vrc",
+      "applicationId": "cmnohrn5d00cxkx01vb90o1kw",
+      "subject": "Network Security Architect Lead – Dual CCIE & CISM",
+      "createdAt": "2026-04-08T09:53:21.008Z"
+    },
+    {
+      "id": "cmnpvf8c8000gs601ti0uojtx",
+      "applicationId": "cmnohgzd200clkx013t3ci447",
+      "subject": "Software Engineer – 20+ Years’ Remote Delivery Depth",
+      "createdAt": "2026-04-08T09:53:56.984Z"
+    },
+    {
+      "id": "cmnpvfp8l000js601ztxwuzeo",
+      "applicationId": "cmnohgzar00cikx01dlmnz2lp",
+      "subject": "Software Engineer – Multi‑Cloud, Microservices, Remote EU Delivery",
+      "createdAt": "2026-04-08T09:54:18.885Z"
+    },
+    {
+      "id": "cmnpvgq0i000ps601u6y5f9kj",
+      "applicationId": "cmnpv9ylo0001s601lc1wohxd",
+      "subject": "Lead DevOps Engineer – 500+ Workloads, 99.9% Uptime",
+      "createdAt": "2026-04-08T09:55:06.546Z"
+    },
+    {
+      "id": "cmnpvhgkw000us601g0h7aaaq",
+      "applicationId": "cmnpvhgju000rs601r6qmpve7",
+      "subject": "Lead DevOps Engineer – Secure AWS & Hybrid at Scale",
+      "createdAt": "2026-04-08T09:55:40.977Z"
+    },
+    {
+      "id": "cmnpviy5b0010s601i6luwzq1",
+      "applicationId": "cmnpviy4c000xs60164i002vb",
+      "subject": "Lead DevOps Engineer – 19 Years Delivery Depth",
+      "createdAt": "2026-04-08T09:56:50.399Z"
+    },
+    {
+      "id": "cmnpvjgea0016s601ndlpebuu",
+      "applicationId": "cmnpvjgb00013s601hm9v9mps",
+      "subject": "Lead DevOps Engineer – Terraform, Hybrid & Observability",
+      "createdAt": "2026-04-08T09:57:14.050Z"
+    },
+    {
+      "id": "cmnpvk63x001cs601b5sbdtm3",
+      "applicationId": "cmnpvk6220019s601nsfwt0qo",
+      "subject": "Lead DevOps Engineer – Modernise Secure AWS‑Hybrid Platforms",
+      "createdAt": "2026-04-08T09:57:47.373Z"
+    },
+    {
+      "id": "cmnpvkpdz001is601nblb41au",
+      "applicationId": "cmnpvkp8b001fs6019dy99a22",
+      "subject": "Azure Architect – CCIE DC & hybrid-cloud depth",
+      "createdAt": "2026-04-08T09:58:12.358Z"
+    },
+    {
+      "id": "cmnpvlv1z001os601b4w1592k",
+      "applicationId": "cmnpvlv11001ls601dkom0tod",
+      "subject": "Azure Architect – 15+ Years Multicloud & Networking",
+      "createdAt": "2026-04-08T09:59:06.359Z"
+    },
+    {
+      "id": "cmnpvm8g0001us60145gmaq2n",
+      "applicationId": "cmnpvm8e8001rs601peeaa9ya",
+      "subject": "Network Architect – Secure Global Zero Trust Cloud",
+      "createdAt": "2026-04-08T09:59:23.712Z"
+    },
+    {
+      "id": "cmnpvmq2m0020s6017qoupnp7",
+      "applicationId": "cmnpvmq12001xs601gimwzr3r",
+      "subject": "Azure Architect – Multi‑Cloud, Security & Resilience",
+      "createdAt": "2026-04-08T09:59:46.559Z"
+    },
+    {
+      "id": "cmnpvnvu90026s6013ts7lqh8",
+      "applicationId": "cmnpvkp8b001fs6019dy99a22",
+      "subject": "Azure Architect – CCIE DC, secure hybrid delivery",
+      "createdAt": "2026-04-08T10:00:40.689Z"
+    },
+    {
+      "id": "cmnpvohit002bs601296enww6",
+      "applicationId": "cmnpvlv11001ls601dkom0tod",
+      "subject": "Network Architect – 500+ Multicloud Workloads, 99.9% Uptime",
+      "createdAt": "2026-04-08T10:01:08.789Z"
+    },
+    {
+      "id": "cmnpvp7tw002gs601ywxz95qc",
+      "applicationId": "cmnpvm8e8001rs601peeaa9ya",
+      "subject": "Azure Architect – Secure SD-WAN & Zero Trust Network",
+      "createdAt": "2026-04-08T10:01:42.884Z"
+    },
+    {
+      "id": "cmnpvq1fp002ls601m29crlxn",
+      "applicationId": "cmnpvmq12001xs601gimwzr3r",
+      "subject": "Azure Architect – Secure Multi‑Cloud, Zero‑Trust Direction",
+      "createdAt": "2026-04-08T10:02:21.253Z"
+    },
+    {
+      "id": "cmnpvqpey002qs601s6hi80na",
+      "applicationId": "cmnpvkp8b001fs6019dy99a22",
+      "subject": "Azure Architect – CCIE DC, hybrid-cloud depth",
+      "createdAt": "2026-04-08T10:02:52.330Z"
+    },
+    {
+      "id": "cmnpvrk6b002vs6012y156tzf",
+      "applicationId": "cmnpvlv11001ls601dkom0tod",
+      "subject": "Network Architect – 15+ Years Global Enterprise",
+      "createdAt": "2026-04-08T10:03:32.195Z"
+    },
+    {
+      "id": "cmnpvsh470030s601d5qx0pee",
+      "applicationId": "cmnpvm8e8001rs601peeaa9ya",
+      "subject": "Azure Architect – Secure Global SD-WAN & Cloud",
+      "createdAt": "2026-04-08T10:04:14.887Z"
+    },
+    {
+      "id": "cmnpvt1rm0035s601lilntua2",
+      "applicationId": "cmnpvmq12001xs601gimwzr3r",
+      "subject": "Azure Architect – Secure Multi‑Cloud & Zero Trust",
+      "createdAt": "2026-04-08T10:04:41.650Z"
+    },
+    {
+      "id": "cmnpvtspu003as601hzb96e01",
+      "applicationId": "cmnpvtsnj0037s601ky2zd4yj",
+      "subject": "Azure Architect – 20+ Years’ Enterprise Delivery Depth",
+      "createdAt": "2026-04-08T10:05:16.579Z"
+    },
+    {
+      "id": "cmnpvuf59003gs6017998e4zo",
+      "applicationId": "cmnpvkp8b001fs6019dy99a22",
+      "subject": "Azure Architect – CCIE DC, hybrid-cloud delivery",
+      "createdAt": "2026-04-08T10:05:45.645Z"
+    },
+    {
+      "id": "cmnpvv377003ls601g8ym1r2d",
+      "applicationId": "cmnpvm8e8001rs601peeaa9ya",
+      "subject": "Azure Architect – Global Zero Trust SD-WAN Depth",
+      "createdAt": "2026-04-08T10:06:16.820Z"
+    },
+    {
+      "id": "cmnpvvyke003qs60149vh0hds",
+      "applicationId": "cmnpvlv11001ls601dkom0tod",
+      "subject": "Network Architect – 500+ Global Workloads, 99.9% Uptime",
+      "createdAt": "2026-04-08T10:06:57.470Z"
+    },
+    {
+      "id": "cmnpvwwt6003vs6010qh35pmh",
+      "applicationId": "cmnpvwws4003ss601eek16h1t",
+      "subject": "Azure Engineer – Secure, Automated Cloud Operations Depth",
+      "createdAt": "2026-04-08T10:07:41.850Z"
+    },
+    {
+      "id": "cmnpvxlha0041s601jglied40",
+      "applicationId": "cmnpvxlg2003ys601z5gtuscx",
+      "subject": "Azure Engineer – 500+ Workloads & CI/CD Acceleration",
+      "createdAt": "2026-04-08T10:08:13.822Z"
+    },
+    {
+      "id": "cmnpvy7690047s6013ea6d3e7",
+      "applicationId": "cmnpvy7530044s6013wnl3vgc",
+      "subject": "Azure Engineer – CCIE DC & hybrid-cloud depth",
+      "createdAt": "2026-04-08T10:08:41.937Z"
+    },
+    {
+      "id": "cmnpvywzg004ds6017xnmckwc",
+      "applicationId": "cmnpvywym004as6014l5hgvh0",
+      "subject": "Azure Engineer – 20+ Years’ Enterprise Integration Depth",
+      "createdAt": "2026-04-08T10:09:15.388Z"
+    },
+    {
+      "id": "cmnpvzi5k004js601jj7m0x02",
+      "applicationId": "cmnpvzi4l004gs60173uyljxh",
+      "subject": "Azure Engineer – Deliver senior Salesforce and Azure DevOps expertise fast",
+      "createdAt": "2026-04-08T10:09:42.824Z"
+    },
+    {
+      "id": "cmnpw00g6004ps601fo9yl4tp",
+      "applicationId": "cmnpvkp8b001fs6019dy99a22",
+      "subject": "Azure Architect – CCIE DC, server-side delivery",
+      "createdAt": "2026-04-08T10:10:06.534Z"
+    },
+    {
+      "id": "cmnpw0s6r004us6019wrj6yq6",
+      "applicationId": "cmnpvm8e8001rs601peeaa9ya",
+      "subject": "Azure Architect – Enterprise Landing Zone & DR Depth",
+      "createdAt": "2026-04-08T10:10:42.483Z"
+    },
+    {
+      "id": "cmnpw1kgo004zs601nyy0s5ll",
+      "applicationId": "cmnpvmq12001xs601gimwzr3r",
+      "subject": "Azure Architect – Rapid, hands‑on server‑side delivery",
+      "createdAt": "2026-04-08T10:11:19.129Z"
+    },
+    {
+      "id": "cmnpw27nn0054s601qqqm29ay",
+      "applicationId": "cmnpvlv11001ls601dkom0tod",
+      "subject": "Azure Architect – 500+ Workloads & 99.9% Uptime",
+      "createdAt": "2026-04-08T10:11:49.187Z"
+    },
+    {
+      "id": "cmnpw31js0059s6017t0m5kyc",
+      "applicationId": "cmnpvtsnj0037s601ky2zd4yj",
+      "subject": "Azure Architect – 20+ Years’ Server-Side Depth",
+      "createdAt": "2026-04-08T10:12:27.929Z"
+    },
+    {
+      "id": "cmnpw3n8h005es601r5pi0jsb",
+      "applicationId": "cmnpw3n7n005bs6012ry4fcl6",
+      "subject": "React Solutions Architect – 15+ Years Cloud Delivery",
+      "createdAt": "2026-04-08T10:12:56.033Z"
+    },
+    {
+      "id": "cmnpw4e5a005ks601yfn90qrl",
+      "applicationId": "cmnpv9ylo0001s601lc1wohxd",
+      "subject": "Senior Java Developer – Microservices & Azure Delivery",
+      "createdAt": "2026-04-08T10:13:30.910Z"
+    },
+    {
+      "id": "cmnpw5oc4005ps601up1pwtiw",
+      "applicationId": "cmnpvk6220019s601nsfwt0qo",
+      "subject": "Senior Java Developer – Rapid delivery of high-quality Java microservices",
+      "createdAt": "2026-04-08T10:14:30.772Z"
+    },
+    {
+      "id": "cmnpw6bu2005us601f9whl98k",
+      "applicationId": "cmnpvhgju000rs601r6qmpve7",
+      "subject": "Senior Java Developer – Azure & Kubernetes Depth",
+      "createdAt": "2026-04-08T10:15:01.227Z"
+    },
+    {
+      "id": "cmnpw7coy005zs601q89mwnd9",
+      "applicationId": "cmnpvjgb00013s601hm9v9mps",
+      "subject": "Senior Java Developer – Azure microservices delivery strength",
+      "createdAt": "2026-04-08T10:15:48.994Z"
+    },
+    {
+      "id": "cmnpw8c4w0064s601rq98k0kw",
+      "applicationId": "cmnpviy4c000xs60164i002vb",
+      "subject": "Senior Java Developer – 20 Years Microservices & CI Delivery",
+      "createdAt": "2026-04-08T10:16:34.928Z"
+    },
+    {
+      "id": "cmnpw95ho0069s601s17i6980",
+      "applicationId": "cmnpw3n7n005bs6012ry4fcl6",
+      "subject": "Full-Stack Developer – LangChain & 45% RAG Uplift",
+      "createdAt": "2026-04-08T10:17:12.972Z"
+    },
+    {
+      "id": "cmnpwa1cr006es601kgl4cyov",
+      "applicationId": "cmnpvwws4003ss601eek16h1t",
+      "subject": "Azure Engineer – SQL, DR & Automation Depth",
+      "createdAt": "2026-04-08T10:17:54.267Z"
+    },
+    {
+      "id": "cmnpwvu4u006js601xsxik8t7",
+      "applicationId": "cmnpv9ylo0001s601lc1wohxd",
+      "subject": "Lead DevOps Engineer – Secure AWS/Hybrid at Scale",
+      "createdAt": "2026-04-08T10:34:51.342Z"
+    },
+    {
+      "id": "cmnpwz0lo006os601812wuf4z",
+      "applicationId": "cmnpv9ylo0001s601lc1wohxd",
+      "subject": "Lead DevOps Engineer – 500+ workloads, 99.9% uptime",
+      "createdAt": "2026-04-08T10:37:19.693Z"
+    }
+  ]
+}

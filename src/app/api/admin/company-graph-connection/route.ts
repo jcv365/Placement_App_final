@@ -1,8 +1,8 @@
 import { requireAdminContextFromRequest } from "@/lib/adminAuth";
 import { jsonError, jsonOk } from "@/lib/apiResponses";
 import {
-    encryptGraphAccessToken,
-    isGraphConnectionUsable,
+  encryptGraphAccessToken,
+  isGraphConnectionUsable,
 } from "@/lib/graphConnectionStore";
 import { prisma } from "@/lib/prisma";
 import { z } from "zod";
@@ -50,6 +50,10 @@ export async function POST(request: Request) {
 
     const tokenExpiresAt = body.expiresAt ? new Date(body.expiresAt) : null;
 
+    if (tokenExpiresAt && tokenExpiresAt.getTime() <= Date.now()) {
+      return jsonError("Token has already expired", 400);
+    }
+
     const settings = await prisma.companySettings.upsert({
       where: { companyId: body.companyId },
       create: {
@@ -96,9 +100,7 @@ export async function POST(request: Request) {
       return jsonError("Admin sign-in is required", 401);
     }
 
-    return jsonError("Unable to connect company Graph account", 400, {
-      message: (error as Error).message,
-    });
+    return jsonError("Unable to connect company Graph account", 400);
   }
 }
 
@@ -154,8 +156,6 @@ export async function DELETE(request: Request) {
       return jsonError("Admin sign-in is required", 401);
     }
 
-    return jsonError("Unable to disconnect company Graph account", 400, {
-      message: (error as Error).message,
-    });
+    return jsonError("Unable to disconnect company Graph account", 400);
   }
 }

@@ -1,7 +1,6 @@
-ALTER TABLE "SupportTicket"
-ADD COLUMN "slaResponseDueAt" DATETIME,
-ADD COLUMN "slaResolutionDueAt" DATETIME,
-ADD COLUMN "firstResponseAt" DATETIME;
+ALTER TABLE "SupportTicket" ADD COLUMN "slaResponseDueAt" DATETIME;
+ALTER TABLE "SupportTicket" ADD COLUMN "slaResolutionDueAt" DATETIME;
+ALTER TABLE "SupportTicket" ADD COLUMN "firstResponseAt" DATETIME;
 
 CREATE TABLE "SupportTicketComment" (
   "id" TEXT NOT NULL PRIMARY KEY,

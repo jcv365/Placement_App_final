@@ -28,6 +28,11 @@ type AppDraftParams = {
   attachments?: GraphAttachment[];
 };
 
+const DEFAULT_GRAPH_SENDER_USER =
+  process.env.GRAPH_SENDER_USER?.trim() ||
+  process.env.OUTLOOK_SHARED_MAILBOX?.trim() ||
+  "";
+
 function getGraphTenantId(): string | null {
   return (
     process.env.GRAPH_TENANT_ID?.trim() ||
@@ -50,11 +55,10 @@ function getGraphClientSecret(): string | null {
 }
 
 function getGraphSenderUser(): string | null {
-  return (
-    process.env.GRAPH_SENDER_USER?.trim() ||
-    process.env.SMTP_USER?.trim() ||
-    null
-  );
+  const configured = process.env.GRAPH_SENDER_USER?.trim();
+  return configured && configured.length > 0
+    ? configured
+    : DEFAULT_GRAPH_SENDER_USER;
 }
 
 export function isGraphMailConfigured(): boolean {
@@ -194,6 +198,54 @@ export async function createOutlookDraft({
   }
 
   return response.json();
+}
+
+export async function sendEmailForMailbox({
+  mailbox,
+  subject,
+  htmlBody,
+  to,
+  attachments,
+}: AppDraftParams): Promise<void> {
+  const normalisedMailbox = mailbox.trim().toLowerCase();
+  if (!normalisedMailbox) {
+    throw new Error("Missing Outlook mailbox");
+  }
+
+  const accessToken = await getGraphAppAccessToken();
+  const response = await fetch(
+    `https://graph.microsoft.com/v1.0/users/${encodeURIComponent(normalisedMailbox)}/sendMail`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+      body: JSON.stringify({
+        message: {
+          subject,
+          body: { contentType: "HTML", content: htmlBody },
+          toRecipients: to.map((address) => ({ emailAddress: { address } })),
+          attachments: (attachments ?? []).map((attachment) => ({
+            "@odata.type": "#microsoft.graph.fileAttachment",
+            name: attachment.filename,
+            contentType: attachment.contentType ?? "text/plain",
+            contentBytes:
+              attachment.contentBase64 ??
+              Buffer.from(attachment.content ?? "", "utf8").toString("base64"),
+          })),
+        },
+        saveToSentItems: true,
+      }),
+    },
+  );
+
+  if (!response.ok) {
+    const message = await response.text();
+    throw new Error(
+      `Microsoft Graph sendMail error: ${response.status} ${message}`,
+    );
+  }
 }
 
 export async function createOutlookDraftForMailbox({

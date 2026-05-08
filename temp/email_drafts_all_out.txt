@@ -1,0 +1,1201 @@
+Found 200 drafts (most recent first)
+---
+id: cmog9cwip017uqf01bz10lssv
+createdAt: 2026-04-26T21:06:03.554Z
+subject: DevOps Engineer ΓÇô B2B ΓÇô Heinrich Muller
+appId: cmnfpsk5d0007v6howeqdq4n0 job: DevOps Engineer candidate: Heinrich Muller
+bodySnippet: Hi,You're hiring a DevOps Engineer where rapid, gated production deployments and continuity are the commercial risk; DotCloud Consulting can support this on a B2B services basis with Heinrich Muller as the initial delivery resource.Heinrich brings 10+ years of hands-on experience across Terraform-based IaC and multi-region Azure/AWS landing zones, CI/CD (Azure DevOps &amp; GitHub Actions), Kuberne
+---
+id: cmog95il2017oqf011jmc5wsn
+createdAt: 2026-04-26T21:00:18.903Z
+subject: Specialist in DevOps ΓÇô B2B / Outside IR35 ΓÇô Heinrich Muller
+appId: cmog95hie017lqf010pifob5l job: Specialist in DevOps candidate: Heinrich Muller
+bodySnippet: Hi Abby,You're hiring a Specialist in DevOps with an ASAP start and rapid delivery pressure; DotCloud Consulting can support this on a B2B services basis with Heinrich Muller as the initial delivery resource. I appreciate that rapid onboarding and a tight deployable pool are real constraints for this brief.Heinrich brings 10+ years of hands-on experience across AWS, Terraform Enterprise, CI/CD pip
+---
+id: cmog94t5s017iqf01a0lhz5h6
+createdAt: 2026-04-26T20:59:45.953Z
+subject: Azure Cloud Engineer Sr ΓÇô B2B ΓÇô Heinrich Muller
+appId: cmog94rtp017fqf01q3suo69i job: Azure Cloud Engineer Sr candidate: Heinrich Muller
+bodySnippet: Hi Preeti,Leaving the enterprise Azure networking and multiΓÇæregion landing zones work unfilled risks stalled platform rollΓÇæouts and missed compliance gates; DotCloud Consulting can support on a B2B services basis with Heinrich Muller as the initial delivery resource for your urgent Senior Azure Cloud Engineer contract in Berkeley Heights, NJ.Heinrich brings 10+ years of handsΓÇæon experience across 
+---
+id: cmod50lfm017dqf01zfp7bv8p
+createdAt: 2026-04-24T16:41:12.322Z
+subject: Senior Network Engineer ΓÇô B2B ΓÇô Andre Lombaard
+appId: cmo8s972z00hgqf9gb7xmm65h job: Senior Network Engineer candidate: Andre Lombaard
+bodySnippet: Hi Rajini,For an urgent local Senior Network Engineer (C2C) in Dallas who must be immediately available to own firewall, IPS, DDoS, WAF and backbone routing across direct clients and implementation partners, DotCloud Consulting can support on a B2B services basis with Andre Lombaard as the initial delivery resource.Andre brings 19+ years of hands-on experience across Fortinet firewall/security ope
+---
+id: cmod4ztjh017aqf01c8en4n7v
+createdAt: 2026-04-24T16:40:36.173Z
+subject: Senior Network Engineer ΓÇô B2B ΓÇô Andre Lombaard
+appId: cmo8s972z00hgqf9gb7xmm65h job: Senior Network Engineer candidate: Andre Lombaard
+bodySnippet: Hi Rajini,Left unfilled, a Senior Network Engineer in Dallas risks slowing partner implementations and leaving perimeter security and backbone routing gaps during an urgent intake. DotCloud Consulting can support on a B2B services basis and is proposing Andre Lombaard as the initial delivery resource for your Dallas C2C need.Andre brings 19+ years of handsΓÇæon experience across backbone routing and
+---
+id: cmod4umtp0177qf01anoejkzv
+createdAt: 2026-04-24T16:36:34.189Z
+subject: 2 x Front end AEM developer ΓÇô B2B ΓÇô Sondra Methembe Sithole
+appId: cmo8s971z00gpqf9gi4w01hjx job: - 2 x Front end AEM developer candidate: Sondra Methembe Sithole
+bodySnippet: Hi,You are seeking 2 x Front end AEM developer roles. DotCloud Consulting can support on a B2B services basis, with Sondra Methembe Sithole as the initial delivery resource.Sondra brings 11+ years of hands-on experience across HTML5, CSS, JavaScript, Python/MySQL and project delivery and coordination.Relevant strengths:- Front-end development delivering testable HTML5, CSS and JavaScript site code
+---
+id: cmod4omh90175qf01cri41wuw
+createdAt: 2026-04-24T16:31:53.806Z
+subject: Azure Data Engineer ΓÇô B2B ΓÇô Everswick Dambaza
+appId: cmo8s96zy00faqf9gbxg1urck job: Azure Data Engineer | candidate: Everswick Dambaza
+bodySnippet: Hi, The Azure Data Engineer requirement to build robust data pipelines and turn complex datasets into actionable insights is one we can support ΓÇö DotCloud Consulting can supply Everswick Dambaza on a B2B services basis as the initial delivery resource. Everswick brings 5+ years of hands-on experience across Azure data services, data lake and data warehouse design, SQL performance optimisation, ana
+---
+id: cmod4o3dn0172qf01tzyv1sj6
+createdAt: 2026-04-24T16:31:29.051Z
+subject: Azure Data Engineer ΓÇô B2B ΓÇô Everswick Dambaza
+appId: cmo8s96zy00faqf9gbxg1urck job: Azure Data Engineer | candidate: Everswick Dambaza
+bodySnippet: Hi,The Azure Data Engineer brief and its immediate need for productionΓÇægrade Azure pipeline delivery creates a commercial risk if the hire can't ramp quickly; DotCloud Consulting can support on a B2B services basis with Everswick Dambaza as the initial delivery resource. The phrase "build robust Azure-based data pipelines" mirrors the exact delivery focus we are targeting.Everswick brings 5+ years
+---
+id: cmod4iuqv0170qf011hipyqle
+createdAt: 2026-04-24T16:27:24.583Z
+subject: Site Engineer ΓÇô B2B / Outside IR35 ΓÇô Jeanre Swanepoel
+appId: cmo8s96xm00dgqf9ge3kgujaq job: Site Engineer candidate: Jeanre Swanepoel
+bodySnippet: Hi Callam,The Site Engineer requirement at Sizewell C is asking for proven RC structure experience and site QA proficiency; DotCloud Consulting can support on a B2B services basis and IΓÇÖm proposing Jeanre Swanepoel as the initial delivery resource.Jeanre brings several years of hands-on experience across Docker &amp; Kubernetes, Terraform and CloudFormation, CI/CD automation, compliance frameworks
+---
+id: cmod4hbtg016xqf01ml0y4weq
+createdAt: 2026-04-24T16:26:13.396Z
+subject: Site Engineer ΓÇô B2B / Outside IR35 ΓÇô Jeanre Swanepoel
+appId: cmo8s96xm00dgqf9ge3kgujaq job: Site Engineer candidate: Jeanre Swanepoel
+bodySnippet: Hi, The brief for a Site Engineer at Sizewell C with RC structure experience and QA proficiency is clear; DotCloud Consulting can support on a B2B services basis and we propose Jeanre Swanepoel as the initial delivery resource. Jeanre brings several years of hands-on experience across CI/CD automation, Infrastructure as Code (Terraform/CloudFormation), container orchestration (Docker/Kubernetes), 
+---
+id: cmod4g37p016uqf01542alp7h
+createdAt: 2026-04-24T16:25:15.589Z
+subject: Lead JAVA AWS Developer ΓÇô B2B ΓÇô Everswick Dambaza
+appId: cmnu8b0bs00pxrx01wfrlj0bt job: Lead JAVA AWS Developer candidate: Everswick Dambaza
+bodySnippet: Hi, The Lead JAVA AWS Developer requirement at futureitservice.info demands senior technical leadership to deliver scalable Java services on AWS; DotCloud Consulting can support on a B2B services basis with Everswick Dambaza as the initial delivery resource. I appreciate these lead Java/AWS roles often have a very short deployable pool and need someone who can take ownership quickly. Everswick bri
+---
+id: cmod4bs0e016rqf01ojkyzlgv
+createdAt: 2026-04-24T16:21:54.447Z
+subject: Database Administrator ΓÇô B2B ΓÇô Petunia Motlhakane
+appId: cmo8s96v600bpqf9gnwchx50l job: Database Administrator candidate: Petunia Motlhakane
+bodySnippet: Hi Abdul,Your Database Administrator requirement to manage and optimise cloud-based databases (IaaS &amp; PaaS) for a UK-remote contract is noted; DotCloud Consulting can support on a B2B services basis with Petunia Motlhakane as the initial delivery resource.Petunia brings 3+ years of hands-on experience across Azure PaaS database administration, backup and recovery, monitoring and performance tu
+---
+id: cmod461af016oqf01543c4owg
+createdAt: 2026-04-24T16:17:26.536Z
+subject: Angular Developer ΓÇô B2B ΓÇô MPHO MORABA
+appId: cmo8s96sh009sqf9gjyx3apkm job: Angular Developer candidate: MPHO MORABA
+bodySnippet: Hi,Radley James's contract Angular Developer requirement is noted. DotCloud Consulting can support on a B2B services basis, with MPHO MORABA proposed as the initial delivery resource ΓÇö I appreciate greenfield frontΓÇæend builds need hireΓÇæready Angular engineers.MPHO brings several years of handsΓÇæon experience across Java, Spring Boot, React, Laravel and fintech.Relevant strengths:- Java and Spring B
+---
+id: cmod3p9f7016lqf01s8euxq2u
+createdAt: 2026-04-24T16:04:23.923Z
+subject: Infrastructure Engineer ΓÇô B2B ΓÇô James Tladi Tladi
+appId: cmo8s96fe001vqf9g1u9as6d8 job: Infrastructure Engineer candidate: James Tladi Tladi
+bodySnippet: Hi, Your Infrastructure Engineer brief signals a commercial risk: Remote (UKΓÇæbased Only) + active SC Clearance + sole UK national narrows the deployable pool. DotCloud Consulting can support on a B2B services basis, with James Tladi Tladi as the initial delivery resource. James brings several years of handsΓÇæon experience across infrastructure engineering, automation, monitoring and security. Relev
+---
+id: cmod3hbj9016iqf019il0tzh0
+createdAt: 2026-04-24T15:58:13.413Z
+subject: Data Scientist & Analyst ΓÇô B2B ΓÇô Njabulo
+appId: cmo8s96a4000pqf9geddqkw3q job: Data Scientist & Analyst candidate: Njabulo
+bodySnippet: Hi,Tracking and analytics specialists for European-facing, KPI-driven programmes are unusually scarce; with that pressure in mind, DotCloud Consulting can support your Data Scientist &amp; Analyst requirement on a B2B services basis, with Njabulo as the initial delivery resource.Njabulo brings 1+ years of hands-on experience across Power BI visualisation, SQL/ETL development (stored procedures and
+---
+id: cmod3e2o5016fqf01vko0hc3m
+createdAt: 2026-04-24T15:55:41.957Z
+subject: Salesforce Developer ΓÇô B2B / Inside IR35 ΓÇô James Tladi Tladi
+appId: cmo8s9695000jqf9gwbsbe2zq job: Senior Salesforce candidate: James Tladi Tladi
+bodySnippet: Hi,IΓÇÖm presenting James Tladi Tladi for your Salesforce Developer requirement. DotCloud Consulting can support on a B2B services basis with James as the initial delivery resource for the 3ΓÇæmonth, Inside IR35 engagement. I appreciate the 3ΓÇæmonth rapid ramp and short delivery window ΓÇö the "multiΓÇæcloud" expectation and need to "hit the ground running" are clear.James brings 4+ years of handsΓÇæon exper
+---
+id: cmod31rnx016cqf01silakicl
+createdAt: 2026-04-24T15:46:07.821Z
+subject: Full Stack Engineer ΓÇô B2B / Outside IR35 ΓÇô Tanyaradzwa Tanatswa Mushonga
+appId: cmnu833r400nkrx01vtbwuepb job: Full Stack Engineer candidate: Tanyaradzwa Tanatswa Mushonga
+bodySnippet: Hi,Rapid delivery of a greenfield TypeScript Node.js API is the hardest-to-fill element of your brief; DotCloud Consulting can support this Full Stack Engineer requirement on a B2B services basis, with Tanyaradzwa Tanatswa Mushonga as the initial delivery resource. I appreciate the six-month fixed window and need for an engineer who can ramp and deliver early milestones quickly.Tanyaradzwa brings 
+---
+id: cmod2jjyn0169qf01uc2tmxo4
+createdAt: 2026-04-24T15:31:58.032Z
+subject: Azure Cloud Engineer ΓÇô B2B ΓÇô Lesiba Serite
+appId: cmnu7jd5s00harx01v4mq7db7 job: Azure Cloud Engineer candidate: Lesiba Serite
+bodySnippet: Hi Brendan,DotCloud Consulting can support the Azure Cloud Engineer requirement on a B2B services basis, with Lesiba Serite as the initial delivery resource. I appreciate the time pressure of scaling a global AI transformation programme and the commercial risk of not being able to design and operate secure, scalable cloud environments for data &amp; AI workloads.Lesiba brings 4+ years of hands-on 
+---
+id: cmod2dhk00166qf01izjwq258
+createdAt: 2026-04-24T15:27:14.977Z
+subject: Full Stack Developer ΓÇô B2B ΓÇô Tonderai Muchada
+appId: cmnu7ht7100gtrx01m14xk9wq job: Full Stack Developer candidate: Tonderai Muchada
+bodySnippet: Hi Lucy,Acknowledging your Full Stack Developer requirement for remote UK contract roles ΓÇö DotCloud Consulting can support on a B2B services basis with Tonderai Muchada as the initial delivery resource. I appreciate remote UK contracts demand candidates who can operate independently within distributed teams and sustain delivery without hand-holding.Tonderai brings several years of hands-on experie
+---
+id: cmod1y30g0163qf01u6k04k4s
+createdAt: 2026-04-24T15:15:16.288Z
+subject: 1 Data Engineer ΓÇô AWS / Redshift / PySpark ΓÇô B2B ΓÇô Njabulo
+appId: cmnu6sk0x007orx01u6mdya8e job: 1 Data Engineer ΓÇô AWS / Redshift / PySpark candidate: Njabulo
+bodySnippet: Hi,Leaving this Data Engineer seat unfilled will slow delivery of dependable ETL pipelines and delay analytics access to trusted datasets. DotCloud Consulting can support your 1 Data Engineer ΓÇô AWS / Redshift / PySpark requirement on a B2B services basis, with Njabulo as the initial delivery resource.Njabulo brings several years of hands-on experience across data transformation and ETL, SQL stored
+---
+id: cmocz5re60161qf01gvlg9ohg
+createdAt: 2026-04-24T13:57:15.630Z
+subject: AI / ML Engineer ΓÇô B2B ΓÇô Everswick Dambaza
+appId: cmo8s975000iyqf9g44arta2k job: AI / ML Engineer candidate: Everswick Dambaza
+bodySnippet: Hi Harsh,The Minnesota-only local requirement is the hardest-to-fill item for this AI / ML Engineer role. DotCloud Consulting can support on a B2B services basis with Everswick Dambaza as the initial delivery resource.Everswick brings several years of hands-on experience across Python, scikit-learn/PyTorch/TensorFlow, end-to-end ML development, GenAI/LLM workflows (RAG, embeddings, prompting) and 
+---
+id: cmocz5qyw015yqf0115m4vs4j
+createdAt: 2026-04-24T13:57:15.081Z
+subject: AI / ML Engineer ΓÇô B2B ΓÇô Everswick Dambaza
+appId: cmo8s975000iyqf9g44arta2k job: AI / ML Engineer candidate: Everswick Dambaza
+bodySnippet: Hi,The AI / ML Engineer requirement for Tanisha Systems in Minnesota is clearly urgent and the local-only constraint tightens the deployable pool; DotCloud Consulting can support on a B2B services basis with Everswick Dambaza as the initial delivery resource.Everswick brings several years of hands-on experience across Python (scikit-learn, PyTorch, TensorFlow), end-to-end ML model development, Gen
+---
+id: cmocz0my7015wqf01rnymgje4
+createdAt: 2026-04-24T13:53:16.591Z
+subject: Mainframe Developer COBOL / CICS / DB2 ΓÇô B2B ΓÇô Petunia Motlhakane
+appId: cmo8s96vg00bvqf9gyb34pps0 job: Mainframe Developer COBOL / CICS / DB2 candidate: Petunia Motlhakane
+bodySnippet: Hi,Your Mainframe Developer requirement for COBOL, CICS and DB2 on UK shift with immediate start is noted; DotCloud Consulting can support on a B2B services basis with Petunia Motlhakane as the initial delivery resource. I appreciate C2H, immediateΓÇæjoiner UKΓÇæshift roles narrow the deployable pool.Petunia brings several years of handsΓÇæon experience across technical support, incident troubleshooting
+---
+id: cmocz05uu015tqf014ljiehes
+createdAt: 2026-04-24T13:52:54.439Z
+subject: Mainframe Developer COBOL / CICS / DB2 ΓÇô B2B ΓÇô Petunia Motlhakane
+appId: cmo8s96vg00bvqf9gyb34pps0 job: Mainframe Developer COBOL / CICS / DB2 candidate: Petunia Motlhakane
+bodySnippet: Hi,The Mainframe Developer COBOL / CICS / DB2 requirement is noted ΓÇö DotCloud Consulting can support on a B2B services basis, with Petunia Motlhakane as the initial delivery resource. I appreciate C2H, immediate UKΓÇæshift roles narrow the deployable pool and require rapid, practical fit.Petunia brings several years of handsΓÇæon experience across technical support, systems installations, troubleshoot
+---
+id: cmocywd1x015rqf01fxgmhv7j
+createdAt: 2026-04-24T13:49:57.141Z
+subject: Database Administrator ΓÇô B2B ΓÇô Jonas Mokgaola Nkosinathi Thamane
+appId: cmo8s96vb00bsqf9gw3lw8les job: Database Administrator candidate: Jonas Mokgaola Nkosinathi Thamane
+bodySnippet: Hi, For the Database Administrator contract at dabster.net, DotCloud Consulting can support on a B2B services basis with Jonas Mokgaola Nkosinathi Thamane as the initial delivery resource. I appreciate that this is a UK-remote brief with no sponsorship ΓÇö that narrows the deployable pool and raises delivery risk if location flexibility isnΓÇÖt available. Jonas brings several years of hands-on experie
+---
+id: cmocyvofx015oqf01905zsbk6
+createdAt: 2026-04-24T13:49:25.245Z
+subject: Database Administrator ΓÇô B2B ΓÇô Jonas Mokgaola Nkosinathi Thamane
+appId: cmo8s96vb00bsqf9gw3lw8les job: Database Administrator candidate: Jonas Mokgaola Nkosinathi Thamane
+bodySnippet: Hi, There is a tight market for immediately deployable DBAs who can manage cloud-based databases; DotCloud Consulting can support your Database Administrator contract on a B2B services basis with Jonas Mokgaola Nkosinathi Thamane as the initial delivery resource. Jonas brings several years of hands-on experience across cloud-based databases, backup &amp; recovery, monitoring, automation and script
+---
+id: cmocysb06015mqf01tvsfsp3q
+createdAt: 2026-04-24T13:46:47.862Z
+subject: NEW Data / Analytics Engineer ΓÇô B2B ΓÇô Titus Makumbe
+appId: cmo8s96v200bmqf9geffnhcwv job: NEW Data / Analytics Engineer ΓÇô candidate: Titus Makumbe
+bodySnippet: Hi Sam,Leaving this Data / Analytics Engineer role unfilled will slow delivery of analytics dashboards and dataΓÇædriven features for the Swiss insurance programme; DotCloud Consulting can support on a B2B services basis and proposes Titus Makumbe as the initial delivery resource.Titus brings several years of handsΓÇæon experience across Python, SQL, data visualisation, dataΓÇædriven application deliver
+---
+id: cmocyrdn2015jqf011af59fca
+createdAt: 2026-04-24T13:46:04.622Z
+subject: NEW Data / Analytics Engineer ΓÇô B2B ΓÇô Titus Makumbe
+appId: cmo8s96v200bmqf9geffnhcwv job: NEW Data / Analytics Engineer ΓÇô candidate: Titus Makumbe
+bodySnippet: Hi,Leaving this NEW Data / Analytics Engineer role unfilled will slow delivery of data-driven applications and dashboards for the Swiss insurer; DotCloud Consulting can support on a B2B services basis and proposes Titus Makumbe as the initial delivery resource.I appreciate the need for an immediately deployable, low-risk resource for a long-running contract with tight delivery expectations.Titus b
+---
+id: cmocyn1ho015gqf0138pw6lin
+createdAt: 2026-04-24T13:42:42.252Z
+subject: Power Platform/CoPilot Studio Developer ΓÇô B2B ΓÇô Jonas Mokgaola Nkosinathi Thamane
+appId: cmo8s96pz007vqf9g4pi7knfv job: Power Platform/CoPilot Studio Developer candidate: Jonas Mokgaola Nkosinathi Thamane
+bodySnippet: Hi,For the Power Platform/CoPilot Studio Developer requirement at staginvs.com, DotCloud Consulting can support on a B2B services basis with Jonas Mokgaola Nkosinathi Thamane as the initial delivery resource.Jonas brings 1+ years of hands-on experience across Power Apps/Power Automate, Power BI and Microsoft Fabric, Azure Data Factory/Azure SQL, and D365 integration.Relevant strengths:- Delivered 
+---
+id: cmocyk7s3015dqf01fow6l74s
+createdAt: 2026-04-24T13:40:30.435Z
+subject: Senior DevOps Engineer ΓÇô B2B / Outside IR35 ΓÇô Lesiba Serite
+appId: cmo8s96pe007dqf9g95jm1fr2 job: Senior DevOps Engineer candidate: Lesiba Serite
+bodySnippet: Hi Mark, Cloud migration talent for rapid, lowΓÇærisk moves is thin in the market; I appreciate the production reliability and migration timeΓÇæpressure your brief signals. DotCloud Consulting can support this Senior DevOps Engineer requirement on a B2B services basis, with Lesiba Serite proposed as the initial delivery resource. Lesiba brings 4+ years of handsΓÇæon experience across Terraform IaC, Az
+---
+id: cmocyhagt015aqf01fqwwpvxb
+createdAt: 2026-04-24T13:38:13.949Z
+subject: Angular Developer ΓÇô B2B ΓÇô Kudzai Murimi
+appId: cmo8s96nq0067qf9gvj3hvg2o job: Angular Developer candidate: Kudzai Murimi
+bodySnippet: Hi,Radley James' Angular Developer brief for a greenfield, production-ready front end is exactly the sort of contract DotCloud Consulting can support on a B2B services basis, with Kudzai Murimi as the initial delivery resource. I appreciate startups backed by Google and banks need rapid, production-ready delivery under pressure.Kudzai brings 6+ years of hands-on experience across TypeScript, Angul
+---
+id: cmocu9dif0157qf012qe8ny4j
+createdAt: 2026-04-24T11:40:06.183Z
+subject: AI Engineer ΓÇô B2B ΓÇô Thato Tswai
+appId: cmo8s974v00ivqf9g45fx9hyl job: AI Engineer candidate: Thato Tswai
+bodySnippet: Hi,In the first 90 days Thato can stabilise and start delivering AI-driven features that integrate with your .NET stack and Azure deployment, reducing early delivery risk. DotCloud Consulting can support the AI Engineer requirement on a B2B services basis, proposing Thato Tswai as the initial delivery resource.Thato brings several years of hands-on experience across AI/ML, .NET (C#), Azure and Ora
+---
+id: cmocu4l750154qf01h50eavm1
+createdAt: 2026-04-24T11:36:22.865Z
+subject: AI Engineer ΓÇô B2B ΓÇô Lesego Moncho
+appId: cmo8s974k00imqf9grn29o1er job: AI Engineer candidate: Lesego Moncho
+bodySnippet: Hi,The AI Engineer brief highlights integration of AI/ML models with .NET applications on Azure and Oracle Database ΓÇö that combination is the technical challenge weΓÇÖd expect to solve for you. DotCloud Consulting can support on a B2B services basis with Lesego Moncho as the initial delivery resource.Lesego brings several years of handsΓÇæon experience across solutions architecture, AI/ML integration,
+---
+id: cmocu4jlo0151qf01kf2g76cv
+createdAt: 2026-04-24T11:36:20.797Z
+subject: AI Engineer ΓÇô B2B ΓÇô Juliet Ngoni
+appId: cmo8s974r00isqf9gbmskamhb job: AI Engineer candidate: Juliet Ngoni
+bodySnippet: Hi,For your AI Engineer requirement at momentousa.com, DotCloud Consulting can support on a B2B services basis and I propose Juliet Ngoni as the initial delivery resource.Juliet brings several years of hands-on experience across AI/ML model development, .NET (C#) application delivery, Azure deployment, and Oracle DB integration.Relevant strengths:- Practical experience implementing AI/ML models fo
+---
+id: cmocu02bh014yqf017r028jba
+createdAt: 2026-04-24T11:32:51.773Z
+subject: AI Architect Azure ΓÇô B2B ΓÇô Lesego Moncho
+appId: cmo8s974c00igqf9g3y8h422r job: AI Architect Azure candidate: Lesego Moncho
+bodySnippet: Hi Ivanchalin,Thank you for the AI Architect Azure brief. DotCloud Consulting can support on a B2B services basis and proposes Lesego Moncho as the initial delivery resource for this contract.Lesego brings several years of hands-on experience across Azure AI, .NET fullΓÇæstack development, React/Angular integration and solutions architecture.Relevant strengths:- Solutions Architect title with handsΓÇæ
+---
+id: cmoctz5hb014vqf01boiewjqy
+createdAt: 2026-04-24T11:32:09.215Z
+subject: Business Analyst ΓÇô B2B ΓÇô Titus Makumbe
+appId: cmo8s974g00ijqf9g43hrd2zi job: Business Analyst candidate: Titus Makumbe
+bodySnippet: Hi,Snapcodeinc's Business Analyst requirement is understood for the Dublin OH Long Term Contract; DotCloud Consulting can support on a B2B services basis and proposes Titus Makumbe as the initial delivery resource.Titus brings several years of hands-on experience across business analysis, requirements elicitation, process mapping and stakeholder engagement.Relevant strengths:- Profile shows hands-
+---
+id: cmoctuxha014sqf01cjp9ocf2
+createdAt: 2026-04-24T11:28:52.222Z
+subject: Senior DevOps Engineer ΓÇô B2B / Outside IR35 ΓÇô Pardington T Mureka
+appId: cmo8s974300i7qf9gm63tu3sh job: Senior DevOps Engineer candidate: Pardington T Mureka
+bodySnippet: Hi,Talent Route AIΓÇÖs brief for a Senior DevOps Engineer with strong Kubernetes, Go and GCP/AWS capability is clear. DotCloud Consulting can support on a B2B services basis and we are proposing Pardington T Mureka as the initial delivery resource for consideration.Pardington brings 3+ years of hands-on experience across fintech transaction systems, containerisation and CI/CD (Docker, Jenkins), inte
+---
+id: cmoctrqwj014pqf01mcxrh74v
+createdAt: 2026-04-24T11:26:23.731Z
+subject: DevOps Engineer ΓÇô B2B ΓÇô Pardington T Mureka
+appId: cmo8s973h00hsqf9g0rrhoxoc job: DevOps Engineer candidate: Pardington T Mureka
+bodySnippet: Hi,Left unfilled, this role risks uneven deployments, slower incident response and reduced availability for production services. DotCloud Consulting can support on a B2B services basis and IΓÇÖm proposing Pardington T Mureka as the initial delivery resource for your DevOps Engineer requirement.Pardington brings 3+ years of hands-on experience across CI/CD (Jenkins), Docker and containerisation, prod
+---
+id: cmoctoi99014mqf01lee5mxms
+createdAt: 2026-04-24T11:23:52.558Z
+subject: Infrastructure Engineer ΓÇô B2B ΓÇô Kgomotso Sello Dungeni
+appId: cmo8s973c00hpqf9g3xhncooo job: Infrastructure Engineer candidate: Kgomotso Sello Dungeni
+bodySnippet: Hi,SDNA GlobalΓÇÖs Infrastructure Engineer requirement (remote, UK) creates clear commercial risk where clearance and UK residency are mandatory; DotCloud Consulting can support on a B2B services basis and IΓÇÖm proposing Kgomotso Sello Dungeni as the initial delivery resource. I appreciate clearance roles like this come with a very short deployable pool.Kgomotso brings 4+ years of hands-on experience
+---
+id: cmocto9ej014jqf01iu6tj3al
+createdAt: 2026-04-24T11:23:41.084Z
+subject: Senior Network Engineer ΓÇô B2B ΓÇô Crispen Shiri
+appId: cmo8s973700hmqf9g24no21wn job: Senior Network Engineer candidate: Crispen Shiri
+bodySnippet: Hi Rajini,You're seeking a Senior Network Engineer in Dallas for immediate C2C engagement; DotCloud Consulting can support on a B2B services basis and proposes Crispen Shiri as the initial delivery resource.Crispen brings 15+ years of hands-on experience across enterprise network implementation, TCP/IP & VPNs, firewall management and vendor coordination, Terraform-driven network automation and mul
+---
+id: cmoctkr9h014gqf01xkhj8qtj
+createdAt: 2026-04-24T11:20:57.605Z
+subject: Senior Network Engineer ΓÇô B2B ΓÇô Johannes Sekgoka
+appId: cmo8s973300hjqf9gcwdgmy37 job: Senior Network Engineer candidate: Johannes Sekgoka
+bodySnippet: Hi,You need a Senior Network Engineer in Dallas; DotCloud Consulting can support this on a B2B services basis and IΓÇÖm proposing Johannes Sekgoka as the initial delivery resource.I appreciate roles marked "Need only locals" and C2C leave very little margin for unsuitable submissions; the "Need only locals" and C2C notes are therefore the constraints IΓÇÖve prioritised when reviewing fit.Johannes brin
+---
+id: cmoctgx84014dqf01u2v7uo9b
+createdAt: 2026-04-24T11:17:58.709Z
+subject: Azure Data Engineer | ΓÇô B2B ΓÇô Petunia Motlhakane
+appId: cmo8s972j00h4qf9gn0009i5o job: Azure Data Engineer | candidate: Petunia Motlhakane
+bodySnippet: Hi,Tekvo.ioΓÇÖs Azure Data Engineer | requirement is noted. DotCloud Consulting can support on a B2B services basis, with Petunia Motlhakane proposed as the initial delivery resource.Petunia brings several years of hands-on experience across data process optimisation, technical support and troubleshooting, project coordination and platform installations.Relevant strengths:- Led installations of IT s
+---
+id: cmoctg60f014aqf010vvgj6n4
+createdAt: 2026-04-24T11:17:23.439Z
+subject: AI Engineer ΓÇô B2B ΓÇô James Tladi Tladi
+appId: cmo8s972n00h7qf9gcbvxtpov job: AI Engineer candidate: James Tladi Tladi
+bodySnippet: Hi,MomentusA's brief for an AI Engineer highlights a commercial risk: a 6+ month, remote contract with EST/CST preference and a requirement for rapid delivery of AzureΓÇædeployed, scalable AI solutions tightens the deployable pool. DotCloud Consulting can support on a B2B services basis and propose James Tladi Tladi as the initial delivery resource to mitigate that risk.James brings 3+ years of hand
+---
+id: cmoctcnwi0147qf01ycl9stcr
+createdAt: 2026-04-24T11:14:40.003Z
+subject: Site Engineer ΓÇô B2B / Outside IR35 ΓÇô Crispen Shiri
+appId: cmo8s972e00h1qf9gx7hxlql1 job: Site Engineer candidate: Crispen Shiri
+bodySnippet: Hi Callam, You're seeking a Site Engineer for Sizewell C, Suffolk with RC Structure experience and QA proficiency. DotCloud Consulting can support on a B2B services basis and I propose Crispen Shiri as the initial delivery resource. Crispen brings several years of hands-on experience across multicloud architecture (OCI, AWS), large-scale platform deployment, and operational availability. Relevant 
+---
+id: cmoctc0vo0144qf01roabfvw5
+createdAt: 2026-04-24T11:14:10.165Z
+subject: Frontend Developer ΓÇô B2B ΓÇô Jonathan Wagener
+appId: cmo8s972a00gyqf9g87xnols0 job: Frontend Developer candidate: Jonathan Wagener
+bodySnippet: Hi,We can support your Frontend Developer requirement on a B2B services basis through DotCloud Consulting, proposing Jonathan Wagener as the initial delivery resource for the Front End ReactJs Developer slot you advertised.Jonathan brings several years of hands-on experience across front-end development, single-page applications, JavaScript/TypeScript and fullΓÇæstack delivery.Relevant strengths:- F
+---
+id: cmoct69ee0141qf01o2knhomi
+createdAt: 2026-04-24T11:09:41.270Z
+subject: WeΓÇÖre Hiring: Application Developer (Desktop / Mobile / Web Apps) ΓÇô B2B ΓÇô Jonathan Wagener
+appId: cmo8s971700g1qf9gjzu4zqn5 job: WeΓÇÖre Hiring: Application Developer Desktop / Mobile / Web Apps candidate: Jonathan Wagener
+bodySnippet: Hi,We can support the WeΓÇÖre Hiring: Application Developer (Desktop / Mobile / Web Apps) requirement on a B2B services basis through DotCloud Consulting, proposing Jonathan Wagener as the initial delivery resource.Jonathan brings 21+ years of hands-on experience across Angular web applications, Flutter/Ionic cross-platform mobile, Python desktop applications and REST API/backend integration with Ke
+---
+id: cmoct5pfb013yqf01fm1dqi5q
+createdAt: 2026-04-24T11:09:15.384Z
+subject: SOFTWARE ENGINEER C++/C# ΓÇô B2B / Outside IR35 ΓÇô Liliyosa Mbakureya
+appId: cmo8s971r00gjqf9gzlbyjcl6 job: SOFTWARE ENGINEER C++/C# candidate: Liliyosa Mbakureya
+bodySnippet: Hi,Within the first 90 days Liliyosa could surface reviewable code and stabilise portions of technical debt from her public projects, creating focussed evidence you can assess quickly. I note your SOFTWARE ENGINEER C++/C# requirement ΓÇö DotCloud Consulting can support this on a B2B services basis, proposing Liliyosa Mbakureya as the initial delivery resource.Liliyosa brings several years of hands-o
+---
+id: cmoct1zqn013vqf01p4hxyu8j
+createdAt: 2026-04-24T11:06:22.128Z
+subject: Senior MLOps Engineer ΓÇô B2B / Outside IR35 ΓÇô Crispen Shiri
+appId: cmo8s970x00fvqf9gbaqr8vxq job: Senior MLOps Engineer candidate: Crispen Shiri
+bodySnippet: Hi,Leaving this Senior MLOps Engineer vacancy unfilled risks gaps across model pipeline and production observability, slowing delivery of CRM-driven features. DotCloud Consulting can support on a B2B services basis, with Crispen Shiri as the initial delivery resource.Crispen brings 6+ years of hands-on experience across multicloud architecture (OCI, AWS), large-scale platform reliability, and glob
+---
+id: cmoct175x013sqf01qysgit6j
+createdAt: 2026-04-24T11:05:45.093Z
+subject: WeΓÇÖre Hiring: Application Developer Desktop / Mobile / Web Apps ΓÇô B2B ΓÇô Kudzai Murimi
+appId: cmo8s971100fyqf9gb717xkvm job: WeΓÇÖre Hiring: Application Developer Desktop / Mobile / Web Apps candidate: Kudzai Murimi
+bodySnippet: Hi, parvu.ai's WeΓÇÖre Hiring: Application Developer Desktop / Mobile / Web Apps brief calls for a UKΓÇæbased contract hire with rapid production delivery; DotCloud Consulting can support on a B2B services basis with Kudzai Murimi as the initial delivery resource. Kudzai brings 6+ years of hands-on experience across React, Angular, TypeScript, Laravel and RESTful API integration supporting desktop, mo
+---
+id: cmocsxhum013pqf01t0spmqhk
+createdAt: 2026-04-24T11:02:52.319Z
+subject: Senior Network Engineer ΓÇô B2B ΓÇô Girly Nomvula Lebelo
+appId: cmo8s970p00fpqf9gm9xiqxsk job: Senior Network Engineer candidate: Girly Nomvula Lebelo
+bodySnippet: Hi,Your Senior Network Engineer requirement in Dallas is clear; DotCloud Consulting can support on a B2B services basis and IΓÇÖm proposing Girly Nomvula Lebelo as the initial delivery resource.Girly brings several years of hands-on experience across network engineering, infrastructure operations and network troubleshooting.Relevant strengths:- CV lists Girly as a Senior Network Engineer, indicating
+---
+id: cmocswmg4013mqf01fmokivwj
+createdAt: 2026-04-24T11:02:11.621Z
+subject: Senior Network Engineer ΓÇô B2B ΓÇô Heinrich Muller
+appId: cmo8s970t00fsqf9g8iq7l9yd job: Senior Network Engineer candidate: Heinrich Muller
+bodySnippet: Hi, You're recruiting a Senior Network Engineer in Dallas, TX. DotCloud Consulting can support this on a B2B services basis and we propose Heinrich Muller as the initial delivery resource. Heinrich brings 10+ years of hands-on experience across enterprise infrastructure, Azure multi-region platforms, Kubernetes estates and platform engineering. Relevant strengths: - 10+ years engineering enterpris
+---
+id: cmocssowt013jqf015gnfsbra
+createdAt: 2026-04-24T10:59:08.189Z
+subject: Senior Network Engineer ΓÇô B2B ΓÇô Juliet Ngoni
+appId: cmo8s970k00fmqf9gad2ninsq job: Senior Network Engineer candidate: Juliet Ngoni
+bodySnippet: Hi,For your Senior Network Engineer role in Dallas, DotCloud Consulting can support on a B2B services basis and I propose Juliet Ngoni as the initial delivery resource. I appreciate that sourcing someone local to Dallas on a C2C basis materially narrows the deployable pool.Juliet brings several years of hands-on experience across network engineering, implementation, operations and incident resolut
+---
+id: cmocsrz0j013gqf01knucxr8a
+createdAt: 2026-04-24T10:58:34.627Z
+subject: Senior Network Engineer ΓÇô B2B ΓÇô mr landile
+appId: cmo8s970f00fjqf9g75xzhwc3 job: Senior Network Engineer candidate: mr landile
+bodySnippet: Hi Rajini,You're hiring a Senior Network Engineer in Dallas. DotCloud Consulting can support on a B2B services basis and we propose mr landile as the initial delivery resource for this C2C opportunity.Landile brings several years of hands-on experience across network engineering, routing &amp; switching, LAN/WAN implementation and network troubleshooting.Relevant strengths:- Presented as a Senior 
+---
+id: cmocsnrh1013dqf01tk0qkjoi
+createdAt: 2026-04-24T10:55:18.230Z
+subject: AI Engineer ΓÇô B2B ΓÇô mr landile
+appId: cmo8s970300fdqf9gu19iexpq job: AI Engineer candidate: mr landile
+bodySnippet: Hi,You asked for an AI Engineer. DotCloud Consulting can support this requirement on a B2B services basis, with mr landile proposed as the initial delivery resource.Landile brings several years of hands-on experience across AI/ML models and solutions, .NET (C#) development, Azure deployments, and Oracle DB integration.Relevant strengths:- Practical delivery of AI/ML models and solutions aligned to
+---
+id: cmocsnj18013aqf015fex3w8v
+createdAt: 2026-04-24T10:55:07.292Z
+subject: Business Analyst ΓÇô B2B ΓÇô Njabulo
+appId: cmo8s96zt00f7qf9gfw7px9xo job: Business Analyst candidate: Njabulo
+bodySnippet: Hi Rahul,DotCloud Consulting can support your Business Analyst requirement on a B2B services basis, with Njabulo as the initial delivery resource for this Remote (USA) contract.Njabulo brings several years of hands-on experience across Power BI reporting, SQL stored procedures and ETL, transforming unstructured audit data into actionable insight, and auditΓÇæfacing analytics for stakeholder reportin
+---
+id: cmocsjfy00137qf01y8zlxjzb
+createdAt: 2026-04-24T10:51:56.664Z
+subject: SOFTWARE ENGINEER C++/C# ΓÇô B2B / Outside IR35 ΓÇô Lesley Charinda
+appId: cmo8s96zi00f1qf9go80aj6s6 job: SOFTWARE ENGINEER C++/C# candidate: Lesley Charinda
+bodySnippet: Hi, IΓÇÖm responding to your SOFTWARE ENGINEER C++/C# requirement. DotCloud Consulting can support on a B2B services basis, with Lesley Charinda as the initial delivery resource for the 12ΓÇæmonth Outside IR35 engagement. Lesley brings several years of handsΓÇæon experience across C++, C#, and handsΓÇæon software engineering for production codebases. Relevant strengths: - CV submitted for a C++/C# softwar
+---
+id: cmocsj3rl0134qf01jz7xkr2w
+createdAt: 2026-04-24T10:51:40.881Z
+subject: SOFTWARE ENGINEER C++/C# ΓÇô B2B / Outside IR35 ΓÇô Keagile Nduli
+appId: cmo8s96zn00f4qf9g3252ohz8 job: SOFTWARE ENGINEER C++/C# candidate: Keagile Nduli
+bodySnippet: Hi,Thank you ΓÇö your SOFTWARE ENGINEER C++/C# requirement for the Global HealthTech platform (12 months, Outside IR35, remote - Manchester) is clear. DotCloud Consulting can support on a B2B services basis, with Keagile Nduli as the initial delivery resource.Keagile brings several years of handsΓÇæon experience across Python, Java (OOP), RESTful APIs and web development; his work building RESTful API
+---
+id: cmocsern90131qf01qxps0y8u
+createdAt: 2026-04-24T10:48:18.549Z
+subject: DevOps Engineer ΓÇô B2B ΓÇô Tonderai Muchada
+appId: cmo8s96yv00egqf9ghlbsqn37 job: DevOps Engineer candidate: Tonderai Muchada
+bodySnippet: Hi,Parvu.aiΓÇÖs DevOps Engineer brief is clear: build reliable CI/CD pipelines, own cloud infrastructure and keep production services available. DotCloud Consulting can support on a B2B services basis, with Tonderai Muchada as the initial delivery resource.Tonderai brings several years of hands-on experience across microservices architecture, distributed systems, deployment automation, production in
+---
+id: cmocse35h012yqf01lmen1wu2
+createdAt: 2026-04-24T10:47:46.804Z
+subject: DevOps Engineer ΓÇô B2B ΓÇô MPHO MORABA
+appId: cmo8s96yz00ejqf9gijno0g5x job: DevOps Engineer candidate: MPHO MORABA
+bodySnippet: Hi,For your DevOps Engineer requirement at parvu.ai, DotCloud Consulting can support on a B2B services basis, with MPHO MORABA proposed as the initial delivery resource.I appreciate that productionΓÇæcritical roles demand reliable automated deployments for highΓÇæavailability systems; MPHOΓÇÖs recent work establishing CI/CD pipelines at Econet Wireless maps directly to that priority.MPHO brings 6+ years
+---
+id: cmocs9a9e012vqf016dlv8v93
+createdAt: 2026-04-24T10:44:02.739Z
+subject: Senior Network Engineer ΓÇô B2B ΓÇô Juan Charl Venter
+appId: cmo8s96yi00e7qf9gsn40nuhe job: Senior Network Engineer candidate: Juan Charl Venter
+bodySnippet: Hi,We can support your Senior Network Engineer requirement in Dallas, TX on a B2B services basis ΓÇö DotCloud Consulting proposes Juan Charl Venter as the initial delivery resource for this C2C contract.Juan brings several years of hands-on experience across hybrid cloud architecture, network engineering, secure environment design and dataΓÇæcentre networking.Relevant strengths:- Hybrid cloud architec
+---
+id: cmocs8tzc012sqf01ovz8i2he
+createdAt: 2026-04-24T10:43:41.641Z
+subject: Senior Network Engineer ΓÇô B2B ΓÇô Isaac Rantu Mongae
+appId: cmo8s96ye00e4qf9gcc27iupb job: Senior Network Engineer candidate: Isaac Rantu Mongae
+bodySnippet: Hi Rajini, Filling a Senior Network Engineer locally on a C2C contract is often timeΓÇæsensitive; DotCloud Consulting can support this Senior Network Engineer requirement on a B2B services basis, proposing Isaac Rantu Mongae as the initial delivery resource. Isaac brings several years of handsΓÇæon experience across enterprise routing and switching, Cisco platform engineering, LAN/WAN operations and n
+---
+id: cmocs4u8i012pqf01xsv2gest
+createdAt: 2026-04-24T10:40:35.346Z
+subject: Site Engineer ΓÇô B2B / Outside IR35 ΓÇô Kgomotso Sello Dungeni
+appId: cmo8s96xz00dpqf9govxy71n6 job: Site Engineer candidate: Kgomotso Sello Dungeni
+bodySnippet: Hi,Sizewell C needs an experienced Site Engineer who can operate reliably on a highΓÇærigour infrastructure project; DotCloud Consulting can support on a B2B services basis and IΓÇÖm proposing Kgomotso Sello Dungeni as the initial delivery resource.Kgomotso brings 4+ years of handsΓÇæon experience across infrastructure as code (Terraform, CloudFormation), container orchestration (Docker, Kubernetes), CI
+---
+id: cmocs13oz012mqf0143550xtr
+createdAt: 2026-04-24T10:37:40.980Z
+subject: Site Engineer ΓÇô B2B / Outside IR35 ΓÇô Simphiwe Sikhonde
+appId: cmo8s96x300daqf9gmumc6c2o job: Site Engineer candidate: Simphiwe Sikhonde
+bodySnippet: Hi,You're seeking a Site Engineer for Sizewell C. DotCloud Consulting can support on a B2B services basis, with Simphiwe Sikhonde as the initial delivery resource ΓÇö and I appreciate this is a highΓÇæstakes, timeΓÇæsensitive recruitment where the deployable pool for onΓÇæsite RCΓÇæskilled engineers is small.Simphiwe brings 15+ years of hands-on experience across monitoring and observability, infrastructure
+---
+id: cmocrw8xm012jqf01bdej3y1v
+createdAt: 2026-04-24T10:33:54.491Z
+subject: Senior Software Engineer ΓÇô B2B ΓÇô Keagile Nduli
+appId: cmo8s96wz00d7qf9gbivw581n job: Senior Software Engineer. candidate: Keagile Nduli
+bodySnippet: Hi,A shortage of engineers with direct IB/TWS integration is common for short fintech contracts; for a fiveΓÇæmonth UAE engagement that scarcity directly increases delivery risk. DotCloud Consulting can support your Senior Software Engineer requirement on a B2B services basis, with Keagile Nduli as the initial delivery resource.Keagile brings 1+ years of hands-on experience across Spring Boot REST A
+---
+id: cmocrtbso012gqf01wzln9xf1
+createdAt: 2026-04-24T10:31:38.232Z
+subject: Senior Network Engineer ΓÇô B2B ΓÇô Ronald Sidney Doyle
+appId: cmo8s96vx00c7qf9ggae030hs job: Senior Network Engineer candidate: Ronald Sidney Doyle
+bodySnippet: Hi,You need a Senior Network Engineer local to Dallas for C2C engagements; DotCloud Consulting can support that requirement on a B2B services basis, with Ronald Sidney Doyle as the initial delivery resource. I appreciate that urgent, local C2C roles narrow the deployable pool and make unsuitable submissions costly.Ronald brings 30+ years of hands-on experience across Cisco ACI deployments, ASR/MPL
+---
+id: cmocrpduh012dqf0103r64m76
+createdAt: 2026-04-24T10:28:34.265Z
+subject: Senior Network Engineer ΓÇô B2B ΓÇô Sibusiso Ndlovu
+appId: cmo8s96w200caqf9gcxpr2ths job: Senior Network Engineer candidate: Sibusiso Ndlovu
+bodySnippet: Hi Rajini,DotCloud Consulting can support your Senior Network Engineer requirement on a B2B services basis, with Sibusiso Ndlovu as the initial delivery resource. I recognise that the "Need only locals" C2C wording and the Dallas location make the deployable pool unusually tight.Sibusiso brings several years of hands-on experience across enterprise network engineering, WAN/LAN operations, routing 
+---
+id: cmocrl3fz012aqf01xipfrq9q
+createdAt: 2026-04-24T10:25:14.159Z
+subject: Senior Network Engineer ΓÇô B2B ΓÇô Henco Freidberg
+appId: cmo8s96vo00c1qf9gsp13tu8o job: Senior Network Engineer candidate: Henco Freidberg
+bodySnippet: Hi,DotCloud Consulting can support your Senior Network Engineer requirement on a B2B services basis, with Henco Freidberg as the initial delivery resource. I appreciate that filling Senior Network Engineer roles with local, deployable resource in Dallas quickly is often urgent and costly.Henco brings several years of hands-on experience across network engineering, enterprise network operations and
+---
+id: cmocrkzak0127qf01s8ul04je
+createdAt: 2026-04-24T10:25:08.780Z
+subject: Senior Network Engineer ΓÇô B2B ΓÇô Tumelo Rahlau
+appId: cmo8s96vs00c4qf9gr4qbixh0 job: Senior Network Engineer candidate: Tumelo Rahlau
+bodySnippet: Hi,For your Senior Network Engineer requirement in Dallas I can propose DotCloud Consulting as the B2B services partner, with Tumelo Rahlau as the initial delivery resource. I appreciate the need for speed and local availability when filling C2C roles, and will keep this submission tightly focused on deployable capability.Tumelo brings several years of hands-on experience across network design, ro
+---
+id: cmocrgx1a0124qf01nru10n3a
+createdAt: 2026-04-24T10:21:59.230Z
+subject: Senior Software Engineer ΓÇô B2B ΓÇô Lesley Charinda
+appId: cmo8s96vj00byqf9gqesglevz job: Senior Software Engineer. candidate: Lesley Charinda
+bodySnippet: Hi,I'm responding to your Senior Software Engineer requirement for the UAE-based fintech contract. DotCloud Consulting can support on a B2B services basis, with Lesley Charinda as the initial delivery resource; I appreciate deadline-driven fintech builds need engineers who can integrate quickly with broker APIs and ship reliable trading features.Lesley brings several years of hands-on experience a
+---
+id: cmocrcdk70121qf010him0kb8
+createdAt: 2026-04-24T10:18:27.367Z
+subject: Senior DevOps Engineer ΓÇô B2B / Outside IR35 ΓÇô Kgomotso Sello Dungeni
+appId: cmo8s96u500avqf9gvguxtyq7 job: Senior DevOps Engineer candidate: Kgomotso Sello Dungeni
+bodySnippet: Hi,Senior DevOps Engineer roles demanding Kubernetes, Go and cloud expertise are in short supply across Europe; DotCloud Consulting can support on a B2B services basis with Kgomotso Sello Dungeni as the initial delivery resource. I appreciate fully remote, outside IR35 contracts tighten the deployable pool and raise time-to-fill pressure.Kgomotso brings several years of hands-on experience across 
+---
+id: cmocrbo2g011yqf01nl26ts1f
+createdAt: 2026-04-24T10:17:54.329Z
+subject: AWS Data Engineer ΓÇô B2B ΓÇô Everswick Dambaza
+appId: cmo8s96uw00bjqf9gn0sl9aga job: AWS Data Engineer. candidate: Everswick Dambaza
+bodySnippet: Hi Nitesh Kumar,The AWS Data Engineer contract at VastekGroup requires immediate, deployable capability on AWS data ingestion and pipeline delivery ΓÇö DotCloud Consulting can support on a B2B services basis with Everswick Dambaza as the initial delivery resource.Everswick brings several years of hands-on experience across AWS Glue, SNS/SQS, Python/PySpark, data lake ingestion and CloudWatch/CloudTr
+---
+id: cmocr8in5011vqf01gl04njl3
+createdAt: 2026-04-24T10:15:27.329Z
+subject: Senior DevOps Engineer ΓÇô B2B / Outside IR35 ΓÇô Tonderai Muchada
+appId: cmo8s96tt00ajqf9g371ekakk job: Senior DevOps Engineer candidate: Tonderai Muchada
+bodySnippet: Hi Fiona,Tonderai Muchada has several years of handsΓÇæon experience building microservices and distributed systems for FinTech and eΓÇæcommerce platforms. DotCloud Consulting can support your Senior DevOps Engineer requirement on a B2B services basis, with Tonderai proposed as the initial delivery resource.Tonderai brings several years of handsΓÇæon experience across microservices, distributed systems,
+---
+id: cmocr822d011sqf01xksy1imu
+createdAt: 2026-04-24T10:15:05.845Z
+subject: DevOps Engineer ΓÇô B2B ΓÇô Keagile Nduli
+appId: cmo8s96tn00agqf9gu02akw2b job: DevOps Engineer candidate: Keagile Nduli
+bodySnippet: Hi,A practical engineering foundation from WeThinkCode: Keagile has built RESTful APIs and database-backed applications that demonstrate system-level thinking relevant to infrastructure and deployment automation. DotCloud Consulting can support your DevOps Engineer requirement on a B2B services basis, with Keagile Nduli as the initial delivery resource.Keagile brings several years of hands-on expe
+---
+id: cmocr36rv011pqf01ctayqhyf
+createdAt: 2026-04-24T10:11:18.668Z
+subject: Infrastructure Engineer ΓÇô B2B ΓÇô Heinrich Muller
+appId: cmo8s96tc00aaqf9gcped53zz job: Infrastructure Engineer candidate: Heinrich Muller
+bodySnippet: Hi,You're hiring an Infrastructure Engineer for a UK remote contract where speed to deploy, sustained quality and proven clearance experience will matter. DotCloud Consulting can support on a B2B services basis, with Heinrich Muller proposed as the initial delivery resource.Heinrich brings 10+ years of hands-on experience across Azure multi-region platforms, Kubernetes estates, enterprise infrastr
+---
+id: cmocqyz8x011mqf01vp4muwln
+createdAt: 2026-04-24T10:08:02.289Z
+subject: Infrastructure Engineer ΓÇô B2B ΓÇô Jeanre Swanepoel
+appId: cmo8s96t700a7qf9ggzqawkui job: Infrastructure Engineer candidate: Jeanre Swanepoel
+bodySnippet: Hi, You are hiring an Infrastructure Engineer for a UK remote contract. DotCloud Consulting can support this on a B2B services basis, with Jeanre Swanepoel proposed as the initial delivery resource. Jeanre brings several years of hands-on experience across strategic architecture, systems design, microservices and distributed systems, focused on scalable, resilient service patterns. Relevant streng
+---
+id: cmocqurlv011jqf01l0ymgogs
+createdAt: 2026-04-24T10:04:45.764Z
+subject: Infrastructure Engineer ΓÇô B2B ΓÇô Simphiwe Sikhonde
+appId: cmo8s96sr009yqf9gpguyyg29 job: Infrastructure Engineer candidate: Simphiwe Sikhonde
+bodySnippet: TerraformΓÇædriven multiΓÇæcloud infrastructure provisioning at BMW and ABSA, delivering repeatable, secure IaC pipelines for production scale.DotCloud Consulting can support this Infrastructure Engineer requirement on a B2B services basis, with Simphiwe Sikhonde as the initial delivery resource.Simphiwe brings 14+ years of hands-on experience across Terraform multiΓÇæcloud IaC, Ansible configuration ma
+---
+id: cmocqq1l7011gqf01f7rqu2xr
+createdAt: 2026-04-24T10:01:05.420Z
+subject: Senior Frontend Developer ΓÇô B2B ΓÇô Jonathan Wagener
+appId: cmo8s96sd009pqf9gd2s66wz3 job: Senior Frontend Developer candidate: Jonathan Wagener
+bodySnippet: Hi,We can support your Senior Frontend Developer requirement on a B2B services basis through DotCloud Consulting, proposing Jonathan Wagener as the initial delivery resource. I appreciate that filling two Senior Frontend Developer slots quickly is timeΓÇæsensitive and costly if a submission proves unsuitable.Jonathan brings several years of handsΓÇæon experience across JavaScript, TypeScript, singleΓÇæp
+---
+id: cmocqpzfg011dqf01szuoaapl
+createdAt: 2026-04-24T10:01:02.621Z
+subject: Senior Frontend Developer ΓÇô B2B ΓÇô Liliyosa Mbakureya
+appId: cmo8s96s9009mqf9givnxu4xh job: Senior Frontend Developer candidate: Liliyosa Mbakureya
+bodySnippet: Hi,We can support your Senior Frontend Developer requirement on a B2B services basis, with Liliyosa Mbakureya proposed as the initial delivery resource from DotCloud Consulting.Liliyosa brings several years of handsΓÇæon experience across secure coding practices, repositoryΓÇæbased development and continuous technical training.Relevant strengths:- Diploma-level study in cybersecurity (ALTSCHOOL AFRICA
+---
+id: cmocqjqfm011aqf01w98pn5e8
+createdAt: 2026-04-24T09:56:11.027Z
+subject: Frontend Developer ΓÇô B2B ΓÇô Liliyosa Mbakureya
+appId: cmo8s96rj0091qf9gi59r9wpo job: Frontend Developer candidate: Liliyosa Mbakureya
+bodySnippet: Hi,Within the first 90 days Liliyosa could surface reviewable front-end deliverables from their GitHub and stabilise a component backlog so product work can pass QA faster. DotCloud Consulting can support your Frontend Developer requirement on a B2B services basis, with Liliyosa Mbakureya proposed as the initial delivery resource.Liliyosa brings several years of hands-on experience across front-en
+---
+id: cmocqjggy0117qf01jhma27pf
+createdAt: 2026-04-24T09:55:58.115Z
+subject: NEW Data / Analytics Engineer ΓÇô B2B ΓÇô Njabulo
+appId: cmo8s96qs008gqf9gq8cksnf5 job: NEW Data / Analytics Engineer ΓÇô candidate: Njabulo
+bodySnippet: Hi,DotCloud Consulting can support your NEW Data / Analytics Engineer requirement on a B2B services basis, with Njabulo as the initial delivery resource for the EuropeΓÇæremote, startΓÇæASAP mandate.Njabulo brings 1+ years of handsΓÇæon experience across Python (Pandas/NumPy), SQL Server/MySQL query and storedΓÇæprocedure development, Power BI data visualisation, Alteryx ETL automation, and cleansing larg
+---
+id: cmocqfbxv0114qf01yi90w0hu
+createdAt: 2026-04-24T09:52:45.619Z
+subject: Data Engineer ΓÇô GCP ΓÇô B2B ΓÇô Everswick Dambaza
+appId: cmo8s96qf0087qf9g5t6ymrn3 job: Data Engineer ΓÇô GCP candidate: Everswick Dambaza
+bodySnippet: Hi,The Data Engineer ΓÇô GCP role at signitives.net needs immediate, deployable GCP data engineering capability under a tight USC/GC-only W2 constraint. DotCloud Consulting can support on a B2B services basis, with Everswick Dambaza as the initial delivery resource. DotCloud operates as a specialist services partner and retains direct accountability for engineer readiness and ongoing performance ali
+---
+id: cmocqf8020111qf01hzgp6rc2
+createdAt: 2026-04-24T09:52:40.515Z
+subject: Infrastructure Engineer ΓÇô B2B ΓÇô Paul Stegemann
+appId: cmo8s96qn008dqf9gulrtx2o1 job: Infrastructure Engineer candidate: Paul Stegemann
+bodySnippet: Hi Vaishali,Market note: genuinely deployable, UK-based Infrastructure Engineers holding active SC Clearance are scarce for longΓÇærunning remote contracts. DotCloud Consulting can support this Infrastructure Engineer requirement on a B2B services basis, proposing Paul Stegemann as the initial delivery resource.Paul brings 4+ years of handsΓÇæon experience across AWS architecture, infrastructure opera
+---
+id: cmocqaiif010yqf01drcsd19e
+createdAt: 2026-04-24T09:49:00.855Z
+subject: Business Analyst ΓÇô B2B ΓÇô Sondra Methembe Sithole
+appId: cmo8s96q3007yqf9gpp3q4k3x job: Business Analyst candidate: Sondra Methembe Sithole
+bodySnippet: Hi Rahul,Over a decade of handsΓÇæon technical analysis and business transformation experience. DotCloud Consulting can support your Business Analyst requirement on a B2B services basis, with Sondra Methembe Sithole proposed as the initial delivery resource.Sondra brings 10+ years of hands-on experience across technical analysis, consulting, business transformation.The JD's emphasis on Azure AI Serv
+---
+id: cmocqa6go010vqf015kprtbaf
+createdAt: 2026-04-24T09:48:45.240Z
+subject: AWS Data Engineer. ΓÇô B2B ΓÇô Titus Makumbe
+appId: cmo8s96q80081qf9gtbjr4cw7 job: AWS Data Engineer. candidate: Titus Makumbe
+bodySnippet: Hi, You've asked for an AWS Data Engineer. DotCloud Consulting can support on a B2B services basis and proposes Titus Makumbe as the initial delivery resource for this longΓÇæterm, remote contract. Titus brings several years of handsΓÇæon experience across AWS data pipeline patterns, Python/PySpark, data lake design, ETL orchestration and messaging. Relevant strengths: - Practical experience build
+---
+id: cmocq4ztb010sqf01l8yo4qpa
+createdAt: 2026-04-24T09:44:43.343Z
+subject: Data Engineer ΓÇô B2B ΓÇô Titus Makumbe
+appId: cmo8s96pp007mqf9gg7zhe3rw job: Data Engineer ΓÇô candidate: Titus Makumbe
+bodySnippet: Hi, ParVUΓÇÖs Data Engineer requirement is understood. DotCloud Consulting can support on a B2B services basis and proposes Titus Makumbe as the initial delivery resource for this contract. Titus brings several years of hands-on experience across data pipelines, ETL/ELT processes, data warehouses and data lakes, SQL and Python. Relevant strengths: - Bench-vetted by DotCloud with practical deliver
+---
+id: cmocpx2hp010pqf010ivuorcc
+createdAt: 2026-04-24T09:38:33.566Z
+subject: DevOps Engineer ΓÇô B2B ΓÇô Riaan Snyders
+appId: cmo8s96p50077qf9ghw6m22ke job: DevOps Engineer candidate: Riaan Snyders
+bodySnippet: Hi,Your DevOps Engineer brief ΓÇö to manage infrastructure, automate deployments and keep reliable system operations ΓÇö is exactly the kind of delivery DotCloud Consulting supports. We can engage on a B2B services basis and propose Riaan Snyders as the initial delivery resource.Riaan brings several years of hands-on experience across cloud platforms, scalable systems architecture, integration for web
+---
+id: cmocpwtjw010mqf01a7o3r31k
+createdAt: 2026-04-24T09:38:21.980Z
+subject: Senior DevOps Engineer ΓÇô B2B / Outside IR35 ΓÇô Simphiwe Sikhonde
+appId: cmo8s96pa007aqf9gxmoa4ftg job: Senior DevOps Engineer candidate: Simphiwe Sikhonde
+bodySnippet: Hi Fiona, You're seeking a Senior DevOps Engineer. DotCloud Consulting can support this on a B2B services basis, and we propose Simphiwe Sikhonde as the initial delivery resource. Simphiwe brings several years of hands-on experience across Kubernetes, Go, GCP and AWS. Relevant strengths: - Senior-level Kubernetes cluster operations and lifecycle management. - Production-grade Go development for in
+---
+id: cmocpt3eb010jqf01kcsgayse
+createdAt: 2026-04-24T09:35:28.116Z
+subject: DevOps Engineer ΓÇô B2B ΓÇô Liliyosa Mbakureya
+appId: cmo8s96p10074qf9gfekisqtw job: DevOps Engineer candidate: Liliyosa Mbakureya
+bodySnippet: Hi,I note your DevOps Engineer requirement at parvu.ai ΓÇö stabilising CI/CD pipelines and cloud infrastructure while improving automation and availability is often where delivery first encounters risk. DotCloud Consulting can support this on a B2B services basis, with Liliyosa Mbakureya proposed as the initial delivery resource.Liliyosa brings several years of hands-on experience across cybersecuri
+---
+id: cmocpt28o010gqf01805wg1xw
+createdAt: 2026-04-24T09:35:26.617Z
+subject: DevOps Engineer ΓÇô B2B ΓÇô Thato Tswai
+appId: cmo8s96ow0071qf9gcr0kvpmd job: DevOps Engineer candidate: Thato Tswai
+bodySnippet: Hi,YouΓÇÖre hiring a DevOps Engineer for parvu.ai. DotCloud Consulting can support on a B2B services basis, proposing Thato Tswai as the initial delivery resource. I appreciate UK roles often demand an immediately deployable engineer and unsuitable submissions are costly.Thato brings several years of handsΓÇæon experience across CI/CD pipelines, cloud infrastructure and deployments, Infrastructure as 
+---
+id: cmocpo7i2010dqf01t7apq0sk
+createdAt: 2026-04-24T09:31:40.154Z
+subject: Senior Software Engineer. ΓÇô B2B ΓÇô Liliyosa Mbakureya
+appId: cmo8s96on006vqf9gvciyijen job: Senior Software Engineer. candidate: Liliyosa Mbakureya
+bodySnippet: Hi,I note the Senior Software Engineer. requirement for a fiveΓÇæmonth UAE fintech contract; DotCloud Consulting can support on a B2B services basis with Liliyosa Mbakureya proposed as the initial delivery resource. I appreciate fintech integrations often demand speed and exact domain knowledge to hit short delivery windows without rework.Liliyosa brings several years of hands-on experience across s
+---
+id: cmocpnvrq010aqf01cokj3yjr
+createdAt: 2026-04-24T09:31:24.951Z
+subject: AI / ML Engineer ΓÇô B2B ΓÇô Peter Idah
+appId: cmo8s96or006yqf9gm0b8mphr job: AI / ML Engineer candidate: Peter Idah
+bodySnippet: Hi,Filling a Minnesota, C2C AI / ML Engineer who can own GenAI/LLM work and cloud ML delivery is the immediate challenge you posted; DotCloud Consulting can support on a B2B services basis and IΓÇÖm proposing Peter Idah as the initial delivery resource.Peter brings several years of handsΓÇæon experience across Python development, LangChain/LangGraph agent orchestration, LLM/GenAI (RAG, embeddings, pro
+---
+id: cmocpi8gu0107qf017zaratl6
+createdAt: 2026-04-24T09:27:01.470Z
+subject: Role 1 ΓÇô SFCC Frontend / Full Stack Developer ΓÇô Jonathan Wagener
+appId: cmo8s96o0006gqf9g3uq5v5ih job: Role 1 ΓÇô SFCC Frontend / Full Stack Developer candidate: Jonathan Wagener
+bodySnippet: Hi,We can support your Role 1 ΓÇô SFCC Frontend / Full Stack Developer requirement on a B2B services basis. DotCloud Consulting proposes Jonathan Wagener as the initial delivery resource for the 6+ month UK remote contract.I appreciate the tight windows to deploy experienced SFCC engineers for UK remote engagements.Jonathan brings several years of hands-on experience across SFRA, Salesforce Commerce
+---
+id: cmocpe4z70104qf011d3d7wn7
+createdAt: 2026-04-24T09:23:50.323Z
+subject: AWS Data Engineer ΓÇô B2B ΓÇô Njabulo
+appId: cmo8s96nh0061qf9gou388j3k job: AWS Data Engineer. candidate: Njabulo
+bodySnippet: Njabulo has transformed complex, unstructured audit data into production ETL pipelines and Power BI reporting; DotCloud Consulting can support your AWS Data Engineer requirement on a B2B services basis with Njabulo as the initial delivery resource.Njabulo brings several years of hands-on experience across SQL, ETL/data transformation, database design and Power BI dashboarding.Relevant strengths:- 
+---
+id: cmocpdkdm0101qf01wesfnl47
+createdAt: 2026-04-24T09:23:23.627Z
+subject: Senior Frontend Developer ΓÇô B2B ΓÇô Tanyaradzwa Tanatswa Mushonga
+appId: cmo8s96nl0064qf9g32fhmtiy job: Senior Frontend Developer candidate: Tanyaradzwa Tanatswa Mushonga
+bodySnippet: Hi,DotCloud Consulting can support the Senior Frontend Developer requirement on a B2B services basis, with Tanyaradzwa Tanatswa Mushonga as the initial delivery resource.Tanyaradzwa brings several years of hands-on experience across Angular, TypeScript, component-based frontend development, RxJS and state management.Relevant strengths:- Senior frontend developer profile with public GitHub, technic
+---
+id: cmocp9eoy00zyqf017o6bivfk
+createdAt: 2026-04-24T09:20:09.634Z
+subject: Azure Data Engineer ΓÇô B2B ΓÇô Jonas Mokgaola Nkosinathi Thamane
+appId: cmo8s96nc005yqf9gpcf3cjop job: Azure Data Engineer | candidate: Jonas Mokgaola Nkosinathi Thamane
+bodySnippet: Hi,For the Azure Data Engineer requirement at tekvo.io, DotCloud Consulting can support on a B2B services basis with Jonas Mokgaola Nkosinathi Thamane as the initial delivery resource. I appreciate contract roles like this typically need a quick ramp to deliver analytics value in the near term.Jonas brings 1+ years of hands-on experience across Azure Data Services (ADF/Azure SQL), Python, advanced
+---
+id: cmocp47j100zvqf0140toxax3
+createdAt: 2026-04-24T09:16:07.069Z
+subject: Business Analyst ΓÇô B2B ΓÇô Vuyelwa Lushaba
+appId: cmo8s96n5005sqf9gpr0hgg42 job: Business Analyst candidate: Vuyelwa Lushaba
+bodySnippet: Hi,You're seeking a Business Analyst and DotCloud Consulting can support this requirement on a B2B services basis, proposing Vuyelwa Lushaba as the initial delivery resource. I appreciate long-term US C2C contracts typically need readily deployable, US-aligned resources.Vuyelwa brings several years of hands-on experience across business analysis, requirements documentation and stakeholder engageme
+---
+id: cmocp3l2u00zsqf01ht92zadb
+createdAt: 2026-04-24T09:15:37.974Z
+subject: GCP Network Engineer ΓÇô B2B ΓÇô Sibusiso Ndlovu
+appId: cmo8s96n0005pqf9g05oj8em6 job: GCP Network Engineer candidate: Sibusiso Ndlovu
+bodySnippet: Hi,We can support your GCP Network Engineer 1ΓÇæyear contract on a B2B services basis with DotCloud Consulting deploying Sibusiso Ndlovu as the initial delivery resource. I appreciate GCP networking roles often have a very short deployable pool and that unsuitable submissions are genuinely costly.Sibusiso brings several years of handsΓÇæon experience across GCP networking (Cloud Router, HA VPN, Dedica
+---
+id: cmocozc3h00zpqf014u54xl1y
+createdAt: 2026-04-24T09:12:19.710Z
+subject: GCP Network Engineer ΓÇô B2B ΓÇô Tumelo Rahlau
+appId: cmo8s96mr005jqf9g622tgnvc job: GCP Network Engineer candidate: Tumelo Rahlau
+bodySnippet: Hi,We can support your GCP Network Engineer 12ΓÇæmonth contract at cisworldwide.co.uk on a B2B services basis; DotCloud Consulting proposes Tumelo Rahlau as the initial delivery resource.Tumelo brings several years of handsΓÇæon experience across GCP networking (Cloud Router, HA VPN, Dedicated Interconnect), Terraform-based IaC, enterprise network design and operations, and pipeline-driven DevOps (Git
+---
+id: cmocoyr2v00zmqf01vrzdd62h
+createdAt: 2026-04-24T09:11:52.472Z
+subject: GCP Network Engineer ΓÇô B2B ΓÇô Ronald Sidney Doyle
+appId: cmo8s96mv005mqf9g6pg2x51x job: GCP Network Engineer candidate: Ronald Sidney Doyle
+bodySnippet: Hi,WeΓÇÖve seen your GCP Network Engineer requirement for cisworldwide.co.uk. DotCloud Consulting can support on a B2B services basis, with Ronald Sidney Doyle proposed as the initial delivery resource.Ronald brings 30+ years of hands-on experience across enterprise routing & switching, network architecture, SDΓÇæWAN and dataΓÇæcentre interconnects.The JDΓÇÖs emphasis on Cloud Router, HA VPN and Dedicated
+---
+id: cmocoulp600zjqf01cf09eses
+createdAt: 2026-04-24T09:08:38.875Z
+subject: GCP Network Engineer ΓÇô B2B ΓÇô Henco Freidberg
+appId: cmo8s96mn005gqf9gf3p0d1gu job: GCP Network Engineer candidate: Henco Freidberg
+bodySnippet: Hi,There is clear commercial risk in this brief: a oneΓÇæyear contract, rapid ramp and strict security controls leave little room for a slow onboarding. DotCloud Consulting can support your GCP Network Engineer requirement on a B2B services basis, and we propose Henco Freidberg as the initial delivery resource.Henco brings 16+ years of handsΓÇæon experience across enterpriseΓÇæscale networking, Cisco AC
+---
+id: cmocou2dv00zgqf01dtw17gyo
+createdAt: 2026-04-24T09:08:13.843Z
+subject: GCP Network Engineer ΓÇô B2B ΓÇô Isaac Rantu Mongae
+appId: cmo8s96mh005dqf9gd30ffk8s job: GCP Network Engineer candidate: Isaac Rantu Mongae
+bodySnippet: Hi,I can support your GCP Network Engineer requirement at cisworldwide.co.uk on a B2B services basis, proposing DotCloud ConsultingΓÇÖs initial delivery resource: Isaac Rantu Mongae. I appreciate these UK-located contracts need someone deployable with proven GCP networking capability at short notice.Isaac brings several years of hands-on experience across GCP networking, Terraform-based IaC, enterpr
+---
+id: cmocopwm900zdqf017j5c7km7
+createdAt: 2026-04-24T09:04:59.745Z
+subject: Automation Engineer in ΓÇô B2B ΓÇô Keagile Nduli
+appId: cmo8s96m20054qf9grxxvurod job: Automation Engineer in candidate: Keagile Nduli
+bodySnippet: Hi Sevanthi, Test YantraΓÇÖs Automation Engineer in requirement is a clear rapid contract hire to deliver QA automation for a Remote, Europe engagement; DotCloud Consulting can support on a B2B services basis with Keagile Nduli as the initial delivery resource. Keagile brings 1+ years of hands-on experience across automated API testing, GUI test automation, Python/Java scripting for tests, CI/CD pip
+---
+id: cmocom5oa00zaqf01l293sb3s
+createdAt: 2026-04-24T09:02:04.858Z
+subject: GCP Network Engineer ΓÇô B2B ΓÇô Crispen Shiri
+appId: cmo8s96li004pqf9gbsgbzt8t job: GCP Network Engineer candidate: Crispen Shiri
+bodySnippet: Hi,You posted for a GCP Network Engineer for a 12ΓÇæmonth contract in Bristol, Leeds and Edinburgh. DotCloud Consulting can support on a B2B services basis and I am proposing Crispen Shiri as the initial delivery resource to reduce the commercial risk of late stabilisation.Crispen brings 6+ years of hands-on experience across multicloud architecture (OCI, AWS), large-scale workload operations and pl
+---
+id: cmocolcxv00z7qf01184vb3p5
+createdAt: 2026-04-24T09:01:27.619Z
+subject: Lead Data Engineer ΓÇô B2B ΓÇô Petunia Motlhakane
+appId: cmo8s96ln004sqf9gxpx8dij3 job: Lead Data Engineer candidate: Petunia Motlhakane
+bodySnippet: Hi,Your Lead Data Engineer requirement in Chennai for an enterprise Azure/Databricks engagement is noted. DotCloud Consulting can support on a B2B services basis, proposing Petunia Motlhakane as the initial delivery resource.Petunia brings 3+ years of hands-on experience across Azure data services and pipeline development, ML model support and operationalisation, IMS database programming, and Azur
+---
+id: cmocoho7h00z4qf01le1czgfb
+createdAt: 2026-04-24T08:58:35.598Z
+subject: Role 1 ΓÇô SFCC Frontend / Full Stack Developer ΓÇô B2B / Outside IR35 ΓÇô Pardington T Mureka
+appId: cmo8s96l2004dqf9gt1ua709s job: Role 1 ΓÇô SFCC Frontend / Full Stack Developer candidate: Pardington T Mureka
+bodySnippet: Hi,This role needs someone who can deliver production-ready e-commerce experiences rapidly and own PDP, My Account and Checkout flows ΓÇö not a long onboarding project. DotCloud Consulting can support this on a B2B services basis, with Pardington T Mureka as the initial delivery resource.Pardington brings 3+ years of hands-on experience across REST API integrations, JavaScript front-end development,
+---
+id: cmocoh26p00z1qf01cc78vo8t
+createdAt: 2026-04-24T08:58:07.058Z
+subject: Senior Backend Engineer! ΓÇô B2B ΓÇô James Julius
+appId: cmo8s96l9004jqf9g1a708u5k job: Senior Backend Engineer! candidate: James Julius
+bodySnippet: Hi, IΓÇÖve reviewed the Senior Backend Engineer! brief and DotCloud Consulting can support on a B2B services basis with James Julius as the initial delivery resource for the contract through to end of 2025. James brings 13+ years of hands-on experience across Java, AWS, high-throughput payment systems, microservices and performance optimisation. Relevant strengths: - 13+ years delivering backend ser
+---
+id: cmocodez300yyqf019agf1bf9
+createdAt: 2026-04-24T08:55:17.007Z
+subject: Senior DevOps Engineer ΓÇô B2B / Outside IR35 ΓÇô Thato Tswai
+appId: cmo8s96km0041qf9gp9joipis job: Senior DevOps Engineer candidate: Thato Tswai
+bodySnippet: Hi, YouΓÇÖre hiring a Senior DevOps Engineer to lead a handsΓÇæon AWS migration. DotCloud Consulting can support on a B2B services basis and proposes Thato Tswai as the initial delivery resource for that engagement. Thato brings several years of handsΓÇæon experience across AWS migrations, containerisation (ECS/Docker), Infrastructure as Code with Terraform, CI/CD pipeline delivery and cloud operations.
+---
+id: cmocoddk700yvqf01f64dhc5e
+createdAt: 2026-04-24T08:55:15.175Z
+subject: Role 1 ΓÇô SFCC Frontend / Full Stack Developer ΓÇô B2B / Outside IR35 ΓÇô Liliyosa Mbakureya
+appId: cmo8s96ky004aqf9g8kuz8h3w job: Role 1 ΓÇô SFCC Frontend / Full Stack Developer candidate: Liliyosa Mbakureya
+bodySnippet: Hi,The Role 1 ΓÇô SFCC Frontend / Full Stack Developer requirement is noted. DotCloud Consulting can support on a B2B services basis, with Liliyosa Mbakureya proposed as the initial delivery resource.Liliyosa brings 2+ years of hands-on experience across React.js, Next.js, JavaScript, RESTful API integration and front-end product flows.Relevant strengths:- Practical React.js and Next.js front-end de
+---
+id: cmoco9rcz00ysqf01ywggtizp
+createdAt: 2026-04-24T08:52:26.436Z
+subject: DevOps Engineer ΓÇô B2B ΓÇô Tanyaradzwa Tanatswa Mushonga
+appId: cmo8s96kd003vqf9g9cs3aai2 job: DevOps Engineer candidate: Tanyaradzwa Tanatswa Mushonga
+bodySnippet: Hi,Re the DevOps Engineer requirement at parvu.ai: DotCloud Consulting can support on a B2B services basis, with Tanyaradzwa Tanatswa Mushonga as the initial delivery resource.Tanyaradzwa brings several years of hands-on experience across cloud deployments, CI/CD pipelines, infrastructure automation, scripting and observability.Relevant strengths:- Public GitHub portfolio demonstrating infrastruct
+---
+id: cmoco9hc800ypqf01dmi51ll9
+createdAt: 2026-04-24T08:52:13.448Z
+subject: DevOps Engineer ΓÇô B2B ΓÇô Lesiba Serite
+appId: cmo8s96k7003sqf9gr5gkaty3 job: DevOps Engineer candidate: Lesiba Serite
+bodySnippet: Hi, Your DevOps Engineer brief at parvu.ai rightly prioritises nearΓÇæterm operational availability and reliable platform delivery; DotCloud Consulting can support on a B2B services basis with Lesiba Serite as the initial delivery resource. Lesiba brings 4+ years of handsΓÇæon experience across Terraform/Bicep IaC and Azure landingΓÇæzone design, automation and scripting (PowerShell/Azure CLI), cloud se
+---
+id: cmoco65fu00ymqf01eoj81564
+createdAt: 2026-04-24T08:49:38.058Z
+subject: Senior Backend Engineer! ΓÇô B2B ΓÇô Jeanre Swanepoel
+appId: cmo8s96jj003gqf9gefodm1c9 job: Senior Backend Engineer! candidate: Jeanre Swanepoel
+bodySnippet: Hi Georgia,In the first 90 days Jeanre can stabilise backend delivery by implementing containerised microservices, production-grade CI/CD and automated infrastructure on AWS to reduce deployment friction and accelerate feature delivery. I appreciate short-term consultancy assignments demand rapid onboarding and precise language/tooling fit; DotCloud Consulting can support this Senior Backend Engin
+---
+id: cmoco1zuc00yjqf01lp18uycp
+createdAt: 2026-04-24T08:46:24.180Z
+subject: Lead Data Engineer ΓÇô B2B ΓÇô Titus Makumbe
+appId: cmo8s96j0003aqf9gbziglqb6 job: Lead Data Engineer candidate: Titus Makumbe
+bodySnippet: Hi,Delivering rapid, scalable Azure Databricks pipelines under tight timelines is the technical challenge here; DotCloud Consulting can support on a B2B services basis and proposes Titus Makumbe as the initial delivery resource for your Lead Data Engineer contract in Chennai.Titus brings 18+ years of hands-on experience across SSIS and ETL development, SQL and data warehousing, Azure data services
+---
+id: cmoco1sry00ygqf01sl5sd40k
+createdAt: 2026-04-24T08:46:15.019Z
+subject: Lead Data Engineer ΓÇô B2B ΓÇô Juan Charl Venter
+appId: cmo8s96j4003dqf9gs1g6c62g job: Lead Data Engineer candidate: Juan Charl Venter
+bodySnippet: Hi,IΓÇÖm presenting Juan Charl Venter for your Lead Data Engineer requirement. DotCloud Consulting can support on a B2B services basis, with Juan as the initial delivery resource ΓÇö I know immediate delivery of Azure/Databricks scalable pipelines leaves very little room for ramp.Juan brings 11+ years of hands-on experience across Microsoft Azure architecture, enterprise migration delivery, FinOps-dri
+---
+id: cmocny2qf00ydqf01lmonx864
+createdAt: 2026-04-24T08:43:21.303Z
+subject: DevOps Engineer ΓÇô B2B ΓÇô Crispen Shiri
+appId: cmo8s96ip0034qf9gxvgdza8v job: DevOps Engineer candidate: Crispen Shiri
+bodySnippet: Hi,You posted for a DevOps Engineer to build and maintain CI/CD pipelines and manage cloud infrastructure. DotCloud Consulting can support on a B2B services basis, proposing Crispen Shiri as the initial delivery resource. I appreciate roles demanding reliable, automated cloud deployments with high availability leave little margin for ramp.Crispen brings 15+ years of hands-on experience across CI/C
+---
+id: cmocnxeci00yaqf01y3pz72qd
+createdAt: 2026-04-24T08:42:49.699Z
+subject: Lead Data Engineer ΓÇô B2B ΓÇô Jonas Mokgaola Nkosinathi Thamane
+appId: cmo8s96iu0037qf9gxkhwj4r2 job: Lead Data Engineer candidate: Jonas Mokgaola Nkosinathi Thamane
+bodySnippet: Hi,For the Lead Data Engineer requirement at VARITE / your Tata Group client, DotCloud Consulting can support on a B2B services basis with Jonas Mokgaola Nkosinathi Thamane as the initial delivery resource.Jonas brings several years of hands-on experience across Databricks development, PySpark, SQL and Azure data services.Relevant strengths:- Listed as a Lead Data Engineer on his CV with practical
+---
+id: cmocntm2e00y7qf01x4zzb4hq
+createdAt: 2026-04-24T08:39:53.078Z
+subject: Senior MLOps Engineer ΓÇô B2B / Outside IR35 ΓÇô Peter Idah
+appId: cmo8s96i9002sqf9g773gx27e job: Senior MLOps Engineer candidate: Peter Idah
+bodySnippet: Hi, I note the Senior MLOps Engineer requirement and the need for immediate, UKΓÇæbased ownership of the ML stack. DotCloud Consulting can support on a B2B services basis, proposing Peter Idah as the initial delivery resource to take operational ownership from model pipelines through to production observability. Peter brings 20+ years of handsΓÇæon experience across production model orchestration and 
+---
+id: cmocntgds00y4qf015xcyjpa2
+createdAt: 2026-04-24T08:39:45.713Z
+subject: Software Engineer ΓÇô B2B ΓÇô Keagile Nduli
+appId: cmo8s96ih002yqf9g3gvftrxn job: Software Engineer candidate: Keagile Nduli
+bodySnippet: Hi Deeksha,Your Software Engineer requirement for rapid Proof of Concept development and secure fullΓÇæstack delivery in the public sector creates a commercial risk: the mandatory SC and soleΓÇæUK constraints sharply narrow the deployable pool. DotCloud Consulting can support on a B2B services basis, with Keagile Nduli as the initial delivery resource.Keagile brings 1+ years of handsΓÇæon experience acr
+---
+id: cmocnqcpy00y1qf01dznt3286
+createdAt: 2026-04-24T08:37:20.998Z
+subject: Role 1 ΓÇô SFCC Frontend / Full Stack Developer ΓÇô B2B / Outside IR35 ΓÇô Riaan Snyders
+appId: cmo8s96hy002pqf9g3t0xuoym job: Role 1 ΓÇô SFCC Frontend / Full Stack Developer candidate: Riaan Snyders
+bodySnippet: Hi,IΓÇÖm responding to your Role 1 ΓÇô SFCC Frontend / Full Stack Developer requirement to deliver PDP, My Account and Checkout flows on SFRA cartridges and pipelines. DotCloud Consulting can support on a B2B services basis, with Riaan Snyders as the initial delivery resource.Riaan brings 20+ years of hands-on experience across React.js, Node.js, REST API integration, checkout/payment integrations, an
+---
+id: cmocnpasc00xyqf01vzlq4tsp
+createdAt: 2026-04-24T08:36:31.836Z
+subject: Role 1 ΓÇô SFCC Frontend / Full Stack Developer ΓÇô B2B / Outside IR35 ΓÇô Keagile Nduli
+appId: cmo8s96hk002mqf9g6d2cqtlf job: Role 1 ΓÇô SFCC Frontend / Full Stack Developer candidate: Keagile Nduli
+bodySnippet: Hi,Keagile integrated Docker and CI/CD into a brownfield codebase and has handsΓÇæon React and JavaScript frontΓÇæend experience; DotCloud Consulting can support your Role 1 ΓÇô SFCC Frontend / Full Stack Developer requirement on a B2B services basis with Keagile Nduli as the initial delivery resource.Keagile brings several years of handsΓÇæon experience across React, JavaScript, RESTful API development, 
+---
+id: cmocnlz5v00xvqf01hyy5fnqo
+createdAt: 2026-04-24T08:33:56.803Z
+subject: Role 1 ΓÇô SFCC Frontend / Full Stack Developer ΓÇô B2B / Outside IR35 ΓÇô Tanyaradzwa Tanatswa Mushonga
+appId: cmo8s96h8002jqf9g69bbx15n job: Role 1 ΓÇô SFCC Frontend / Full Stack Developer candidate: Tanyaradzwa Tanatswa Mushonga
+bodySnippet: Hi,Re the Role 1 ΓÇô SFCC Frontend / Full Stack Developer requirement: DotCloud Consulting can support on a B2B services basis, with Tanyaradzwa Tanatswa Mushonga as the initial delivery resource.Tanyaradzwa brings 2+ years of hands-on experience across React/Next.js/TypeScript frontends, Node.js/Express backends, REST APIs &amp; WebSockets, payment integration/checkout adaptation and production per
+---
+id: cmocnkuxc00xsqf01ni1vjrvv
+createdAt: 2026-04-24T08:33:04.656Z
+subject: Role 1 ΓÇô SFCC Frontend / Full Stack Developer ΓÇô B2B / Outside IR35 ΓÇô Kudzai Murimi
+appId: cmo8s96gj002dqf9gufwa1421 job: Role 1 ΓÇô SFCC Frontend / Full Stack Developer candidate: Kudzai Murimi
+bodySnippet: Hi, SL Labs' Role 1 ΓÇô SFCC Frontend / Full Stack Developer requires rapid delivery of production SFCC eΓÇæcommerce features; DotCloud Consulting can support this on a B2B services basis with Kudzai Murimi as the initial delivery resource. Kudzai brings 6+ years of hands-on experience across React, TypeScript, Node.js and RESTful APIs. Relevant strengths: - Delivered a React admin dashboard handling 
+---
+id: cmocnhmvd00xpqf013sco6eaz
+createdAt: 2026-04-24T08:30:34.250Z
+subject: DevOps Engineer ΓÇô B2B ΓÇô Jeanre Swanepoel
+appId: cmo8s96fx0021qf9ge1ndgpi8 job: DevOps Engineer candidate: Jeanre Swanepoel
+bodySnippet: Hi,You are hiring a DevOps Engineer for parvu.ai. DotCloud Consulting can support this on a B2B services basis, and I am proposing Jeanre Swanepoel as the initial delivery resource.Jeanre brings several years of hands-on experience across strategic architecture and systems design, microservices and distributed systems, and designing scalable, resilient architectures.Relevant strengths:- Strategic 
+---
+id: cmocndzc500xmqf01z8vxyexe
+createdAt: 2026-04-24T08:27:43.781Z
+subject: Sr Network Engineer ΓÇô B2B ΓÇô Tumelo Rahlau
+appId: cmo8s96de001gqf9gedsotjiw job: Sr Network Engineer candidate: Tumelo Rahlau
+bodySnippet: Hi,Unfilled, this Sr Network Engineer role leaves LAN/WAN, SDΓÇæWAN and security projects exposed during migrations and compliance windows ΓÇö missed deadlines become operational risk. DotCloud Consulting can support on a B2B services basis, proposing Tumelo Rahlau as the initial delivery resource for the contract.Tumelo brings several years of hands-on experience across enterprise networking, Cisco a
+---
+id: cmocndz1800xjqf01idcnfmsf
+createdAt: 2026-04-24T08:27:43.388Z
+subject: Sr Network Engineer ΓÇô B2B ΓÇô Sibusiso Ndlovu
+appId: cmo8s96dt001jqf9g1zieprjn job: Sr Network Engineer candidate: Sibusiso Ndlovu
+bodySnippet: Hi,You have an open Sr Network Engineer contract for remote delivery; DotCloud Consulting can support this on a B2B services basis with Sibusiso Ndlovu as the initial delivery resource.Sibusiso brings several years of hands-on experience across enterprise networking, SDΓÇæWAN & security, LAN/WAN design and Cisco/HPE network device operations.Relevant strengths:- Hands-on design and implementation of
+---
+id: cmocna4h200xgqf012k1dea2b
+createdAt: 2026-04-24T08:24:43.815Z
+subject: Sr Network Engineer ΓÇô B2B ΓÇô Isaac Rantu Mongae
+appId: cmo8s96cz001dqf9gljtyoyjn job: Sr Network Engineer candidate: Isaac Rantu Mongae
+bodySnippet: Hi,Market observation: senior engineers with deep enterprise networking, SDΓÇæWAN &amp; security exposure are scarce right now; for that reason DotCloud Consulting can support this Sr Network Engineer requirement on a B2B services basis, proposing Isaac Rantu Mongae as the initial delivery resource.Isaac brings 15+ years of handsΓÇæon experience across Cisco ACI and dataΓÇæcentre fabric deployments, MPL
+---
+id: cmocn84h700xdqf01si61evf1
+createdAt: 2026-04-24T08:23:10.507Z
+subject: Software Engineer ΓÇô B2B ΓÇô Liliyosa Mbakureya
+appId: cmo8s96ck001aqf9gpfcrn09u job: Software Engineer candidate: Liliyosa Mbakureya
+bodySnippet: Hi, DotCloud Consulting can support your Software Engineer requirement on a B2B services basis, with Liliyosa Mbakureya proposed as the initial delivery resource. I appreciate clearance roles like this have a very short deployable pool, so I want to address practical fit up front. Liliyosa brings several years of hands-on experience across cybersecurity, GitHub project work and secure developmen
+---
+id: cmocn2q7s00xaqf0132mgtsbv
+createdAt: 2026-04-24T08:18:58.744Z
+subject: Senior DevOps Engineer ΓÇö Azure & .NET ΓÇô B2B / Outside IR35 ΓÇô Heinrich Muller
+appId: cmo8s968t000dqf9g26v603vw job: Senior DevOps Engineer ΓÇö Azure & .NET candidate: Heinrich Muller
+bodySnippet: Hi,You're hiring a Senior DevOps Engineer ΓÇö Azure & .NET to secure and automate an Azure platform during a midΓÇæflight transformation. DotCloud Consulting can support on a B2B services basis, with Heinrich Muller as the initial delivery resource.Heinrich brings 10+ years of hands-on experience across Azure multi-region platforms, Kubernetes estates, enterprise infrastructure, and regulated environm
+---
+id: cmocn2jbv00x7qf01hrkjel5x
+createdAt: 2026-04-24T08:18:49.819Z
+subject: Senior Java Backend Engineer ΓÇô B2B ΓÇô James Julius
+appId: cmo8s968y000gqf9gnd2fuur0 job: Senior Java Backend Engineer candidate: James Julius
+bodySnippet: Hi,Market note: senior Java backend engineers with proven Spring Boot microservices and cloudΓÇænative deployment experience are scarce for immediate B2B contracts. DotCloud Consulting can support your Senior Java Backend Engineer requirement on a B2B services basis, with James Julius proposed as the initial delivery resource.James brings several years of handsΓÇæon experience across Java, Spring Boot
+---
+id: cmocmyuux00x4qf01r7aivims
+createdAt: 2026-04-24T08:15:58.138Z
+subject: AI Engineer ΓÇô B2B / Outside IR35 ΓÇô Peter Idah
+appId: cmo78bofg004zqt012mc5i040 job: AI Engineer candidate: Peter Idah
+bodySnippet: Hi,I note your urgent AI Engineer requirement focusing on handsΓÇæon Machine Learning, Gen AI and Data Science. DotCloud Consulting can support on a B2B services basis, proposing Peter Idah from our active bench as the initial delivery resource who can mobilise quickly for remote UKΓÇæhours work.Peter brings several years of handsΓÇæon experience across Machine Learning, Generative AI, Data Science, Pyt
+---
+id: cmocmxu2g00x1qf01htr198v4
+createdAt: 2026-04-24T08:15:10.456Z
+subject: Data Scientist & Analyst ΓÇô B2B ΓÇô Titus Makumbe
+appId: cmo8s968m000aqf9gaf6oog51 job: Data Scientist & Analyst candidate: Titus Makumbe
+bodySnippet: Hi,The Data Scientist &amp; Analyst brief signals commercial risk where an unsuitable submission wastes time; DotCloud Consulting can support on a B2B services basis and proposes Titus Makumbe as the initial delivery resource for this longΓÇæterm, 100% remote engagement.Titus brings several years of handsΓÇæon experience across tracking implementation, web analytics platforms, KPI definition and dashb
+---
+id: cmoa13gby00koqf01v8wk651l
+createdAt: 2026-04-22T12:28:08.686Z
+subject: Data / Analytics Engineer ΓÇô B2B ΓÇô Everswick Dambaza
+appId: cmo8s96zd00eyqf9g9a77fy6i job: NEW Data / Analytics Engineer ΓÇô candidate: Everswick Dambaza
+bodySnippet: Hi Sam, I'm reaching out about the Data / Analytics Engineer contract for your Swiss insurance client. DotCloud Consulting can support on a B2B services basis, with Everswick Dambaza as the assigned delivery resource. Everswick brings 6+ years of hands-on experience across SQL query optimisation, data platform architecture, data lake implementation, dashboard delivery, and cross-functional stakeho
+---
+id: cmoa1001200klqf01ckm91bxk
+createdAt: 2026-04-22T12:25:27.590Z
+subject: Data Engineer ΓÇô GCP ΓÇô B2B ΓÇô Njabulo
+appId: cmo8s96el001pqf9gpq821x8o job: Data Engineer ΓÇô GCP candidate: Njabulo
+bodySnippet: Hi, Thank you for sharing the Data Engineer ΓÇô GCP requirement. DotCloud Consulting can support on a B2B services basis, with Njabulo as the initial delivery resource. Njabulo brings less than 1 year of hands-on experience across SQL optimization, ETL automation, data quality governance, Python (Pandas, NumPy), and Power BI analytics. Relevant strengths: - Built automated ETL workflows using Altery
+---
+id: cmoa0zmmj00kiqf01t2na0u5u
+createdAt: 2026-04-22T12:25:10.220Z
+subject: Sr Network Engineer ΓÇô B2B ΓÇô Henco Freidberg
+appId: cmo8s969q000mqf9gyhs433m6 job: Sr Network Engineer candidate: Henco Freidberg
+bodySnippet: Hi, DotCloud Consulting can support your Sr Network Engineer requirement on a B2B services basis, with Henco Freidberg as the initial delivery resource. Henco brings 10+ years of hands-on experience across enterprise LAN/WAN design, Cisco ACI deployment, SD-WAN management, network security, and large-scale infrastructure troubleshooting. Relevant strengths: - Cisco CCIE Enterprise Infrastructure (
+---
+id: cmoa0zhk800kfqf013hgklohw
+createdAt: 2026-04-22T12:25:03.657Z
+subject: Sr Network Engineer ΓÇô B2B ΓÇô Ronald Sidney Doyle
+appId: cmo8s96830001qf9glez6b2q7 job: Sr Network Engineer candidate: Ronald Sidney Doyle
+bodySnippet: Hi, We noticed your Sr Network Engineer requirement and wanted to propose DotCloud Consulting as a B2B services partner, with Ronald Sidney Doyle as the initial delivery resource. Ronald brings 30+ years of hands-on experience across enterprise LAN/WAN design, Cisco ACI data centre deployments, SD-WAN & ISE management, service provider MPLS/BGP infrastructure, and regulatory compliance environment
+---
+id: cmoa0uz8k00kcqf01ub30deh5
+createdAt: 2026-04-22T12:21:33.284Z
+subject: Data Migration Specialist ΓÇô B2B Services ΓÇô James Tladi Tladi
+appId: cmo8s96le004mqf9gap1tktbo job: Senior Salesforce Developer candidate: James Tladi Tladi
+bodySnippet: Hi Shiva, Thank you for sharing the Data Migration Specialist requirement for Codevian's Oracle EBS 11i to Snowflake migration programme. DotCloud Consulting can support this on a B2B services basis, with James Tladi Tladi as the initial delivery resource. James brings 3+ years of hands-on experience across cloud infrastructure, database administration, and enterprise system operations. Relevant s
+---
+id: cmoa0um7m00k9qf01pvoenyt1
+createdAt: 2026-04-22T12:21:16.403Z
+subject: SFCC Frontend / Full Stack Developer ΓÇô Outside IR35 ΓÇô Lesley Charinda
+appId: cmo8s96gw002gqf9g7z3hw4cu job: Role 1 ΓÇô SFCC Frontend / Full Stack Developer candidate: Lesley Charinda
+bodySnippet: Hi, I'm writing regarding the SFCC Frontend / Full Stack Developer requirement you posted for SL Labs Ltd. DotCloud Consulting can support on a B2B services basis, with Lesley Charinda as the initial delivery resource. Lesley brings 18+ years of hands-on experience across REST API integration, serverless cloud architecture, payment system development, JavaScript/HTML/CSS web applications, and mult
+---
+id: cmoa0uhbx00k6qf01w40wue51
+createdAt: 2026-04-22T12:21:10.078Z
+subject: Technical Lead / Domain Architect ΓÇô B2B ΓÇô Riaan Snyders
+appId: cmo8s96e7001mqf9gyiuf4ou7 job: Technical Lead / Domain Architect candidate: Riaan Snyders
+bodySnippet: Hi Sahana, I saw your post for the Technical Lead / Domain Architect role with CVS Health. DotCloud Consulting can support on a B2B services basis, with Riaan Snyders as the delivery resource. Riaan brings 18+ years of hands-on experience across integration architecture, API development (Java and .NET), Azure Cloud infrastructure, low-level architecture design, and stakeholder consultation. Releva
+---
+id: cmoa0u8p000k3qf01grphr6w4
+createdAt: 2026-04-22T12:20:58.884Z
+subject: Cloud Engineer ΓÇô B2B ΓÇô Kgomotso Sello Dungeni
+appId: cmo78bofs005eqt01528jbetw job: Cloud Engineer candidate: Kgomotso Sello Dungeni
+bodySnippet: Hi Georgia, I'm writing regarding your Cloud Engineer position at the secure Gloucester site. DotCloud Consulting can support this on a B2B services basis, with Kgomotso Sello Dungeni as the initial delivery resource. Kgomotso brings 4+ years of hands-on experience across AWS architecture, infrastructure-as-code automation, containerised production monitoring, and CI/CD pipeline design. Relevant s
+---
+id: cmo76luwo0043p701fs26z76h
+createdAt: 2026-04-20T12:39:06.937Z
+subject: AWS Data Pipeline Services Support ΓÇô DotCloud Consulting (Petunia Motlhakane)
+appId: cmnu8qh4d00uorx01umxpnb92 job: Data Engineer ΓÇô AWS / Redshift / PySpark candidate: Petunia Motlhakane
+bodySnippet: Dear Hiring Team, Thank you for sharing the Data Engineer ΓÇô AWS / Redshift / PySpark requirement. DotCloud Consulting would like to propose supporting staffrex.in through a professional services engagement, with Petunia Motlhakane assigned as a named delivery resource within our services team. DotCloud Consulting operates as a specialist professional services firm supporting clients with critica
+---
+id: cmo76ixrl0040p7018fmc2v6z
+createdAt: 2026-04-20T12:36:50.673Z
+subject: Senior AI Engineering Services Support ΓÇô DotCloud Consulting (Everswick Dambaza)
+appId: cmnu7pm8w00jerx01un2q54vh job: Senior AI Engineer candidate: Everswick Dambaza
+bodySnippet: Dear Navneet,Thank you for sharing the Senior AI Engineer requirement at B.E.A.S.T AI. DotCloud Consulting would like to propose supporting B.E.A.S.T AI through a professional services engagement, with Everswick Dambaza assigned as a named delivery resource within our services team.DotCloud Consulting operates as a specialist support and services partner for organisations building or stabilising t
+---
+id: cmo76g0nu003xp701r02tjk5c
+createdAt: 2026-04-20T12:34:34.458Z
+subject: AWS Data Engineering Services Support ΓÇô DotCloud Consulting (Everswick Dambaza)
+appId: cmnu6th1s0080rx01pjznjygj job: 1 Data Engineer ΓÇô AWS / Redshift / PySpark candidate: Everswick Dambaza
+bodySnippet: Dear Raviteja,The Data Engineer ΓÇô AWS / Redshift / PySpark role for your global client requires someone who can stabilise ETL workflows and pipeline architecture without extended discovery phases. DotCloud Consulting would like to propose supporting staffrex.in through a professional services engagement, with Everswick Dambaza assigned as a named delivery resource within our services team.DotCloud
+---
+id: cmo7644vh003up701u7l38gan
+createdAt: 2026-04-20T12:25:20.045Z
+subject: AWS Data Pipeline Services Support ΓÇô DotCloud Consulting (Jonas Mokgaola Nkosinathi Thamane)
+appId: cmnu8pzz600uirx01kdlxr9q8 job: Data Engineer ΓÇô AWS / Redshift / PySpark candidate: Jonas Mokgaola Nkosinathi Thamane
+bodySnippet: Dear Hiring Team,Thank you for sharing the Data Engineer ΓÇô AWS / Redshift / PySpark requirement. DotCloud Consulting would like to propose supporting staffrex.in through a professional services engagement, with Jonas Mokgaola Nkosinathi Thamane assigned as a named delivery resource within our services team.DotCloud Consulting operates as a specialist support and services partner for organisations 
+---
+id: cmo762902003sp701m631mecg
+createdAt: 2026-04-20T12:23:52.082Z
+subject: AWS Data Engineering Services Support ΓÇô DotCloud Consulting (Njabulo)
+appId: cmnu8pk4u00ucrx010gwynzu8 job: Data Engineer ΓÇô AWS / Redshift / PySpark candidate: Njabulo
+bodySnippet: Dear Hiring Team,Thank you for sharing the Data Engineer ΓÇô AWS / Redshift / PySpark requirement. DotCloud Consulting would like to propose supporting staffrex.in through a professional services engagement, with Njabulo assigned as a named delivery resource within our services team.DotCloud Consulting is a South African specialist professional services firm that deploys technically vetted engineers
+---
+id: cmo7622zb003pp701aqlgzd8o
+createdAt: 2026-04-20T12:23:44.280Z
+subject: AWS Data Engineering Services Support ΓÇô DotCloud Consulting (Njabulo)
+appId: cmnu8pk4u00ucrx010gwynzu8 job: Data Engineer ΓÇô AWS / Redshift / PySpark candidate: Njabulo
+bodySnippet: Dear Hiring Team, Thank you for sharing the Data Engineer ΓÇô AWS / Redshift / PySpark requirement. DotCloud Consulting would like to propose supporting staffrex.in through a professional services engagement, with Njabulo assigned as a named delivery resource within our services team. DotCloud Consulting operates as a South African specialist services firm focused on cloud infrastructure, data eng
+---
+id: cmo75zu74003mp701iekikkl7
+createdAt: 2026-04-20T12:21:59.584Z
+subject: Lead Java AWS Developer Services Support ΓÇô DotCloud Consulting (MPHO MORABA)
+appId: cmnu8aca900prrx01f2omofvn job: Lead JAVA AWS Developer candidate: MPHO MORABA
+bodySnippet: Dear Hiring Team, Thank you for sharing the Lead JAVA AWS Developer requirement. DotCloud Consulting would like to propose supporting futureitservice.info through a professional services engagement, with MPHO MORABA assigned as a named delivery resource within our services team. DotCloud Consulting is a South African specialist professional services firm that provides technically vetted engineer
+---
+id: cmo75zss5003kp7014riyaent
+createdAt: 2026-04-20T12:21:57.749Z
+subject: Lead Java AWS Development Services Support ΓÇô DotCloud Consulting (Tonderai Muchada)
+appId: cmnu89vz300plrx01i3737w52 job: Lead JAVA AWS Developer candidate: Tonderai Muchada
+bodySnippet: Dear Hiring Team,Thank you for sharing the Lead JAVA AWS Developer requirement. DotCloud Consulting would like to propose supporting futureitservice.info through a professional services engagement, with Tonderai Muchada assigned as a named delivery resource within our services team.DotCloud Consulting operates as a specialist support and services partner focused on cloud-native development, infras
+---
+id: cmo75y3gr003hp701oefywor1
+createdAt: 2026-04-20T12:20:38.276Z
+subject: Lead Java AWS Services Support ΓÇô DotCloud Consulting (Tonderai Muchada)
+appId: cmnu89vz300plrx01i3737w52 job: Lead JAVA AWS Developer candidate: Tonderai Muchada
+bodySnippet: Dear Hiring Team,Thank you for sharing the Lead JAVA AWS Developer requirement. DotCloud Consulting would like to propose supporting futureitservice.info through a professional services engagement, with Tonderai Muchada assigned as a named delivery resource within our services team.DotCloud Consulting operates as a specialist professional services and support firm for organisations requiring assur
+---
+id: cmo75wpz4003ep701v3az4efe
+createdAt: 2026-04-20T12:19:34.145Z
+subject: AI Engineering Services Support ΓÇô DotCloud Consulting (Petunia Motlhakane)
+appId: cmnu7w6uz00lbrx01f6ol5xnn job: AI Engineer candidate: Petunia Motlhakane
+bodySnippet: Dear Tana,Thank you for sharing the AI Engineer requirement supporting your fintech client's 12-month remote mandate. DotCloud Consulting would like to propose supporting this engagement through a professional services arrangement, with Petunia Motlhakane assigned as a named delivery resource within our services team.DotCloud Consulting is a South African specialist professional services firm that
+---
+id: cmo75tplo003cp7016qiumweb
+createdAt: 2026-04-20T12:17:13.693Z
+subject: AI Platform Software Engineering Services Support ΓÇô DotCloud Consulting (MPHO MORABA)
+appId: cmnu7mhi600igrx01mqqr8iq9 job: Software Engineer candidate: MPHO MORABA
+bodySnippet: Dear Pete,Thank you for sharing the AI assistant platform Software Engineer requirement for your UK-wide remote contract. DotCloud Consulting would like to propose supporting this mandate through a professional services engagement, with MPHO MORABA assigned as a named delivery resource within our services team.DotCloud Consulting is a South African specialist professional services firm that deploy
+---
+id: cmo75t0q90039p701gjhc9f9w
+createdAt: 2026-04-20T12:16:41.457Z
+subject: AI Platform Services Support ΓÇô DotCloud Consulting (MPHO MORABA)
+appId: cmnu7mhi600igrx01mqqr8iq9 job: Software Engineer candidate: MPHO MORABA
+bodySnippet: Dear Pete, Thank you for sharing the AI assistant platform Software Engineer requirement. DotCloud Consulting would like to propose supporting Fruition Group through a professional services engagement, with MPHO MORABA assigned as a named delivery resource within our services team. DotCloud Consulting is a South African specialist professional services firm that deploys technically vetted engine
+---
+id: cmo75rw200037p701ajlz7so2
+createdAt: 2026-04-20T12:15:48.744Z
+subject: Serverless AI Platform Services Support ΓÇô DotCloud Consulting (Lesley Charinda)
+appId: cmnu7lypx00iarx01cr9lqn4j job: Software Engineer candidate: Lesley Charinda
+bodySnippet: Dear Pete, Thank you for sharing the Software Engineer requirement for maturing a cutting-edge AI assistant platform. DotCloud Consulting would like to propose supporting this mandate through a professional services engagement, with Lesley Charinda assigned as a named delivery resource within our services team. DotCloud Consulting is a South African specialist professional services firm that sup
+---
+id: cmo75r85l0034p701qeter9fx
+createdAt: 2026-04-20T12:15:17.769Z
+subject: Serverless AI Platform Services Support ΓÇô DotCloud Consulting (Lesley Charinda)
+appId: cmnu7lypx00iarx01cr9lqn4j job: Software Engineer candidate: Lesley Charinda
+bodySnippet: Dear Pete,Thank you for sharing the Software Engineer requirement for maturing a cutting-edge AI assistant platform. DotCloud Consulting would like to propose supporting this mandate through a professional services engagement, with Lesley Charinda assigned as a named delivery resource within our services team.DotCloud Consulting is a South African specialist professional services firm that support
+---
+id: cmo75ovp40032p701ima9d6gl
+createdAt: 2026-04-20T12:13:28.312Z
+subject: Full Stack Developer Services Support ΓÇô DotCloud Consulting (MPHO MORABA)
+appId: cmnu7g8ip00g8rx010m2nvy5u job: Full Stack Developer candidate: MPHO MORABA
+bodySnippet: Dear Jason, Thank you for sharing the Full Stack Developer requirement for your UK client's remote delivery expansion. DotCloud Consulting would like to propose supporting this mandate through a professional services engagement, with MPHO MORABA assigned as a named delivery resource within our services team. DotCloud Consulting operates as a specialist professional services firm supporting organis
+---
+id: cmo75oqxn002zp701pz1zuvj1
+createdAt: 2026-04-20T12:13:22.139Z
+subject: Full Stack Developer Services Support ΓÇô DotCloud Consulting (MPHO MORABA)
+appId: cmnu7g8ip00g8rx010m2nvy5u job: Full Stack Developer candidate: MPHO MORABA
+bodySnippet: Dear Jason, Thank you for sharing the Full Stack Developer requirement for your UK client's remote delivery expansion. DotCloud Consulting would like to propose supporting this contract mandate through a professional services engagement, with MPHO MORABA assigned as a named delivery resource within our services team. DotCloud Consulting is a South African specialist professional services firm th
+---
+id: cmo75mqy5002wp701sx7sllu9
+createdAt: 2026-04-20T12:11:48.846Z
+subject: Full Stack Developer Services Support ΓÇô DotCloud Consulting (Kudzai Murimi)
+appId: cmnu7fuch00g2rx01i4746o7p job: Full Stack Developer candidate: Kudzai Murimi
+bodySnippet: Dear Jason,Thank you for sharing the Full Stack Developer requirement for your UK-based client. DotCloud Consulting would like to propose supporting this contract engagement through a professional services arrangement, with Kudzai Murimi assigned as a named delivery resource within our services team.DotCloud Consulting operates as a South African specialist services partner, providing technically 
+---
+id: cmo75l8cb002up701vga0lcbt
+createdAt: 2026-04-20T12:10:38.076Z
+subject: Full Stack .NET Services Support ΓÇô DotCloud Consulting (Lesley Charinda)
+appId: cmnu7fd9q00fwrx015fq8o6ku job: Full Stack Developer candidate: Lesley Charinda
+bodySnippet: Dear Jason,Thank you for sharing the Full Stack Developer requirement for UK-based remote contract delivery. DotCloud Consulting would like to propose supporting your client's 6ΓÇô12 month delivery mandates through a professional services engagement, with Lesley Charinda assigned as a named delivery resource within our services team.DotCloud Consulting operates as a specialist support and services p
+---
+id: cmo75kcz6002rp7014353pptp
+createdAt: 2026-04-20T12:09:57.426Z
+subject: Full Stack Development Services Support ΓÇô DotCloud Consulting (Lesley Charinda)
+appId: cmnu7fd9q00fwrx015fq8o6ku job: Full Stack Developer candidate: Lesley Charinda
+bodySnippet: Dear Jason,Thank you for sharing the Full Stack Developer requirement for your UK client's remote delivery expansion. DotCloud Consulting would like to propose supporting this mandate through a professional services engagement, with Lesley Charinda assigned as a named delivery resource within our services team.DotCloud Consulting operates as a specialist support and services partner for organisati
+---
+id: cmo75ja2q002op701m1w1jmdp
+createdAt: 2026-04-20T12:09:07.011Z
+subject: Full Stack Enterprise Development Services Support ΓÇô DotCloud Consulting (Tanyaradzwa Tanatswa Mushonga)
+appId: cmnu7ex5m00fqrx01a75jg1zr job: Full Stack Developer candidate: Tanyaradzwa Tanatswa Mushonga
+bodySnippet: Dear Jason,Thank you for sharing the Full Stack Developer requirement for your UK client's remote contractor network. DotCloud Consulting would like to propose supporting this mandate through a professional services engagement, with Tanyaradzwa Tanatswa Mushonga assigned as a named delivery resource within our services team.DotCloud Consulting is a South African specialist professional services fi
+---
+id: cmo75hhxo002mp70143awkhci
+createdAt: 2026-04-20T12:07:43.881Z
+subject: Full Stack Development Services Support ΓÇô DotCloud Consulting (Keagile Nduli)
+appId: cmnu7ehzg00fkrx01g2w5ffvr job: Full Stack Developer candidate: Keagile Nduli
+bodySnippet: Dear Jason, Thank you for sharing the Full Stack Developer requirement for your UK client's remote delivery capability. DotCloud Consulting would like to propose supporting this mandate through a professional services engagement, with Keagile Nduli assigned as a named delivery resource within our services team. DotCloud Consulting operates as a South African specialist professional services firm
+---
+id: cmo75gw9l002jp7019pmsbnx9
+createdAt: 2026-04-20T12:07:15.802Z
+subject: Full Stack Development Services Support ΓÇô DotCloud Consulting (Keagile Nduli)
+appId: cmnu7ehzg00fkrx01g2w5ffvr job: Full Stack Developer candidate: Keagile Nduli
+bodySnippet: Dear Jason,Thank you for sharing the Full Stack Developer requirement for your UK client's remote delivery capability. DotCloud Consulting would like to propose supporting your 6ΓÇô12 month contract mandates through a professional services engagement, with Keagile Nduli assigned as a named delivery resource within our services team.DotCloud Consulting is a South African specialist professional servi
+---
+id: cmo75fvw4002hp701qinkwoou
+createdAt: 2026-04-20T12:06:28.660Z
+subject: Data Engineering Services Support ΓÇô DotCloud Consulting (Isaac Rantu Mongae)
+appId: cmnu7b57e00eerx01xznmgq05 job: Data Engineer candidate: Isaac Rantu Mongae
+bodySnippet: Dear Hiring Team,Thank you for sharing the Data Engineer requirement supporting your global clients' UK shift operations. DotCloud Consulting would like to propose supporting this mandate through a professional services engagement, with Isaac Rantu Mongae assigned as a named delivery resource within our services team.DotCloud Consulting operates as a specialist support and services partner for org
+---
+id: cmo75eyap002ep701fdpvneop
+createdAt: 2026-04-20T12:05:45.121Z
+subject: Data Engineering Services Support ΓÇô DotCloud Consulting (Isaac Rantu Mongae)
+appId: cmnu7b57e00eerx01xznmgq05 job: Data Engineer candidate: Isaac Rantu Mongae
+bodySnippet: Dear Hiring Team, Thank you for sharing the Data Engineer requirement for your global client programme. DotCloud Consulting would like to propose supporting this delivery mandate through a professional services engagement, with Isaac Rantu Mongae assigned as a named delivery resource within our services team. DotCloud Consulting is a South African specialist professional services firm that suppo
+---
+id: cmo75dzps002bp7017c72bnk6
+createdAt: 2026-04-20T12:05:00.304Z
+subject: Data Pipeline Engineering Services Support ΓÇô DotCloud Consulting (Jonas Mokgaola Nkosinathi Thamane)
+appId: cmnu7ar1r00e8rx01zodtibh1 job: Data Engineer candidate: Jonas Mokgaola Nkosinathi Thamane
+bodySnippet: Dear Hiring Team,Thank you for sharing the Data Engineer ΓÇô AWS / Redshift / PySpark requirement. DotCloud Consulting would like to propose supporting your remote analytics infrastructure mandate through a professional services engagement, with Jonas Mokgaola Nkosinathi Thamane assigned as a named delivery resource within our services team.DotCloud Consulting is a South African specialist professio
+---
+id: cmo75bvh60029p701qoqrxhuu
+createdAt: 2026-04-20T12:03:21.498Z
+subject: Data Engineering Services Support ΓÇô DotCloud Consulting (Njabulo)
+appId: cmnu7a9zx00e2rx01mjer7fit job: Data Engineer candidate: Njabulo
+bodySnippet: Dear Raviteja, Thank you for sharing the Data Engineer requirement for your global client. DotCloud Consulting would like to propose supporting this contract mandate through a professional services engagement, with Njabulo assigned as a named delivery resource within our services team. DotCloud Consulting is a South African specialist professional services firm deploying technically vetted engin
+---
+id: cmo75bv0t0026p701egtmcqyh
+createdAt: 2026-04-20T12:03:20.909Z
+subject: Data Engineering Services Support ΓÇô DotCloud Consulting (Njabulo)
+appId: cmnu7a9zx00e2rx01mjer7fit job: Data Engineer candidate: Njabulo
+bodySnippet: Dear Hiring Team,Thank you for sharing the Data Engineer requirement for your global clients. DotCloud Consulting would like to propose supporting this mandate through a professional services engagement, with Njabulo assigned as a named delivery resource within our services team.DotCloud Consulting is a South African specialist professional services firm that deploys technically vetted engineers f
+---
+id: cmo759noc0024p70140j0ovf6
+createdAt: 2026-04-20T12:01:38.077Z
+subject: Data Engineering Services Support ΓÇô DotCloud Consulting (Everswick Dambaza)
+appId: cmnu79uk400dwrx016i4jxtpz job: Data Engineer candidate: Everswick Dambaza
+bodySnippet: Dear Raviteja,Thank you for sharing the Data Engineer requirement for your UK-based global client. DotCloud Consulting would like to propose supporting this mandate through a professional services engagement, with Everswick Dambaza assigned as a named delivery resource within our services team.DotCloud Consulting operates as a South African specialist services firm deploying technically vetted eng
+---
+id: cmo759kte0021p701rj5gke64
+createdAt: 2026-04-20T12:01:34.371Z
+subject: Data Engineering Services Support ΓÇô DotCloud Consulting (Everswick Dambaza)
+appId: cmnu79uk400dwrx016i4jxtpz job: Data Engineer candidate: Everswick Dambaza
+bodySnippet: Dear Raviteja,Thank you for sharing the Data Engineer requirement for your global client engagement. DotCloud Consulting would like to propose supporting this mandate through a professional services engagement, with Everswick Dambaza assigned as a named delivery resource within our services team.DotCloud Consulting operates as a South African specialist services firm that supports organisations re
+---
+id: cmo7574fe001yp701l4lwtt5o
+createdAt: 2026-04-20T11:59:39.819Z
+subject: AWS DevOps Services Support ΓÇô DotCloud Consulting (James Tladi Tladi)
+appId: cmnu70lzg00aorx01fzhax9l1 job: Cloud DevOps Engineer candidate: James Tladi Tladi
+bodySnippet: Dear Jason,Thank you for sharing the Cloud DevOps Engineer requirement for your UK client's 6ΓÇô12 month remote contract programme. DotCloud Consulting would like to propose supporting this engagement through a professional services model, with James Tladi Tladi assigned as a named delivery resource within our services team.DotCloud Consulting operates as a South African specialist services firm foc
+---
+id: cmo755kmm001vp701ap6zal2a
+createdAt: 2026-04-20T11:58:27.502Z
+subject: Senior Data Engineer Services Support ΓÇô DotCloud Consulting (Isaac Rantu Mongae)
+appId: cmnu6zra600acrx013dc5mmni job: Senior Data Engineer candidate: Isaac Rantu Mongae
+bodySnippet: Dear Jason,Thank you for sharing the Senior Data Engineer requirement for your UK-based client's remote delivery expansion. DotCloud Consulting would like to propose supporting this engagement through a professional services partnership, with Isaac Rantu Mongae assigned as a named delivery resource within our services team.DotCloud Consulting is a South African professional services firm specialis
+---
+id: cmo755jgm001sp701imxf2i1g
+createdAt: 2026-04-20T11:58:25.990Z
+subject: Data Engineering Services Support ΓÇô DotCloud Consulting (Petunia Motlhakane)
+appId: cmnu6zc7z00a6rx01ud92e0s9 job: Senior Data Engineer candidate: Petunia Motlhakane
+bodySnippet: Dear Jason,Thank you for sharing the Senior Data Engineer requirement supporting the UK client's remote delivery capability expansion. DotCloud Consulting would like to propose supporting this mandate through a professional services engagement, with Petunia Motlhakane assigned as a named delivery resource within our services team.DotCloud Consulting operates as a South African specialist services 
+---
+id: cmo753c8u001pp701tnm3lwea
+createdAt: 2026-04-20T11:56:43.326Z
+subject: Data Engineering Services Support ΓÇô DotCloud Consulting (Jonas Mokgaola Nkosinathi Thamane)
+appId: cmnu6ywlb00a0rx011o97w1cw job: Senior Data Engineer candidate: Jonas Mokgaola Nkosinathi Thamane
+bodySnippet: Dear Jason, Thank you for sharing the Senior Data Engineer requirement. DotCloud Consulting would like to propose supporting your UK-based client through a professional services engagement, with Jonas Mokgaola Nkosinathi Thamane assigned as a named delivery resource within our services team. DotCloud Consulting is a South African specialist professional services firm that provides technically vett
+---
+id: cmo7516b9001mp701oagtlxg4
+createdAt: 2026-04-20T11:55:02.326Z
+subject: Analytics Services Support ΓÇô DotCloud Consulting (Njabulo)
+appId: cmnu6wpkt0096rx01mduxzsoi job: Senior Data Analyst candidate: Njabulo
+bodySnippet: Dear Jason,Thank you for sharing the Senior Data Analyst requirement for your UK-based client. DotCloud Consulting would like to propose supporting this contract mandate through a professional services engagement, with Njabulo assigned as a named delivery resource within our services team.DotCloud Consulting operates as a specialist support and services partner for organisations requiring assured 
+---
+id: cmo75120d001jp7016se5zcnv
+createdAt: 2026-04-20T11:54:56.749Z
+subject: Senior Data Engineering Services Support ΓÇô DotCloud Consulting (Everswick Dambaza)
+appId: cmnu6y2r3009orx01p16sjwlq job: Senior Data Engineer candidate: Everswick Dambaza
+bodySnippet: Dear Jason,Thank you for sharing the Senior Data Engineer requirement for your UK-based client. DotCloud Consulting would like to propose supporting this mandate through a professional services engagement, with Everswick Dambaza assigned as a named delivery resource within our services team.DotCloud Consulting operates as a South African specialist professional services firm that deploys technical
+---
+id: cmo74z2hx001gp701gbi72uhm
+createdAt: 2026-04-20T11:53:24.069Z
+subject: Senior DevOps Services Support ΓÇô DotCloud Consulting (Tanyaradzwa Tanatswa Mushonga)
+appId: cmnu6vtu2008urx01xwbigf70 job: Senior DevOps Engineer candidate: Tanyaradzwa Tanatswa Mushonga
+bodySnippet: Dear Jason,Thank you for sharing the Senior DevOps Engineer requirement for your UK client's remote contractor network. DotCloud Consulting would like to propose supporting this mandate through a professional services engagement, with Tanyaradzwa Tanatswa Mushonga assigned as a named delivery resource within our services team.DotCloud Consulting operates as a South African specialist professional 
+---
+id: cmo74x4aw001dp701ke15w13j
+createdAt: 2026-04-20T11:51:53.097Z
+subject: Cloud DevOps Services Support ΓÇô DotCloud Consulting (James Tladi Tladi)
+appId: cmnu6ujce008crx01calvsql3 job: Senior DevOps Engineer candidate: James Tladi Tladi
+bodySnippet: Dear Jason,Thank you for sharing the Senior DevOps Engineer requirement for your UK client's 6ΓÇô12 month remote contract programme. DotCloud Consulting would like to propose supporting this mandate through a professional services engagement, with James Tladi Tladi assigned as a named delivery resource within our services team.DotCloud Consulting is a South African specialist professional services f
+---
+id: cmo74vt7n001ap701l808is7e
+createdAt: 2026-04-20T11:50:52.067Z
+subject: AWS Data Engineering Services Support ΓÇô DotCloud Consulting (Petunia Motlhakane)
+appId: cmnu6tz680086rx01gcancs7b job: 1 Data Engineer ΓÇô AWS / Redshift / PySpark candidate: Petunia Motlhakane
+bodySnippet: Dear Raviteja,Thank you for sharing the Data Engineer ΓÇô AWS / Redshift / PySpark requirement. DotCloud Consulting would like to propose supporting STAFFREX INFO SOLUTIONS through a professional services engagement, with Petunia Motlhakane assigned as a named delivery resource within our services team.DotCloud Consulting is a South African specialist professional services firm supporting organisati
+---
+id: cmo74r6dm0017p701x7t99l46
+createdAt: 2026-04-20T11:47:15.851Z
+subject: HPC Systems Engineering Services Support ΓÇô DotCloud Consulting (Mr Landile)
+appId: cmnu6rmoq007crx0108orgw4p job: IT Lead candidate: mr landile
+bodySnippet: Dear Hiring Team,Thank you for sharing the IT Staff Systems Engineer (HPC) requirement. DotCloud Consulting would like to propose supporting nityo.com through a professional services engagement, with Mr Landile assigned as a named delivery resource within our services team.DotCloud Consulting operates as a specialist support and services partner for organisations requiring deep technical bench str
+---
+id: cmo74qk380014p70155780mia
+createdAt: 2026-04-20T11:46:46.964Z
+subject: HPC Systems Engineering Services Support ΓÇô DotCloud Consulting (Vuyelwa Lushaba)
+appId: cmnu6r3l90076rx01sn0o2o32 job: IT Lead candidate: Vuyelwa Lushaba
+bodySnippet: Dear Hiring Team, Thank you for sharing the IT Staff Systems Engineer (HPC) requirement. DotCloud Consulting would like to propose supporting nityo.com through a professional services engagement, with Vuyelwa Lushaba assigned as a named delivery resource within our services team. DotCloud Consulting operates as a specialist support and services partner for organisations requiring deep technical 
+---
+id: cmo74oebn0011p701vlzajwja
+createdAt: 2026-04-20T11:45:06.180Z
+subject: DevOps Engineering Services Support ΓÇô DotCloud Consulting (Simphiwe Sikhonde)
+appId: cmnu6mohr005mrx01np626h7d job: DevOps Engineer candidate: Simphiwe Sikhonde
+bodySnippet: Dear Vaishali,Thank you for sharing the DevOps Engineer requirement for your UK cleared client. DotCloud Consulting would like to propose supporting Stanley David and Associates through a professional services engagement, with Simphiwe Sikhonde assigned as a named delivery resource within our services team.DotCloud Consulting is a South African specialist professional services firm that deploys te
+---
+id: cmo74h2zc000yp701v48k721c
+createdAt: 2026-04-20T11:39:24.888Z
+subject: Test Engineering Services Support ΓÇô DotCloud Consulting (Keagile Nduli)
+appId: cmnu80ody00mqrx01x5eynsah job: Solution Architect Service Designer Product Manager Test Engineer Front End Developer Azure DevOps Engineer Lead Azure DevOps Engineer candidate: Keagile Nduli
+bodySnippet: Dear Neelesh,Thank you for sharing the Senior Test Engineer requirement for your government programme delivery starting March 2025. DotCloud Consulting would like to propose supporting Stealth iT Consulting through a professional services engagement, with Keagile Nduli assigned as a named delivery resource within our services team.DotCloud Consulting is a South African specialist professional serv
+---
+id: cmo74dzpv000vp701513apgi6
+createdAt: 2026-04-20T11:37:00.691Z
+subject: AI Engineering Services Support ΓÇô DotCloud Consulting (Everswick Dambaza)
+appId: cmnu7vmkt00l5rx01rfzuq37y job: AI Engineer candidate: Everswick Dambaza
+bodySnippet: Dear Tana,Thank you for sharing the AI Engineer requirement for your fintech client. DotCloud Consulting would like to propose supporting this mandate through a professional services engagement, with Everswick Dambaza assigned as a named delivery resource within our services team.DotCloud Consulting operates as a South African specialist services partner, deploying technically vetted engineers to 
+---
+id: cmo74dtgo000sp701j8gf7okk
+createdAt: 2026-04-20T11:36:52.584Z
+subject: Senior AI Engineer Services Support ΓÇô DotCloud Consulting (Petunia Motlhakane)
+appId: cmnu7q5yp00jkrx018pkjvy2y job: Senior AI Engineer candidate: Petunia Motlhakane
+bodySnippet: Dear Navneet,Thank you for sharing the Senior AI Engineer requirement supporting B.E.A.S.T AI's ethical AI solutions mandate. DotCloud Consulting would like to propose supporting B.E.A.S.T AI through a professional services engagement, with Petunia Motlhakane assigned as a named delivery resource within our services team.DotCloud Consulting is a South African specialist professional services firm 
+---
+id: cmo74ac7h000pp701srtonvgb
+createdAt: 2026-04-20T11:34:10.252Z
+subject: Cloud DevOps Services Support ΓÇô DotCloud Consulting (Tanyaradzwa Tanatswa Mushonga)
+appId: cmnu77bvm00cxrx01rryu57sd job: Cloud DevOps Engineer candidate: Tanyaradzwa Tanatswa Mushonga
+bodySnippet: Dear Lucy, Thank you for sharing the Cloud DevOps Engineer requirement for your UK remote contractor network. DotCloud Consulting would like to propose supporting Marutle Throne Consulting through a professional services engagement, with Tanyaradzwa Tanatswa Mushonga assigned as a named delivery resource within our services team. DotCloud Consulting is a South African specialist professional ser
+---
+id: cmo748vs6000mp701j4a9wu9j
+createdAt: 2026-04-20T11:33:02.310Z
+subject: Senior DevOps Engineer Services Support ΓÇô DotCloud Consulting (MPHO MORABA)
+appId: cmnu72r6l00bhrx01dgtpwtb4 job: Senior DevOps Engineer candidate: MPHO MORABA
+bodySnippet: Dear Lucy,Thank you for sharing the Senior DevOps Engineer requirement for your UK contract network expansion. DotCloud Consulting would like to propose supporting Marutle Throne Consulting through a professional services engagement, with MPHO MORABA assigned as a named delivery resource within our services team.DotCloud Consulting is a South African specialist professional services and support fi
+---
+id: cmo748cky000jp701pbl3xful
+createdAt: 2026-04-20T11:32:37.426Z
+subject: Cloud DevOps Services Support ΓÇô DotCloud Consulting (Liliyosa Mbakureya)
+appId: cmnu71hfx00b0rx01unr8tag6 job: Cloud DevOps Engineer candidate: Liliyosa Mbakureya
+bodySnippet: Dear Jason,Thank you for sharing the Cloud DevOps Engineer requirement for your UK client's remote delivery capability expansion. DotCloud Consulting would like to propose supporting your client through a professional services engagement, with Liliyosa Mbakureya assigned as a named delivery resource within our services team.DotCloud Consulting operates as a specialist support and services partner 
+---
+id: cmo748b4f000gp701zz9jzbd3
+createdAt: 2026-04-20T11:32:35.536Z
+subject: Senior DevOps Engineering Services Support ΓÇô DotCloud Consulting (Lesley Charinda)
+appId: cmnu72c9000bbrx019ywo4ggv job: Senior DevOps Engineer candidate: Lesley Charinda
+bodySnippet: Dear Lucy,Thank you for sharing the Senior DevOps Engineer requirement for remote UK contract delivery across distributed teams. DotCloud Consulting would like to propose supporting Marutle Throne Consulting through a professional services engagement, with Lesley Charinda assigned as a named delivery resource within our services team.DotCloud Consulting is a South African specialist professional s
+---
+id: cmo744pu0000dp70127mjef62
+createdAt: 2026-04-20T11:29:47.976Z
+subject: Data Engineering Services Support ΓÇô DotCloud Consulting (Njabulo)
+appId: cmnu6yf6k009urx01kx1hunhi job: Senior Data Engineer candidate: Njabulo
+bodySnippet: Dear Jason,Thank you for sharing the Senior Data Engineer requirement for your UK-based client. DotCloud Consulting would like to propose supporting this 6ΓÇô12 month remote delivery mandate through a professional services engagement, with Njabulo assigned as a named delivery resource within our services team.DotCloud Consulting operates as a South African specialist support and services partner, de
+---
+id: cmo741wrt000ap701nzui2n5z
+createdAt: 2026-04-20T11:27:37.002Z
+subject: DevOps Engineering Services Support ΓÇô DotCloud Consulting (Liliyosa Mbakureya)
+appId: cmnu6vdpr008orx013u3u0jea job: Senior DevOps Engineer candidate: Liliyosa Mbakureya
+bodySnippet: Dear Jason,Thank you for sharing the Senior DevOps Engineer requirement for your UK client's remote delivery capability expansion. DotCloud Consulting would like to propose supporting this mandate through a professional services engagement, with Liliyosa Mbakureya assigned as a named delivery resource within our services team.DotCloud Consulting operates as a South African specialist services firm
+---
+id: cmo741ah00007p701xe4sahcr
+createdAt: 2026-04-20T11:27:08.100Z
+subject: DevOps Engineering Services Support ΓÇô DotCloud Consulting (Keagile Nduli)
+appId: cmnu6uvrb008irx01jlf6wmir job: Senior DevOps Engineer candidate: Keagile Nduli
+bodySnippet: Dear Jason,Thank you for sharing the Senior DevOps Engineer requirement for your UK client's remote delivery capability. DotCloud Consulting would like to propose supporting this mandate through a professional services engagement, with Keagile Nduli assigned as a named delivery resource within our services team.DotCloud Consulting operates as a South African specialist professional services firm d
+---
+id: cmo73xytx0004p701by7zhdjy
+createdAt: 2026-04-20T11:24:33.045Z
+subject: HPC Systems Engineering Services Support ΓÇô DotCloud Consulting (Petunia Motlhakane)
+appId: cmnu6s1zw007irx01bkhi08kx job: IT Lead candidate: Petunia Motlhakane
+bodySnippet: Dear Hiring Team,Thank you for sharing the IT Staff Systems Engineer (HPC) requirement supporting compute farm infrastructure in San Jose and Austin. DotCloud Consulting would like to propose supporting nityo.com through a professional services engagement, with Petunia Motlhakane assigned as a named delivery resource within our services team.DotCloud Consulting operates as a specialist professiona
+---
+id: cmo73uamh0001p701ri6269vv
+createdAt: 2026-04-20T11:21:41.705Z
+subject: DevOps Infrastructure Services Support ΓÇô DotCloud Consulting (James Tladi Tladi)
+appId: cmnu6n0tm005srx012kplqrl3 job: DevOps Engineer candidate: James Tladi Tladi
+bodySnippet: Dear Vaishali,Thank you for sharing the DevOps Engineer requirement for your six-month cleared mandate. DotCloud Consulting would like to propose supporting Stanley David and Associates through a professional services engagement, with James Tladi Tladi assigned as a named delivery resource within our services team.DotCloud Consulting is a South African specialist professional services firm that de
+---
+id: cmo71lhfr0004qw01ixd2k8lb
+createdAt: 2026-04-20T10:18:51.400Z
+subject: DevOps Services Support ΓÇô DotCloud Consulting (Kgomotso Sello Dungeni)
+appId: cmo71lg3i0001qw01owwosemg job: DevOps Engineer candidate: Kgomotso Sello Dungeni
+bodySnippet: Dear Vaishali,Thank you for sharing the DevOps Engineer requirement for your UK cleared client engagement. DotCloud Consulting would like to propose supporting Stanley David and Associates through a professional services engagement, with Kgomotso Sello Dungeni assigned as a named delivery resource within our services team.DotCloud Consulting is a South African specialist professional services firm
+---
+id: cmo2ppy9k0006pk01j8gt1ru1
+createdAt: 2026-04-17T09:35:19.736Z
+subject: Platform/DevOps Services Support ΓÇô DotCloud Consulting (Paul Stegemann)
+appId: cmo2ppwq00003pk010lrjeuo3 job: Platform / DevOps Engineer candidate: Paul Stegemann
+bodySnippet: Dear Hiring Team,Thank you for sharing the Platform/DevOps Engineer requirement with Premium Talent Recruitment. DotCloud Consulting would like to propose supporting premium-talent.com through a professional services engagement, with Paul Stegemann assigned as a named delivery resource within our services team.DotCloud Consulting is a South African specialist professional services firm that suppor
+---
+id: cmo2l0n44001jm901j0c3fy9t
+createdAt: 2026-04-17T07:23:40.420Z
+subject: Cyber Security Services Support ΓÇô DotCloud Consulting (Sibusiso Ndlovu)
+appId: cmo2l0llt001gm9014ob13y7v job: CYBER SECURITY ENGINEER** candidate: Sibusiso Ndlovu
+bodySnippet: Dear Lawrence, Thank you for sharing the Cyber Security Engineer requirement. DotCloud Consulting would like to propose supporting Synapri through a professional services engagement, with Sibusiso Ndlovu assigned as a named delivery resource within our services team. DotCloud Consulting operates as a specialist support and services partner, deploying technically vetted engineers from our active 
+---
+id: cmo2kj4zm0019m9011ia9wmv6
+createdAt: 2026-04-17T07:10:03.779Z
+subject: Platform / DevOps Services Support ΓÇô DotCloud Consulting (Tanyaradzwa Tanatswa Mushonga)
+appId: cmo2kifcg000vm9013b4eo3yd job: Platform / DevOps Engineer candidate: Tanyaradzwa Tanatswa Mushonga
+bodySnippet: Dear Hiring Team,Thank you for sharing the Platform / DevOps Engineer requirement. DotCloud Consulting would like to propose supporting premium-talent.com through a professional services engagement, with Tanyaradzwa Tanatswa Mushonga assigned as a named delivery resource within our services team.DotCloud Consulting is a South African specialist professional services firm that deploys technically v
+---
+id: cmo2kinly0014m901duo9mym8
+createdAt: 2026-04-17T07:09:41.254Z
+subject: DevOps Engineering Services Support ΓÇô DotCloud Consulting (Paul Stegemann)
+appId: cmnrt8whr001pqt010v8o66yh job: DevOps Engineer candidate: Paul Stegemann
+bodySnippet: Dear Vaishali,Thank you for sharing the DevOps Engineer requirement for Stanley David and Associates' 6-month eSC-cleared contract. DotCloud Consulting would like to propose supporting this mandate through a professional services engagement, with Paul Stegemann assigned as a named delivery resource within our services team.DotCloud Consulting is a South African specialist professional services fir
+---
+id: cmo2kigvu000ym901m93tauqe
+createdAt: 2026-04-17T07:09:32.538Z
+subject: Platform / DevOps Services Support ΓÇô DotCloud Consulting (Tanyaradzwa Tanatswa Mushonga)
+appId: cmo2kifcg000vm9013b4eo3yd job: Platform / DevOps Engineer candidate: Tanyaradzwa Tanatswa Mushonga
+bodySnippet: Dear Hiring Team,Thank you for sharing the Platform / DevOps Engineer requirement. DotCloud Consulting would like to propose supporting premium-talent.com through a professional services engagement, with Tanyaradzwa Tanatswa Mushonga assigned as a named delivery resource within our services team to address your Kubernetes, GCP and CI/CD pipeline responsibilities.DotCloud Consulting operates as a s
+---
+id: cmo1vakjo000sm901jumst65z
+createdAt: 2026-04-16T19:23:33.636Z
+subject: Data Engineer Services Support ΓÇô DotCloud Consulting (Petunia Motlhakane)
+appId: cmnu7bl4f00ekrx01rhmpsx19 job: Data Engineer candidate: Petunia Motlhakane
+bodySnippet: Dear Hiring Team,Thank you for sharing the Data Engineer requirement supporting global clients through UK shift delivery. DotCloud Consulting would like to propose supporting this mandate through a professional services engagement, with Petunia Motlhakane assigned as a named delivery resource within our services team.DotCloud Consulting operates as a specialist support and services partner, deploy
+---
+id: cmo1v8pho000pm901qu3050wh
+createdAt: 2026-04-16T19:22:06.733Z
+subject: Data Engineering Services Support ΓÇô DotCloud Consulting (James Julius)
+appId: cmnzpqb8800ahon0136lzhe10 job: Sr. Backend Engineer candidate: James Julius
+bodySnippet: Dear Hiring Team,Thank you for sharing the Sr. Backend Engineer requirement for kotsonit.com. DotCloud Consulting would like to propose supporting your data warehouse delivery through a professional services engagement, with James Julius assigned as a named delivery resource within our services team.DotCloud Consulting is a South African specialist professional services firm that deploys technical
+---
+id: cmo1v73ew000mm901dxcfjgcj
+createdAt: 2026-04-16T19:20:51.464Z
+subject: Government Cloud Network Security Services Support ΓÇô DotCloud Consulting (Isaac Rantu Mongae)
+appId: cmnzpnnm8000zon015dir35le job: Director/Network Architect/Senior Network Engineer candidate: Isaac Rantu Mongae
+bodySnippet: Dear Hiring Team,Thank you for sharing the Network/Security Engineer requirement for your ongoing UKHMG G-Cloud engagement. DotCloud Consulting would like to propose supporting Cybernetica Solutions through a professional services engagement, with Isaac Rantu Mongae assigned as a named delivery resource within our services team.DotCloud Consulting is a specialist professional services and support 

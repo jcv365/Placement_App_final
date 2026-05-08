@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ErrorBanner } from "@/components/ui/error-banner";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { uploadFormDataJson } from "@/lib/client";
@@ -34,6 +35,9 @@ export default function UploadPanel({
   helper,
   onSuccess,
   metadataFields,
+  showContactRedactionToggle,
+  acceptedFileTypes,
+  showTextInput = true,
   timeoutMs = DEFAULT_UPLOAD_TIMEOUT_MS,
 }: {
   title: string;
@@ -41,6 +45,9 @@ export default function UploadPanel({
   helper: string;
   onSuccess?: (data: unknown) => void;
   timeoutMs?: number;
+  acceptedFileTypes?: string;
+  showTextInput?: boolean;
+  showContactRedactionToggle?: boolean;
   metadataFields?: {
     key: string;
     label: string;
@@ -66,6 +73,11 @@ export default function UploadPanel({
   const [validationError, setValidationError] = React.useState<string | null>(
     null,
   );
+  const [removeContactInfo, setRemoveContactInfo] = React.useState(false);
+  const [uploadError, setUploadError] = React.useState<string | null>(null);
+
+  const shouldShowContactRedactionToggle =
+    showContactRedactionToggle ?? endpoint === "/api/upload/cv";
 
   const missingRequiredFields = (metadataFields ?? []).filter(
     (field) => field.required && !field.value.trim(),
@@ -80,6 +92,7 @@ export default function UploadPanel({
     }
 
     setValidationError(null);
+    setUploadError(null);
     setLoading(true);
     setUploadProgressPercent(0);
     setUploadTransferPercent(0);
@@ -102,12 +115,11 @@ export default function UploadPanel({
           : `${Date.now()}${Math.random().toString(16).slice(2)}`;
       formData.append("uploadId", uploadId);
 
-      const githubAccessToken =
-        typeof window !== "undefined"
-          ? localStorage.getItem("githubAccessToken")
-          : null;
-      if (githubAccessToken) {
-        formData.append("githubAccessToken", githubAccessToken);
+      if (shouldShowContactRedactionToggle) {
+        formData.append(
+          "removeContactInfo",
+          removeContactInfo ? "true" : "false",
+        );
       }
 
       for (const field of metadataFields ?? []) {
@@ -199,7 +211,7 @@ export default function UploadPanel({
       setUploaded(true);
       onSuccess?.(data.data);
     } catch (error) {
-      alert((error as Error).message);
+      setUploadError((error as Error).message);
     } finally {
       setLoading(false);
     }
@@ -238,15 +250,35 @@ export default function UploadPanel({
             />
           </div>
         ))}
-        <Textarea
-          value={text}
-          onChange={(event) => setText(event.target.value)}
-          placeholder="Paste text (optional)"
-        />
+        {showTextInput ? (
+          <Textarea
+            value={text}
+            onChange={(event) => setText(event.target.value)}
+            placeholder="Paste text (optional)"
+          />
+        ) : null}
         <Input
           type="file"
+          accept={acceptedFileTypes}
           onChange={(event) => setFile(event.target.files?.[0] ?? null)}
         />
+        {shouldShowContactRedactionToggle ? (
+          <label className="flex items-start gap-2 rounded border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-700">
+            <input
+              type="checkbox"
+              checked={removeContactInfo}
+              onChange={(event) => setRemoveContactInfo(event.target.checked)}
+              className="mt-0.5"
+            />
+            <span>
+              Remove contact information from stored CV text
+              <span className="block text-xs text-slate-500">
+                ATS works best when off. Turn on to store a redacted CV text
+                copy.
+              </span>
+            </span>
+          </label>
+        ) : null}
         <Button
           onClick={handleSubmit}
           disabled={loading || missingRequiredFields.length > 0}
@@ -271,6 +303,8 @@ export default function UploadPanel({
         {validationError ? (
           <p className="text-sm text-rose-700">{validationError}</p>
         ) : null}
+
+        {uploadError ? <ErrorBanner message={uploadError} /> : null}
 
         {uploaded ? (
           <p className="text-sm text-emerald-700">Uploaded successfully.</p>

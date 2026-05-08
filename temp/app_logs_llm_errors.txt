@@ -1,0 +1,4 @@
+
+[FACTUALITY_GUARD] AI call failed; skipping factuality check. Error: LLMLITE structured request failed: 500 Internal Server Error
+[FACTUALITY_GUARD] AI call failed; skipping factuality check. Error: LLMLITE structured request failed: 500 Internal Server Error
+

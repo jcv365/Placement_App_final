@@ -2,11 +2,14 @@ export async function fetchJson<T>(
   input: RequestInfo,
   init?: RequestInit,
 ): Promise<T> {
-  const response = await fetch(input, init);
+  const response = await fetch(input, {
+    ...init,
+    signal: init?.signal ?? AbortSignal.timeout(60_000),
+  });
   const contentType = response.headers.get("content-type") ?? "";
   const rawBody = await response.text();
 
-  let data: any = null;
+  let data: unknown = null;
   if (contentType.includes("application/json") && rawBody) {
     try {
       data = JSON.parse(rawBody);

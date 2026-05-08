@@ -41,8 +41,6 @@ export async function GET(request: Request) {
       return jsonError("Admin sign-in is required", 401);
     }
 
-    return jsonError("Unable to calculate month-to-date projection", 400, {
-      message: (error as Error).message,
-    });
+    return jsonError("Unable to calculate month-to-date projection", 400);
   }
 }

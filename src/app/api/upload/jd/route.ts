@@ -2,7 +2,8 @@ import { generateStructuredJson } from "@/lib/aiJson";
 import { jsonError, jsonOk } from "@/lib/apiResponses";
 import { getAppSessionFromRequest } from "@/lib/appAuth";
 import { resolveCompanyForTenant } from "@/lib/companyResolution";
-import { readSharedGithubAccessToken } from "@/lib/githubAuthStore";
+import { classifyJob } from "@/lib/jobClassification";
+import { getAiGatewayEnvHint, isAiGatewayConfigured } from "@/lib/liteLlm";
 import { prisma } from "@/lib/prisma";
 import { resolveTenantIdFromRequest } from "@/lib/tenant";
 import { readTextFromFormData } from "@/lib/upload";
@@ -16,17 +17,7 @@ import {
 import { NextResponse } from "next/server";
 
 export const runtime = "nodejs";
-
-function getCookieValue(request: Request, name: string): string | undefined {
-  const cookieHeader = request.headers.get("cookie") ?? "";
-  const parts = cookieHeader.split(";").map((part) => part.trim());
-  const match = parts.find((part) => part.startsWith(`${name}=`));
-  if (!match) {
-    return undefined;
-  }
-
-  return decodeURIComponent(match.split("=").slice(1).join("="));
-}
+const EMAIL_PATTERN = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i;
 
 function cleanField(
   value: string | undefined,
@@ -40,9 +31,34 @@ function cleanField(
   return cleaned.length <= maxLength ? cleaned : cleaned.slice(0, maxLength);
 }
 
+function parseListField(value: string | undefined): string[] {
+  if (!value) {
+    return [];
+  }
+
+  const items = value
+    .split(/[\n,;|]+/)
+    .map((item) => item.replace(/^[-*\u2022\s]+/, "").trim())
+    .filter(Boolean)
+    .map((item) => item.replace(/\s+/g, " "));
+
+  return [...new Set(items)];
+}
+
 function extractEmailFromText(text: string): string | undefined {
-  const match = text.match(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i);
+  const match = text.match(EMAIL_PATTERN);
   return match?.[0]?.trim().toLowerCase();
+}
+
+function normaliseOpportunityEmail(
+  value: string | undefined,
+): string | undefined {
+  if (!value) {
+    return undefined;
+  }
+
+  const match = value.match(EMAIL_PATTERN)?.[0];
+  return match?.trim().toLowerCase();
 }
 
 function extractUrlFromText(text: string): string | undefined {
@@ -59,6 +75,65 @@ function looksLikeRole(value: string): boolean {
   return /\b(lead|head|manager|engineer|architect|analyst|consultant|specialist|developer|administrator|officer|recruitment|talent|director)\b/i.test(
     cleaned,
   );
+}
+
+function normaliseRoleCandidate(value: string): string {
+  return value
+    .replace(/^linkedin\s+opportunit(?:y|ies):?\s*/i, "")
+    .replace(/^role:?\s*/i, "")
+    .replace(/^\d+[.)-]\s*/, "")
+    .replace(/[|,;:\-]+$/, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function splitRolesFromValue(value: string): string[] {
+  const compact = value.replace(/\s+/g, " ").trim();
+  if (!compact) {
+    return [];
+  }
+
+  const withoutTail = compact
+    .replace(
+      /\b(contract\s+roles?|contract\s+role|roles?\s+for|openings?|positions?)\b.*$/i,
+      "",
+    )
+    .trim();
+
+  const source = withoutTail || compact;
+  const parts = source
+    .split(/\s*[\n;,|]\s*|\s+\/\s+/i)
+    .map((part) => normaliseRoleCandidate(part))
+    .filter(Boolean)
+    .filter((part) => part.length <= 120)
+    .filter(looksLikeRole);
+
+  return [...new Set(parts)];
+}
+
+function deriveRolesFromUpload(params: {
+  extractedRole?: string;
+  roleHint?: string;
+  rawText: string;
+}): string[] {
+  const fromExtracted = splitRolesFromValue(params.extractedRole ?? "");
+  const fromHint = splitRolesFromValue(params.roleHint ?? "");
+
+  const rawLead = params.rawText
+    .replace(/\s+/g, " ")
+    .split(/https?:\/\//i)[0]
+    ?.slice(0, 280);
+  const fromRawLead = splitRolesFromValue(rawLead ?? "");
+
+  const combined = [...fromExtracted, ...fromHint, ...fromRawLead];
+  const unique = [...new Set(combined)].filter(looksLikeRole);
+
+  if (unique.length > 0) {
+    return unique;
+  }
+
+  const fallbackRole = cleanField(params.extractedRole, 120);
+  return fallbackRole ? [fallbackRole] : [];
 }
 
 function extractRoleCompanyFromAtPattern(text: string): {
@@ -126,8 +201,7 @@ export async function POST(request: Request) {
     const payload = await readTextFromFormData(formData, "text");
     const roleFromForm = formData.get("role");
     const companyNameFromForm = formData.get("companyName");
-    const tokenFromForm = formData.get("githubAccessToken");
-
+    const opportunityEmailFromForm = formData.get("opportunityEmail");
     if (!payload.text && !payload.fileBytes) {
       return jsonError("Provide text or a file", 400);
     }
@@ -153,29 +227,18 @@ export async function POST(request: Request) {
         ? companyNameFromForm.trim()
         : undefined;
 
-    const githubAccessToken =
-      typeof tokenFromForm === "string" && tokenFromForm.trim()
-        ? tokenFromForm.trim()
-        : undefined;
-    const cookieGithubToken = getCookieValue(request, "githubAccessToken");
-    const sharedGithubToken = await readSharedGithubAccessToken();
-    const effectiveGithubToken =
-      githubAccessToken ||
-      cookieGithubToken?.trim() ||
-      sharedGithubToken?.trim() ||
-      process.env.GITHUB_MODELS_TOKEN ||
-      undefined;
+    const gatewayConfigured = isAiGatewayConfigured();
 
-    if (!effectiveGithubToken) {
+    if (!gatewayConfigured) {
       if (uploadId) {
         failUploadProgress({
           uploadId,
           tenantId,
-          message: "AI token is missing for job parsing.",
+          message: "AI is not configured for job parsing.",
         });
       }
-      return jsonError("ChatGPT 5.3 token is required for job parsing", 400, {
-        hint: "Connect GitHub Models in Settings before uploading a job description.",
+      return jsonError("AI is not configured for job parsing", 400, {
+        hint: getAiGatewayEnvHint(),
       });
     }
 
@@ -193,30 +256,50 @@ export async function POST(request: Request) {
       companyName?: string;
       opportunityEmail?: string;
       opportunityUrl?: string;
+      description?: string;
+      requiredSkills?: string;
+      requiredCertifications?: string;
     }>({
-      provider: "github-models",
-      githubAccessToken: effectiveGithubToken,
       systemPrompt:
-        "Extract structured job metadata from the uploaded job description text. Return strict JSON only with keys role, companyName, opportunityEmail, opportunityUrl. If unknown, return empty string.",
-      userPrompt: `JOB DESCRIPTION TEXT:\n${rawText}\n\nHints:\n- roleHint: ${roleHint ?? ""}\n- companyNameHint: ${companyHint ?? ""}\n\nRules:\n- role must be a specific role title only.\n- companyName must be the client/company name only.\n- opportunityEmail must contain only one contact email address when present.\n- opportunityUrl must contain only one source URL when present.\n- Use hints only when they align with the uploaded text.\nReturn JSON only: {"role":"","companyName":"","opportunityEmail":"","opportunityUrl":""}`,
+        "Extract structured job metadata from the uploaded job description text. Return strict JSON only with keys role, companyName, opportunityEmail, opportunityUrl, description, requiredSkills, requiredCertifications. If unknown, return empty string.",
+      userPrompt: `JOB DESCRIPTION TEXT:\n${rawText}\n\nHints:\n- roleHint: ${roleHint ?? ""}\n- companyNameHint: ${companyHint ?? ""}\n\nRules:\n- role must be a specific role title only.\n- companyName must be the client/company name only.\n- opportunityEmail must contain only one contact email address when present.\n- opportunityUrl must contain only one source URL when present.\n- description must be a concise job summary (2-6 sentences).\n- requiredSkills must be a comma-separated list of technical and functional skills.\n- requiredCertifications must be a comma-separated list of required or preferred certifications.\n- Use hints only when they align with the uploaded text.\nReturn JSON only: {"role":"","companyName":"","opportunityEmail":"","opportunityUrl":"","description":"","requiredSkills":"","requiredCertifications":""}`,
       maxTokens: 350,
       temperature: 0,
     });
 
     const linkedInFallback = extractRoleCompanyFromAtPattern(rawText);
-    const role =
+    const primaryRole =
       cleanField(extracted.role, 120) ??
       cleanField(linkedInFallback.role, 120) ??
       cleanField(roleHint, 120);
+    const roles = deriveRolesFromUpload({
+      extractedRole: primaryRole,
+      roleHint: cleanField(roleHint, 120),
+      rawText,
+    });
     const companyName =
       cleanField(extracted.companyName, 120) ??
       cleanField(linkedInFallback.companyName, 120) ??
       cleanField(companyHint, 120);
+    const opportunityEmailOverride =
+      typeof opportunityEmailFromForm === "string" &&
+      opportunityEmailFromForm.trim()
+        ? opportunityEmailFromForm.trim()
+        : undefined;
     const opportunityEmail =
-      cleanField(extracted.opportunityEmail, 320)?.toLowerCase() ??
-      extractEmailFromText(rawText);
+      normaliseOpportunityEmail(
+        cleanField(opportunityEmailOverride ?? extracted.opportunityEmail, 320),
+      ) ?? extractEmailFromText(rawText);
     const opportunityUrl =
       cleanField(extracted.opportunityUrl, 1000) ?? extractUrlFromText(rawText);
+    const description =
+      cleanField(extracted.description, 4000) ?? cleanField(rawText, 4000);
+    const requiredSkills = parseListField(
+      cleanField(extracted.requiredSkills, 2000),
+    );
+    const requiredCertifications = parseListField(
+      cleanField(extracted.requiredCertifications, 2000),
+    );
 
     const companyResolution = await resolveCompanyForTenant(
       tenantId,
@@ -237,7 +320,7 @@ export async function POST(request: Request) {
       );
     }
 
-    if (!role) {
+    if (roles.length === 0) {
       if (uploadId) {
         failUploadProgress({
           uploadId,
@@ -257,20 +340,52 @@ export async function POST(request: Request) {
       });
     }
 
-    const job = await prisma.job.create({
-      data: {
-        tenantId,
-        ownerUserId: session?.uid,
-        title: role,
-        rawText,
-        companyId: companyResolution.companyId,
-        opportunityEmail: opportunityEmail || null,
-        opportunityUrl: opportunityUrl || null,
-      },
-      include: {
-        company: true,
-      },
-    });
+    const createdJobs = [] as Array<{
+      id: string;
+      title: string;
+      company: { name: string } | null;
+      opportunityEmail: string | null;
+      opportunityUrl: string | null;
+    }>;
+
+    for (const role of roles) {
+      const classification = classifyJob(role, rawText);
+      const created = await prisma.job.create({
+        data: {
+          tenantId,
+          ownerUserId: session?.uid,
+          title: role,
+          description: description || null,
+          requiredSkillsCsv:
+            requiredSkills.length > 0 ? requiredSkills.join(", ") : null,
+          requiredCertificationsCsv:
+            requiredCertifications.length > 0
+              ? requiredCertifications.join(", ")
+              : null,
+          rawText,
+          companyId: companyResolution.companyId,
+          opportunityEmail: opportunityEmail || null,
+          opportunityUrl: opportunityUrl || null,
+          isRemote: classification.isRemote,
+          requiresUsWorkAuth: classification.requiresUsWorkAuth,
+          requiresUkWorkAuth: classification.requiresUkWorkAuth,
+          requiresNonSaLocation: classification.requiresNonSaLocation,
+        },
+        include: {
+          company: true,
+        },
+      });
+
+      createdJobs.push({
+        id: created.id,
+        title: created.title,
+        company: created.company,
+        opportunityEmail: created.opportunityEmail ?? null,
+        opportunityUrl: created.opportunityUrl ?? null,
+      });
+    }
+
+    const primaryJob = createdJobs[0];
 
     if (uploadId) {
       completeUploadProgress({
@@ -280,26 +395,43 @@ export async function POST(request: Request) {
       });
     }
 
+    const missingEmail = !opportunityEmail;
+
     return jsonOk({
-      id: job.id,
+      id: primaryJob?.id ?? "",
       text: rawText,
-      title: job.title,
-      companyName: job.company?.name ?? null,
-      opportunityEmail: job.opportunityEmail ?? null,
-      opportunityUrl: job.opportunityUrl ?? null,
+      title: primaryJob?.title ?? null,
+      companyName: primaryJob?.company?.name ?? null,
+      opportunityEmail: primaryJob?.opportunityEmail ?? null,
+      opportunityUrl: primaryJob?.opportunityUrl ?? null,
+      description: description ?? null,
+      requiredSkills,
+      requiredCertifications,
+      createdJobCount: createdJobs.length,
+      ...(missingEmail
+        ? {
+            warning:
+              "No recruiter contact email was found in the job description. This opportunity will not appear on the match review board until a contact email is added.",
+          }
+        : {}),
+      createdJobs: createdJobs.map((job) => ({
+        id: job.id,
+        title: job.title,
+        companyName: job.company?.name ?? null,
+        opportunityEmail: job.opportunityEmail,
+        opportunityUrl: job.opportunityUrl,
+      })),
     });
   } catch (error) {
     if (uploadId && tenantIdForProgress) {
       failUploadProgress({
         uploadId,
         tenantId: tenantIdForProgress,
-        message: (error as Error).message || "Job upload failed.",
+        message: error instanceof Error ? error.message : "Job upload failed.",
       });
     }
-
-    return jsonError("Failed to upload job description", 500, {
-      message: (error as Error).message,
-    });
+    console.error("[UPLOAD_JD]", error);
+    return jsonError("Failed to upload job description", 500);
   }
 }
 

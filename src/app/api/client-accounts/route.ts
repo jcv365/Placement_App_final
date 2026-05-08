@@ -1,6 +1,10 @@
 import { jsonError, jsonOk } from "@/lib/apiResponses";
+import { writeAuditLog } from "@/lib/auditLog";
 import { prisma } from "@/lib/prisma";
-import { resolveTenantIdFromRequest } from "@/lib/tenant";
+import {
+  requireAuthenticatedTenantId,
+  resolveTenantIdFromRequest,
+} from "@/lib/tenant";
 import { clientAccountCreateSchema } from "@/lib/validation";
 
 export const runtime = "nodejs";
@@ -22,7 +26,7 @@ export async function GET(request: Request) {
 
 export async function POST(request: Request) {
   try {
-    const tenantId = resolveTenantIdFromRequest(request);
+    const tenantId = requireAuthenticatedTenantId(request);
     const body = clientAccountCreateSchema.parse(await request.json());
 
     const account = await prisma.clientAccount.create({
@@ -40,10 +44,19 @@ export async function POST(request: Request) {
       },
     });
 
+    await writeAuditLog({
+      tenantId,
+      entityType: "clientAccount",
+      entityId: account.id,
+      action: "CREATE",
+    });
+
     return jsonOk(account, { status: 201 });
   } catch (error) {
-    return jsonError("Unable to create client account", 400, {
-      message: (error as Error).message,
-    });
+    if ((error as Error).message === "UNAUTHENTICATED") {
+      return jsonError("Authentication required", 401);
+    }
+    console.error("[CLIENT_ACCOUNT_CREATE]", error);
+    return jsonError("Unable to create client account", 400);
   }
 }

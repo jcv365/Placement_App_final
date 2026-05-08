@@ -1,6 +1,9 @@
-import { jsonError, jsonOk } from "@/lib/apiResponses";
+import { handleAuthError, jsonError, jsonOk } from "@/lib/apiResponses";
 import { prisma } from "@/lib/prisma";
-import { resolveTenantIdFromRequest } from "@/lib/tenant";
+import {
+  requireAuthenticatedTenantId,
+  resolveTenantIdFromRequest,
+} from "@/lib/tenant";
 import { placementContractUpdateSchema } from "@/lib/validation";
 
 export const runtime = "nodejs";
@@ -22,6 +25,10 @@ export async function GET(
         placedAt: true,
         agreedHourlyRate: true,
         agreedRateLockedAt: true,
+        placementBillingModel: true,
+        placementFeePercent: true,
+        annualCtc: true,
+        contractValue: true,
         signedContractFileName: true,
         signedContractMimeType: true,
         signedContractUploadedAt: true,
@@ -37,12 +44,12 @@ export async function GET(
       placementRequirementsComplete:
         application.currentStage !== "PLACED" ||
         (application.agreedHourlyRate !== null &&
+          application.placementBillingModel !== null &&
           application.signedContractUploadedAt !== null),
     });
   } catch (error) {
-    return jsonError("Unable to load placement metadata", 400, {
-      message: (error as Error).message,
-    });
+    console.error("[PLACEMENT_GET]", error);
+    return jsonError("Unable to load placement metadata", 400);
   }
 }
 
@@ -51,7 +58,7 @@ export async function POST(
   context: { params: Promise<{ id: string }> },
 ) {
   try {
-    const tenantId = resolveTenantIdFromRequest(request);
+    const tenantId = requireAuthenticatedTenantId(request);
     const { id } = await context.params;
     const formData = await request.formData();
 
@@ -62,6 +69,10 @@ export async function POST(
         currentStage: true,
         agreedHourlyRate: true,
         agreedRateLockedAt: true,
+        placementBillingModel: true,
+        placementFeePercent: true,
+        annualCtc: true,
+        contractValue: true,
         signedContractUploadedAt: true,
       },
     });
@@ -71,6 +82,10 @@ export async function POST(
     }
 
     const rawRate = formData.get("agreedHourlyRate");
+    const rawBillingModel = formData.get("placementBillingModel");
+    const rawFeePercent = formData.get("placementFeePercent");
+    const rawAnnualCtc = formData.get("annualCtc");
+    const rawContractValue = formData.get("contractValue");
     const file = formData.get("file");
     const actorValue = formData.get("actor");
     const actor =
@@ -82,9 +97,52 @@ export async function POST(
       typeof rawRate === "string" && rawRate.trim().length > 0
         ? Number(rawRate)
         : undefined;
+    const parsedFeePercent =
+      typeof rawFeePercent === "string" && rawFeePercent.trim().length > 0
+        ? Number(rawFeePercent)
+        : undefined;
+    const parsedAnnualCtc =
+      typeof rawAnnualCtc === "string" && rawAnnualCtc.trim().length > 0
+        ? Number(rawAnnualCtc)
+        : undefined;
+    const parsedContractValue =
+      typeof rawContractValue === "string" && rawContractValue.trim().length > 0
+        ? Number(rawContractValue)
+        : undefined;
+
+    if (parsedRate !== undefined && (isNaN(parsedRate) || parsedRate < 0)) {
+      return jsonError("Agreed hourly rate must be a non-negative number", 400);
+    }
+    if (
+      parsedFeePercent !== undefined &&
+      (isNaN(parsedFeePercent) ||
+        parsedFeePercent < 0 ||
+        parsedFeePercent > 100)
+    ) {
+      return jsonError("Fee percentage must be between 0 and 100", 400);
+    }
+    if (
+      parsedAnnualCtc !== undefined &&
+      (isNaN(parsedAnnualCtc) || parsedAnnualCtc < 0)
+    ) {
+      return jsonError("Annual CTC must be a non-negative number", 400);
+    }
+    if (
+      parsedContractValue !== undefined &&
+      (isNaN(parsedContractValue) || parsedContractValue < 0)
+    ) {
+      return jsonError("Contract value must be a non-negative number", 400);
+    }
 
     const ratePayload = placementContractUpdateSchema.parse({
       agreedHourlyRate: parsedRate,
+      placementBillingModel:
+        typeof rawBillingModel === "string" && rawBillingModel.trim().length > 0
+          ? rawBillingModel.trim()
+          : undefined,
+      placementFeePercent: parsedFeePercent,
+      annualCtc: parsedAnnualCtc,
+      contractValue: parsedContractValue,
     });
 
     if (
@@ -122,6 +180,44 @@ export async function POST(
       return jsonError("Agreed hourly rate is required", 400);
     }
 
+    const billingModel =
+      ratePayload.placementBillingModel ??
+      application.placementBillingModel ??
+      undefined;
+
+    if (!billingModel) {
+      return jsonError("Billing model is required for placements", 400);
+    }
+
+    if (
+      billingModel === "ONCE_OFF_PLACEMENT_FEE" &&
+      application.contractValue == null &&
+      ratePayload.contractValue === undefined
+    ) {
+      return jsonError(
+        "Contract value is required for once-off placement fee model",
+        400,
+      );
+    }
+
+    if (
+      billingModel === "PERMANENT_PLACEMENT_FEE" &&
+      application.annualCtc == null &&
+      ratePayload.annualCtc === undefined
+    ) {
+      return jsonError(
+        "Annual CTC is required for permanent placement fee model",
+        400,
+      );
+    }
+
+    if (
+      ratePayload.placementFeePercent === undefined &&
+      application.placementFeePercent == null
+    ) {
+      return jsonError("Fee percentage is required for placements", 400);
+    }
+
     const now = new Date();
     const updateData = {
       agreedHourlyRate:
@@ -131,6 +227,14 @@ export async function POST(
       agreedRateLockedAt:
         application.agreedRateLockedAt ??
         (ratePayload.agreedHourlyRate !== undefined ? now : undefined),
+      placementBillingModel: billingModel,
+      placementFeePercent:
+        ratePayload.placementFeePercent ??
+        application.placementFeePercent ??
+        undefined,
+      annualCtc: ratePayload.annualCtc ?? application.annualCtc ?? undefined,
+      contractValue:
+        ratePayload.contractValue ?? application.contractValue ?? undefined,
       signedContractFileName: uploadedFile ? uploadedFile.name : undefined,
       signedContractMimeType: uploadedFile
         ? uploadedFile.type || "application/octet-stream"
@@ -151,6 +255,10 @@ export async function POST(
         placedAt: true,
         agreedHourlyRate: true,
         agreedRateLockedAt: true,
+        placementBillingModel: true,
+        placementFeePercent: true,
+        annualCtc: true,
+        contractValue: true,
         signedContractFileName: true,
         signedContractMimeType: true,
         signedContractUploadedAt: true,
@@ -166,6 +274,10 @@ export async function POST(
         action: "placement_contract_set",
         afterJson: {
           agreedHourlyRate: updated.agreedHourlyRate,
+          placementBillingModel: updated.placementBillingModel,
+          placementFeePercent: updated.placementFeePercent,
+          annualCtc: updated.annualCtc,
+          contractValue: updated.contractValue,
           signedContractFileName: updated.signedContractFileName,
           signedContractUploadedAt:
             updated.signedContractUploadedAt?.toISOString() ?? null,
@@ -178,11 +290,13 @@ export async function POST(
       placementRequirementsComplete:
         updated.currentStage !== "PLACED" ||
         (updated.agreedHourlyRate !== null &&
+          updated.placementBillingModel !== null &&
           updated.signedContractUploadedAt !== null),
     });
   } catch (error) {
-    return jsonError("Unable to save placement contract data", 400, {
-      message: (error as Error).message,
-    });
+    return (
+      handleAuthError(error) ??
+      jsonError("Unable to save placement contract data", 400)
+    );
   }
 }

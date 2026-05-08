@@ -3,6 +3,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ConfirmDialog } from "@/components/ui/confirm-dialog";
 import {
   Dialog,
   DialogContent,
@@ -80,39 +81,6 @@ const STAGES: Vacancy["stage"][] = [
   "FILLED",
   "ON_HOLD",
   "CLOSED",
-];
-
-const SAMPLE_VACANCIES: Vacancy[] = [
-  {
-    id: "sample-vacancy-1",
-    title: "Azure Architect (Contract)",
-    description: "Lead migration architecture for regulated workloads.",
-    stage: "OPEN",
-    slaDate: null,
-    offerStatus: null,
-    reasonCode: null,
-    clientAccount: { id: "sample-client-1", name: "Acme Consulting" },
-    hiringManager: {
-      id: "sample-contact-1",
-      fullName: "Jane Cooper",
-      email: "jane.cooper@acme.example",
-    },
-  },
-  {
-    id: "sample-vacancy-2",
-    title: "Platform Engineer (Contract)",
-    description: "Build CI/CD and observability improvements.",
-    stage: "SCREENING",
-    slaDate: null,
-    offerStatus: null,
-    reasonCode: null,
-    clientAccount: { id: "sample-client-2", name: "Northwind Engineering" },
-    hiringManager: {
-      id: "sample-contact-2",
-      fullName: "Robert Fox",
-      email: "robert.fox@northwind.example",
-    },
-  },
 ];
 
 export default function VacanciesClient() {
@@ -193,7 +161,8 @@ export default function VacanciesClient() {
     } finally {
       setLoading(false);
     }
-  }, [clientAccountId]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   React.useEffect(() => {
     load();
@@ -204,7 +173,7 @@ export default function VacanciesClient() {
   );
 
   const sortedVacancies = React.useMemo(() => {
-    const source = vacancies.length > 0 ? vacancies : SAMPLE_VACANCIES;
+    const source = vacancies;
     const next = [...source];
     next.sort((left, right) => {
       let leftValue = "";
@@ -298,14 +267,18 @@ export default function VacanciesClient() {
     }
   };
 
-  const handleRequestDeleteVacancy = async (vacancyId: string) => {
-    const proceed = window.confirm(
-      "Submit a deletion request for this vacancy? An admin must approve it before removal.",
-    );
+  const [confirmDeleteVacancyId, setConfirmDeleteVacancyId] = React.useState<
+    string | null
+  >(null);
 
-    if (!proceed) {
-      return;
-    }
+  const handleRequestDeleteVacancy = async (vacancyId: string) => {
+    setConfirmDeleteVacancyId(vacancyId);
+  };
+
+  const executeRequestDeleteVacancy = async () => {
+    const vacancyId = confirmDeleteVacancyId;
+    setConfirmDeleteVacancyId(null);
+    if (!vacancyId) return;
 
     setRequestingDeleteVacancyId(vacancyId);
     setFormError(null);
@@ -616,6 +589,15 @@ export default function VacanciesClient() {
           ) : null}
         </DialogContent>
       </Dialog>
+
+      <ConfirmDialog
+        open={!!confirmDeleteVacancyId}
+        title="Request deletion"
+        message="Submit a deletion request for this vacancy? An admin must approve it before removal."
+        confirmLabel="Submit request"
+        onConfirm={executeRequestDeleteVacancy}
+        onCancel={() => setConfirmDeleteVacancyId(null)}
+      />
     </div>
   );
 }

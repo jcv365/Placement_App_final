@@ -1,0 +1,49 @@
+============================================================
+Inbox Reply Agent ΓÇö Candidate Updater
+============================================================
+Mode      : DRY RUN
+Mailbox   : placements@dotcloud.africa
+Since     : 2026-04-20
+
+FX rates  : GBP=22.17, EUR=19.33, USD=16.39 (live)
+
+Looking up admin user via docker exec...
+Session   : minted for charl.venter@dotcloud.africa
+
+Fetching candidates from app API...
+Found     : 44 candidates
+
+Acquiring Graph access token...
+Token acquired.
+
+Fetching inbox messages since 2026-04-20...
+Inbox messages found : 68
+Relevant replies     : 2
+
+------------------------------------------------------------
+From    : Matt Randall <mattrandall@SpectrumIT.co.uk>
+Subject : RE: Data Engineer (GCP & BigQuery) ΓÇô 11+ Years Enterprise Data Delivery
+Date    : 2026-04-20T12:52:52Z
+Match   : ΓÜá  No candidate found with this email
+
+From    : Henco Freidberg <henkfreid@gmail.com>
+Subject : Re: DotCloud Consulting ΓÇö NDA & Teaming Agreement: Action Required
+Date    : 2026-04-20T08:17:40Z
+Match   : Henco Freidberg (id: cmnv99vml0000l50123xdkjvx)
+Rate    : (not found)
+Roles   : (none matched)
+Agreement: TEAMING_AGREEMENT ΓÇö signed detected
+Actions : TEAMING_AGREEMENT signed
+
+============================================================
+Dry run ΓÇö 2 reply/replies found, 1 matched to candidates
+  Rate parsed    : 0
+  Roles matched  : 0
+  Agreements     : 1
+  Opp intent     : 0
+  Unmatched      : 1
+
+Unmatched senders (no candidate with that email):
+  - Matt Randall <mattrandall@SpectrumIT.co.uk>
+
+Run with --apply to write updates to the database.

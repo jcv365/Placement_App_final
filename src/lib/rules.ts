@@ -5,6 +5,8 @@ export const DEFAULT_RULES = {
   dialect: "British English",
   perspective: "placement company acting as C2C partner",
   c2c_partner_name: process.env.DEFAULT_C2C_PARTNER_NAME ?? "C2C Partner Ltd",
+  c2c_partner_positioning: "",
+  company_type: "placement" as const,
   include_sections: { ...DEFAULT_VOSS_TOGGLES },
   length: "250-400 words",
   structure: [

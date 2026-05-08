@@ -1,6 +1,6 @@
-import { jsonError, jsonOk } from "@/lib/apiResponses";
+import { handleAuthError, jsonError, jsonOk } from "@/lib/apiResponses";
 import { prisma } from "@/lib/prisma";
-import { resolveTenantIdFromRequest } from "@/lib/tenant";
+import { requireAuthenticatedTenantId } from "@/lib/tenant";
 import { noteSchema } from "@/lib/validation";
 
 export const runtime = "nodejs";
@@ -10,7 +10,7 @@ export async function POST(
   context: { params: Promise<{ id: string }> },
 ) {
   try {
-    const tenantId = resolveTenantIdFromRequest(request);
+    const tenantId = requireAuthenticatedTenantId(request);
     const body = noteSchema.parse(await request.json());
     const { id } = await context.params;
 
@@ -34,8 +34,6 @@ export async function POST(
 
     return jsonOk(note, { status: 201 });
   } catch (error) {
-    return jsonError("Unable to add note", 400, {
-      message: (error as Error).message,
-    });
+    return handleAuthError(error) ?? jsonError("Unable to add note", 400);
   }
 }

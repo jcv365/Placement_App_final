@@ -1,0 +1,187 @@
+
+Mailbox: placements@dotcloud.africa
+Today from: 2026-04-09T00:00:00.000Z
+
+Fetching drafts from Outlook...
+  Found 50 draft(s) in Outlook today.
+
+  [2026-04-09T15:01:38Z] Network Security Architect (Lead) ΓÇô 15+ yrs multicloud
+    To: sanjana.t@smartedgesolutions.co.uk
+  [2026-04-09T15:01:13Z] Network Security Architect (Lead) ΓÇô Dual CCIE, CISM
+    To: sanjana.t@smartedgesolutions.co.uk
+  [2026-04-09T15:00:49Z] Network Security Architect (Lead) ΓÇô CCIE, 30+ yrs
+    To: sanjana.t@smartedgesolutions.co.uk
+  [2026-04-09T14:58:14Z] Azure Architect ΓÇô 20+ yrs enterprise integration depth
+    To: bindu@thoughtwavesoft.com
+  [2026-04-09T14:55:56Z] Azure Architect ΓÇô 15+ yrs global multicloud delivery
+    To: nikhil@thoughtwavesoft.com
+  [2026-04-09T14:55:44Z] Azure Architect ΓÇô Zero Trust & MultiΓÇæCloud Delivery
+    To: nikhil@thoughtwavesoft.com
+  [2026-04-09T14:55:26Z] Azure Architect ΓÇô CCIE & 11+ yrs enterprise depth
+    To: nikhil@thoughtwavesoft.com
+  [2026-04-09T14:53:32Z] Network Security Architect (Lead) ΓÇô 15+ yrs multicloud
+    To: sanjana.t@smartedgesolutions.co.uk
+  [2026-04-09T14:53:07Z] Network Security Architect (Lead) ΓÇô Dual CCIE, CISM
+    To: sanjana.t@smartedgesolutions.co.uk
+  [2026-04-09T14:52:49Z] Network Security Architect (Lead) ΓÇô CCIE since 2000
+    To: sanjana.t@smartedgesolutions.co.uk
+  [2026-04-09T14:49:17Z] Azure Architect ΓÇô 20+ yrs enterprise integration depth
+    To: bindu@thoughtwavesoft.com
+  [2026-04-09T14:47:07Z] Azure Architect ΓÇô 15+ yrs multicloud & HA delivery
+    To: nikhil@thoughtwavesoft.com
+  [2026-04-09T14:46:49Z] Network Architect ΓÇô Zero Trust & MultiΓÇæCloud Depth
+    To: nikhil@thoughtwavesoft.com
+  [2026-04-09T14:46:30Z] Azure Architect ΓÇô CCIE, 11+ yrs enterprise delivery
+    To: nikhil@thoughtwavesoft.com
+  [2026-04-09T14:44:48Z] Network Security Architect (Lead) ΓÇô 15+ yrs hybrid delivery
+    To: sanjana.t@smartedgesolutions.co.uk
+  [2026-04-09T14:44:27Z] Network Security Architect (Lead) ΓÇô Dual CCIE, CISM
+    To: sanjana.t@smartedgesolutions.co.uk
+  [2026-04-09T14:44:16Z] Network Security Architect (Lead) ΓÇô CCIE since 2000
+    To: sanjana.t@smartedgesolutions.co.uk
+  [2026-04-09T14:41:07Z] Azure Architect ΓÇô 20+ yrs enterprise delivery
+    To: bindu@thoughtwavesoft.com
+  [2026-04-09T14:38:33Z] Azure Architect ΓÇô 15+ yrs global multicloud delivery
+    To: nikhil@thoughtwavesoft.com
+  [2026-04-09T14:38:23Z] Network Architect ΓÇô Zero Trust & MultiΓÇæCloud Depth
+    To: nikhil@thoughtwavesoft.com
+  [2026-04-09T14:38:01Z] Azure Architect ΓÇô CCIE & 11+ yrs hybrid depth
+    To: nikhil@thoughtwavesoft.com
+  [2026-04-09T14:33:22Z] Azure Architect ΓÇô 20+ yrs enterprise-scale delivery
+    To: bindu@thoughtwavesoft.com
+  [2026-04-09T14:31:28Z] Network Architect ΓÇô Zero Trust & Multi-Cloud Expertise
+    To: nikhil@thoughtwavesoft.com
+  [2026-04-09T14:31:14Z] Network Architect ΓÇô CCIE, Azure Expert, 11+ yrs hybrid depth
+    To: nikhil@thoughtwavesoft.com
+  [2026-04-09T14:26:28Z] Network Security Architect Lead ΓÇô 15+ yrs multicloud
+    To: sanjana.t@smartedgesolutions.co.uk
+  [2026-04-09T14:25:52Z] Network Security Architect (Lead) ΓÇô Dual CCIE, CISM
+    To: sanjana.t@smartedgesolutions.co.uk
+  [2026-04-09T14:25:30Z] Network Security Architect (Lead) ΓÇô CCIE since 2000
+    To: sanjana.t@smartedgesolutions.co.uk
+  [2026-04-09T14:21:29Z] Azure Architect ΓÇô 20+ yrs enterprise integration depth
+    To: bindu@thoughtwavesoft.com
+  [2026-04-09T14:19:34Z] Network Architect ΓÇô 15+ yrs Multicloud/SD-WAN Expertise
+    To: nikhil@thoughtwavesoft.com
+  [2026-04-09T14:19:22Z] Network Architect ΓÇô Zero Trust Expertise for Global Infrastructure
+    To: nikhil@thoughtwavesoft.com
+  [2026-04-09T14:18:58Z] Network Architect ΓÇô CCIE, Azure Expert, 11+ yrs hybrid depth
+    To: nikhil@thoughtwavesoft.com
+  [2026-04-09T13:49:54Z] Azure Architect ΓÇô 20+ yrs integration & data depth
+    To: s.waller@tenthrevolution.com
+  [2026-04-09T13:48:51Z] Azure Architect ΓÇô 15+ yrs resilient multicloud delivery
+    To: s.waller@tenthrevolution.com
+  [2026-04-09T13:47:44Z] Azure Architect ΓÇô 11+ yrs, CCIE & FinOps depth
+    To: s.waller@tenthrevolution.com
+  [2026-04-09T13:47:03Z] Azure Architect ΓÇô 26+ Years, Microsoft Certified
+    To: s.waller@tenthrevolution.com
+  [2026-04-09T13:46:27Z] Azure Architect ΓÇô 15+ yrs global multicloud delivery
+    To: bindu@thoughtwavesoft.com
+  [2026-04-09T13:45:33Z] Azure Architect ΓÇô Multi-Cloud & DevSecOps Depth
+    To: bindu@thoughtwavesoft.com
+  [2026-04-09T13:44:44Z] Azure Architect ΓÇô CCIE, 11+ yrs hybrid depth
+    To: bindu@thoughtwavesoft.com
+  [2026-04-09T13:44:06Z] Azure Architect ΓÇô 26+ Years Enterprise & MultiΓÇæCloud Depth
+    To: bindu@thoughtwavesoft.com
+  [2026-04-09T13:43:36Z] Azure Architect ΓÇô Multi-Cloud & Security-Focused Delivery
+    To: murali@thoughtwavesoft.com
+  [2026-04-09T13:42:51Z] Azure Architect ΓÇô 15+ yrs global multicloud delivery
+    To: murali@thoughtwavesoft.com
+  [2026-04-09T13:41:39Z] Azure Architect ΓÇô 26+ Years Hybrid & MultiΓÇæCloud Depth
+    To: murali@thoughtwavesoft.com
+  [2026-04-09T13:41:04Z] Azure Architect ΓÇô 11+ yrs, CCIE & FinOps depth
+    To: murali@thoughtwavesoft.com
+  [2026-04-09T13:39:51Z] Network Security Architect (Lead) ΓÇô 15+ yrs hybrid delivery
+    To: sanjana.t@smartedgesolutions.co.uk
+  [2026-04-09T13:38:56Z] Network Security Architect (Lead) ΓÇô Dual CCIE, CISM
+    To: sanjana.t@smartedgesolutions.co.uk
+  [2026-04-09T13:38:13Z] Network Security Architect (Lead) ΓÇô CCIE since 2000
+    To: sanjana.t@smartedgesolutions.co.uk
+  [2026-04-09T13:37:51Z] DevOps Engineer ΓÇô 19yrs CI/CD, Kubernetes & Ansible
+    To: vaishali.d@sdnaglobal.com
+  [2026-04-09T13:37:26Z] DevOps Engineer ΓÇô Multi-Cloud IaC & Kubernetes Depth
+    To: vaishali.d@sdnaglobal.com
+  [2026-04-09T13:36:57Z] DevOps Engineer ΓÇô 20+ yrs Azure/AWS delivery depth
+    To: vaishali.d@sdnaglobal.com
+  [2026-04-09T13:36:31Z] DevOps Engineer ΓÇô 15+ yrs IaC & secure cloud
+    To: vaishali.d@sdnaglobal.com
+
+  Found 37 unique DB pair(s) today.
+
+=== MATCHED in Outlook (7) ===
+  Γ£ô [DevOps engineer] Crispen Shiri ΓÇö "DevOps Engineer ΓÇô 15+ yrs IaC & secure cloud"
+  Γ£ô [DevOps engineer] Riaan Snyders ΓÇö "DevOps Engineer ΓÇô 20+ yrs Azure/AWS delivery depth"
+  Γ£ô [DevOps engineer] Jeanre Swanepoel ΓÇö "DevOps Engineer ΓÇô Multi-Cloud IaC & Kubernetes Depth"
+  Γ£ô [DevOps engineer] Jonathan Wagener ΓÇö "DevOps Engineer ΓÇô 19yrs CI/CD, Kubernetes & Ansible"
+  Γ£ô [Network Security Architect (Lead)] Ronald Sidney Doyle ΓÇö "Network Security Architect (Lead) ΓÇô CCIE since 2000"
+  Γ£ô [Network Security Architect (Lead)] Tumelo Rahlau ΓÇö "Network Security Architect (Lead) ΓÇô Dual CCIE, CISM"
+  Γ£ô [Network Security Architect (Lead)] Crispen Shiri ΓÇö "Network Security Architect (Lead) ΓÇô 15+ yrs hybrid delivery"
+
+=== MISSING from Outlook (30) ===
+  Γ£ù [Azure Architect] Jason Marc Dworkin ΓÇö "Azure Architect ΓÇô filling Azure Architect with relevant proven capability"
+  Γ£ù [Azure Architect] Juan Charl Venter ΓÇö "Network Security Architect ΓÇô CCIE & Azure Expertise for Hybrid Environments"
+  Γ£ù [Azure Architect] Heinrich Muller ΓÇö "Network Security Architect ΓÇô Multi-cloud depth, 10+ years"
+  Γ£ù [Azure Architect] Jeanre Swanepoel ΓÇö "Network Security Architect ΓÇô Multi-Cloud & Transformation Expertise"
+  Γ£ù [Azure Architect] Crispen Shiri ΓÇö "Azure Architect ΓÇô Multicloud Expertise for Secure Delivery"
+  Γ£ù [DevOps] Heinrich Muller ΓÇö "Lead DevOps Engineer ΓÇô Terraform & Secure AWS Hybrid Expertise"
+  Γ£ù [DevOps] Jeanre Swanepoel ΓÇö "Lead DevOps Engineer ΓÇô AWS & Hybrid Infrastructure Expertise"
+  Γ£ù [DevOps] Crispen Shiri ΓÇö "Lead DevOps Engineer ΓÇô 15+ yrs secure AWS/hybrid delivery"
+  Γ£ù [DevOps] Jonathan Wagener ΓÇö "Lead DevOps Engineer ΓÇô 20yrs Linux & regulated delivery"
+  Γ£ù [DevOps] Riaan Snyders ΓÇö "Lead DevOps Engineer ΓÇô 20+ yrs regulated platforms"
+  Γ£ù [Azure Engineer] Heinrich Muller ΓÇö "Azure Engineer ΓÇô 10+ Years, Enterprise-Scale DevOps Impact"
+  Γ£ù [Azure Engineer] Crispen Shiri ΓÇö "Azure Engineer ΓÇô 15+ yrs Multicloud Delivery, Rapid Rollout"
+  Γ£ù [Azure Engineer] Jeanre Swanepoel ΓÇö "Azure Engineer ΓÇô Strategic Microservices & Systems Design Expertise"
+  Γ£ù [Azure Engineer] Riaan Snyders ΓÇö "Azure Engineer ΓÇô Senior Architect with 20+ YearsΓÇÖ Cloud Depth"
+  Γ£ù [Azure Architect] Riaan Snyders ΓÇö "Azure Architect ΓÇô 20+ YearsΓÇÖ Enterprise Cloud Delivery Depth"
+  Γ£ù [Senior Network & Security Architect ΓÇô Global Enterprise Transformation] Ronald Sidney Doyle ΓÇö "Senior Network & Security Architect ΓÇô CCIE since 2000"
+  Γ£ù [Senior Network & Security Architect ΓÇô Global Enterprise Transformation] Tumelo Rahlau ΓÇö "Senior Network & Security Architect ΓÇô Dual CCIE, CISM"
+  Γ£ù [Senior Network & Security Architect ΓÇô Global Enterprise Transformation] Jason Marc Dworkin ΓÇö "Senior Network & Security Architect ΓÇô 26+ Years Global ICT"
+  Γ£ù [Senior Network &amp; Security Architect] Ronald Sidney Doyle ΓÇö "Senior Network & Security Architect ΓÇô CCIE since 2000"
+  Γ£ù [Senior Network &amp; Security Architect] Tumelo Rahlau ΓÇö "Senior Network & Security Architect ΓÇô Dual CCIE, CISM"
+  Γ£ù [Senior Network &amp; Security Architect] Heinrich Muller ΓÇö "Senior Network & Security Architect ΓÇô MultiΓÇæCloud, Palo Alto Depth"
+  Γ£ù [Senior Network &amp; Security Architect] Crispen Shiri ΓÇö "Senior Network & Security Architect ΓÇô Global IT/OT Depth"
+  Γ£ù [DevOps Engineer] Heinrich Muller ΓÇö "DevOps Engineer ΓÇô Azure/AWS, Terraform & Kubernetes Depth"
+  Γ£ù [Network Security Architect (Lead)] Heinrich Muller ΓÇö "Network Security Architect (Lead) ΓÇô MultiΓÇæCloud Depth"
+  Γ£ù [AI] Crispen Shiri ΓÇö "Full-Stack Developer ΓÇô LangChain & LLM delivery"
+  Γ£ù [job alert! robusta needs a DevOps Engineer Microsoft Dynamics - 11 Month] Crispen Shiri ΓÇö "DevOps Engineer Microsoft Dynamics ΓÇô 15+ yrs Azure/CI/CD"
+  Γ£ù [job alert! robusta needs a DevOps Engineer Microsoft Dynamics - 11 Month] Heinrich Muller ΓÇö "DevOps Engineer (Dynamics) ΓÇô Azure & Kubernetes Depth"
+  Γ£ù [job alert! robusta needs a DevOps Engineer Microsoft Dynamics - 11 Month] Jeanre Swanepoel ΓÇö "DevOps Engineer Microsoft Dynamics ΓÇô Rapid Azure stabilisation"
+  Γ£ù [job alert! robusta needs a DevOps Engineer Microsoft Dynamics - 11 Month] Riaan Snyders ΓÇö "DevOps Engineer Microsoft Dynamics ΓÇô Azure & Docker depth"
+  Γ£ù [job alert! robusta needs a DevOps Engineer Microsoft Dynamics - 11 Month] Jonathan Wagener ΓÇö "DevOps Engineer (Dynamics) ΓÇô Secure, containerised CI/CD"
+
+=== OUTLOOK DRAFTS WITH NO DB MATCH (35) ===
+  ? [2026-04-09T15:01:38Z] "Network Security Architect (Lead) ΓÇô 15+ yrs multicloud"
+  ? [2026-04-09T15:00:49Z] "Network Security Architect (Lead) ΓÇô CCIE, 30+ yrs"
+  ? [2026-04-09T14:58:14Z] "Azure Architect ΓÇô 20+ yrs enterprise integration depth"
+  ? [2026-04-09T14:55:56Z] "Azure Architect ΓÇô 15+ yrs global multicloud delivery"
+  ? [2026-04-09T14:55:44Z] "Azure Architect ΓÇô Zero Trust & MultiΓÇæCloud Delivery"
+  ? [2026-04-09T14:55:26Z] "Azure Architect ΓÇô CCIE & 11+ yrs enterprise depth"
+  ? [2026-04-09T14:53:32Z] "Network Security Architect (Lead) ΓÇô 15+ yrs multicloud"
+  ? [2026-04-09T14:49:17Z] "Azure Architect ΓÇô 20+ yrs enterprise integration depth"
+  ? [2026-04-09T14:47:07Z] "Azure Architect ΓÇô 15+ yrs multicloud & HA delivery"
+  ? [2026-04-09T14:46:49Z] "Network Architect ΓÇô Zero Trust & MultiΓÇæCloud Depth"
+  ? [2026-04-09T14:46:30Z] "Azure Architect ΓÇô CCIE, 11+ yrs enterprise delivery"
+  ? [2026-04-09T14:41:07Z] "Azure Architect ΓÇô 20+ yrs enterprise delivery"
+  ? [2026-04-09T14:38:33Z] "Azure Architect ΓÇô 15+ yrs global multicloud delivery"
+  ? [2026-04-09T14:38:23Z] "Network Architect ΓÇô Zero Trust & MultiΓÇæCloud Depth"
+  ? [2026-04-09T14:38:01Z] "Azure Architect ΓÇô CCIE & 11+ yrs hybrid depth"
+  ? [2026-04-09T14:33:22Z] "Azure Architect ΓÇô 20+ yrs enterprise-scale delivery"
+  ? [2026-04-09T14:31:28Z] "Network Architect ΓÇô Zero Trust & Multi-Cloud Expertise"
+  ? [2026-04-09T14:31:14Z] "Network Architect ΓÇô CCIE, Azure Expert, 11+ yrs hybrid depth"
+  ? [2026-04-09T14:26:28Z] "Network Security Architect Lead ΓÇô 15+ yrs multicloud"
+  ? [2026-04-09T14:21:29Z] "Azure Architect ΓÇô 20+ yrs enterprise integration depth"
+  ? [2026-04-09T14:19:34Z] "Network Architect ΓÇô 15+ yrs Multicloud/SD-WAN Expertise"
+  ? [2026-04-09T14:19:22Z] "Network Architect ΓÇô Zero Trust Expertise for Global Infrastructure"
+  ? [2026-04-09T14:18:58Z] "Network Architect ΓÇô CCIE, Azure Expert, 11+ yrs hybrid depth"
+  ? [2026-04-09T13:49:54Z] "Azure Architect ΓÇô 20+ yrs integration & data depth"
+  ? [2026-04-09T13:48:51Z] "Azure Architect ΓÇô 15+ yrs resilient multicloud delivery"
+  ? [2026-04-09T13:47:44Z] "Azure Architect ΓÇô 11+ yrs, CCIE & FinOps depth"
+  ? [2026-04-09T13:47:03Z] "Azure Architect ΓÇô 26+ Years, Microsoft Certified"
+  ? [2026-04-09T13:46:27Z] "Azure Architect ΓÇô 15+ yrs global multicloud delivery"
+  ? [2026-04-09T13:45:33Z] "Azure Architect ΓÇô Multi-Cloud & DevSecOps Depth"
+  ? [2026-04-09T13:44:44Z] "Azure Architect ΓÇô CCIE, 11+ yrs hybrid depth"
+  ? [2026-04-09T13:44:06Z] "Azure Architect ΓÇô 26+ Years Enterprise & MultiΓÇæCloud Depth"
+  ? [2026-04-09T13:43:36Z] "Azure Architect ΓÇô Multi-Cloud & Security-Focused Delivery"
+  ? [2026-04-09T13:42:51Z] "Azure Architect ΓÇô 15+ yrs global multicloud delivery"
+  ? [2026-04-09T13:41:39Z] "Azure Architect ΓÇô 26+ Years Hybrid & MultiΓÇæCloud Depth"
+  ? [2026-04-09T13:41:04Z] "Azure Architect ΓÇô 11+ yrs, CCIE & FinOps depth"

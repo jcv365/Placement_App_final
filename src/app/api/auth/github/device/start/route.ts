@@ -1,11 +1,20 @@
 import { jsonError, jsonOk } from "@/lib/apiResponses";
+import { z } from "zod";
 
 export const runtime = "nodejs";
 
+const startBodySchema = z
+  .object({
+    clientId: z.string().min(1).optional(),
+  })
+  .default({});
+
 export async function POST(request: Request) {
-  const body = (await request.json().catch(() => ({}))) as {
-    clientId?: string;
-  };
+  const parsed = startBodySchema.safeParse(
+    await request.json().catch(() => ({})),
+  );
+  if (!parsed.success) return jsonError("Invalid request body", 400);
+  const body = parsed.data;
 
   const clientId = body.clientId ?? process.env.GITHUB_OAUTH_CLIENT_ID;
   if (!clientId) {

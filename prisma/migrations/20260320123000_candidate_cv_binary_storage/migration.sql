@@ -1,5 +1,4 @@
-ALTER TABLE "Candidate"
-ADD COLUMN "cvFileName" TEXT,
-ADD COLUMN "cvMimeType" TEXT,
-ADD COLUMN "cvFileData" BLOB,
-ADD COLUMN "cvUploadedAt" DATETIME;
+ALTER TABLE "Candidate" ADD COLUMN "cvFileName" TEXT;
+ALTER TABLE "Candidate" ADD COLUMN "cvMimeType" TEXT;
+ALTER TABLE "Candidate" ADD COLUMN "cvFileData" BLOB;
+ALTER TABLE "Candidate" ADD COLUMN "cvUploadedAt" DATETIME;

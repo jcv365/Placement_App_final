@@ -2,7 +2,9 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ErrorBanner } from "@/components/ui/error-banner";
 import { Input } from "@/components/ui/input";
+import { SuccessBanner } from "@/components/ui/success-banner";
 import { Textarea } from "@/components/ui/textarea";
 import { fetchJson } from "@/lib/client";
 import Link from "next/link";
@@ -43,6 +45,24 @@ export default function PlacementAlertsClient() {
   const [title, setTitle] = React.useState("");
   const [dueDate, setDueDate] = React.useState("");
   const [notes, setNotes] = React.useState("");
+  const [actionError, setActionError] = React.useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = React.useState<string | null>(
+    null,
+  );
+
+  const showError = React.useCallback((msg: string) => {
+    setActionError(msg);
+    setSuccessMessage(null);
+  }, []);
+
+  const showSuccess = React.useCallback((msg: string) => {
+    setSuccessMessage(msg);
+    setActionError(null);
+    setTimeout(
+      () => setSuccessMessage((prev) => (prev === msg ? null : prev)),
+      4000,
+    );
+  }, []);
 
   const now = new Date();
   const upcomingAlerts = alerts.filter(
@@ -77,7 +97,7 @@ export default function PlacementAlertsClient() {
 
   const handleCreateAlert = async () => {
     if (!applicationId) {
-      alert("Select an application first.");
+      showError("Select an application first.");
       return;
     }
 
@@ -98,9 +118,9 @@ export default function PlacementAlertsClient() {
       setDueDate("");
       setNotes("");
       await load();
-      alert("Placement alert created.");
+      showSuccess("Placement alert created.");
     } catch (error) {
-      alert((error as Error).message);
+      showError((error as Error).message);
     } finally {
       setCreating(false);
     }
@@ -119,7 +139,7 @@ export default function PlacementAlertsClient() {
       });
       await load();
     } catch (error) {
-      alert((error as Error).message);
+      showError((error as Error).message);
     } finally {
       setUpdatingAlertId(null);
     }
@@ -133,6 +153,8 @@ export default function PlacementAlertsClient() {
 
   return (
     <div className="space-y-6">
+      {actionError ? <ErrorBanner message={actionError} /> : null}
+      {successMessage ? <SuccessBanner message={successMessage} /> : null}
       <Card>
         <CardHeader>
           <CardTitle>Create placement alert</CardTitle>

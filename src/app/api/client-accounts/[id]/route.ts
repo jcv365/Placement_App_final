@@ -1,6 +1,7 @@
 import { jsonError, jsonOk } from "@/lib/apiResponses";
+import { writeAuditLog } from "@/lib/auditLog";
 import { prisma } from "@/lib/prisma";
-import { resolveTenantIdFromRequest } from "@/lib/tenant";
+import { requireAuthenticatedTenantId } from "@/lib/tenant";
 import { clientAccountUpdateSchema } from "@/lib/validation";
 
 export const runtime = "nodejs";
@@ -10,7 +11,7 @@ export async function PATCH(
   context: { params: Promise<{ id: string }> },
 ) {
   try {
-    const tenantId = resolveTenantIdFromRequest(request);
+    const tenantId = requireAuthenticatedTenantId(request);
     const { id } = await context.params;
     const body = clientAccountUpdateSchema.parse(await request.json());
 
@@ -49,10 +50,19 @@ export async function PATCH(
       },
     });
 
+    await writeAuditLog({
+      tenantId,
+      entityType: "clientAccount",
+      entityId: account.id,
+      action: "UPDATE",
+    });
+
     return jsonOk(account);
   } catch (error) {
-    return jsonError("Unable to update client account", 400, {
-      message: (error as Error).message,
-    });
+    if ((error as Error).message === "UNAUTHENTICATED") {
+      return jsonError("Authentication required", 401);
+    }
+    console.error("[CLIENT_ACCOUNT_UPDATE]", error);
+    return jsonError("Unable to update client account", 400);
   }
 }

@@ -1,0 +1,4 @@
+services:
+  app:
+    environment:
+      - ENFORCE_ATS_EMAIL_SAFETY_GATE=false

@@ -1,35 +1,66 @@
 import { generateStructuredJson } from "@/lib/aiJson";
 import { inferMetadataFromUploadedText } from "@/lib/aiMetadata";
 import { jsonError, jsonOk } from "@/lib/apiResponses";
+import { ATS_MIN_SAFE_EMAIL_SCORE, matchCvAgainstAts } from "@/lib/atsMatcher";
 import { generateEmail } from "@/lib/azureOpenAi";
-import { readSharedGithubAccessToken } from "@/lib/githubAuthStore";
-import { generateEmailViaGithubModels } from "@/lib/githubModels";
-import { createOutlookDraft, createOutlookDraftForMailbox } from "@/lib/graph";
+import { inferSuggestedRolesFromSkillsAndCertifications } from "@/lib/candidateProfile";
+import { DEFAULT_OUTLOOK_MAILBOX } from "@/lib/constants";
 import {
-    decryptGraphAccessToken,
-    isGraphConnectionUsable,
-} from "@/lib/graphConnectionStore";
+    buildFactualityRegenerationInstruction,
+    checkEmailFactuality,
+} from "@/lib/emailFactualityGuard";
+import { createOutlookDraftForMailbox } from "@/lib/graph";
+import {
+    isRemoteRole,
+    requiresNonSaLocationRestriction,
+    requiresUsWorkAuthorisation,
+} from "@/lib/jobClassification";
+import {
+    getAiGatewayEnvHint,
+    isAiGatewayConfigured,
+    requireAiGatewayConfig,
+    resolveAiGatewayModel,
+} from "@/lib/liteLlm";
 import { computeOpportunityId } from "@/lib/opportunity";
+import {
+    buildRedactedCvPdfFromText,
+    redactContactDetailsInPdf,
+} from "@/lib/pdfRedaction";
 import { prisma } from "@/lib/prisma";
 import {
     EMAIL_SYSTEM_PROMPT,
     EMAIL_USER_PROMPT,
     resolvePreferredWordRange,
+    type CompanyType,
 } from "@/lib/prompts";
+import { guardCandidateForOpportunity } from "@/lib/roleMatchGuard";
 import { getOwnerFilter, resolveTenantAccessScope } from "@/lib/tenantAccess";
 import { emailGenerateSchema } from "@/lib/validation";
 import { DEFAULT_VOSS_TOGGLES, type VossToggles } from "@/lib/voss";
 import crypto from "crypto";
 
 export const runtime = "nodejs";
-
-const MIN_VOSS_TECHNIQUE_COVERAGE = 0.9;
-const DEFAULT_OUTLOOK_MAILBOX = "charl.venter@dotcloud.africa";
+const EMAIL_GENERATION_DISABLED =
+  (process.env.EMAIL_GENERATION_DISABLED ?? "false").toLowerCase() === "true";
+// ATS safety gate is ON by default. Set ENFORCE_ATS_EMAIL_SAFETY_GATE=false in env only to
+// temporarily bypass for admin tooling that has already verified the match independently.
+const ENFORCE_ATS_EMAIL_SAFETY_GATE =
+  (process.env.ENFORCE_ATS_EMAIL_SAFETY_GATE ?? "true").toLowerCase() ===
+  "true";
+// Role match guard is ON by default. Set BYPASS_ROLE_MATCH_GUARD=true in env only to
+// temporarily bypass for bulk admin generation where matches have been pre-verified.
+const BYPASS_ROLE_MATCH_GUARD =
+  (process.env.BYPASS_ROLE_MATCH_GUARD ?? "false").toLowerCase() === "true";
 
 type OutlookDraftResult = {
   status: "created" | "skipped" | "failed";
   mailbox?: string;
   reason?: string;
+};
+
+type ParsedRecipients = {
+  valid: string[];
+  invalid: string[];
 };
 
 function safeAttachmentName(value: string): string {
@@ -40,20 +71,6 @@ function safeAttachmentName(value: string): string {
     .replace(/^-+|-+$/g, "");
 
   return base || "candidate";
-}
-
-function getCookieValue(request: Request, name: string): string | undefined {
-  const cookieHeader = request.headers.get("cookie");
-  if (!cookieHeader) return undefined;
-
-  const parts = cookieHeader.split(";").map((part) => part.trim());
-  for (const part of parts) {
-    const [cookieName, ...cookieValueParts] = part.split("=");
-    if (cookieName !== name) continue;
-    return decodeURIComponent(cookieValueParts.join("="));
-  }
-
-  return undefined;
 }
 
 function unique(items: string[]): string[] {
@@ -76,19 +93,28 @@ function unique(items: string[]): string[] {
 
 function parseDraftRecipients(
   rawRecipients: string | null | undefined,
-): string[] {
+): ParsedRecipients {
   if (!rawRecipients) {
-    return [];
+    return { valid: [], invalid: [] };
   }
 
-  return Array.from(
+  const uniqueValues = Array.from(
     new Set(
       rawRecipients
         .split(/[;,]/)
         .map((item) => item.trim().toLowerCase())
-        .filter((item) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(item)),
+        .filter(Boolean),
     ),
   );
+
+  const valid = uniqueValues.filter((item) =>
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(item),
+  );
+  const invalid = uniqueValues.filter(
+    (item) => !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(item),
+  );
+
+  return { valid, invalid };
 }
 
 async function createAutomaticOutlookDraft(params: {
@@ -96,109 +122,132 @@ async function createAutomaticOutlookDraft(params: {
   companyId?: string | null;
   subject: string;
   htmlBody: string;
-  to: string[];
+  recipients: ParsedRecipients;
   candidateName: string;
   candidateCvText: string;
+  candidateEmail?: string | null;
+  candidatePhone?: string | null;
   candidateCvFileName?: string | null;
   candidateCvMimeType?: string | null;
   candidateCvFileData?: Uint8Array | Buffer | null;
+  /** Pre-formatted ATS PDF — used as the attachment when available. */
+  candidateFormattedCvPdfData?: Uint8Array | Buffer | null;
+  candidateFormattedCvFileName?: string | null;
 }): Promise<OutlookDraftResult> {
-  if (params.to.length === 0) {
+  if (params.recipients.valid.length === 0) {
+    if (params.recipients.invalid.length > 0) {
+      return {
+        status: "skipped",
+        reason:
+          "Opportunity contact email is invalid. Update the job contact email and regenerate.",
+      };
+    }
+
     return {
       status: "skipped",
       reason: "No opportunity email was captured for this job.",
     };
   }
 
-  const settings = params.companyId
-    ? await prisma.companySettings.findUnique({
-        where: { companyId: params.companyId },
-        select: {
-          outlookMailbox: true,
-          graphAccessTokenEncrypted: true,
-          graphTokenExpiresAt: true,
-          company: { select: { tenantId: true } },
-        },
-      })
-    : null;
+  // Resolve mailbox: prefer per-company setting, then process-level env, then constant.
+  let mailbox =
+    process.env.OUTLOOK_SHARED_MAILBOX?.trim().toLowerCase() ||
+    DEFAULT_OUTLOOK_MAILBOX;
 
-  if (settings && settings.company.tenantId !== params.tenantId) {
-    return {
-      status: "failed",
-      reason: "Company mailbox settings could not be resolved for this tenant.",
-    };
+  if (params.companyId) {
+    const companySettings = await prisma.companySettings.findUnique({
+      where: { companyId: params.companyId },
+      select: { outlookMailbox: true },
+    });
+    if (companySettings?.outlookMailbox?.trim()) {
+      mailbox = companySettings.outlookMailbox.trim().toLowerCase();
+    }
   }
 
-  const mailbox =
-    settings?.outlookMailbox?.trim().toLowerCase() || DEFAULT_OUTLOOK_MAILBOX;
-
-  const hasConnectedCompanyGraph =
-    settings &&
-    isGraphConnectionUsable({
-      graphAccessTokenEncrypted: settings.graphAccessTokenEncrypted,
-      graphTokenExpiresAt: settings.graphTokenExpiresAt,
-    }) &&
-    settings.graphAccessTokenEncrypted;
-
   try {
-    const hasBinaryCv =
-      Boolean(params.candidateCvFileData) &&
-      (params.candidateCvFileData?.byteLength ?? 0) > 0;
+    // Prefer the pre-formatted ATS PDF — it is already redacted and professionally
+    // structured. Only fall back to the original PDF redaction path when it is absent.
+    const hasFormattedPdf =
+      Boolean(params.candidateFormattedCvPdfData) &&
+      (params.candidateFormattedCvPdfData?.byteLength ?? 0) > 0;
 
-    const attachments = hasBinaryCv
+    let redactedPdfBase64: string | undefined;
+
+    if (hasFormattedPdf && params.candidateFormattedCvPdfData) {
+      redactedPdfBase64 = Buffer.from(
+        params.candidateFormattedCvPdfData,
+      ).toString("base64");
+    } else {
+      const hasBinaryCv =
+        Boolean(params.candidateCvFileData) &&
+        (params.candidateCvFileData?.byteLength ?? 0) > 0;
+      const looksLikePdfCv =
+        hasBinaryCv &&
+        ((params.candidateCvMimeType?.trim().toLowerCase() || "") ===
+          "application/pdf" ||
+          (params.candidateCvFileName?.trim().toLowerCase().endsWith(".pdf") ??
+            false));
+
+      if (looksLikePdfCv && params.candidateCvFileData) {
+        try {
+          const redactedPdf = await redactContactDetailsInPdf({
+            pdfBytes: Buffer.from(params.candidateCvFileData),
+            email: params.candidateEmail,
+            phone: params.candidatePhone,
+          });
+          redactedPdfBase64 = redactedPdf.toString("base64");
+        } catch (error) {
+          // Keep the proper generation journey running even when runtime PDF
+          // redaction dependencies are unavailable in the current environment.
+          console.warn("[OUTLOOK_DRAFT_REDaction_FALLBACK]", {
+            reason: (error as Error)?.message ?? "unknown",
+          });
+          redactedPdfBase64 = undefined;
+        }
+      }
+
+      if (!redactedPdfBase64 && params.candidateCvText.trim()) {
+        const fallbackRedactedPdf = await buildRedactedCvPdfFromText({
+          cvText: params.candidateCvText,
+          candidateName: params.candidateName,
+          email: params.candidateEmail,
+          phone: params.candidatePhone,
+        });
+        redactedPdfBase64 = fallbackRedactedPdf.toString("base64");
+      }
+    }
+
+    // Attach only a redacted version of the original uploaded PDF.
+    // If no binary PDF is available, no CV attachment is added.
+    const attachments = redactedPdfBase64
       ? [
           {
             filename:
-              params.candidateCvFileName?.trim() ||
+              (hasFormattedPdf
+                ? params.candidateFormattedCvFileName?.trim()
+                : params.candidateCvFileName?.trim()) ||
               `${safeAttachmentName(params.candidateName)}-cv.pdf`,
-            contentBase64: params.candidateCvFileData
-              ? Buffer.from(params.candidateCvFileData).toString("base64")
-              : undefined,
-            contentType:
-              params.candidateCvMimeType?.trim() || "application/pdf",
+            contentBase64: redactedPdfBase64,
+            contentType: "application/pdf",
           },
         ]
-      : params.candidateCvText.trim()
-        ? [
-            {
-              filename: `${safeAttachmentName(params.candidateName)}-cv.txt`,
-              content: params.candidateCvText.trim(),
-              contentType: "text/plain",
-            },
-          ]
-        : [];
-
-    if (hasConnectedCompanyGraph && settings?.graphAccessTokenEncrypted) {
-      await createOutlookDraft({
-        accessToken: decryptGraphAccessToken(
-          settings.graphAccessTokenEncrypted,
-        ),
-        subject: params.subject,
-        htmlBody: params.htmlBody,
-        to: params.to,
-        attachments,
-      });
-
-      return {
-        status: "created",
-        mailbox: "connected-company-account",
-      };
-    }
+      : [];
 
     await createOutlookDraftForMailbox({
       mailbox,
       subject: params.subject,
       htmlBody: params.htmlBody,
-      to: params.to,
+      to: params.recipients.valid,
       attachments,
     });
 
     return { status: "created", mailbox };
   } catch (error) {
+    console.error("[OUTLOOK_DRAFT]", error);
     return {
       status: "failed",
       mailbox,
-      reason: (error as Error).message,
+      reason: "Failed to create Outlook draft",
     };
   }
 }
@@ -365,6 +414,54 @@ function resolveAdminCustomPrompt(
   return trimmed.slice(0, 4000);
 }
 
+async function generatePartnerPositioning(
+  partnerName: string,
+  companyType: CompanyType,
+): Promise<string> {
+  const typeLabel =
+    companyType === "support"
+      ? "specialist support and services partner"
+      : "specialist professional services firm";
+  const systemPrompt =
+    "You write concise, factual company positioning statements in British English. Output only the positioning paragraph — no preamble, no quotes, no JSON wrapper.";
+  const userPrompt = `Write a 3–4 sentence company positioning statement for "${partnerName}", a ${typeLabel}. Cover: what the firm does, how it supports clients, its accountability model (B2B services basis, delivery quality, continuity), and why it is credible. Do not invent specific technologies or geographies unless they are obvious from the company name. Keep it under 80 words.`;
+
+  const { apiBase, apiKey } = requireAiGatewayConfig(
+    "AI gateway not configured for positioning generation",
+  );
+  const model = resolveAiGatewayModel();
+  const response = await fetch(`${apiBase}/chat/completions`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${apiKey}`,
+    },
+    body: JSON.stringify({
+      model,
+      temperature: 0.4,
+      max_tokens: 200,
+      messages: [
+        { role: "system", content: systemPrompt },
+        { role: "user", content: userPrompt },
+      ],
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Positioning generation failed: ${response.status}`);
+  }
+
+  const data = (await response.json()) as {
+    choices?: { message?: { content?: string } }[];
+  };
+  const content = data.choices?.[0]?.message?.content?.trim();
+  if (!content) {
+    throw new Error("Positioning generation returned empty content");
+  }
+
+  return content.slice(0, 1000);
+}
+
 function htmlToPlainText(html: string): string {
   return html
     .replace(/<style[\s\S]*?<\/style>/gi, " ")
@@ -378,168 +475,59 @@ function htmlToPlainText(html: string): string {
     .trim();
 }
 
-function countWords(text: string): number {
-  const matches = text.match(/[A-Za-z0-9][A-Za-z0-9'-]*/g);
-  return matches?.length ?? 0;
+function escapeRegExp(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
-function buildLengthFailureAssessment(params: {
-  rangeLabel: string;
-  min: number;
-  max: number;
-  actual: number;
-}): DraftQualityAssessment {
-  return {
-    pass: false,
-    score: 0,
-    failures: [
-      `Word count is outside target range (${params.rangeLabel}).`,
-      `Actual length was ${params.actual} words.`,
-    ],
-    fixInstructions: `Regenerate to land strictly within ${params.min}-${params.max} words and preserve factual JD/CV mapping.`,
-    standoutStrength: "",
-  };
-}
-
-function detectTemplateSignals(text: string): string[] {
-  const normalised = text.replace(/\s+/g, " ").trim().toLowerCase();
-  const signals: string[] = [];
-
-  const genericOpeners = [
-    /^hi\s+hiring\s+team\b/,
-    /^for\s+your\s+.+\s+role\b/,
-    /^based\s+on\s+your\s+.+\s+brief\b/,
-    /^would\s+it\s+be\s+a\s+bad\s+idea\s+to\b/,
-  ];
-
-  if (genericOpeners.some((pattern) => pattern.test(normalised))) {
-    signals.push("Opening is too generic and template-like.");
-  }
-
-  const repetitivePhrases = [
-    /strong\s+fit\s+for\s+your/i,
-    /key\s+strengths\s+include/i,
-    /confirm\s+fit\s+and\s+next\s+steps/i,
-  ];
-
-  const repetitiveCount = repetitivePhrases.reduce(
-    (count, pattern) => count + (pattern.test(normalised) ? 1 : 0),
-    0,
-  );
-  if (repetitiveCount >= 2) {
-    signals.push(
-      "Draft uses stock phrasing that reads like a reusable template.",
-    );
-  }
-
-  return signals;
-}
-
-function buildTemplateFailureAssessment(
-  signals: string[],
-): DraftQualityAssessment {
-  return {
-    pass: false,
-    score: 0,
-    failures: signals,
-    fixInstructions:
-      "Rewrite with role-specific phrasing, varied sentence starts, and evidence-led claims that avoid stock agency language.",
-    standoutStrength: "",
-  };
-}
-
-type VossCoverageResult = {
-  enabledCount: number;
-  detectedCount: number;
-  requiredCount: number;
-  coverageRatio: number;
-  missingTechniques: string[];
-};
-
-function detectVossTechniques(
+/**
+ * Checks that the partner company name appears somewhere in the generated email body.
+ * A draft that omits the C2C partner cannot fulfil our positioning requirement.
+ */
+function detectCompanyPositioning(
   plainText: string,
-  toggles: VossToggles,
-): VossCoverageResult {
-  const text = plainText.toLowerCase();
-  const tail = text.slice(-420);
-
-  const detected = {
-    accusations_audit:
-      /\b(?:you may be thinking|you might be wondering|you may worry|you might worry|you may be concerned|you could understandably question|at first glance|it may seem)\b/.test(
-        text,
-      ),
-    tactical_empathy:
-      /\b(?:it sounds like|it seems like|it looks like|it appears that|given your .*?(?:priority|pressure|timeline)|you(?:'re| are) balancing|you(?:'re| are) under pressure)\b/.test(
-        text,
-      ),
-    labelling: /\b(?:it seems|it sounds|it looks|it appears)\b/.test(text),
-    mirroring:
-      /(?:^|[.!?]\s+)(?!how\b|what\b|would\b|could\b|should\b|can\b|is\b|are\b)(?:[a-z0-9'-]+\s+){2,7}[a-z0-9'-]+\?/i.test(
-        plainText,
-      ),
-    calibrated_questions: /\b(?:how|what)\b[^?]{0,140}\?/i.test(plainText),
-    no_oriented_closing:
-      /\b(?:would it be unreasonable|would it be a bad idea|would you be against|would it be out of the question|is it a bad idea)\b[^?]{0,140}\?/i.test(
-        tail,
-      ),
-  } as const;
-
-  const enabledTechniques = (
-    Object.keys(toggles) as Array<keyof VossToggles>
-  ).filter((key) => toggles[key]);
-
-  const missingTechniques = enabledTechniques
-    .filter((key) => !detected[key])
-    .map((key) => key.replace(/_/g, " "));
-
-  const enabledCount = enabledTechniques.length;
-  const detectedCount = enabledCount - missingTechniques.length;
-  const requiredCount =
-    enabledCount === 0
-      ? 0
-      : Math.max(1, Math.ceil(enabledCount * MIN_VOSS_TECHNIQUE_COVERAGE));
-  const coverageRatio =
-    enabledCount === 0 ? 1 : detectedCount / Math.max(1, enabledCount);
-
-  return {
-    enabledCount,
-    detectedCount,
-    requiredCount,
-    coverageRatio,
-    missingTechniques,
-  };
+  partnerName: string,
+): boolean {
+  if (!partnerName.trim()) return true;
+  return plainText.toLowerCase().includes(partnerName.trim().toLowerCase());
 }
 
-function buildVossCoverageFailureAssessment(
-  coverage: VossCoverageResult,
-): DraftQualityAssessment {
-  const thresholdPercent = Math.round(MIN_VOSS_TECHNIQUE_COVERAGE * 100);
-  const failures = [
-    `Voss coverage below threshold: detected ${coverage.detectedCount}/${coverage.enabledCount} enabled techniques (required ${coverage.requiredCount}).`,
-  ];
+function containsExpectedCandidateName(params: {
+  expectedName: string;
+  subject: string;
+  htmlBody: string;
+}): boolean {
+  const expected = cleanItem(params.expectedName);
+  if (!expected) return false;
 
-  if (coverage.missingTechniques.length > 0) {
-    failures.push(
-      `Missing techniques: ${coverage.missingTechniques.join(", ")}.`,
-    );
-  }
+  const pattern = new RegExp(
+    `\\b${escapeRegExp(expected).replace(/\\s+/g, "\\\\s+")}\\b`,
+    "i",
+  );
 
-  return {
-    pass: false,
-    score: 0,
-    failures,
-    fixInstructions: `Regenerate and include at least ${thresholdPercent}% of enabled techniques in natural language while keeping the draft role-specific and evidence-led.`,
-    standoutStrength: "",
-  };
+  const bodyPlainText = htmlToPlainText(params.htmlBody);
+  return pattern.test(params.subject) || pattern.test(bodyPlainText);
+}
+
+/** Truncate text to stay within the LLM's input token budget.
+ *  Rough heuristic: ~4 characters per token. The system prompt and template
+ *  consume ~3 000 tokens, so we cap user-provided text to `maxChars`. */
+function truncateForLlm(text: string, maxChars = 8000): string {
+  if (text.length <= maxChars) return text;
+  return text.slice(0, maxChars) + "\n…[truncated]";
 }
 
 function resolveEmailCompletionTokenBudget(preferredWordRange: {
   max: number;
 }): number {
-  // Approximate token budget from word target to avoid truncation on long drafts.
+  // Reasoning models (e.g. deepseek, glm) consume tokens for chain-of-thought
+  // before producing visible output.  Budget must be large enough to cover both
+  // the thinking phase AND the final email JSON.  Observed: glm-5.1 uses ~20k
+  // tokens for reasoning alone.  Using 16384 as the floor ensures most reasoning
+  // models can complete, but callers should pass an explicit value when they
+  // know the model needs more.
   return Math.max(
-    1200,
-    Math.min(4000, Math.round(preferredWordRange.max * 2.2)),
+    16384,
+    Math.min(32768, Math.round(preferredWordRange.max * 4)),
   );
 }
 
@@ -574,14 +562,18 @@ function buildRecentDraftsToAvoid(
 
 function pickVariationHint(): string {
   const hints = [
-    "Lead with the hiring team's delivery pressure, then pivot to candidate impact.",
-    "Open with role-outcome language instead of partner positioning language.",
-    "Use a concise consultative opening and keep strengths bullets practical.",
-    "Start with brief technical alignment, then add commercial confidence.",
-    "Frame the first paragraph around risk reduction and speed-to-productivity.",
-    "Position the candidate as the practical answer to one hard hiring constraint.",
-    "Use a measured challenger tone: specific, factual, and commercially decisive.",
-    "Prioritise decision clarity: why this profile now, and what it likely unlocks.",
+    "Lead with the hiring team's most urgent delivery pressure, then pivot to candidate impact evidence.",
+    "Open with a specific operational consequence of leaving this role unfilled, then introduce the candidate as the resolution.",
+    "Start with the single most impressive CV fact that directly addresses the JD's primary requirement.",
+    "Frame the opening around the commercial risk the brief implies, then show how the candidate's track record mitigates it.",
+    "Use a consultative opening that names a specific technical challenge from the JD, then bridge to candidate evidence.",
+    "Open with a forward-looking impact statement — what this candidate could deliver in the first 90 days based on CV evidence.",
+    "Lead with the candidate's strongest differentiator relative to the typical talent pool for this role.",
+    "Start with a concise market observation relevant to this role's scarcity, then position the candidate as a timely solution.",
+    "Open by naming the JD's hardest-to-fill requirement and immediately show the candidate's best evidence against it.",
+    "Frame the first paragraph around what the hiring manager likely values most (speed, quality, domain knowledge) based on JD signals.",
+    "Use a measured challenger tone: open with a pointed observation about what this role really needs, then evidence it.",
+    "Lead with the candidate's most quantifiable achievement that maps to a specific JD deliverable.",
   ];
 
   return hints[crypto.randomInt(0, hints.length)] ?? hints[0];
@@ -594,149 +586,55 @@ type EmailEvidenceContext = {
   mirroredPhrase: string;
 };
 
+function buildFallbackEvidenceContext(params: {
+  jobText: string;
+  cvText: string;
+  roleTitle?: string;
+}): EmailEvidenceContext {
+  const jobLines = params.jobText
+    .split(/\r?\n/)
+    .map(cleanItem)
+    .filter(Boolean)
+    .slice(0, 8);
+
+  const cvLines = params.cvText
+    .split(/\r?\n/)
+    .map(cleanItem)
+    .filter(Boolean)
+    .slice(0, 10);
+
+  const role = params.roleTitle?.trim() || "the role";
+  const candidateSummary = [
+    `Candidate profile extracted for ${role}.`,
+    ...cvLines.slice(0, 5),
+  ]
+    .filter(Boolean)
+    .join("\n");
+
+  const jobHighlights = [`Role focus: ${role}.`, ...jobLines.slice(0, 5)]
+    .filter(Boolean)
+    .join("\n");
+
+  const cvToJdAlignment = [
+    `Role requirement context: ${role}.`,
+    "Candidate CV and job description were matched using available extracted details.",
+    "Use evidence-led claims and avoid unsupported assumptions.",
+  ].join("\n");
+
+  return {
+    candidateSummary,
+    jobHighlights,
+    cvToJdAlignment,
+    mirroredPhrase: `filling ${role} with relevant proven capability`,
+  };
+}
+
 type EmailDraftResult = {
   subject: string;
   html: string;
 };
 
-type DraftQualityAssessment = {
-  pass: boolean;
-  score: number;
-  failures: string[];
-  fixInstructions: string;
-  standoutStrength: string;
-};
-
-function normaliseAssessment(
-  raw: Partial<DraftQualityAssessment>,
-): DraftQualityAssessment {
-  const score = Number.isFinite(raw.score)
-    ? Math.max(0, Math.min(100, Math.round(raw.score as number)))
-    : 0;
-
-  const failures = Array.isArray(raw.failures)
-    ? raw.failures
-        .map((item) => (typeof item === "string" ? item.trim() : ""))
-        .filter(Boolean)
-        .slice(0, 8)
-    : [];
-
-  const fixInstructions =
-    typeof raw.fixInstructions === "string" && raw.fixInstructions.trim()
-      ? raw.fixInstructions.trim()
-      : "Strengthen specificity, evidence mapping, and commercial impact while keeping British English and Outlook-safe HTML.";
-
-  const standoutStrength =
-    typeof raw.standoutStrength === "string" && raw.standoutStrength.trim()
-      ? raw.standoutStrength.trim()
-      : "";
-
-  const pass =
-    raw.pass === true ||
-    (score >= 82 && failures.length === 0 && fixInstructions.length < 20);
-
-  return {
-    pass,
-    score,
-    failures,
-    fixInstructions,
-    standoutStrength,
-  };
-}
-
-async function assessEmailDraftQuality(params: {
-  provider: "github-models" | "azure-openai";
-  githubAccessToken?: string;
-  companyName: string;
-  roleTitle: string;
-  jobText: string;
-  cvText: string;
-  draft: EmailDraftResult;
-  preferredLength?: string;
-}): Promise<DraftQualityAssessment> {
-  const preferredRange = resolvePreferredWordRange(params.preferredLength);
-  const systemPrompt =
-    "You are a strict quality reviewer for client-submission emails. Score quality and return strict JSON only.";
-
-  const userPrompt = `Review this draft for role-specific quality and differentiation.
-
-Context:
-- Company: ${params.companyName}
-- Role: ${params.roleTitle}
-
-JD SOURCE:
-${params.jobText}
-
-CV SOURCE:
-${params.cvText}
-
-DRAFT SUBJECT:
-${params.draft.subject}
-
-DRAFT HTML:
-${params.draft.html}
-
-Expected word range:
-${preferredRange.label}
-
-Scoring rubric (0-100):
-- Specificity to this exact role/company (20)
-- Evidence mapping from JD to CV (20)
-- Commercial clarity and decision usefulness (20)
-- Distinctive, non-generic voice (15)
-- Voss execution quality (15)
-- Structure, British English, and professionalism (10)
-
-Fail criteria:
-- Generic agency boilerplate
-- Weak or missing evidence linkage
-- Overblown claims not in JD/CV
-- Non-British English tone/spelling issues
-- Poorly actionable close
-- Missing or tokenistic negotiation technique usage when techniques are expected
-- No clear urgency, de-risking, or business-impact articulation
-- Word count outside expected range
-
-Return JSON only with keys:
-{"pass":false,"score":0,"failures":[],"fixInstructions":"","standoutStrength":""}
-
-Rules:
-- pass=true only if score >= 85 and there are no substantive fail criteria.
-- fixInstructions must be concise and actionable for one regeneration pass.
-- failures should be short bullet-style phrases.`;
-
-  const assessed = await generateStructuredJson<
-    Partial<DraftQualityAssessment>
-  >({
-    provider: params.provider,
-    githubAccessToken: params.githubAccessToken,
-    systemPrompt,
-    userPrompt,
-    maxTokens: 600,
-    temperature: 0,
-  });
-
-  return normaliseAssessment(assessed);
-}
-
-function buildRegenerationGuidance(assessment: DraftQualityAssessment): string {
-  const failureText = assessment.failures.length
-    ? assessment.failures.map((item) => `- ${item}`).join("\n")
-    : "- No explicit failures listed.";
-
-  return `Quality remediation required before finalising this draft.
-Reviewer score: ${assessment.score}/100
-Observed weaknesses:
-${failureText}
-Fix instructions:
-${assessment.fixInstructions}
-
-Regenerate the draft and resolve these weaknesses while preserving factual accuracy and British English.`;
-}
-
 async function generateEmailEvidenceContext(params: {
-  provider: "github-models" | "azure-openai";
-  githubAccessToken?: string;
   jobText: string;
   cvText: string;
   roleTitle?: string;
@@ -767,18 +665,25 @@ async function generateEmailEvidenceContext(params: {
   };
 
   const systemPrompt =
-    "Generate strict JSON only with keys candidateSummary, jobHighlights, cvToJdAlignment, mirroredPhrase from provided JD and CV text. Use factual evidence only from the documents. Keep each value concise, professional, and client-facing in British English.";
+    "Generate strict JSON only with keys candidateSummary, jobHighlights, cvToJdAlignment, mirroredPhrase from provided JD and CV text. Extract factual evidence only from the documents. Be specific — include quantities, timeframes, team sizes, technologies, certifications, and scale indicators wherever they appear. Keep each value concise, professional, and client-facing in British English.";
 
-  const userPrompt = `JOB DESCRIPTION:\n${params.jobText}\n\nCANDIDATE CV:\n${params.cvText}\n\nRole title hint: ${params.roleTitle ?? "Unknown"}\n\nRules:\n- candidateSummary: 4-7 concise lines including experience, technical strengths, certifications, and role relevance.\n- jobHighlights: 4-7 concise lines describing role priorities and must-haves from JD text.\n- cvToJdAlignment: 5-8 evidence bullets that map JD priorities to CV proof points; include any gaps neutrally.\n- mirroredPhrase: one short phrase capturing the core brief priority.\nReturn JSON only.`;
+  const userPrompt = `JOB DESCRIPTION:\n${params.jobText}\n\nCANDIDATE CV:\n${params.cvText}\n\nRole title hint: ${params.roleTitle ?? "Unknown"}\n\nRules:\n- candidateSummary: 5-8 concise lines. Include: total years of experience, specific domain/industry background, key technical skills with proficiency indicators, certifications, notable scale achievements (team sizes managed, systems delivered, uptime figures), and direct relevance to this role. Prioritise facts that differentiate this candidate from a generic applicant.\n- jobHighlights: 5-8 concise lines. Extract: primary deliverables, must-have technical requirements, stated or implied timeline pressures, team structure context, seniority expectations, any stated business constraints or risks. Separate hard requirements from nice-to-haves.\n- cvToJdAlignment: 6-10 evidence bullets, each following the pattern: "[JD requirement] → [specific CV evidence with quantities/timeframes] → [likely business impact if hired]". Include 1-2 gap bullets where the CV does not directly evidence a JD requirement, stated honestly.\n- mirroredPhrase: one short phrase (5-10 words) capturing the core business pressure or priority implied by the JD.\nReturn JSON only.`;
 
-  const result = await generateStructuredJson<Partial<EmailEvidenceContext>>({
-    provider: params.provider,
-    githubAccessToken: params.githubAccessToken,
-    systemPrompt,
-    userPrompt,
-    maxTokens: 900,
-    temperature: 0,
-  });
+  let result: Partial<EmailEvidenceContext>;
+  try {
+    result = await generateStructuredJson<Partial<EmailEvidenceContext>>({
+      systemPrompt,
+      userPrompt,
+      maxTokens: 1200,
+      temperature: 0,
+    });
+  } catch {
+    return buildFallbackEvidenceContext({
+      jobText: params.jobText,
+      cvText: params.cvText,
+      roleTitle: params.roleTitle,
+    });
+  }
 
   const candidateSummary = asCleanText(result.candidateSummary);
   const jobHighlights = asCleanText(result.jobHighlights);
@@ -791,7 +696,11 @@ async function generateEmailEvidenceContext(params: {
     !cvToJdAlignment ||
     !mirroredPhrase
   ) {
-    throw new Error("AI evidence context response is incomplete");
+    return buildFallbackEvidenceContext({
+      jobText: params.jobText,
+      cvText: params.cvText,
+      roleTitle: params.roleTitle,
+    });
   }
 
   return {
@@ -811,22 +720,31 @@ function isUniqueConstraintError(error: unknown): boolean {
   );
 }
 
+function isDemo(): boolean {
+  if (process.env.DEMO_MODE) return true;
+  const dbUrl = process.env.DATABASE_URL ?? "";
+  return dbUrl.includes("demo.db");
+}
+
 export async function POST(request: Request) {
+  if (EMAIL_GENERATION_DISABLED) {
+    return jsonError("Email generation is currently disabled.", 503, {
+      hint: "Contact an admin to re-enable EMAIL_GENERATION_DISABLED.",
+    });
+  }
   try {
     const scope = resolveTenantAccessScope(request);
     const tenantId = scope.tenantId;
     const body = emailGenerateSchema.parse(await request.json());
-    const selectedProvider =
-      body.aiProvider ??
-      (process.env.AI_PROVIDER as
-        | "auto"
-        | "azure-openai"
-        | "copilot-studio"
-        | "github-models"
-        | undefined) ??
-      "auto";
+    // Allow per-request model override via `model` or `aiProvider` field.
+    const bodyExt = body as Record<string, unknown>;
+    const modelOverride = (bodyExt.model ?? bodyExt.aiProvider) as
+      | string
+      | undefined;
 
-    const [job, candidate] = await Promise.all([
+    const demoMode = isDemo();
+
+    const [job, candidate, senderUser] = await Promise.all([
       prisma.job.findFirst({
         where: {
           id: body.jobId,
@@ -842,6 +760,12 @@ export async function POST(request: Request) {
           ...getOwnerFilter(scope),
         },
       }),
+      scope.userId
+        ? prisma.tenantUser.findUnique({
+            where: { id: scope.userId },
+            select: { fullName: true, email: true },
+          })
+        : Promise.resolve(null),
     ]);
 
     if (!job || !candidate) {
@@ -858,6 +782,13 @@ export async function POST(request: Request) {
       );
     }
 
+    // Gate: a valid opportunity email must be present before committing to generation.
+    // Jobs with no contactable address cannot be responded to and must not be catalogued.
+    const recipients = parseDraftRecipients(job.opportunityEmail);
+    if (recipients.valid.length === 0) {
+      return jsonOk({ skipped: true, reason: "no_opportunity_email" });
+    }
+
     const ruleset = body.rulesetId
       ? await prisma.ruleSet.findFirst({
           where: { id: body.rulesetId, tenantId },
@@ -865,14 +796,6 @@ export async function POST(request: Request) {
       : await prisma.ruleSet.findFirst({
           where: { isDefault: true, tenantId },
         });
-
-    const githubTokenFromCookie = getCookieValue(request, "githubAccessToken");
-    const githubTokenFromStore = await readSharedGithubAccessToken();
-    const githubToken =
-      body.githubAccessToken ??
-      githubTokenFromCookie ??
-      githubTokenFromStore ??
-      process.env.GITHUB_MODELS_TOKEN;
 
     const rulesJson = (ruleset?.rulesJson ?? {}) as Record<string, unknown>;
     const adminCustomPrompt = resolveAdminCustomPrompt(rulesJson);
@@ -884,57 +807,89 @@ export async function POST(request: Request) {
     const preferredWordRange = resolvePreferredWordRange(preferredLength);
     const maxOutputTokens =
       resolveEmailCompletionTokenBudget(preferredWordRange);
-    const emailSystemPrompt = EMAIL_SYSTEM_PROMPT(preferredWordRange);
+    const companyType: CompanyType =
+      rulesJson.company_type === "support" ? "support" : "placement";
     const c2cPartnerName =
       typeof rulesJson.c2c_partner_name === "string" &&
       rulesJson.c2c_partner_name.trim()
         ? rulesJson.c2c_partner_name.trim()
         : (process.env.DEFAULT_C2C_PARTNER_NAME ?? "C2C Partner Ltd");
-    const azureConfigured = Boolean(
-      process.env.AZURE_OPENAI_ENDPOINT &&
-      process.env.AZURE_OPENAI_API_KEY &&
-      process.env.AZURE_OPENAI_DEPLOYMENT,
-    );
-    const githubConfigured = Boolean(githubToken);
 
-    let providerToUse: "azure-openai" | "github-models" | undefined;
-    if (selectedProvider === "github-models") {
-      if (!githubConfigured) {
-        return jsonError(
-          "GitHub Models is selected but no token is configured",
-          400,
-          {
-            hint: "Provide githubAccessToken in the request or set GITHUB_MODELS_TOKEN in the app environment.",
-          },
+    // Auto-generate positioning if empty, then cache it back to the ruleset.
+    let c2cPartnerPositioning =
+      typeof rulesJson.c2c_partner_positioning === "string" &&
+      rulesJson.c2c_partner_positioning.trim()
+        ? rulesJson.c2c_partner_positioning.trim()
+        : undefined;
+
+    if (!c2cPartnerPositioning) {
+      try {
+        c2cPartnerPositioning = await generatePartnerPositioning(
+          c2cPartnerName,
+          companyType,
         );
+        // Persist so it's only generated once.
+        if (ruleset) {
+          await prisma.ruleSet.update({
+            where: { id: ruleset.id },
+            data: {
+              rulesJson: {
+                ...rulesJson,
+                c2c_partner_positioning: c2cPartnerPositioning,
+              },
+            },
+          });
+        }
+      } catch {
+        // Non-fatal — proceed without positioning if generation fails.
       }
-      providerToUse = "github-models";
-    } else if (selectedProvider === "azure-openai") {
-      if (!azureConfigured && githubConfigured) {
-        providerToUse = "github-models";
-      } else if (!azureConfigured) {
-        return jsonError(
-          "Azure OpenAI is selected but required environment variables are missing",
-          400,
-          {
-            hint: "Set AZURE_OPENAI_ENDPOINT, AZURE_OPENAI_API_KEY, and AZURE_OPENAI_DEPLOYMENT in the app environment.",
-          },
-        );
-      }
-      providerToUse = "azure-openai";
-    } else {
-      if (githubConfigured) {
-        providerToUse = "github-models";
-      } else if (azureConfigured) {
-        providerToUse = "azure-openai";
-      } else {
-        return jsonError(
-          "No AI provider is configured for email generation",
-          400,
-          {
-            hint: "Connect GitHub Models or Azure OpenAI in Settings, then generate again.",
-          },
-        );
+    }
+
+    const emailSystemPrompt = EMAIL_SYSTEM_PROMPT(
+      preferredWordRange,
+      c2cPartnerPositioning,
+      companyType,
+    );
+    const gatewayConfigured = isAiGatewayConfigured();
+
+    if (!gatewayConfigured) {
+      return jsonError("LiteLLM is not configured for email generation", 400, {
+        hint: getAiGatewayEnvHint(),
+      });
+    }
+
+    // Deduplicate: compute the content hash early and return a cached draft if the same
+    // job/CV/rules inputs have already been used to generate for this pair.
+    const generatedFrom = hashInputs(job.rawText, candidate.rawCV, rulesJson);
+    {
+      const dedupOpportunityId = body.applicationId
+        ? null
+        : `${tenantId}:${computeOpportunityId({
+            candidateName: candidate.fullName,
+            roleTitle: job.title,
+            companyName: job.company?.name,
+          })}`;
+      const dedupAppId =
+        body.applicationId ??
+        (dedupOpportunityId
+          ? (
+              await prisma.application.findFirst({
+                where: { opportunityId: dedupOpportunityId, tenantId },
+                select: { id: true },
+              })
+            )?.id
+          : null);
+      if (dedupAppId) {
+        const cachedDraft = await prisma.emailDraft.findFirst({
+          where: { applicationId: dedupAppId, generatedFrom, tenantId },
+          orderBy: { createdAt: "desc" },
+        });
+        if (cachedDraft) {
+          return jsonOk(
+            { ...cachedDraft, deduplicated: true, cached: true },
+            { status: 201 },
+          );
+        }
       }
     }
 
@@ -985,9 +940,8 @@ export async function POST(request: Request) {
     if (needsRoleInference || needsCandidateInference) {
       try {
         inferredMetadata = await inferMetadataFromUploadedText({
-          jobText: job.rawText,
-          candidateText: candidate.rawCV,
-          githubAccessToken: githubToken,
+          jobText: truncateForLlm(job.rawText),
+          candidateText: truncateForLlm(candidate.rawCV),
         });
       } catch {
         inferredMetadata = {};
@@ -1016,164 +970,397 @@ export async function POST(request: Request) {
       })),
     );
     const evidenceContext = await generateEmailEvidenceContext({
-      provider: providerToUse,
-      githubAccessToken:
-        providerToUse === "github-models"
-          ? (githubToken as string | undefined)
-          : undefined,
-      jobText: job.rawText,
-      cvText: candidate.rawCV,
+      jobText: truncateForLlm(job.rawText),
+      cvText: truncateForLlm(candidate.rawCV),
       roleTitle: effectiveRoleTitle,
     });
 
+    let suggestedRolesForSafety = candidate.suggestedRolesCsv;
+
+    let atsSafety = matchCvAgainstAts({
+      cvText: candidate.rawCV,
+      jobText: `${job.title}\n${job.rawText}`,
+      candidateEmail: candidate.email,
+      candidatePhone: candidate.phone,
+      skillsCsv: candidate.skillsCsv,
+      certificationsCsv: candidate.certificationsCsv,
+      suggestedRolesCsv: suggestedRolesForSafety,
+    });
+
+    const hasInitialRoleMismatch = atsSafety.flags.some(
+      (flag) => flag.code === "ROLE_MISMATCH",
+    );
+
+    if (
+      (hasInitialRoleMismatch || atsSafety.decision === "FLAGGED") &&
+      ((candidate.skillsCsv?.trim() ?? "") ||
+        (candidate.certificationsCsv?.trim() ?? ""))
+    ) {
+      try {
+        const refreshedRoles =
+          await inferSuggestedRolesFromSkillsAndCertifications({
+            skillsCsv: candidate.skillsCsv ?? "",
+            certificationsCsv: candidate.certificationsCsv ?? "",
+            fastMode: true,
+          });
+
+        suggestedRolesForSafety = refreshedRoles.join(", ");
+
+        if (suggestedRolesForSafety.trim()) {
+          await prisma.candidate.update({
+            where: { id: candidate.id },
+            data: { suggestedRolesCsv: suggestedRolesForSafety },
+          });
+        }
+
+        atsSafety = matchCvAgainstAts({
+          cvText: candidate.rawCV,
+          jobText: `${job.title}\n${job.rawText}`,
+          candidateEmail: candidate.email,
+          candidatePhone: candidate.phone,
+          skillsCsv: candidate.skillsCsv,
+          certificationsCsv: candidate.certificationsCsv,
+          suggestedRolesCsv: suggestedRolesForSafety,
+        });
+      } catch {
+        // Keep safety gate strict even if role refresh is unavailable.
+      }
+    }
+
+    const hasRoleMismatch = atsSafety.flags.some(
+      (flag) => flag.code === "ROLE_MISMATCH",
+    );
+
+    const failedAtsSafetyGate =
+      hasRoleMismatch ||
+      atsSafety.decision === "FLAGGED" ||
+      atsSafety.score < ATS_MIN_SAFE_EMAIL_SCORE;
+
+    if (ENFORCE_ATS_EMAIL_SAFETY_GATE && failedAtsSafetyGate) {
+      return jsonError(
+        `Candidate-to-opportunity alignment failed safety checks (minimum score ${ATS_MIN_SAFE_EMAIL_SCORE}). Email generation blocked for manual review.`,
+        409,
+        {
+          ats: {
+            score: atsSafety.score,
+            decision: atsSafety.decision,
+            flags: atsSafety.flags,
+            summary: atsSafety.summary,
+            suggestedRolesCsv: suggestedRolesForSafety,
+          },
+          hint: `Open ATS Match, confirm role alignment, and improve ATS score to at least ${ATS_MIN_SAFE_EMAIL_SCORE} before regenerating.`,
+        },
+      );
+    }
+
+    // ── Candidate-confirmed role gate ─────────────────────────────────────────
+    // The most important gate: if the candidate has explicitly confirmed they are
+    // happy with a role (via email reply → preferredRolesCsv), check that confirmed
+    // role against the opportunity. The candidate's own confirmation supersedes any
+    // AI-inferred role suggestion.
+    const confirmedRoles = (candidate.preferredRolesCsv ?? "")
+      .split(/[,;|\n]+/)
+      .map((r) => r.trim())
+      .filter(Boolean);
+
+    if (!BYPASS_ROLE_MATCH_GUARD && confirmedRoles.length > 0) {
+      const confirmedRoleGuard = guardCandidateForOpportunity(
+        confirmedRoles,
+        effectiveRoleTitle,
+      );
+      if (!confirmedRoleGuard.allowed) {
+        return jsonError(
+          "Candidate confirmed roles do not match this opportunity. Email generation blocked — the candidate expressed interest in different roles.",
+          409,
+          {
+            roleGuard: {
+              reason: confirmedRoleGuard.reason,
+              failedRoles: confirmedRoleGuard.failedRoles,
+              confirmedRoles: confirmedRoles,
+              jobTitle: effectiveRoleTitle,
+            },
+            hint: "The candidate confirmed different roles via email. Only generate emails for opportunities that align with their confirmed preferences.",
+          },
+        );
+      }
+    } else if (!BYPASS_ROLE_MATCH_GUARD) {
+      // No confirmed roles on record — fall back to AI-suggested roles as a
+      // conservative guard, but with a softer message since these are inferred.
+      const suggestedRoles = suggestedRolesForSafety
+        .split(/[,;|\n]+/)
+        .map((r) => r.trim())
+        .filter(Boolean);
+
+      const suggestedRoleGuard = guardCandidateForOpportunity(
+        suggestedRoles,
+        effectiveRoleTitle,
+      );
+      if (!suggestedRoleGuard.allowed) {
+        return jsonError(
+          "Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.",
+          409,
+          {
+            roleGuard: {
+              reason: suggestedRoleGuard.reason,
+              failedRoles: suggestedRoleGuard.failedRoles,
+              suggestedRoles: suggestedRolesForSafety,
+              jobTitle: effectiveRoleTitle,
+            },
+            hint: "Review the candidate's suggested roles. Only candidates whose role family aligns with the opportunity may have emails generated.",
+          },
+        );
+      }
+    }
+
+    // ── US work-authorisation gate ─────────────────────────────────────────────
+    // Hard-block roles that require USC / Green Card status. Our candidates are
+    // Africa-based and cannot satisfy these requirements. Sending an email that
+    // "flags" this is pointless — it is a hard disqualification.
+    const enforceUsWorkAuthGate = rulesJson.enforce_us_work_auth_gate !== false;
+    const needsUsAuth =
+      enforceUsWorkAuthGate &&
+      (job.requiresUsWorkAuth ??
+        requiresUsWorkAuthorisation(job.title ?? "", job.rawText ?? ""));
+    if (needsUsAuth) {
+      return jsonError(
+        "This opportunity requires US work authorisation (USC/Green Card). Email generation is blocked — this is a hard disqualification for candidates without US work authorisation.",
+        409,
+        {
+          hint: "Remove or replace this opportunity. Roles requiring USC/GC status cannot be filled by Africa-based candidates.",
+        },
+      );
+    }
+
+    // ── Location restriction gate ──────────────────────────────────────────────
+    // Block roles that require candidates to be based in a specific non-SA location
+    // (e.g. India: "must be based in Pune/Bengaluru/Chennai", UK: "UK-based only",
+    // Europe: "must be based in Europe"). Our candidates are South Africa-based and
+    // cannot satisfy these geographic restrictions.
+    const enforceLocationGate = rulesJson.enforce_location_gate !== false;
+    const locationRestricted =
+      enforceLocationGate &&
+      (job.requiresNonSaLocation ??
+        requiresNonSaLocationRestriction(job.title ?? "", job.rawText ?? ""));
+    if (locationRestricted) {
+      return jsonError(
+        "This opportunity has a geographic location restriction that excludes South Africa-based candidates (e.g. must be based in India, UK, or Europe). Email generation is blocked.",
+        409,
+        {
+          hint: "Review the job description. If the role genuinely accepts South Africa-based remote candidates, update the JD text to reflect that.",
+        },
+      );
+    }
+
+    // ── Remote-only gate ──────────────────────────────────────────────────────
+    // We only place into remote roles. Block any JD that does not signal remote
+    // working to avoid unsuitable submissions for on-site positions.
+    const enforceRemoteGate = rulesJson.enforce_remote_gate !== false;
+    const isRemote =
+      !enforceRemoteGate ||
+      (job.isRemote ?? isRemoteRole(job.title ?? "", job.rawText ?? ""));
+    if (!isRemote) {
+      return jsonError(
+        "This opportunity does not appear to be remote. Email generation is only supported for remote roles.",
+        409,
+        {
+          hint: 'Review the job description. If the role is genuinely remote, ensure the JD text includes a clear remote-working signal (e.g. "remote", "fully remote", "work from home").',
+        },
+      );
+    }
+
     let result: EmailDraftResult | undefined;
     let aiErrorMessage: string | undefined;
-    let lastQualityAssessment: DraftQualityAssessment | undefined;
 
-    const maxDraftAttempts = 3;
-    for (let attempt = 1; attempt <= maxDraftAttempts; attempt += 1) {
-      const generatedPrompt = EMAIL_USER_PROMPT({
-        jobDescription: `${job.rawText}\n\nHighlights:\n${evidenceContext.jobHighlights}\n\nMirrored phrase: "${evidenceContext.mirroredPhrase}"`,
-        candidateSummary: evidenceContext.candidateSummary,
-        cvToJdAlignment: evidenceContext.cvToJdAlignment,
-        learningExamples: learningExamples || undefined,
-        companyName: job.company?.name,
-        roleTitle: effectiveRoleTitle,
-        c2cPartnerName,
-        rulesJson,
-        variationHint: pickVariationHint(),
-        preferredLength,
-        includeSections: vossToggles,
-        recentDraftsToAvoid: recentDraftsToAvoid || undefined,
+    const generatedPrompt = EMAIL_USER_PROMPT({
+      jobDescription: `${truncateForLlm(job.rawText)}\n\nHighlights:\n${evidenceContext.jobHighlights}\n\nMirrored phrase: "${evidenceContext.mirroredPhrase}"`,
+      candidateSummary: evidenceContext.candidateSummary,
+      cvToJdAlignment: evidenceContext.cvToJdAlignment,
+      learningExamples: learningExamples || undefined,
+      companyName: job.company?.name,
+      roleTitle: effectiveRoleTitle,
+      c2cPartnerName,
+      c2cPartnerPositioning,
+      companyType,
+      rulesJson,
+      variationHint: pickVariationHint(),
+      preferredLength,
+      includeSections: vossToggles,
+      recentDraftsToAvoid: recentDraftsToAvoid || undefined,
+      recipientName: effectiveCandidateName,
+      senderName: senderUser?.fullName,
+      senderEmail: senderUser?.email,
+    });
+
+    const userPrompt = adminCustomPrompt
+      ? `${generatedPrompt}\n\nADMIN CUSTOM PROMPT OVERRIDE:\n${adminCustomPrompt}\n\nApply this override exactly as an additional mandatory instruction when generating this draft.`
+      : generatedPrompt;
+
+    try {
+      result = await generateEmail({
+        systemPrompt: emailSystemPrompt,
+        userPrompt,
+        maxOutputTokens,
+        model: modelOverride,
       });
-
-      const basePrompt = adminCustomPrompt
-        ? `${generatedPrompt}\n\nADMIN CUSTOM PROMPT OVERRIDE:\n${adminCustomPrompt}\n\nApply this override exactly as an additional mandatory instruction when generating this draft.`
-        : generatedPrompt;
-
-      const userPrompt = lastQualityAssessment
-        ? `${basePrompt}\n\n${buildRegenerationGuidance(lastQualityAssessment)}`
-        : basePrompt;
-
-      result = undefined;
-      aiErrorMessage = undefined;
-
-      try {
-        if (providerToUse === "github-models") {
-          result = await generateEmailViaGithubModels({
-            systemPrompt: emailSystemPrompt,
-            userPrompt,
-            accessToken: githubToken as string,
-            maxOutputTokens,
-          });
-        } else {
-          result = await generateEmail({
-            systemPrompt: emailSystemPrompt,
-            userPrompt,
-            maxOutputTokens,
-          });
-        }
-      } catch (error) {
-        aiErrorMessage = (error as Error).message;
-
-        const githubDailyLimitReached =
-          providerToUse === "github-models" &&
-          /UserByModelByDay|daily request limit/i.test(aiErrorMessage);
-
-        if (githubDailyLimitReached && azureConfigured) {
-          try {
-            result = await generateEmail({
-              systemPrompt: emailSystemPrompt,
-              userPrompt,
-              maxOutputTokens,
-            });
-          } catch (azureError) {
-            aiErrorMessage = `${aiErrorMessage}\nAzure fallback failed: ${(azureError as Error).message}`;
-          }
-        }
-      }
-
-      if (!result) {
-        const providerRateLimitReached =
-          aiErrorMessage &&
-          /RateLimitReached|\b429\b|UserByModelByDay|UserByModelByMinute|daily request limit|byminute|byday/i.test(
-            aiErrorMessage,
-          );
-
-        const hint = providerRateLimitReached
-          ? "AI provider rate limit reached. Retry shortly or switch provider in Settings."
-          : "Fix AI provider configuration or availability, then regenerate.";
-
-        return jsonError("AI email generation failed", 502, {
-          provider: providerToUse,
-          hint,
-          message: aiErrorMessage,
-        });
-      }
-
-      const draftPlainText = htmlToPlainText(result.html);
-      const draftWordCount = countWords(draftPlainText);
-      const withinWordRange =
-        draftWordCount >= preferredWordRange.min &&
-        draftWordCount <= preferredWordRange.max;
-
-      if (!withinWordRange) {
-        lastQualityAssessment = buildLengthFailureAssessment({
-          rangeLabel: preferredWordRange.label,
-          min: preferredWordRange.min,
-          max: preferredWordRange.max,
-          actual: draftWordCount,
-        });
-        result = undefined;
-        continue;
-      }
-
-      const templateSignals = detectTemplateSignals(draftPlainText);
-      if (templateSignals.length > 0) {
-        lastQualityAssessment = buildTemplateFailureAssessment(templateSignals);
-        result = undefined;
-        continue;
-      }
-
-      const vossCoverage = detectVossTechniques(draftPlainText, vossToggles);
-      if (vossCoverage.detectedCount < vossCoverage.requiredCount) {
-        lastQualityAssessment =
-          buildVossCoverageFailureAssessment(vossCoverage);
-        result = undefined;
-        continue;
-      }
-
-      const assessment = await assessEmailDraftQuality({
-        provider: providerToUse,
-        githubAccessToken:
-          providerToUse === "github-models"
-            ? (githubToken as string | undefined)
-            : undefined,
-        companyName: job.company?.name ?? "Hiring Team",
-        roleTitle: effectiveRoleTitle,
-        jobText: job.rawText,
-        cvText: candidate.rawCV,
-        draft: result,
-        preferredLength,
-      });
-
-      if (assessment.pass) {
-        break;
-      }
-
-      lastQualityAssessment = assessment;
-      result = undefined;
+    } catch (error) {
+      aiErrorMessage = (error as Error).message;
+      console.error("[EMAIL_GENERATE] generateEmail failed:", aiErrorMessage);
     }
 
     if (!result) {
-      return jsonError("AI email generation quality gate failed", 502, {
-        provider: providerToUse,
-        hint: "Draft quality remained below threshold after regeneration attempts.",
-        assessment: lastQualityAssessment,
+      const providerRateLimitReached =
+        aiErrorMessage &&
+        /RateLimitReached|\b429\b|rate.?limit/i.test(aiErrorMessage);
+
+      const hint = providerRateLimitReached
+        ? "LiteLLM rate limit reached. Retry shortly."
+        : "Fix LiteLLM configuration or availability, then regenerate.";
+
+      return jsonError("AI email generation failed", 502, {
+        provider: "litellm",
+        hint,
       });
     }
 
-    const generatedFrom = hashInputs(job.rawText, candidate.rawCV, rulesJson);
+    if (
+      !containsExpectedCandidateName({
+        expectedName: effectiveCandidateName,
+        subject: result.subject,
+        htmlBody: result.html,
+      })
+    ) {
+      return jsonError(
+        "Generated email did not preserve the correct candidate name",
+        422,
+        {
+          hint: "Candidate name mismatch detected. Regenerate after reviewing candidate data.",
+          expectedCandidateName: effectiveCandidateName,
+        },
+      );
+    }
+
+    // ── Company positioning check ──────────────────────────────────────────
+    // Verify that the partner company name appears in the generated draft.
+    // A draft that omits the C2C partner cannot fulfil our positioning requirement
+    // and must never reach the candidate.
+    const draftPlainText = htmlToPlainText(result.html);
+    if (!detectCompanyPositioning(draftPlainText, c2cPartnerName)) {
+      return jsonError(
+        `Generated email does not mention the partner company (${c2cPartnerName}). Email generation blocked.`,
+        422,
+        {
+          hint: `Regenerate — the draft must introduce and position ${c2cPartnerName} as the C2C partner in the email body.`,
+          c2cPartnerName,
+        },
+      );
+    }
+
+    // ── Factuality guard ─────────────────────────────────────────────────
+    // Verify that every specific factual claim in the generated email can be
+    // traced back to the source JD or CV.  If the check fails, attempt one
+    // corrected re-generation.  If the corrected draft still fails, the
+    // generation is blocked — a hallucinated draft must never be saved.
+    // Set SKIP_FACTUALITY_GUARD=true to bypass this check (e.g. for bulk
+    // generation with local models that tend to hallucinate).
+    const skipFactualityGuard = process.env.SKIP_FACTUALITY_GUARD === "true";
+    if (!skipFactualityGuard) {
+      const factualityReport = await checkEmailFactuality({
+        emailHtml: result.html,
+        jdText: truncateForLlm(job.rawText ?? ""),
+        cvText: truncateForLlm(candidate.rawCV ?? ""),
+        roleTitle: effectiveRoleTitle,
+        candidateName: effectiveCandidateName,
+        companyName: job.company?.name ?? "",
+      });
+
+      if (!factualityReport.pass) {
+        const correctionInstruction =
+          buildFactualityRegenerationInstruction(factualityReport);
+        const correctedPrompt = adminCustomPrompt
+          ? `${generatedPrompt}\n\nADMIN CUSTOM PROMPT OVERRIDE:\n${adminCustomPrompt}\n\nApply this override exactly as an additional mandatory instruction when generating this draft.\n\n${correctionInstruction}`
+          : `${generatedPrompt}\n\n${correctionInstruction}`;
+
+        let retrySaved = false;
+        try {
+          const retryResult = await generateEmail({
+            systemPrompt: emailSystemPrompt,
+            userPrompt: correctedPrompt,
+            maxOutputTokens,
+          });
+
+          if (
+            retryResult &&
+            containsExpectedCandidateName({
+              expectedName: effectiveCandidateName,
+              subject: retryResult.subject,
+              htmlBody: retryResult.html,
+            })
+          ) {
+            // Run factuality check on the corrected draft before accepting it.
+            const retryFactualityReport = await checkEmailFactuality({
+              emailHtml: retryResult.html,
+              jdText: truncateForLlm(job.rawText ?? ""),
+              cvText: truncateForLlm(candidate.rawCV ?? ""),
+              roleTitle: effectiveRoleTitle,
+              candidateName: effectiveCandidateName,
+              companyName: job.company?.name ?? "",
+            });
+
+            if (retryFactualityReport.pass) {
+              result = retryResult;
+              retrySaved = true;
+            } else {
+              console.warn(
+                "[FACTUALITY_GUARD] Corrected draft still contains hallucinations. Blocking generation.",
+                {
+                  hallucinatedClaims: retryFactualityReport.hallucinatedClaims,
+                },
+              );
+              return jsonError(
+                "Email draft contains hallucinated claims that could not be auto-corrected. Generation blocked to protect brand accuracy.",
+                422,
+                {
+                  hallucinatedClaims: retryFactualityReport.hallucinatedClaims,
+                  factualityScore: retryFactualityReport.score,
+                  hint: "Review the candidate CV and job description. Remove any claims that cannot be verified against those source documents before regenerating.",
+                },
+              );
+            }
+          }
+        } catch (retryError) {
+          console.warn(
+            "[FACTUALITY_GUARD] Retry generation failed.",
+            retryError,
+          );
+        }
+
+        // If retry did not produce a clean draft, block rather than save hallucinations.
+        if (!retrySaved) {
+          return jsonError(
+            "Email draft contains hallucinated claims. Generation blocked to protect brand accuracy.",
+            422,
+            {
+              hallucinatedClaims: factualityReport.hallucinatedClaims,
+              factualityScore: factualityReport.score,
+              hint: "Review the candidate CV and job description. Remove any claims that cannot be verified against those source documents before regenerating.",
+            },
+          );
+        }
+      } // end factuality guard
+    } // end if (!skipFactualityGuard)
+    // ─────────────────────────────────────────────────────────────────────
+
+    // In demo mode, return the real AI-generated result without DB writes.
+    if (demoMode) {
+      return jsonOk(
+        {
+          id: `demo-${Date.now()}`,
+          subject: result.subject,
+          htmlBody: result.html,
+        },
+        { status: 201 },
+      );
+    }
 
     let applicationId = body.applicationId;
     let deduplicated = false;
@@ -1228,61 +1415,78 @@ export async function POST(request: Request) {
       }
     }
 
-    const emailDraft = await prisma.emailDraft.create({
-      data: {
-        tenantId,
-        applicationId,
-        subject: result.subject,
-        htmlBody: result.html,
-        generatedFrom,
-      },
-    });
-
     const autoDraft = await createAutomaticOutlookDraft({
       tenantId,
       companyId: job.companyId,
       subject: result.subject,
       htmlBody: result.html,
-      to: parseDraftRecipients(job.opportunityEmail),
+      recipients,
       candidateName: candidate.fullName,
       candidateCvText: candidate.rawCV,
+      candidateEmail: candidate.email,
+      candidatePhone: candidate.phone,
       candidateCvFileName: candidate.cvFileName,
       candidateCvMimeType: candidate.cvMimeType,
       candidateCvFileData: candidate.cvFileData,
+      candidateFormattedCvPdfData: candidate.formattedCvPdfData,
+      candidateFormattedCvFileName: candidate.formattedCvFileName,
     });
 
-    const application = await prisma.application.findFirst({
-      where: { id: applicationId, tenantId },
-    });
+    // Do not fail AI draft generation when Outlook delivery is skipped/failed.
+    // The UI already surfaces outlookDraft status to users.
 
-    if (application && application.currentStage !== "EMAIL_DRAFTED") {
-      await prisma.application.update({
-        where: { id: application.id, tenantId },
-        data: {
-          currentStage: "EMAIL_DRAFTED",
-          history: {
-            create: {
-              fromStage: application.currentStage,
-              toStage: "EMAIL_DRAFTED",
-              changedBy: "Email generated",
-              tenantId,
-            },
+    const { emailDraft, stageUpdated } = await prisma.$transaction(
+      async (tx) => {
+        const draft = await tx.emailDraft.create({
+          data: {
+            tenantId,
+            applicationId,
+            subject: result.subject,
+            htmlBody: result.html,
+            generatedFrom,
           },
-        },
-      });
-    }
+        });
+
+        const app = await tx.application.findFirst({
+          where: { id: applicationId, tenantId },
+        });
+
+        let updated = false;
+        if (app && app.currentStage !== "EMAIL_DRAFTED") {
+          await tx.application.update({
+            where: { id: app.id, tenantId },
+            data: {
+              currentStage: "EMAIL_DRAFTED",
+              history: {
+                create: {
+                  fromStage: app.currentStage,
+                  toStage: "EMAIL_DRAFTED",
+                  changedBy: "Email generated",
+                  tenantId,
+                },
+              },
+            },
+          });
+          updated = true;
+        }
+
+        return { emailDraft: draft, stageUpdated: updated };
+      },
+    );
 
     return jsonOk(
       {
         ...emailDraft,
         deduplicated,
+        stageUpdated,
         outlookDraft: autoDraft,
       },
       { status: 201 },
     );
   } catch (error) {
-    return jsonError("Unable to generate email", 400, {
-      message: (error as Error).message,
-    });
+    console.error("[EMAIL_GENERATE]", error);
+    const message =
+      error instanceof Error ? error.message : "Unable to generate email";
+    return jsonError(message, 400);
   }
 }

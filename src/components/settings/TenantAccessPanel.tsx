@@ -35,9 +35,20 @@ export default function TenantAccessPanel() {
   const [busy, setBusy] = React.useState(false);
 
   const [registerDisplayName, setRegisterDisplayName] = React.useState("");
+  const [registerDomain, setRegisterDomain] = React.useState("");
   const [registerAdminName, setRegisterAdminName] = React.useState("");
   const [registerAdminEmail, setRegisterAdminEmail] = React.useState("");
   const [registerPassword, setRegisterPassword] = React.useState("");
+  const [registerBrandName, setRegisterBrandName] = React.useState("");
+  const [registerBillingContactEmail, setRegisterBillingContactEmail] =
+    React.useState("");
+  const [registerBillingModel, setRegisterBillingModel] = React.useState<
+    "PERCENTAGE" | "PER_HOUR_PER_CANDIDATE"
+  >("PERCENTAGE");
+  const [registerBillingRatePerHour, setRegisterBillingRatePerHour] =
+    React.useState("");
+  const [registerOutlookMailbox, setRegisterOutlookMailbox] =
+    React.useState("");
 
   const [signInTenantId, setSignInTenantId] = React.useState("");
   const [signInEmail, setSignInEmail] = React.useState("");
@@ -78,16 +89,25 @@ export default function TenantAccessPanel() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             displayName: registerDisplayName,
+            domain: registerDomain || undefined,
             adminName: registerAdminName,
             adminEmail: registerAdminEmail,
             password: registerPassword,
+            brandName: registerBrandName,
+            billingContactEmail: registerBillingContactEmail,
+            billingModel: registerBillingModel,
+            billingRatePerHour:
+              registerBillingModel === "PER_HOUR_PER_CANDIDATE"
+                ? Number(registerBillingRatePerHour)
+                : undefined,
+            outlookMailbox: registerOutlookMailbox || undefined,
           }),
         },
       );
 
       await loadStatus();
       setSuccessMessage(
-        `Company registered. Tenant ID: ${response.tenantId}. Confirm the admin email before signing in.`,
+        `Company registered. Tenant ID: ${response.tenantId}. A verification email has been sent to ${registerAdminEmail}. You must verify this email before signing in.`,
       );
       setRegisterPassword("");
       setSignInTenantId(response.tenantId);
@@ -214,6 +234,11 @@ export default function TenantAccessPanel() {
             placeholder="Company name"
           />
           <Input
+            value={registerDomain}
+            onChange={(event) => setRegisterDomain(event.target.value)}
+            placeholder="Company domain (optional)"
+          />
+          <Input
             value={registerAdminName}
             onChange={(event) => setRegisterAdminName(event.target.value)}
             placeholder="First tenant admin name"
@@ -222,6 +247,53 @@ export default function TenantAccessPanel() {
             value={registerAdminEmail}
             onChange={(event) => setRegisterAdminEmail(event.target.value)}
             placeholder="First tenant admin email"
+          />
+          <Input
+            value={registerBrandName}
+            onChange={(event) => setRegisterBrandName(event.target.value)}
+            placeholder="Billing brand name"
+          />
+          <Input
+            value={registerBillingContactEmail}
+            onChange={(event) =>
+              setRegisterBillingContactEmail(event.target.value)
+            }
+            placeholder="Billing contact email"
+          />
+          <Select
+            value={registerBillingModel}
+            onValueChange={(value) =>
+              setRegisterBillingModel(
+                value as "PERCENTAGE" | "PER_HOUR_PER_CANDIDATE",
+              )
+            }
+          >
+            <SelectTrigger>
+              <SelectValue placeholder="Billing model" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="PERCENTAGE">Percentage</SelectItem>
+              <SelectItem value="PER_HOUR_PER_CANDIDATE">
+                Per hour per candidate
+              </SelectItem>
+            </SelectContent>
+          </Select>
+          {registerBillingModel === "PER_HOUR_PER_CANDIDATE" ? (
+            <Input
+              type="number"
+              min="0"
+              step="0.01"
+              value={registerBillingRatePerHour}
+              onChange={(event) =>
+                setRegisterBillingRatePerHour(event.target.value)
+              }
+              placeholder="Billing rate per hour"
+            />
+          ) : null}
+          <Input
+            value={registerOutlookMailbox}
+            onChange={(event) => setRegisterOutlookMailbox(event.target.value)}
+            placeholder="Outlook mailbox for drafting"
           />
           <Input
             type="password"
@@ -235,7 +307,12 @@ export default function TenantAccessPanel() {
               !registerDisplayName ||
               !registerAdminName ||
               !registerAdminEmail ||
-              !registerPassword
+              !registerPassword ||
+              !registerBrandName ||
+              !registerBillingContactEmail ||
+              !registerOutlookMailbox ||
+              (registerBillingModel === "PER_HOUR_PER_CANDIDATE" &&
+                !registerBillingRatePerHour)
             }
             onClick={registerCompany}
           >

@@ -4,6 +4,8 @@ import UploadPanel from "@/components/forms/UploadPanel";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ErrorBanner } from "@/components/ui/error-banner";
+import { SuccessBanner } from "@/components/ui/success-banner";
 import { fetchJson } from "@/lib/client";
 import Link from "next/link";
 import * as React from "react";
@@ -28,10 +30,14 @@ type GeneratedEmail = {
   applicationId: string;
   subject: string;
   htmlBody: string;
+  outlookDraft?: {
+    status: "created" | "skipped" | "failed";
+    reason?: string;
+  };
 };
 
 type OpportunitiesUploadSummary = {
-  uploadOutcome: "success" | "partial" | "no_changes";
+  uploadOutcome: "success" | "partial" | "no_changes" | "queued";
   uploadMessage: string;
   uploadedOpportunities: number;
   createdJobs: number;
@@ -39,6 +45,13 @@ type OpportunitiesUploadSummary = {
   generatedEmails: number;
   failedEmails: number;
   skippedExistingOpportunities: number;
+  skippedDuplicateInUpload: number;
+  skippedAlreadyExistsInSystem: number;
+  skippedOpportunities: Array<{
+    role: string;
+    companyName: string;
+    reason: "duplicate_in_upload" | "already_exists_in_system";
+  }>;
   emailFailures: Array<{
     role: string;
     candidateName: string;
@@ -71,10 +84,26 @@ export default function HomeWorkflow() {
     React.useState(false);
   const [opportunitiesSummary, setOpportunitiesSummary] =
     React.useState<OpportunitiesUploadSummary | null>(null);
+  const [actionError, setActionError] = React.useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = React.useState<string | null>(
+    null,
+  );
+
+  const showError = React.useCallback((msg: string) => {
+    setActionError(msg);
+    setSuccessMessage(null);
+  }, []);
+
+  const showSuccess = React.useCallback((msg: string) => {
+    setSuccessMessage(msg);
+    setActionError(null);
+    setTimeout(
+      () => setSuccessMessage((prev) => (prev === msg ? null : prev)),
+      4000,
+    );
+  }, []);
 
   const loadAiConnectionStatus = React.useCallback(async () => {
-    const localToken = localStorage.getItem("githubAccessToken")?.trim();
-
     try {
       const response = await fetch("/api/ai/status", {
         method: "GET",
@@ -84,31 +113,16 @@ export default function HomeWorkflow() {
       if (response.ok) {
         const payload = (await response.json()) as {
           data?: {
-            githubConnected?: boolean;
-            azureConfigured?: boolean;
+            liteLlmConfigured?: boolean;
           };
         };
 
-        const githubConnected = Boolean(payload.data?.githubConnected);
-        const azureConfigured = Boolean(payload.data?.azureConfigured);
-
-        if (!githubConnected && localToken) {
-          await fetch("/api/auth/github/device/sync", {
-            method: "POST",
-            credentials: "include",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ accessToken: localToken }),
-          });
-          setIsAiConnected(true);
-          return;
-        }
-
-        setIsAiConnected(Boolean(githubConnected || azureConfigured));
+        setIsAiConnected(Boolean(payload.data?.liteLlmConfigured));
         return;
       }
     } catch {}
 
-    setIsAiConnected(Boolean(localToken));
+    setIsAiConnected(false);
   }, []);
 
   React.useEffect(() => {
@@ -144,7 +158,7 @@ export default function HomeWorkflow() {
       });
       setApplication(created);
     } catch (error) {
-      alert((error as Error).message);
+      showError((error as Error).message);
     } finally {
       setCreating(false);
     }
@@ -156,17 +170,13 @@ export default function HomeWorkflow() {
       const message =
         "Company name, role, and candidate name are required before generating the email.";
       setEmailError(message);
-      alert(message);
+      showError(message);
       return;
     }
 
     setGeneratingEmail(true);
     setEmailError(null);
     try {
-      const aiProvider = localStorage.getItem("aiProvider") ?? "auto";
-      const githubAccessToken =
-        localStorage.getItem("githubAccessToken") ?? undefined;
-
       const draft = await fetchJson<GeneratedEmail>("/api/email/generate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -174,8 +184,6 @@ export default function HomeWorkflow() {
           jobId: job.id,
           candidateId: candidate.id,
           applicationId: application?.id,
-          aiProvider,
-          githubAccessToken,
         }),
       });
 
@@ -183,10 +191,24 @@ export default function HomeWorkflow() {
       if (!application || application.id !== draft.applicationId) {
         setApplication({ id: draft.applicationId });
       }
+
+      if (draft.outlookDraft?.status === "created") {
+        showSuccess("Email draft generated and Outlook draft created.");
+      } else if (draft.outlookDraft?.status === "skipped") {
+        showSuccess(
+          `Email draft generated. Outlook draft skipped: ${draft.outlookDraft.reason ?? "No valid opportunity email."}`,
+        );
+      } else if (draft.outlookDraft?.status === "failed") {
+        showSuccess(
+          `Email draft generated. Outlook draft failed: ${draft.outlookDraft.reason ?? "Unable to create Outlook draft."}`,
+        );
+      } else {
+        showSuccess("Email draft generated.");
+      }
     } catch (error) {
       const message = (error as Error).message;
       setEmailError(message);
-      alert(message);
+      showError(message);
     } finally {
       setGeneratingEmail(false);
     }
@@ -201,11 +223,13 @@ export default function HomeWorkflow() {
     setCompanyName("");
     setRoleTitle("");
     setCandidateName("");
+    setActionError(null);
+    setSuccessMessage(null);
   };
 
   const handleUploadOpportunities = async () => {
     if (!opportunityFile) {
-      alert("Select a CSV or XLSX opportunities file first.");
+      showError("Select a CSV or XLSX opportunities file first.");
       return;
     }
 
@@ -213,29 +237,31 @@ export default function HomeWorkflow() {
     setOpportunitiesSummary(null);
 
     try {
+      const uploadId =
+        typeof crypto !== "undefined" && "randomUUID" in crypto
+          ? crypto.randomUUID().replace(/-/g, "")
+          : `${Date.now()}${Math.random().toString(16).slice(2)}`;
+
       const formData = new FormData();
       formData.append("file", opportunityFile);
-
-      const githubAccessToken =
-        typeof window !== "undefined"
-          ? localStorage.getItem("githubAccessToken")
-          : null;
-      const aiProvider =
-        typeof window !== "undefined"
-          ? localStorage.getItem("aiProvider")
-          : null;
-      if (githubAccessToken) {
-        formData.append("githubAccessToken", githubAccessToken);
-      }
-      if (aiProvider) {
-        formData.append("aiProvider", aiProvider);
-      }
+      formData.append("uploadId", uploadId);
 
       const response = await fetch("/api/opportunities/upload", {
         method: "POST",
         body: formData,
       });
-      const payload = await response.json();
+      const payload = (await response.json()) as {
+        ok?: boolean;
+        data?: OpportunitiesUploadSummary;
+        error?: {
+          message?: string;
+          details?: {
+            message?: string;
+            popupMessage?: string;
+            requiresInvestigation?: boolean;
+          };
+        };
+      };
 
       const requiresInvestigation = Boolean(
         payload?.error?.details?.requiresInvestigation,
@@ -246,7 +272,7 @@ export default function HomeWorkflow() {
 
       if (!response.ok || payload?.ok === false) {
         if (requiresInvestigation) {
-          alert(popupMessage);
+          showError(popupMessage);
         }
         throw new Error(
           payload?.error?.details?.message ??
@@ -255,9 +281,54 @@ export default function HomeWorkflow() {
         );
       }
 
+      if (payload.data?.uploadOutcome === "queued") {
+        // Background processing — poll progress until completed or failed.
+        showSuccess("Upload accepted — processing in the background.");
+
+        const deadline = Date.now() + 5 * 60 * 1000;
+        while (Date.now() < deadline) {
+          await new Promise<void>((resolve) => {
+            window.setTimeout(resolve, 1500);
+          });
+          try {
+            const resp = await fetch(
+              `/api/upload/progress?uploadId=${encodeURIComponent(uploadId)}`,
+              { cache: "no-store" },
+            );
+            if (!resp.ok) continue;
+            const prog = (await resp.json()) as {
+              ok?: boolean;
+              data?: {
+                status: "running" | "completed" | "failed";
+                percent: number;
+                message: string;
+                summary?: Record<string, unknown> | null;
+              };
+            };
+            if (!prog.ok || !prog.data) continue;
+            if (prog.data.status === "completed") {
+              showSuccess(prog.data.message);
+              if (prog.data.summary) {
+                setOpportunitiesSummary(
+                  prog.data.summary as OpportunitiesUploadSummary,
+                );
+              }
+              break;
+            }
+            if (prog.data.status === "failed") {
+              showError(prog.data.message || "Upload processing failed.");
+              break;
+            }
+          } catch {
+            // Transient poll failure — keep waiting.
+          }
+        }
+        return;
+      }
+
       setOpportunitiesSummary(payload.data as OpportunitiesUploadSummary);
     } catch (error) {
-      alert((error as Error).message);
+      showError((error as Error).message);
     } finally {
       setUploadingOpportunities(false);
     }
@@ -265,6 +336,8 @@ export default function HomeWorkflow() {
 
   return (
     <div className="space-y-8">
+      {actionError ? <ErrorBanner message={actionError} /> : null}
+      {successMessage ? <SuccessBanner message={successMessage} /> : null}
       <Card className="border-slate-200">
         <CardHeader>
           <CardTitle>Workflow</CardTitle>
@@ -396,6 +469,33 @@ export default function HomeWorkflow() {
                 Existing opportunities skipped:{" "}
                 {opportunitiesSummary.skippedExistingOpportunities}
               </p>
+              <p>
+                Duplicate rows in upload:{" "}
+                {opportunitiesSummary.skippedDuplicateInUpload}
+              </p>
+              <p>
+                Already in system:{" "}
+                {opportunitiesSummary.skippedAlreadyExistsInSystem}
+              </p>
+              {opportunitiesSummary.skippedOpportunities.length > 0 ? (
+                <div className="mt-2 rounded border border-slate-200 bg-slate-50 p-2 text-xs">
+                  <p className="font-medium">Skipped opportunities (sample):</p>
+                  {opportunitiesSummary.skippedOpportunities
+                    .slice(0, 5)
+                    .map((item) => (
+                      <p
+                        key={`${item.reason}-${item.companyName}-${item.role}`}
+                      >
+                        {item.companyName || "Unknown company"} -{" "}
+                        {item.role || "Unknown role"} (
+                        {item.reason === "duplicate_in_upload"
+                          ? "duplicate in upload"
+                          : "already exists"}
+                        )
+                      </p>
+                    ))}
+                </div>
+              ) : null}
               {opportunitiesSummary.emailFailures.length > 0 ? (
                 <div className="mt-2 space-y-1 rounded border border-amber-200 bg-amber-50 p-2 text-amber-800">
                   <p className="font-medium">Failed email generation:</p>
@@ -445,12 +545,18 @@ export default function HomeWorkflow() {
                   title: uploaded.title,
                   companyName: uploaded.companyName ?? null,
                 });
+                const result = data as { warning?: string } | undefined;
+                if (result?.warning) {
+                  showError(result.warning);
+                }
               }}
             />
             <UploadPanel
               title="Engineer CV"
               endpoint="/api/upload/cv"
-              helper="Paste the CV or upload a file and we will use the text directly."
+              helper="Upload the original CV as a PDF file so formatting is preserved."
+              acceptedFileTypes=".pdf,application/pdf"
+              showTextInput={false}
               metadataFields={[
                 {
                   key: "candidateName",

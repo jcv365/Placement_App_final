@@ -1,0 +1,392 @@
+ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+ Email Hallucination & Prompt Compliance Audit
+ Date: 2026-04-20
+ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+
+Found 54 email draft(s) created today.
+
+ΓöÇΓöÇΓöÇ Per-Email Results ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+
+≡ƒƒá [10:18:51] Kgomotso Sello Dungeni ΓåÆ "DevOps Engineer"
+   Subject : DevOps Services Support ΓÇô DotCloud Consulting (Kgomotso Sello Dungeni)
+   ATS     : 95/100
+   Rationale: CV explicitly lists 'DevOps Engineer' and 'Cloud Engineer' as documented roles. Current role at BetXchange (October 2024 ΓÇô Present) as Cloud & DevOps Engineer. Strong evidence of required skills: AWS,...
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó Potentially invented cert/tech in email not found in profile: itil
+
+≡ƒƒá [11:21:41] James Tladi Tladi ΓåÆ "DevOps Engineer"
+   Subject : DevOps Infrastructure Services Support ΓÇô DotCloud Consulting (James Tladi Tladi)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+      ΓÇó Potentially invented cert/tech in email not found in profile: security specialty, itil
+
+≡ƒƒá [11:24:33] Petunia Motlhakane ΓåÆ "IT Lead"
+   Subject : HPC Systems Engineering Services Support ΓÇô DotCloud Consulting (Petunia Motlhakane)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+      ΓÇó No keyword overlap between job title ("IT Lead") and candidate profile terms (azure data engineer, database administrator, mainframe developer, cobol programmer, network engineer, azure ai engineer, business intelligence developer, legacy systems developer...)
+
+≡ƒƒá [11:27:08] Keagile Nduli ΓåÆ "Senior DevOps Engineer"
+   Subject : DevOps Engineering Services Support ΓÇô DotCloud Consulting (Keagile Nduli)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+      ΓÇó Potentially invented cert/tech in email not found in profile: azure, aws
+
+≡ƒƒá [11:27:37] Liliyosa Mbakureya ΓåÆ "Senior DevOps Engineer"
+   Subject : DevOps Engineering Services Support ΓÇô DotCloud Consulting (Liliyosa Mbakureya)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+      ΓÇó Potentially invented cert/tech in email not found in profile: azure
+
+≡ƒƒá [11:29:47] Njabulo ΓåÆ "Senior Data Engineer"
+   Subject : Data Engineering Services Support ΓÇô DotCloud Consulting (Njabulo)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+      ΓÇó Potentially invented cert/tech in email not found in profile: azure
+
+≡ƒƒá [11:32:35] Lesley Charinda ΓåÆ "Senior DevOps Engineer"
+   Subject : Senior DevOps Engineering Services Support ΓÇô DotCloud Consulting (Lesley Charinda)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+      ΓÇó Potentially invented cert/tech in email not found in profile: azure, solutions architect, gcp
+
+≡ƒƒá [11:32:37] Liliyosa Mbakureya ΓåÆ "Cloud DevOps Engineer"
+   Subject : Cloud DevOps Services Support ΓÇô DotCloud Consulting (Liliyosa Mbakureya)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+
+≡ƒƒá [11:33:02] MPHO MORABA ΓåÆ "Senior DevOps Engineer"
+   Subject : Senior DevOps Engineer Services Support ΓÇô DotCloud Consulting (MPHO MORABA)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+      ΓÇó Potentially invented cert/tech in email not found in profile: azure, aws, gcp
+
+≡ƒƒá [11:34:10] Tanyaradzwa Tanatswa Mushonga ΓåÆ "Cloud DevOps Engineer"
+   Subject : Cloud DevOps Services Support ΓÇô DotCloud Consulting (Tanyaradzwa Tanatswa Mushonga)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+      ΓÇó Potentially invented cert/tech in email not found in profile: aws, azure
+
+≡ƒƒá [11:36:52] Petunia Motlhakane ΓåÆ "Senior AI Engineer"
+   Subject : Senior AI Engineer Services Support ΓÇô DotCloud Consulting (Petunia Motlhakane)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+      ΓÇó Potentially invented cert/tech in email not found in profile: aws, ai-102, dp-203
+
+≡ƒƒá [11:37:00] Everswick Dambaza ΓåÆ "AI Engineer"
+   Subject : AI Engineering Services Support ΓÇô DotCloud Consulting (Everswick Dambaza)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+
+≡ƒƒá [11:39:24] Keagile Nduli ΓåÆ "Solution Architect Service Designer Product Manager Test Engineer Front End Developer Azure DevOps Engineer Lead Azure DevOps Engineer"
+   Subject : Test Engineering Services Support ΓÇô DotCloud Consulting (Keagile Nduli)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+      ΓÇó Potentially invented cert/tech in email not found in profile: azure
+
+≡ƒƒá [11:45:06] Simphiwe Sikhonde ΓåÆ "DevOps Engineer"
+   Subject : DevOps Engineering Services Support ΓÇô DotCloud Consulting (Simphiwe Sikhonde)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+      ΓÇó Potentially invented cert/tech in email not found in profile: azure, itil
+
+≡ƒƒá [11:46:46] Vuyelwa Lushaba ΓåÆ "IT Lead"
+   Subject : HPC Systems Engineering Services Support ΓÇô DotCloud Consulting (Vuyelwa Lushaba)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+      ΓÇó No keyword overlap between job title ("IT Lead") and candidate profile terms (cloud support engineer, aws cloud practitioner, oracle e-business specialist, business analyst, technical support engineer, project coordinator, aws cloud practitioner, cloud support engineer...)
+
+≡ƒƒá [11:47:15] mr landile ΓåÆ "IT Lead"
+   Subject : HPC Systems Engineering Services Support ΓÇô DotCloud Consulting (Mr Landile)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+      ΓÇó No keyword overlap between job title ("IT Lead") and candidate profile terms (windows systems administrator, it support technician, network support engineer, azure cloud administrator, security systems technician, windows desktop support, windows server 2022, active directory domain join...)
+      ΓÇó Potentially invented cert/tech in email not found in profile: mcsa, ms-900, ms-102
+
+≡ƒƒá [11:50:52] Petunia Motlhakane ΓåÆ "1 Data Engineer ΓÇô AWS / Redshift / PySpark"
+   Subject : AWS Data Engineering Services Support ΓÇô DotCloud Consulting (Petunia Motlhakane)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+      ΓÇó Potentially invented cert/tech in email not found in profile: aws, dp-203, ai-102, dp-300, dp-900
+
+≡ƒƒá [11:51:53] James Tladi Tladi ΓåÆ "Senior DevOps Engineer"
+   Subject : Cloud DevOps Services Support ΓÇô DotCloud Consulting (James Tladi Tladi)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+      ΓÇó Potentially invented cert/tech in email not found in profile: security specialty
+
+≡ƒƒá [11:53:24] Tanyaradzwa Tanatswa Mushonga ΓåÆ "Senior DevOps Engineer"
+   Subject : Senior DevOps Services Support ΓÇô DotCloud Consulting (Tanyaradzwa Tanatswa Mushonga)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+      ΓÇó Potentially invented cert/tech in email not found in profile: aws, azure, cka
+
+≡ƒƒá [11:54:56] Everswick Dambaza ΓåÆ "Senior Data Engineer"
+   Subject : Senior Data Engineering Services Support ΓÇô DotCloud Consulting (Everswick Dambaza)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+      ΓÇó Potentially invented cert/tech in email not found in profile: data engineer, aws
+
+≡ƒƒá [11:55:02] Njabulo ΓåÆ "Senior Data Analyst"
+   Subject : Analytics Services Support ΓÇô DotCloud Consulting (Njabulo)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+
+≡ƒƒá [11:56:43] Jonas Mokgaola Nkosinathi Thamane ΓåÆ "Senior Data Engineer"
+   Subject : Data Engineering Services Support ΓÇô DotCloud Consulting (Jonas Mokgaola Nkosinathi Thamane)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+      ΓÇó Potentially invented cert/tech in email not found in profile: pl-300, dp-203, dp-600
+
+≡ƒƒá [11:58:25] Petunia Motlhakane ΓåÆ "Senior Data Engineer"
+   Subject : Data Engineering Services Support ΓÇô DotCloud Consulting (Petunia Motlhakane)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+      ΓÇó Potentially invented cert/tech in email not found in profile: aws, dp-203, ai-102, az-900, sc-900
+
+≡ƒƒá [11:58:27] Isaac Rantu Mongae ΓåÆ "Senior Data Engineer"
+   Subject : Senior Data Engineer Services Support ΓÇô DotCloud Consulting (Isaac Rantu Mongae)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+      ΓÇó Potentially invented cert/tech in email not found in profile: data engineer, azure, aws
+
+≡ƒƒá [11:59:39] James Tladi Tladi ΓåÆ "Cloud DevOps Engineer"
+   Subject : AWS DevOps Services Support ΓÇô DotCloud Consulting (James Tladi Tladi)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+      ΓÇó Potentially invented cert/tech in email not found in profile: security specialty
+
+≡ƒƒá [12:01:34] Everswick Dambaza ΓåÆ "Data Engineer"
+   Subject : Data Engineering Services Support ΓÇô DotCloud Consulting (Everswick Dambaza)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+      ΓÇó Potentially invented cert/tech in email not found in profile: data engineer, aws
+
+≡ƒƒá [12:01:38] Everswick Dambaza ΓåÆ "Data Engineer"
+   Subject : Data Engineering Services Support ΓÇô DotCloud Consulting (Everswick Dambaza)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+      ΓÇó Potentially invented cert/tech in email not found in profile: data engineer, aws
+
+≡ƒƒá [12:03:20] Njabulo ΓåÆ "Data Engineer"
+   Subject : Data Engineering Services Support ΓÇô DotCloud Consulting (Njabulo)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+      ΓÇó Potentially invented cert/tech in email not found in profile: azure
+
+≡ƒƒá [12:03:21] Njabulo ΓåÆ "Data Engineer"
+   Subject : Data Engineering Services Support ΓÇô DotCloud Consulting (Njabulo)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+      ΓÇó Potentially invented cert/tech in email not found in profile: azure
+
+≡ƒƒá [12:05:00] Jonas Mokgaola Nkosinathi Thamane ΓåÆ "Data Engineer"
+   Subject : Data Pipeline Engineering Services Support ΓÇô DotCloud Consulting (Jonas Mokgaola Nkosinathi Thamane)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+      ΓÇó Potentially invented cert/tech in email not found in profile: aws, dp-203, dp-600
+
+≡ƒƒá [12:05:45] Isaac Rantu Mongae ΓåÆ "Data Engineer"
+   Subject : Data Engineering Services Support ΓÇô DotCloud Consulting (Isaac Rantu Mongae)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+      ΓÇó Potentially invented cert/tech in email not found in profile: data engineer, aws
+
+≡ƒƒá [12:06:28] Isaac Rantu Mongae ΓåÆ "Data Engineer"
+   Subject : Data Engineering Services Support ΓÇô DotCloud Consulting (Isaac Rantu Mongae)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+      ΓÇó Potentially invented cert/tech in email not found in profile: data engineer, aws
+
+≡ƒƒá [12:07:15] Keagile Nduli ΓåÆ "Full Stack Developer"
+   Subject : Full Stack Development Services Support ΓÇô DotCloud Consulting (Keagile Nduli)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+      ΓÇó Potentially invented cert/tech in email not found in profile: azure, aws
+
+≡ƒƒá [12:07:43] Keagile Nduli ΓåÆ "Full Stack Developer"
+   Subject : Full Stack Development Services Support ΓÇô DotCloud Consulting (Keagile Nduli)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+      ΓÇó Potentially invented cert/tech in email not found in profile: azure, aws
+
+≡ƒƒá [12:09:07] Tanyaradzwa Tanatswa Mushonga ΓåÆ "Full Stack Developer"
+   Subject : Full Stack Enterprise Development Services Support ΓÇô DotCloud Consulting (Tanyaradzwa Tanatswa Mushonga)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+      ΓÇó Potentially invented cert/tech in email not found in profile: azure, aws
+
+≡ƒƒá [12:09:57] Lesley Charinda ΓåÆ "Full Stack Developer"
+   Subject : Full Stack Development Services Support ΓÇô DotCloud Consulting (Lesley Charinda)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+      ΓÇó Potentially invented cert/tech in email not found in profile: azure
+
+≡ƒƒá [12:10:38] Lesley Charinda ΓåÆ "Full Stack Developer"
+   Subject : Full Stack .NET Services Support ΓÇô DotCloud Consulting (Lesley Charinda)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+      ΓÇó Potentially invented cert/tech in email not found in profile: azure
+
+≡ƒƒá [12:11:48] Kudzai Murimi ΓåÆ "Full Stack Developer"
+   Subject : Full Stack Developer Services Support ΓÇô DotCloud Consulting (Kudzai Murimi)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+      ΓÇó Potentially invented cert/tech in email not found in profile: azure
+
+≡ƒƒá [12:13:22] MPHO MORABA ΓåÆ "Full Stack Developer"
+   Subject : Full Stack Developer Services Support ΓÇô DotCloud Consulting (MPHO MORABA)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+      ΓÇó Potentially invented cert/tech in email not found in profile: azure
+
+≡ƒƒá [12:13:28] MPHO MORABA ΓåÆ "Full Stack Developer"
+   Subject : Full Stack Developer Services Support ΓÇô DotCloud Consulting (MPHO MORABA)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+
+≡ƒƒá [12:15:17] Lesley Charinda ΓåÆ "Software Engineer"
+   Subject : Serverless AI Platform Services Support ΓÇô DotCloud Consulting (Lesley Charinda)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+      ΓÇó Potentially invented cert/tech in email not found in profile: solutions architect
+
+≡ƒƒá [12:15:48] Lesley Charinda ΓåÆ "Software Engineer"
+   Subject : Serverless AI Platform Services Support ΓÇô DotCloud Consulting (Lesley Charinda)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+      ΓÇó Potentially invented cert/tech in email not found in profile: solutions architect
+
+≡ƒƒá [12:16:41] MPHO MORABA ΓåÆ "Software Engineer"
+   Subject : AI Platform Services Support ΓÇô DotCloud Consulting (MPHO MORABA)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+      ΓÇó Potentially invented cert/tech in email not found in profile: aws, azure
+
+≡ƒƒá [12:17:13] MPHO MORABA ΓåÆ "Software Engineer"
+   Subject : AI Platform Software Engineering Services Support ΓÇô DotCloud Consulting (MPHO MORABA)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+      ΓÇó Potentially invented cert/tech in email not found in profile: azure, aws
+
+≡ƒƒá [12:19:34] Petunia Motlhakane ΓåÆ "AI Engineer"
+   Subject : AI Engineering Services Support ΓÇô DotCloud Consulting (Petunia Motlhakane)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+      ΓÇó Potentially invented cert/tech in email not found in profile: aws
+
+≡ƒƒá [12:20:38] Tonderai Muchada ΓåÆ "Lead JAVA AWS Developer"
+   Subject : Lead Java AWS Services Support ΓÇô DotCloud Consulting (Tonderai Muchada)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+
+≡ƒƒá [12:21:57] Tonderai Muchada ΓåÆ "Lead JAVA AWS Developer"
+   Subject : Lead Java AWS Development Services Support ΓÇô DotCloud Consulting (Tonderai Muchada)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+
+≡ƒƒá [12:21:59] MPHO MORABA ΓåÆ "Lead JAVA AWS Developer"
+   Subject : Lead Java AWS Developer Services Support ΓÇô DotCloud Consulting (MPHO MORABA)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+      ΓÇó Potentially invented cert/tech in email not found in profile: aws, azure
+
+≡ƒƒá [12:23:44] Njabulo ΓåÆ "Data Engineer ΓÇô AWS / Redshift / PySpark"
+   Subject : AWS Data Engineering Services Support ΓÇô DotCloud Consulting (Njabulo)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+      ΓÇó Potentially invented cert/tech in email not found in profile: azure
+
+≡ƒƒá [12:23:52] Njabulo ΓåÆ "Data Engineer ΓÇô AWS / Redshift / PySpark"
+   Subject : AWS Data Engineering Services Support ΓÇô DotCloud Consulting (Njabulo)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+
+≡ƒƒá [12:25:20] Jonas Mokgaola Nkosinathi Thamane ΓåÆ "Data Engineer ΓÇô AWS / Redshift / PySpark"
+   Subject : AWS Data Pipeline Services Support ΓÇô DotCloud Consulting (Jonas Mokgaola Nkosinathi Thamane)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+      ΓÇó Potentially invented cert/tech in email not found in profile: aws, dp-203, pl-300, dp-600
+
+≡ƒƒá [12:34:34] Everswick Dambaza ΓåÆ "1 Data Engineer ΓÇô AWS / Redshift / PySpark"
+   Subject : AWS Data Engineering Services Support ΓÇô DotCloud Consulting (Everswick Dambaza)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+      ΓÇó Potentially invented cert/tech in email not found in profile: data engineer, aws
+
+≡ƒƒá [12:36:50] Everswick Dambaza ΓåÆ "Senior AI Engineer"
+   Subject : Senior AI Engineering Services Support ΓÇô DotCloud Consulting (Everswick Dambaza)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+
+≡ƒƒá [12:39:06] Petunia Motlhakane ΓåÆ "Data Engineer ΓÇô AWS / Redshift / PySpark"
+   Subject : AWS Data Pipeline Services Support ΓÇô DotCloud Consulting (Petunia Motlhakane)
+   ATS     : no record
+   ≡ƒÜ¿ HALLUCINATION / FIT ISSUES:
+      ΓÇó No ATS match record found ΓÇö fit not verified
+      ΓÇó Potentially invented cert/tech in email not found in profile: aws
+
+ΓöÇΓöÇΓöÇ Summary ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+
+Total emails today        : 54
+Γ£à Fully clean            : 0
+≡ƒƒá Hallucination issues   : 54 email(s) affected
+≡ƒƒí Prompt non-compliance  : 0 email(s) affected
+
+Hallucination breakdown:
+  Invented cert/tech: 44
+  No ATS record: 53
+  Role keyword mismatch: 3
+

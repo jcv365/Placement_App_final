@@ -1,0 +1,174 @@
+
+Mailbox: placements@dotcloud.africa
+*** DRY RUN ΓÇö no drafts will be created ***
+
+Fetching all DB email drafts...
+  Total DB records: 707
+  Unique job+candidate pairs: 304
+
+Fetching Outlook Drafts subjects...
+  Drafts:     223 subjects
+
+Fetching Outlook Sent Items subjects...
+  Sent Items: 118 subjects
+
+  Combined unique subjects in mailbox: 339
+
+=== SUMMARY ===
+  DB unique pairs:          304
+  Already in mailbox:       156
+  Missing from mailbox:     148
+  Will repair (have email): 117
+  Skipping (no email):      31
+
+  Skipping (no opportunity email):
+    - [job alert! robusta needs a DevOps Engineer Microsoft Dynamics - 11 Month] Jonathan Wagener
+    - [job alert! robusta needs a DevOps Engineer Microsoft Dynamics - 11 Month] Riaan Snyders
+    - [job alert! robusta needs a DevOps Engineer Microsoft Dynamics - 11 Month] Jeanre Swanepoel
+    - [job alert! robusta needs a DevOps Engineer Microsoft Dynamics - 11 Month] Heinrich Muller
+    - [job alert! robusta needs a DevOps Engineer Microsoft Dynamics - 11 Month] Crispen Shiri
+    - [DevOps engineer] Jonathan Wagener
+    - [DevOps engineer] Jeanre Swanepoel
+    - [DevOps engineer] Riaan Snyders
+    - [DevOps engineer] Crispen Shiri
+    - [Senior Network &amp; Security Architect] Crispen Shiri
+    - [Senior Network &amp; Security Architect] Heinrich Muller
+    - [Senior Network &amp; Security Architect] Tumelo Rahlau
+    - [Senior Network &amp; Security Architect] Ronald Sidney Doyle
+    - [Senior Network & Security Architect ΓÇô Global Enterprise Transformation] Jason Marc Dworkin
+    - [Senior Network & Security Architect ΓÇô Global Enterprise Transformation] Tumelo Rahlau
+    - [Senior Network & Security Architect ΓÇô Global Enterprise Transformation] Ronald Sidney Doyle
+    - [Azure Engineer] Riaan Snyders
+    - [Azure Engineer] Jeanre Swanepoel
+    - [Azure Engineer] Crispen Shiri
+    - [Azure Engineer] Heinrich Muller
+    - [DevOps] Riaan Snyders
+    - [DevOps] Jonathan Wagener
+    - [DevOps] Crispen Shiri
+    - [DevOps] Jeanre Swanepoel
+    - [DevOps] Heinrich Muller
+    - [Cloud engineer] Crispen Shiri
+    - [Storage Engineer] Juan Charl Venter
+    - [Cloud engineer] Jeanre Swanepoel
+    - [Cloud engineer] Riaan Snyders
+    - [Cloud engineer] Jonathan Wagener
+    - [Cloud engineer] Heinrich Muller
+
+Would repair:
+  - [Software Engineer] Tonderai Muchada ΓåÆ caitlin.chapman@fruitiongroup.com
+  - [Software Engineer] MPHO MORABA ΓåÆ peter.bebee@fruitiongroup.com
+  - [Software Engineer] Kudzai Murimi ΓåÆ peter.bebee@fruitiongroup.com
+  - [Technology] Thato Tswai ΓåÆ akran.miah@stealth-it.com
+  - [Technology] mr landile ΓåÆ akran.miah@stealth-it.com
+  - [Network Engineer] Sibusiso Ndlovu ΓåÆ pnkwanyane@nil.co.za
+  - [Azure Architect] Juan Charl Venter ΓåÆ nikhil@thoughtwavesoft.com
+  - [Data Engineer ΓÇô AWS / Redshift / PySpark] Jonas Mokgaola Nkosinathi Thamane ΓåÆ support@staffrex.in
+  - [Software Engineer Multiple Roles] Kudzai Murimi ΓåÆ caitlin.chapman@fruitiongroup.com
+  - [Software Engineer] Juan Charl Venter ΓåÆ peter.bebee@fruitiongroup.com
+  - [Sr Network Engineer] Sibusiso Ndlovu ΓåÆ mohammed.imran@vysystems.com
+  - [Lead JAVA AWS Developer] MPHO MORABA ΓåÆ hr@futureitservice.info
+  - [Lead JAVA AWS Developer] Tonderai Muchada ΓåÆ hr@futureitservice.info
+  - [Lead JAVA AWS Developer at Confidential] Tonderai Muchada ΓåÆ hr@futureitservice.info
+  - [Lead JAVA AWS Developer at Confidential] MPHO MORABA ΓåÆ hr@futureitservice.info
+  - [Full Stack Engineer] Tonderai Muchada ΓåÆ lauren.millane@prism-digital.com
+  - [Full Stack Engineer] MPHO MORABA ΓåÆ lauren.millane@prism-digital.com
+  - [Full Stack Engineer] Kudzai Murimi ΓåÆ lauren.millane@prism-digital.com
+  - [Network Security Engineer] Sibusiso Ndlovu ΓåÆ vikash@inficaretech.com
+  - [Solution Architect, Service Designer, Product Manager, Test Engineer, Front End Developer, Azure DevOps Engineer, Lead Azure DevOps Engineer] MPHO MORABA ΓåÆ neelesh.maroo@stealth-it.com
+  - [Data Engineer] Jonas Mokgaola Nkosinathi Thamane ΓåÆ support@staffrex.in
+  - [Azure DevOps Engineer] MPHO MORABA ΓåÆ tana.mushambadope@signify-tech.com
+  - [Cloud Network Engineer] Sibusiso Ndlovu ΓåÆ meenu.sharma@infojiniconsulting.com
+  - [Cloud Network Engineer] Heinrich Muller ΓåÆ meenu.sharma@infojiniconsulting.com
+  - [Data Engineer (GCP &amp; BigQuery)] Jonas Mokgaola Nkosinathi Thamane ΓåÆ mattrandall@spectrumit.co.uk
+  - [Full Stack Developer] Tonderai Muchada ΓåÆ lucy@marutlethrone.co.za
+  - [Full Stack Developer] MPHO MORABA ΓåÆ jason@paradigmrecruitment.co.za
+  - [Full Stack Developer] Kudzai Murimi ΓåÆ jason@paradigmrecruitment.co.za
+  - [Senior Python Developer] Tonderai Muchada ΓåÆ a.george-taylor@gravitasgroup.com
+  - [Cloud DevOps Engineer] MPHO MORABA ΓåÆ lucy@marutlethrone.co.za
+  - [Senior Data Analyst] Jonas Mokgaola Nkosinathi Thamane ΓåÆ jason@paradigmrecruitment.co.za
+  - [Senior DevOps Engineer] MPHO MORABA ΓåÆ lucy@marutlethrone.co.za
+  - [Cloud DevOps Engineer] Liliyosa Mbakureya ΓåÆ jason@paradigmrecruitment.co.za
+  - [Senior Data Engineer] Jonas Mokgaola Nkosinathi Thamane ΓåÆ jason@paradigmrecruitment.co.za
+  - [Senior DevOps Engineer] Liliyosa Mbakureya ΓåÆ jason@paradigmrecruitment.co.za
+  - [1∩╕ÅΓâú Data Engineer ΓÇô AWS / Redshift / PySpark] Jonas Mokgaola Nkosinathi Thamane ΓåÆ support@staffrex.in
+  - [IT Lead] mr landile ΓåÆ sobana@nityo.com
+  - [Azure Networking] Juan Charl Venter ΓåÆ abhargavi@thoughtwavesoft.com
+  - [Azure Architect] Jeanre Swanepoel ΓåÆ nikhil@thoughtwavesoft.com
+  - [Senior Data Engineer] Juan Charl Venter ΓåÆ lucy@marutlethrone.co.za
+  - [Azure Cloud Engineer] Jeanre Swanepoel ΓåÆ brendan.mccann@emagine.org
+  - [Data Engineer] Juan Charl Venter ΓåÆ support@staffrex.in
+  - [Solution Architect] Riaan Snyders ΓåÆ david@vintageglobal.net
+  - [Enterprise Architect] Juan Charl Venter ΓåÆ david@vintageglobal.net
+  - [Domain Architect] Ronald Sidney Doyle ΓåÆ david@vintageglobal.net
+  - [AI Solution Architect] Heinrich Muller ΓåÆ hr@pivot2ai.org
+  - [Senior Data Scientist] Crispen Shiri ΓåÆ jason@paradigmrecruitment.co.za
+  - [GDS] Tumelo Rahlau ΓåÆ akran.miah@stealth-it.com
+  - [Azure Networking] Crispen Shiri ΓåÆ bindu@thoughtwavesoft.com
+  - [Azure Networking] Ronald Sidney Doyle ΓåÆ abhargavi@thoughtwavesoft.com
+  - [Azure Architect] Juan Charl Venter ΓåÆ vidyasree@thoughtwavesoft.com
+  - [Azure Architect] Riaan Snyders ΓåÆ murali@thoughtwavesoft.com
+  - [Azure Architect] Tumelo Rahlau ΓåÆ abhargavi@thoughtwavesoft.com
+  - [AI] Tumelo Rahlau ΓåÆ cheryl@mbnsolutions.com
+  - [IT Staff Systems Engineer (HPC)] Juan Charl Venter ΓåÆ sonali.khedekar@nityo.com
+  - [AI] Crispen Shiri ΓåÆ jobs@bsimerch.com
+  - [Security Clearance] Juan Charl Venter ΓåÆ akran.miah@stealth-it.com
+  - [Technology] Heinrich Muller ΓåÆ akran.miah@stealth-it.com
+  - [Digital & Cloud] Jason Marc Dworkin ΓåÆ akran.miah@stealth-it.com
+  - [Public Sector] Crispen Shiri ΓåÆ akran.miah@stealth-it.com
+  - [Contracts] Ronald Sidney Doyle ΓåÆ akran.miah@stealth-it.com
+  - [Delivery Consultant] Jeanre Swanepoel ΓåÆ akran.miah@stealth-it.com
+  - [1∩╕ÅΓâú Data Engineer ΓÇô AWS / Redshift / PySpark] Ronald Sidney Doyle ΓåÆ support@staffrex.in
+  - [IT Lead] Juan Charl Venter ΓåÆ sobana@nityo.com
+  - [Mumbai] Crispen Shiri ΓåÆ support@staffrex.in
+  - [Hyderabad] Ronald Sidney Doyle ΓåÆ support@staffrex.in
+  - [Delhi] Juan Charl Venter ΓåÆ support@staffrex.in
+  - [Pune] Riaan Snyders ΓåÆ support@staffrex.in
+  - [Fresher & Experienced Jobs] Heinrich Muller ΓåÆ support@staffrex.in
+  - [Modern Workplace and DEX Principal Consultant at Experis & Ireland] Jonathan Wagener ΓåÆ simon.gukhool@experis.co.uk
+  - [Connecting Talent Across Scandinavia & Lithuania] Jeanre Swanepoel ΓåÆ eclayton@venquis.com
+  - [1∩╕ÅΓâú ML Engineer ΓÇô Hyderabad] Juan Charl Venter ΓåÆ support@staffrex.in
+  - [≡ƒÜ¿ Hiring: IT Staff Systems Engineer HPC] Jason Marc Dworkin ΓåÆ sonali.khedekar@nityo.com
+  - [Lead JAVA AWS Developer at Confidential] Heinrich Muller ΓåÆ hr@futureitservice.info
+  - [I am looking to speak to Senior Product Managers who are immediately available for a 3 month building out 0-1 AI B2C products.] Ronald Sidney Doyle ΓåÆ phoebe@foundbyfew.com
+  - [Recruitment Consultant] Tumelo Rahlau ΓåÆ eclayton@venquis.com
+  - [Data Engineer ΓÇô AWS / Redshift / PySpark] Heinrich Muller ΓåÆ support@staffrex.in
+  - [Lead JAVA AWS Developer] Jeanre Swanepoel ΓåÆ hr@futureitservice.info
+  - [IT Staff Systems Engineer HPC] Jonathan Wagener ΓåÆ sonali.khedekar@nityo.com
+  - [Senior Product Manager] Jason Marc Dworkin ΓåÆ phoebe@foundbyfew.com
+  - [Senior Data Analyst] Ronald Sidney Doyle ΓåÆ jason@paradigmrecruitment.co.za
+  - [Senior Data Engineer] Juan Charl Venter ΓåÆ jason@paradigmrecruitment.co.za
+  - [Full Stack Developer] Tumelo Rahlau ΓåÆ jason@paradigmrecruitment.co.za
+  - [Senior Data Scientist] Jonathan Wagener ΓåÆ lucy@marutlethrone.co.za
+  - [Full Stack Developer] Crispen Shiri ΓåÆ lucy@marutlethrone.co.za
+  - [Senior Data Analyst] Jason Marc Dworkin ΓåÆ lucy@marutlethrone.co.za
+  - [Cloud DevOps Engineer] Ronald Sidney Doyle ΓåÆ lucy@marutlethrone.co.za
+  - [Infrastructure Engineer/SRE] Riaan Snyders ΓåÆ oviya.g@smartedgesolutions.co.uk
+  - [Head of Global Training & Research] Juan Charl Venter ΓåÆ hr@pivot2ai.org
+  - [Senior AI Engineer] Tumelo Rahlau ΓåÆ hr@pivot2ai.org
+  - [Domain Architect] Tumelo Rahlau ΓåÆ david@vintageglobal.net
+  - [Solution Architect] Jonathan Wagener ΓåÆ david@vintageglobal.net
+  - [AI Transformation Lead] Jeanre Swanepoel ΓåÆ tana.mushambadope@signify-tech.com
+  - [AI Engineer] Jason Marc Dworkin ΓåÆ tana.mushambadope@signify-tech.com
+  - [Proposal Engineer ΓÇô Mechanical] Ronald Sidney Doyle ΓåÆ subramanya.c@stsoman.com
+  - [Data Engineer (GCP &amp; BigQuery)] Jeanre Swanepoel ΓåÆ mattrandall@spectrumit.co.uk
+  - [Senior DevOps Engineer (GCP Focused)] Juan Charl Venter ΓåÆ sales@ecsgrp.co.uk
+  - [Data Engineer] Riaan Snyders ΓåÆ l.toussaint@gravitasgroup.com
+  - [Data Engineer] Tumelo Rahlau ΓåÆ s.pickard@gravitasgroup.com
+  - [Senior Python Developer] Heinrich Muller ΓåÆ a.george-taylor@gravitasgroup.com
+  - [Software Engineer] Jason Marc Dworkin ΓåÆ peter.bebee@fruitiongroup.com
+  - [Infrastructure Security &amp; Migration Engineer (Linux)] Crispen Shiri ΓåÆ support@staffrex.in
+  - [Infrastructure Engineer/SRE] Juan Charl Venter ΓåÆ oviya.g@smartedgesolutions.co.uk
+  - [Data Engineer] Crispen Shiri ΓåÆ support@staffrex.in
+  - [Infrastructure Security &amp; Migration Engineer] Juan Charl Venter ΓåÆ support@staffrex.in
+  - [Solution Architect] Heinrich Muller ΓåÆ canel.osman@stealth-it.com
+  - [Security Architect (Enterprise) ΓÇô AI] Ronald Sidney Doyle ΓåÆ hema@adroitpeople.com
+  - [Principal AI Architect] Tumelo Rahlau ΓåÆ michael@mbnsolutions.com
+  - [Senior Product Manager] Heinrich Muller ΓåÆ phoebe@foundbyfew.com
+  - [Senior Content Writer] Jonathan Wagener ΓåÆ ciara.maher@revolutiontechnology.co.uk
+  - [Network Security Architect (Lead)] Jeanre Swanepoel ΓåÆ sanjana.t@smartedgesolutions.co.uk
+  - [Software Engineer] Jeanre Swanepoel ΓåÆ caitlin.chapman@fruitiongroup.com
+  - [Software Engineer] Riaan Snyders ΓåÆ caitlin.chapman@fruitiongroup.com
+  - [SmartedgeΓÇÖs client is looking for an experienced Network Security Architect Lead its] Tumelo Rahlau ΓåÆ sanjana.t@smartedgesolutions.co.uk
+  - [SmartedgeΓÇÖs client is looking for an experienced Infrastructure Engineer/ SRE] Heinrich Muller ΓåÆ oviya.g@smartedgesolutions.co.uk
+  - [SmartedgeΓÇÖs client is looking for an experienced Infrastructure Engineer/ SRE] Crispen Shiri ΓåÆ oviya.g@smartedgesolutions.co.uk
+  - [Senior DevOps Engineer] Jonathan Wagener ΓåÆ jason@paradigmrecruitment.co.za

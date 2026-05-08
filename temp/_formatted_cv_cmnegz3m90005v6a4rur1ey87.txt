@@ -1,0 +1,78 @@
+JUAN CHARL VENTER
+
+PROFESSIONAL SUMMARY
+────────────────────────────────────────────────────────────
+Accomplished Azure Cloud Solutions Architect and Hybrid Cloud Specialist with over 11 years of experience in designing, implementing, and optimising secure, scalable, and cost-effective cloud and data centre solutions. Recognised for holding elite certifications, including Cisco CCIE Data Centre and VMware Double VCP, and for delivering innovative architectures that align with business objectives and maximise ROI.
+
+CORE SKILLS & TECHNOLOGIES
+────────────────────────────────────────────────────────────
+Microsoft Azure | FinOps | Cisco CCIE Data Centre | Cisco ACI | Cisco SDN | VMware vSphere | VMware ESXi | NetApp NCDA | NetApp NCIE | FlexPod | Veeam Backup & Recovery | Windows Server 2003/2008 | Hyper-V | Oracle Virtual Machine | HP Data Protector
+
+CERTIFICATIONS
+────────────────────────────────────────────────────────────
+• FinOps Certified Practitioner – FinOps Foundation
+• Azure Cloud Solutions Architect: Expert – Microsoft, 2021
+• Cisco Certified Internetworking Engineer (CCIE) Data Center (#63667) – 2019, Renewed 2023
+• VMware Certified Professional – Network Virtualization (VCP6.2-NV) – 2018
+• VMware Certified Professional – Data Center Virtualization (VCP6.5-DCV) – 2017
+• NetApp Certified Implementation Engineer (NCIE-SAN) – 2016
+• NetApp Accredited Storage Architect Professional (NASAP) – 2016
+• Cisco Hyperflex Implementation Engineer – 2020
+• Cisco Certified Network Professional (CCNP) Data Center – 2018, 2015, 2013
+• Riverbed Certified Solutions Associate – Storage Delivery – 2014
+• HP AIS StorageWorks & Data Protector – 2011
+• Microsoft Certified Professional – 2012
+
+PROFESSIONAL EXPERIENCE
+────────────────────────────────────────────────────────────
+Azure Cloud Architect
+Deloitte Consulting | March 2023 – Present
+  • Designed and implemented a secure and scalable cloud infrastructure on Azure, enabling the migration of over 20 on-premise applications and reducing costs by 25%.
+  • Successfully migrated a critical application to Azure, resulting in a 30% improvement in performance and a 15% reduction in downtime.
+  • Reduced cloud costs by 10% through optimisation strategies such as rightsizing instances and implementing resource tagging.
+  • Led the development of a cloud-based disaster recovery solution to ensure business continuity.
+  • Mentored and trained team members on Azure technologies, promoting knowledge sharing and upskilling.
+
+Consultant
+Afrocentric Technologies | February 2023 – Present
+  • Acted as a Hybrid Cloud Strategy Consultant to assist clients in developing and implementing their hybrid cloud strategies.
+  • Evaluated current infrastructure, applications, and workloads to determine the feasibility of hybrid cloud solutions.
+  • Developed and maintained hybrid cloud architecture blueprints that address client business and technical requirements.
+  • Provided expertise and guidance on cloud best practices, security, and governance.
+
+Practice Lead: Infrastructure as a Service
+Altron Systems Integration | May 2021 – January 2023
+  • Built and led the creation of the business strategy to deliver Hybrid-cloud solutions to market.
+  • Developed and owned the customer roadmap to guide customers on their Digitisation and Hybrid-cloud journey.
+  • Managed relationships with Vertical Sales Leaders, Account Managers, and customers, acting as a trusted advisor.
+  • Delivered on defined targets and budgets for the practice.
+
+Technical Data Centre Solutions Architect / Pre-Sales
+Altron Bytes Systems Integration | January 2012 – May 2021
+  • Provided technical expertise in analysing client requirements, recommending solutions, and assisting sales with proposals, quotations, and RFPs.
+  • Translated business strategies into target architectures and roadmaps.
+  • Assisted customers in designing solutions around XaaS, IaaS, PaaS, on-premise cloud, and hybrid cloud.
+  • Maintained client relationships as a trusted Technical Advisor.
+  • Specialised in Cisco UCS, VMware, NetApp, and FlexPod technologies.
+
+Server Engineer
+New Generation Solutions | 2009 – 2010
+  • Provided top-level support and served as a technical escalation point for complex problems related to Windows Server 2003/2008.
+  • Designed, developed, documented, and implemented processes and procedures to ensure all error conditions were addressed.
+
+Owner / Engineer
+VenCon Solutions | 2004 – 2009
+  • Provided top-level support and served as a technical escalation point for complex problems related to Windows Server 2003/2008.
+  • Collected and analysed capacity data for planning and proactive resolution of issues.
+
+EDUCATION
+────────────────────────────────────────────────────────────
+• High School Diploma / GED
+
+KEY ACHIEVEMENTS
+────────────────────────────────────────────────────────────
+• Reduced cloud costs by 25% through strategic Azure infrastructure design and optimisation.
+• Achieved a 30% performance improvement and 15% downtime reduction by migrating critical applications to Azure.
+• Awarded 'Cisco Systems Unlocking the Power of Data' – EMEA, 2019.
+• Recognised as 'NetApp Champion of the Year' – EMEA, 2018.
+• Successfully led the development of a cloud-based disaster recovery solution, ensuring business continuity.

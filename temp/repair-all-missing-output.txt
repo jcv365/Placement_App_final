@@ -1,0 +1,178 @@
+
+Mailbox: placements@dotcloud.africa
+Fetching all DB email drafts...
+  Total DB records: 707
+  Unique job+candidate pairs: 304
+
+Fetching Outlook Drafts subjects...
+  Drafts:     223 subjects
+
+Fetching Outlook Sent Items subjects...
+  Sent Items: 118 subjects
+
+  Combined unique subjects in mailbox: 339
+
+=== SUMMARY ===
+  DB unique pairs:          304
+  Already in mailbox:       156
+  Missing from mailbox:     148
+  Will repair (have email): 117
+  Skipping (no email):      31
+
+  Skipping (no opportunity email):
+    - [job alert! robusta needs a DevOps Engineer Microsoft Dynamics - 11 Month] Jonathan Wagener
+    - [job alert! robusta needs a DevOps Engineer Microsoft Dynamics - 11 Month] Riaan Snyders
+    - [job alert! robusta needs a DevOps Engineer Microsoft Dynamics - 11 Month] Jeanre Swanepoel
+    - [job alert! robusta needs a DevOps Engineer Microsoft Dynamics - 11 Month] Heinrich Muller
+    - [job alert! robusta needs a DevOps Engineer Microsoft Dynamics - 11 Month] Crispen Shiri
+    - [DevOps engineer] Jonathan Wagener
+    - [DevOps engineer] Jeanre Swanepoel
+    - [DevOps engineer] Riaan Snyders
+    - [DevOps engineer] Crispen Shiri
+    - [Senior Network &amp; Security Architect] Crispen Shiri
+    - [Senior Network &amp; Security Architect] Heinrich Muller
+    - [Senior Network &amp; Security Architect] Tumelo Rahlau
+    - [Senior Network &amp; Security Architect] Ronald Sidney Doyle
+    - [Senior Network & Security Architect ΓÇô Global Enterprise Transformation] Jason Marc Dworkin
+    - [Senior Network & Security Architect ΓÇô Global Enterprise Transformation] Tumelo Rahlau
+    - [Senior Network & Security Architect ΓÇô Global Enterprise Transformation] Ronald Sidney Doyle
+    - [Azure Engineer] Riaan Snyders
+    - [Azure Engineer] Jeanre Swanepoel
+    - [Azure Engineer] Crispen Shiri
+    - [Azure Engineer] Heinrich Muller
+    - [DevOps] Riaan Snyders
+    - [DevOps] Jonathan Wagener
+    - [DevOps] Crispen Shiri
+    - [DevOps] Jeanre Swanepoel
+    - [DevOps] Heinrich Muller
+    - [Cloud engineer] Crispen Shiri
+    - [Storage Engineer] Juan Charl Venter
+    - [Cloud engineer] Jeanre Swanepoel
+    - [Cloud engineer] Riaan Snyders
+    - [Cloud engineer] Jonathan Wagener
+    - [Cloud engineer] Heinrich Muller
+
+Pushing 117 missing draft(s) to Outlook...
+
+  [1/117] [Software Engineer] Tonderai Muchada ΓåÆ OK (to: caitlin.chapman@fruitiongroup.com)
+  [2/117] [Software Engineer] MPHO MORABA ΓåÆ OK (to: peter.bebee@fruitiongroup.com)
+  [3/117] [Software Engineer] Kudzai Murimi ΓåÆ OK (to: peter.bebee@fruitiongroup.com)
+  [4/117] [Technology] Thato Tswai ΓåÆ OK (to: akran.miah@stealth-it.com)
+  [5/117] [Technology] mr landile ΓåÆ OK (to: akran.miah@stealth-it.com)
+  [6/117] [Network Engineer] Sibusiso Ndlovu ΓåÆ OK (to: pnkwanyane@nil.co.za)
+  [7/117] [Azure Architect] Juan Charl Venter ΓåÆ OK (to: nikhil@thoughtwavesoft.com)
+  [8/117] [Data Engineer ΓÇô AWS / Redshift / PySpark] Jonas Mokgaola Nkosinathi Thamane ΓåÆ OK (to: support@staffrex.in)
+  [9/117] [Software Engineer Multiple Roles] Kudzai Murimi ΓåÆ OK (to: caitlin.chapman@fruitiongroup.com)
+  [10/117] [Software Engineer] Juan Charl Venter ΓåÆ OK (to: peter.bebee@fruitiongroup.com)
+  [11/117] [Sr Network Engineer] Sibusiso Ndlovu ΓåÆ OK (to: mohammed.imran@vysystems.com)
+  [12/117] [Lead JAVA AWS Developer] MPHO MORABA ΓåÆ OK (to: hr@futureitservice.info)
+  [13/117] [Lead JAVA AWS Developer] Tonderai Muchada ΓåÆ OK (to: hr@futureitservice.info)
+  [14/117] [Lead JAVA AWS Developer at Confidential] Tonderai Muchada ΓåÆ OK (to: hr@futureitservice.info)
+  [15/117] [Lead JAVA AWS Developer at Confidential] MPHO MORABA ΓåÆ OK (to: hr@futureitservice.info)
+  [16/117] [Full Stack Engineer] Tonderai Muchada ΓåÆ OK (to: lauren.millane@prism-digital.com)
+  [17/117] [Full Stack Engineer] MPHO MORABA ΓåÆ OK (to: lauren.millane@prism-digital.com)
+  [18/117] [Full Stack Engineer] Kudzai Murimi ΓåÆ OK (to: lauren.millane@prism-digital.com)
+  [19/117] [Network Security Engineer] Sibusiso Ndlovu ΓåÆ OK (to: vikash@inficaretech.com)
+  [20/117] [Solution Architect, Service Designer, Product Manager, Test Engineer, Front End Developer, Azure DevOps Engineer, Lead Azure DevOps Engineer] MPHO MORABA ΓåÆ OK (to: neelesh.maroo@stealth-it.com)
+  [21/117] [Data Engineer] Jonas Mokgaola Nkosinathi Thamane ΓåÆ OK (to: support@staffrex.in)
+  [22/117] [Azure DevOps Engineer] MPHO MORABA ΓåÆ OK (to: tana.mushambadope@signify-tech.com)
+  [23/117] [Cloud Network Engineer] Sibusiso Ndlovu ΓåÆ OK (to: meenu.sharma@infojiniconsulting.com)
+  [24/117] [Cloud Network Engineer] Heinrich Muller ΓåÆ OK (to: meenu.sharma@infojiniconsulting.com)
+  [25/117] [Data Engineer (GCP &amp; BigQuery)] Jonas Mokgaola Nkosinathi Thamane ΓåÆ OK (to: mattrandall@spectrumit.co.uk)
+  [26/117] [Full Stack Developer] Tonderai Muchada ΓåÆ OK (to: lucy@marutlethrone.co.za)
+  [27/117] [Full Stack Developer] MPHO MORABA ΓåÆ OK (to: jason@paradigmrecruitment.co.za)
+  [28/117] [Full Stack Developer] Kudzai Murimi ΓåÆ OK (to: jason@paradigmrecruitment.co.za)
+  [29/117] [Senior Python Developer] Tonderai Muchada ΓåÆ OK (to: a.george-taylor@gravitasgroup.com)
+  [30/117] [Cloud DevOps Engineer] MPHO MORABA ΓåÆ OK (to: lucy@marutlethrone.co.za)
+  [31/117] [Senior Data Analyst] Jonas Mokgaola Nkosinathi Thamane ΓåÆ OK (to: jason@paradigmrecruitment.co.za)
+  [32/117] [Senior DevOps Engineer] MPHO MORABA ΓåÆ OK (to: lucy@marutlethrone.co.za)
+  [33/117] [Cloud DevOps Engineer] Liliyosa Mbakureya ΓåÆ OK (to: jason@paradigmrecruitment.co.za)
+  [34/117] [Senior Data Engineer] Jonas Mokgaola Nkosinathi Thamane ΓåÆ OK (to: jason@paradigmrecruitment.co.za)
+  [35/117] [Senior DevOps Engineer] Liliyosa Mbakureya ΓåÆ OK (to: jason@paradigmrecruitment.co.za)
+  [36/117] [1∩╕ÅΓâú Data Engineer ΓÇô AWS / Redshift / PySpark] Jonas Mokgaola Nkosinathi Thamane ΓåÆ OK (to: support@staffrex.in)
+  [37/117] [IT Lead] mr landile ΓåÆ OK (to: sobana@nityo.com)
+  [38/117] [Azure Networking] Juan Charl Venter ΓåÆ OK (to: abhargavi@thoughtwavesoft.com)
+  [39/117] [Azure Architect] Jeanre Swanepoel ΓåÆ OK (to: nikhil@thoughtwavesoft.com)
+  [40/117] [Senior Data Engineer] Juan Charl Venter ΓåÆ OK (to: lucy@marutlethrone.co.za)
+  [41/117] [Azure Cloud Engineer] Jeanre Swanepoel ΓåÆ OK (to: brendan.mccann@emagine.org)
+  [42/117] [Data Engineer] Juan Charl Venter ΓåÆ OK (to: support@staffrex.in)
+  [43/117] [Solution Architect] Riaan Snyders ΓåÆ OK (to: david@vintageglobal.net)
+  [44/117] [Enterprise Architect] Juan Charl Venter ΓåÆ OK (to: david@vintageglobal.net)
+  [45/117] [Domain Architect] Ronald Sidney Doyle ΓåÆ OK (to: david@vintageglobal.net)
+  [46/117] [AI Solution Architect] Heinrich Muller ΓåÆ OK (to: hr@pivot2ai.org)
+  [47/117] [Senior Data Scientist] Crispen Shiri ΓåÆ OK (to: jason@paradigmrecruitment.co.za)
+  [48/117] [GDS] Tumelo Rahlau ΓåÆ OK (to: akran.miah@stealth-it.com)
+  [49/117] [Azure Networking] Crispen Shiri ΓåÆ OK (to: bindu@thoughtwavesoft.com)
+  [50/117] [Azure Networking] Ronald Sidney Doyle ΓåÆ OK (to: abhargavi@thoughtwavesoft.com)
+  [51/117] [Azure Architect] Juan Charl Venter ΓåÆ OK (to: vidyasree@thoughtwavesoft.com)
+  [52/117] [Azure Architect] Riaan Snyders ΓåÆ OK (to: murali@thoughtwavesoft.com)
+  [53/117] [Azure Architect] Tumelo Rahlau ΓåÆ OK (to: abhargavi@thoughtwavesoft.com)
+  [54/117] [AI] Tumelo Rahlau ΓåÆ OK (to: cheryl@mbnsolutions.com)
+  [55/117] [IT Staff Systems Engineer (HPC)] Juan Charl Venter ΓåÆ OK (to: sonali.khedekar@nityo.com)
+  [56/117] [AI] Crispen Shiri ΓåÆ OK (to: jobs@bsimerch.com)
+  [57/117] [Security Clearance] Juan Charl Venter ΓåÆ OK (to: akran.miah@stealth-it.com)
+  [58/117] [Technology] Heinrich Muller ΓåÆ OK (to: akran.miah@stealth-it.com)
+  [59/117] [Digital & Cloud] Jason Marc Dworkin ΓåÆ OK (to: akran.miah@stealth-it.com)
+  [60/117] [Public Sector] Crispen Shiri ΓåÆ OK (to: akran.miah@stealth-it.com)
+  [61/117] [Contracts] Ronald Sidney Doyle ΓåÆ OK (to: akran.miah@stealth-it.com)
+  [62/117] [Delivery Consultant] Jeanre Swanepoel ΓåÆ OK (to: akran.miah@stealth-it.com)
+  [63/117] [1∩╕ÅΓâú Data Engineer ΓÇô AWS / Redshift / PySpark] Ronald Sidney Doyle ΓåÆ OK (to: support@staffrex.in)
+  [64/117] [IT Lead] Juan Charl Venter ΓåÆ OK (to: sobana@nityo.com)
+  [65/117] [Mumbai] Crispen Shiri ΓåÆ OK (to: support@staffrex.in)
+  [66/117] [Hyderabad] Ronald Sidney Doyle ΓåÆ OK (to: support@staffrex.in)
+  [67/117] [Delhi] Juan Charl Venter ΓåÆ OK (to: support@staffrex.in)
+  [68/117] [Pune] Riaan Snyders ΓåÆ OK (to: support@staffrex.in)
+  [69/117] [Fresher & Experienced Jobs] Heinrich Muller ΓåÆ OK (to: support@staffrex.in)
+  [70/117] [Modern Workplace and DEX Principal Consultant at Experis & Ireland] Jonathan Wagener ΓåÆ OK (to: simon.gukhool@experis.co.uk)
+  [71/117] [Connecting Talent Across Scandinavia & Lithuania] Jeanre Swanepoel ΓåÆ OK (to: eclayton@venquis.com)
+  [72/117] [1∩╕ÅΓâú ML Engineer ΓÇô Hyderabad] Juan Charl Venter ΓåÆ OK (to: support@staffrex.in)
+  [73/117] [≡ƒÜ¿ Hiring: IT Staff Systems Engineer HPC] Jason Marc Dworkin ΓåÆ OK (to: sonali.khedekar@nityo.com)
+  [74/117] [Lead JAVA AWS Developer at Confidential] Heinrich Muller ΓåÆ OK (to: hr@futureitservice.info)
+  [75/117] [I am looking to speak to Senior Product Managers who are immediately available for a 3 month building out 0-1 AI B2C products.] Ronald Sidney Doyle ΓåÆ OK (to: phoebe@foundbyfew.com)
+  [76/117] [Recruitment Consultant] Tumelo Rahlau ΓåÆ OK (to: eclayton@venquis.com)
+  [77/117] [Data Engineer ΓÇô AWS / Redshift / PySpark] Heinrich Muller ΓåÆ OK (to: support@staffrex.in)
+  [78/117] [Lead JAVA AWS Developer] Jeanre Swanepoel ΓåÆ OK (to: hr@futureitservice.info)
+  [79/117] [IT Staff Systems Engineer HPC] Jonathan Wagener ΓåÆ OK (to: sonali.khedekar@nityo.com)
+  [80/117] [Senior Product Manager] Jason Marc Dworkin ΓåÆ OK (to: phoebe@foundbyfew.com)
+  [81/117] [Senior Data Analyst] Ronald Sidney Doyle ΓåÆ OK (to: jason@paradigmrecruitment.co.za)
+  [82/117] [Senior Data Engineer] Juan Charl Venter ΓåÆ OK (to: jason@paradigmrecruitment.co.za)
+  [83/117] [Full Stack Developer] Tumelo Rahlau ΓåÆ OK (to: jason@paradigmrecruitment.co.za)
+  [84/117] [Senior Data Scientist] Jonathan Wagener ΓåÆ OK (to: lucy@marutlethrone.co.za)
+  [85/117] [Full Stack Developer] Crispen Shiri ΓåÆ OK (to: lucy@marutlethrone.co.za)
+  [86/117] [Senior Data Analyst] Jason Marc Dworkin ΓåÆ OK (to: lucy@marutlethrone.co.za)
+  [87/117] [Cloud DevOps Engineer] Ronald Sidney Doyle ΓåÆ OK (to: lucy@marutlethrone.co.za)
+  [88/117] [Infrastructure Engineer/SRE] Riaan Snyders ΓåÆ OK (to: oviya.g@smartedgesolutions.co.uk)
+  [89/117] [Head of Global Training & Research] Juan Charl Venter ΓåÆ OK (to: hr@pivot2ai.org)
+  [90/117] [Senior AI Engineer] Tumelo Rahlau ΓåÆ OK (to: hr@pivot2ai.org)
+  [91/117] [Domain Architect] Tumelo Rahlau ΓåÆ OK (to: david@vintageglobal.net)
+  [92/117] [Solution Architect] Jonathan Wagener ΓåÆ OK (to: david@vintageglobal.net)
+  [93/117] [AI Transformation Lead] Jeanre Swanepoel ΓåÆ OK (to: tana.mushambadope@signify-tech.com)
+  [94/117] [AI Engineer] Jason Marc Dworkin ΓåÆ OK (to: tana.mushambadope@signify-tech.com)
+  [95/117] [Proposal Engineer ΓÇô Mechanical] Ronald Sidney Doyle ΓåÆ OK (to: subramanya.c@stsoman.com)
+  [96/117] [Data Engineer (GCP &amp; BigQuery)] Jeanre Swanepoel ΓåÆ OK (to: mattrandall@spectrumit.co.uk)
+  [97/117] [Senior DevOps Engineer (GCP Focused)] Juan Charl Venter ΓåÆ OK (to: sales@ecsgrp.co.uk)
+  [98/117] [Data Engineer] Riaan Snyders ΓåÆ OK (to: l.toussaint@gravitasgroup.com)
+  [99/117] [Data Engineer] Tumelo Rahlau ΓåÆ OK (to: s.pickard@gravitasgroup.com)
+  [100/117] [Senior Python Developer] Heinrich Muller ΓåÆ OK (to: a.george-taylor@gravitasgroup.com)
+  [101/117] [Software Engineer] Jason Marc Dworkin ΓåÆ OK (to: peter.bebee@fruitiongroup.com)
+  [102/117] [Infrastructure Security &amp; Migration Engineer (Linux)] Crispen Shiri ΓåÆ OK (to: support@staffrex.in)
+  [103/117] [Infrastructure Engineer/SRE] Juan Charl Venter ΓåÆ OK (to: oviya.g@smartedgesolutions.co.uk)
+  [104/117] [Data Engineer] Crispen Shiri ΓåÆ OK (to: support@staffrex.in)
+  [105/117] [Infrastructure Security &amp; Migration Engineer] Juan Charl Venter ΓåÆ OK (to: support@staffrex.in)
+  [106/117] [Solution Architect] Heinrich Muller ΓåÆ OK (to: canel.osman@stealth-it.com)
+  [107/117] [Security Architect (Enterprise) ΓÇô AI] Ronald Sidney Doyle ΓåÆ OK (to: hema@adroitpeople.com)
+  [108/117] [Principal AI Architect] Tumelo Rahlau ΓåÆ OK (to: michael@mbnsolutions.com)
+  [109/117] [Senior Product Manager] Heinrich Muller ΓåÆ OK (to: phoebe@foundbyfew.com)
+  [110/117] [Senior Content Writer] Jonathan Wagener ΓåÆ OK (to: ciara.maher@revolutiontechnology.co.uk)
+  [111/117] [Network Security Architect (Lead)] Jeanre Swanepoel ΓåÆ OK (to: sanjana.t@smartedgesolutions.co.uk)
+  [112/117] [Software Engineer] Jeanre Swanepoel ΓåÆ OK (to: caitlin.chapman@fruitiongroup.com)
+  [113/117] [Software Engineer] Riaan Snyders ΓåÆ OK (to: caitlin.chapman@fruitiongroup.com)
+  [114/117] [SmartedgeΓÇÖs client is looking for an experienced Network Security Architect Lead its] Tumelo Rahlau ΓåÆ OK (to: sanjana.t@smartedgesolutions.co.uk)
+  [115/117] [SmartedgeΓÇÖs client is looking for an experienced Infrastructure Engineer/ SRE] Heinrich Muller ΓåÆ OK (to: oviya.g@smartedgesolutions.co.uk)
+  [116/117] [SmartedgeΓÇÖs client is looking for an experienced Infrastructure Engineer/ SRE] Crispen Shiri ΓåÆ OK (to: oviya.g@smartedgesolutions.co.uk)
+  [117/117] [Senior DevOps Engineer] Jonathan Wagener ΓåÆ OK (to: jason@paradigmrecruitment.co.za)
+
+=== Done ===
+  OK:                 117
+  Failed:             0
+  Skipped (no email): 31

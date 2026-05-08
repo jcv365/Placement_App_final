@@ -48,8 +48,6 @@ export async function POST(request: Request) {
       return jsonError("Admin access is required", 401);
     }
 
-    return jsonError("Unable to register tenant user", 400, {
-      message: (error as Error).message,
-    });
+    return jsonError("Unable to register tenant user", 400);
   }
 }

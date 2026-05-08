@@ -158,8 +158,7 @@ export default function GithubDeviceLogin() {
 
         if (data.status === "ok" && data.accessToken) {
           localStorage.setItem("githubAccessToken", data.accessToken);
-          localStorage.setItem("aiProvider", "github-models");
-          setStatus("Connected to GitHub Models");
+          setStatus("GitHub account connected");
           return;
         }
 
@@ -190,7 +189,6 @@ export default function GithubDeviceLogin() {
     } catch {}
 
     localStorage.removeItem("githubAccessToken");
-    localStorage.removeItem("aiProvider");
     setDeviceCode(null);
     setPollIntervalSeconds(5);
     setUserCode(null);
@@ -203,12 +201,12 @@ export default function GithubDeviceLogin() {
       <CardHeader>
         <CardTitle>GitHub Models (device login)</CardTitle>
         <p className="text-sm text-slate-600">
-          Connect your GitHub account and use GitHub Models for email
-          generation.
+          Connect your GitHub account for optional integration features.
         </p>
         <p className="text-sm text-slate-600">
-          Complete device login once, and this workspace can reuse the
-          connection until you disconnect.
+          AI model routing is controlled by LiteLLM, not by client-side provider
+          selection. Complete device login once, and this workspace can reuse
+          the connection until you disconnect.
         </p>
       </CardHeader>
       <CardContent className="space-y-3">

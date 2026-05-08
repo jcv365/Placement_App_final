@@ -1,3 +1,10 @@
+import { extractMessageContent } from "@/lib/aiUtils";
+import {
+    isAiGatewayConfigured,
+    requireAiGatewayConfig,
+    resolveAiGatewayModel,
+} from "@/lib/liteLlm";
+
 type CandidateProfile = {
   fullName?: string;
   email?: string;
@@ -7,8 +14,7 @@ type CandidateProfile = {
   suggestedRoles: string[];
 };
 
-type Provider = "github-models" | "azure-openai";
-type PreferredProvider = "auto" | Provider | "copilot-studio";
+type Provider = "litellm";
 
 const CV_PROMPT_BUDGETS = [12000, 8000, 5000] as const;
 
@@ -59,86 +65,6 @@ function parseDelimitedList(value: string, maxItems: number): string[] {
     .filter(Boolean);
 
   return cleanList(parts, maxItems);
-}
-
-function getGithubModelCandidates(preferredModel?: string): string[] {
-  const base = preferredModel?.trim() || "gpt-5.3";
-  const withoutProvider = base.includes("/") ? base.split("/").pop() : base;
-
-  const candidates = [
-    base,
-    withoutProvider,
-    withoutProvider ? `openai/${withoutProvider}` : undefined,
-    "gpt-5.3",
-    "openai/gpt-5.3",
-    "gpt-5",
-    "openai/gpt-5",
-    "gpt-5-chat",
-    "openai/gpt-5-chat",
-    "gpt-4.1",
-    "openai/gpt-4.1",
-    "gpt-4.1-mini",
-    "openai/gpt-4.1-mini",
-    "gpt-4o",
-    "openai/gpt-4o",
-    "gpt-4o-mini",
-    "openai/gpt-4o-mini",
-  ].filter(Boolean) as string[];
-
-  return Array.from(new Set(candidates));
-}
-
-function extractMessageContent(data: unknown): string | undefined {
-  const payload = data as {
-    output_text?: string;
-    choices?: Array<{
-      text?: string;
-      message?: {
-        content?:
-          | string
-          | { text?: string }
-          | Array<{ text?: string; content?: string; value?: string }>;
-      };
-    }>;
-  };
-
-  if (typeof payload?.output_text === "string" && payload.output_text.trim()) {
-    return payload.output_text;
-  }
-
-  const firstChoice = payload?.choices?.[0];
-  if (!firstChoice) return undefined;
-
-  if (typeof firstChoice.text === "string" && firstChoice.text.trim()) {
-    return firstChoice.text;
-  }
-
-  const messageContent = firstChoice.message?.content;
-  if (typeof messageContent === "string" && messageContent.trim()) {
-    return messageContent;
-  }
-
-  if (
-    messageContent &&
-    typeof messageContent === "object" &&
-    !Array.isArray(messageContent)
-  ) {
-    const textValue = (messageContent as { text?: string }).text;
-    if (typeof textValue === "string" && textValue.trim()) {
-      return textValue;
-    }
-  }
-
-  if (Array.isArray(messageContent)) {
-    const merged = messageContent
-      .map((part) => part?.text ?? part?.content ?? part?.value ?? "")
-      .filter(Boolean)
-      .join("\n")
-      .trim();
-    return merged || undefined;
-  }
-
-  return undefined;
 }
 
 function cleanList(values: string[] | undefined, maxItems: number): string[] {
@@ -352,160 +278,49 @@ function parseCandidateProfile(raw: string): CandidateProfile {
   };
 }
 
-function getAvailableProviders(
-  githubAccessToken?: string,
-  preferredProvider: PreferredProvider = "auto",
-): Provider[] {
-  const hasGithub = Boolean(
-    githubAccessToken?.trim() || process.env.GITHUB_MODELS_TOKEN?.trim(),
-  );
-  const hasAzure = Boolean(
-    process.env.AZURE_OPENAI_ENDPOINT?.trim() &&
-    process.env.AZURE_OPENAI_API_KEY?.trim() &&
-    process.env.AZURE_OPENAI_DEPLOYMENT?.trim(),
-  );
+function getAvailableProviders(): Provider[] {
+  const hasGateway = isAiGatewayConfigured();
 
-  if (preferredProvider === "github-models") {
-    if (hasGithub) {
-      return ["github-models"];
-    }
-
-    return hasAzure ? ["azure-openai"] : [];
-  }
-
-  if (preferredProvider === "azure-openai") {
-    if (hasAzure) {
-      return ["azure-openai"];
-    }
-
-    return hasGithub ? ["github-models"] : [];
-  }
-
-  // Copilot Studio is not yet implemented in this path; use auto ordering.
-  if (hasGithub) {
-    return hasAzure ? ["github-models", "azure-openai"] : ["github-models"];
-  }
-
-  if (hasAzure) {
-    return ["azure-openai"];
-  }
-
-  return [];
+  return hasGateway ? ["litellm"] : [];
 }
 
-async function inferWithGithubModels(
+async function inferWithGateway(
   systemPrompt: string,
   userPrompt: string,
-  githubAccessToken?: string,
+  modelOverride?: string,
 ): Promise<CandidateProfile> {
-  const endpoint =
-    process.env.GITHUB_MODELS_ENDPOINT ??
-    "https://models.inference.ai.azure.com/chat/completions";
-  const modelCandidates = getGithubModelCandidates(
-    process.env.GITHUB_MODELS_MODEL,
+  const { apiBase, apiKey } = requireAiGatewayConfig(
+    "Candidate extraction AI is not configured",
   );
-  const accessToken =
-    githubAccessToken?.trim() || process.env.GITHUB_MODELS_TOKEN?.trim();
+  const model = resolveAiGatewayModel(modelOverride);
 
-  if (!accessToken) {
-    throw new Error("GitHub Models token is missing");
-  }
-
-  let lastError = "GitHub Models extraction failed";
-
-  for (const model of modelCandidates) {
-    const response = await fetch(endpoint, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${accessToken}`,
-      },
-      body: JSON.stringify({
-        model,
-        messages: [
-          { role: "system", content: systemPrompt },
-          { role: "user", content: userPrompt },
-        ],
-        response_format: { type: "json_object" },
-        max_completion_tokens: 700,
-      }),
-    });
-
-    if (!response.ok) {
-      const responseText = await response.text();
-      lastError = `GitHub Models extraction failed: ${response.status} ${responseText}`;
-      if (/unknown model|model.*not found/i.test(responseText)) {
-        continue;
-      }
-
-      if (
-        response.status === 429 &&
-        /RateLimitReached|UserByModelByDay|ByDay/i.test(responseText)
-      ) {
-        continue;
-      }
-
-      throw new Error(lastError);
-    }
-
-    const content = extractMessageContent((await response.json()) as unknown);
-    if (!content) {
-      lastError = "GitHub Models extraction returned empty content";
-      continue;
-    }
-
-    return parseCandidateProfile(content);
-  }
-
-  if (/RateLimitReached|UserByModelByDay|ByDay/i.test(lastError)) {
-    throw new Error(
-      "GitHub Models daily limit reached for available models. Configure Azure OpenAI in Settings or retry after quota reset.",
-    );
-  }
-
-  throw new Error(lastError);
-}
-
-async function inferWithAzureOpenAI(
-  systemPrompt: string,
-  userPrompt: string,
-): Promise<CandidateProfile> {
-  const endpoint = process.env.AZURE_OPENAI_ENDPOINT as string;
-  const apiKey = process.env.AZURE_OPENAI_API_KEY as string;
-  const deployment = process.env.AZURE_OPENAI_DEPLOYMENT as string;
-
-  const response = await fetch(
-    `${endpoint}/openai/deployments/${deployment}/chat/completions?api-version=2024-06-01`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "api-key": apiKey,
-      },
-      body: JSON.stringify({
-        messages: [
-          { role: "system", content: systemPrompt },
-          { role: "user", content: userPrompt },
-        ],
-        response_format: { type: "json_object" },
-        temperature: 0,
-        max_tokens: 700,
-      }),
+  const response = await fetch(`${apiBase}/chat/completions`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${apiKey}`,
     },
-  );
+    body: JSON.stringify({
+      model,
+      messages: [
+        { role: "system", content: systemPrompt },
+        { role: "user", content: userPrompt },
+      ],
+      response_format: { type: "json_object" },
+      temperature: 0,
+      max_tokens: 700,
+    }),
+  });
 
   if (!response.ok) {
     throw new Error(
-      `Azure OpenAI extraction failed: ${response.status} ${await response.text()}`,
+      `LiteLLM extraction failed: ${response.status} ${await response.text()}`,
     );
   }
 
-  const data = (await response.json()) as {
-    choices?: Array<{ message?: { content?: string } }>;
-  };
-  const content = data.choices?.[0]?.message?.content;
+  const content = extractMessageContent((await response.json()) as unknown);
   if (!content) {
-    throw new Error("Azure OpenAI extraction returned empty content");
+    throw new Error("LiteLLM extraction returned empty content");
   }
 
   return parseCandidateProfile(content);
@@ -513,46 +328,48 @@ async function inferWithAzureOpenAI(
 
 export async function inferCandidateProfileFromCv(params: {
   cvText: string;
-  githubAccessToken?: string;
-  preferredProvider?: PreferredProvider;
+  fastMode?: boolean;
+  model?: string;
 }): Promise<CandidateProfile> {
-  const providers = getAvailableProviders(
-    params.githubAccessToken,
-    params.preferredProvider,
-  );
+  const providers = getAvailableProviders();
   if (providers.length === 0) {
     throw new Error(
-      "Candidate extraction AI is not configured. Connect GitHub Models or configure Azure OpenAI.",
+      "Candidate extraction AI is not configured. Set LITELLM_API_BASE and LITELLM_API_KEY in the app environment.",
     );
   }
 
   const systemPrompt =
     "Extract candidate profile from CV text. Return strict JSON with keys fullName, email, phone, skills, certifications, and suggestedRoles. Only return values present in the CV. Keep skills, certifications, and suggestedRoles concise and technical. Derive suggestedRoles from extracted skills and certifications only.";
 
+  const budgets = params.fastMode ? [5000] : [...CV_PROMPT_BUDGETS];
+
   let lastError: string | undefined;
   let bestProfile: CandidateProfile | undefined;
   let bestScore = -1;
 
-  for (const budget of CV_PROMPT_BUDGETS) {
+  for (const budget of budgets) {
     const compactCvText = compactCvTextForInference(params.cvText, budget);
-    const promptVariants = buildExtractionPrompts(compactCvText);
+    const promptVariants = params.fastMode
+      ? [buildExtractionPrompts(compactCvText)[0]]
+      : buildExtractionPrompts(compactCvText);
 
     for (const userPrompt of promptVariants) {
       for (const provider of providers) {
         try {
-          const profile =
-            provider === "github-models"
-              ? await inferWithGithubModels(
-                  systemPrompt,
-                  userPrompt,
-                  params.githubAccessToken,
-                )
-              : await inferWithAzureOpenAI(systemPrompt, userPrompt);
+          const profile = await inferWithGateway(
+            systemPrompt,
+            userPrompt,
+            params.model,
+          );
 
           const profileScore = scoreProfile(profile);
           if (profileScore > bestScore) {
             bestScore = profileScore;
             bestProfile = profile;
+          }
+
+          if (params.fastMode) {
+            return profile;
           }
 
           if (isProfileStrong(profile)) {
@@ -585,8 +402,7 @@ export async function inferCandidateProfileFromCv(params: {
 export async function inferSuggestedRolesFromSkillsAndCertifications(params: {
   skillsCsv: string;
   certificationsCsv: string;
-  githubAccessToken?: string;
-  preferredProvider?: PreferredProvider;
+  fastMode?: boolean;
 }): Promise<string[]> {
   const skills = parseDelimitedList(params.skillsCsv, 30);
   const certifications = parseDelimitedList(params.certificationsCsv, 30);
@@ -609,8 +425,7 @@ export async function inferSuggestedRolesFromSkillsAndCertifications(params: {
 
   const profile = await inferCandidateProfileFromCv({
     cvText: syntheticCvText,
-    githubAccessToken: params.githubAccessToken,
-    preferredProvider: params.preferredProvider,
+    fastMode: params.fastMode,
   });
 
   if (profile.suggestedRoles.length === 0) {

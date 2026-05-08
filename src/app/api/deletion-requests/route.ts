@@ -1,6 +1,9 @@
-import { jsonError, jsonOk } from "@/lib/apiResponses";
+import { handleAuthError, jsonError, jsonOk } from "@/lib/apiResponses";
 import { prisma } from "@/lib/prisma";
-import { resolveTenantIdFromRequest } from "@/lib/tenant";
+import {
+  requireAuthenticatedTenantId,
+  resolveTenantIdFromRequest,
+} from "@/lib/tenant";
 import { z } from "zod";
 
 export const runtime = "nodejs";
@@ -111,7 +114,7 @@ async function resourceExists(
 
 export async function POST(request: Request) {
   try {
-    const tenantId = resolveTenantIdFromRequest(request);
+    const tenantId = requireAuthenticatedTenantId(request);
     const body = createDeletionRequestSchema.parse(await request.json());
 
     const existingResource = await resourceExists(
@@ -171,9 +174,10 @@ export async function POST(request: Request) {
 
     return jsonOk(created, { status: 201 });
   } catch (error) {
-    return jsonError("Unable to create deletion request", 400, {
-      message: (error as Error).message,
-    });
+    return (
+      handleAuthError(error) ??
+      jsonError("Unable to create deletion request", 400)
+    );
   }
 }
 
@@ -221,8 +225,7 @@ export async function GET(request: Request) {
       })),
     );
   } catch (error) {
-    return jsonError("Unable to load deletion requests", 400, {
-      message: (error as Error).message,
-    });
+    console.error("[DELETION_REQUESTS_GET]", error);
+    return jsonError("Unable to load deletion requests", 400);
   }
 }

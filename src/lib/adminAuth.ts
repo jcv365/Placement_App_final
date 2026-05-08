@@ -1,10 +1,20 @@
-import crypto from "node:crypto";
+import crypto, { scryptSync, timingSafeEqual as tsEqual } from "node:crypto";
 
 export const ADMIN_SESSION_COOKIE = "adminSession";
 
-const DEFAULT_ADMIN_USERNAME = "admin";
-const DEFAULT_ADMIN_PASSWORD = "admin123";
 const SESSION_TTL_HOURS = 24;
+
+function requireEnvOrLocalDefault(
+  envKey: string,
+  localDefault: string,
+): string {
+  const value = process.env[envKey]?.trim();
+  if (value) return value;
+  if (process.env.NODE_ENV === "production") {
+    throw new Error(`${envKey} must be set in production`);
+  }
+  return localDefault;
+}
 
 type SessionPayload = {
   u: string;
@@ -13,16 +23,15 @@ type SessionPayload = {
   exp: number;
 };
 
-const DEFAULT_MASTER_TENANT_ID = "dotcloudconsulting";
-
 function getMasterTenantId(): string {
-  return (
-    process.env.MASTER_TENANT_ID?.trim().toLowerCase() ||
-    DEFAULT_MASTER_TENANT_ID
-  );
+  const id = process.env.MASTER_TENANT_ID?.trim().toLowerCase();
+  if (!id) {
+    throw new Error("MASTER_TENANT_ID environment variable is required");
+  }
+  return id;
 }
 
-function isMasterTenantId(value?: string | null): boolean {
+export function isMasterTenantId(value?: string | null): boolean {
   if (!value) {
     return false;
   }
@@ -31,8 +40,14 @@ function isMasterTenantId(value?: string | null): boolean {
 }
 
 function getSessionSecret(): string {
-  return (
-    process.env.ADMIN_SESSION_SECRET?.trim() || "local-admin-session-secret"
+  const sharedSessionSecret = process.env.APP_SESSION_SECRET?.trim();
+  if (sharedSessionSecret) {
+    return sharedSessionSecret;
+  }
+
+  return requireEnvOrLocalDefault(
+    "ADMIN_SESSION_SECRET",
+    "local-admin-session-secret",
   );
 }
 
@@ -96,11 +111,14 @@ function parseSessionToken(token: string): SessionPayload | null {
 }
 
 export function getAdminUsername(): string {
-  return process.env.ADMIN_USERNAME?.trim() || DEFAULT_ADMIN_USERNAME;
+  return requireEnvOrLocalDefault(
+    "ADMIN_USERNAME",
+    `dev-admin-${crypto.randomUUID().slice(0, 8)}`,
+  );
 }
 
 function getAdminPassword(): string {
-  return process.env.ADMIN_PASSWORD || DEFAULT_ADMIN_PASSWORD;
+  return requireEnvOrLocalDefault("ADMIN_PASSWORD", crypto.randomUUID());
 }
 
 export function validateAdminCredentials(
@@ -108,12 +126,26 @@ export function validateAdminCredentials(
   password: string,
 ): boolean {
   const normalisedUsername = username.trim();
-  const normalisedPassword = password;
 
-  return (
-    safeEqual(normalisedUsername, getAdminUsername()) &&
-    safeEqual(normalisedPassword, getAdminPassword())
-  );
+  if (!safeEqual(normalisedUsername, getAdminUsername())) {
+    return false;
+  }
+
+  // If ADMIN_PASSWORD_HASH is set (format: base64(salt):base64(hash)), use scrypt comparison
+  const storedHash = process.env.ADMIN_PASSWORD_HASH?.trim();
+  if (storedHash) {
+    const [saltB64, hashB64] = storedHash.split(":");
+    if (!saltB64 || !hashB64) return false;
+    const salt = Buffer.from(saltB64, "base64");
+    const expectedHash = Buffer.from(hashB64, "base64");
+    const derived = scryptSync(password, salt, 64);
+    return (
+      derived.length === expectedHash.length && tsEqual(derived, expectedHash)
+    );
+  }
+
+  // Fallback: plaintext comparison (dev only)
+  return safeEqual(password, getAdminPassword());
 }
 
 export function createAdminSessionToken(username: string): string {
@@ -165,7 +197,7 @@ export function isSuperAdminToken(token?: string | null): boolean {
   }
 
   const payload = parseSessionToken(token);
-  return payload?.s === 1 || isMasterTenantId(payload?.t);
+  return payload?.s === 1 && isMasterTenantId(payload?.t);
 }
 
 function getCookieValue(request: Request, name: string): string | undefined {

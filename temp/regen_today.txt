@@ -1,0 +1,162 @@
+Mode: LIVE
+Batch size: 1 | Delay between batches: 4000ms
+
+Found 97 reset application(s).
+
+Applications to regenerate:
+  [SHORTLISTED] "Cloud Engineer" ΓåÆ georgia.wall@stottandmay.com | Kgomotso Sello Dungeni
+  [SHORTLISTED] "Sr Network Engineer" ΓåÆ mohammed.imran@vysystems.com | Ronald Sidney Doyle
+  [SHORTLISTED] "Data Scientist & Analyst" ΓåÆ recruiting@wynwd.com | Titus Makumbe
+  [SHORTLISTED] "Senior DevOps Engineer ΓÇö Azure & .NET" ΓåÆ bbdfbcdc.bcb.bm@amer.teams.ms | Heinrich Muller
+  [SHORTLISTED] "Senior Java Backend Engineer" ΓåÆ swapnilpotdar0603@gmail.com | James Julius
+  [SHORTLISTED] "Sr Network Engineer" ΓåÆ mohammed.imran@vysystems.com | Henco Freidberg
+  [SHORTLISTED] "DevOps" ΓåÆ rohit@elitit.com | Simphiwe Sikhonde
+  [SHORTLISTED] "Senior Software Engineer." ΓåÆ eddie@candergroup.com | MPHO MORABA
+  [SHORTLISTED] "Software Engineer" ΓåÆ deeksha.s@sdnaglobal.com | Liliyosa Mbakureya
+  [SHORTLISTED] "Sr Network Engineer" ΓåÆ mohammed.imran@vysystems.com | Isaac Rantu Mongae
+  [SHORTLISTED] "Sr Network Engineer" ΓåÆ mohammed.imran@vysystems.com | Tumelo Rahlau
+  [SHORTLISTED] "Sr Network Engineer" ΓåÆ mohammed.imran@vysystems.com | Sibusiso Ndlovu
+  [SHORTLISTED] "Technical Lead / Domain Architect" ΓåÆ daisy@vieglobaltech.com | Riaan Snyders
+  [SHORTLISTED] "Data Engineer ΓÇô GCP" ΓåÆ yugesh.balina@signitives.net | Njabulo
+  [SHORTLISTED] "Senior Frontend Developer" ΓåÆ bradley.smail@squareoneresources.com | Kudzai Murimi
+  [SHORTLISTED] "DevOps Engineer" ΓåÆ anil@parvu.ai | Jeanre Swanepoel
+  [SHORTLISTED] "Role 1 ΓÇô SFCC Frontend / Full Stack Developer" ΓåÆ hr@sl-labs.net | Kudzai Murimi
+  [SHORTLISTED] "Role 1 ΓÇô SFCC Frontend / Full Stack Developer" ΓåÆ hr@sl-labs.net | Lesley Charinda
+  [SHORTLISTED] "Role 1 ΓÇô SFCC Frontend / Full Stack Developer" ΓåÆ hr@sl-labs.net | Tanyaradzwa Tanatswa Mushonga
+  [SHORTLISTED] "Role 1 ΓÇô SFCC Frontend / Full Stack Developer" ΓåÆ hr@sl-labs.net | Keagile Nduli
+  [SHORTLISTED] "Role 1 ΓÇô SFCC Frontend / Full Stack Developer" ΓåÆ hr@sl-labs.net | Riaan Snyders
+  [SHORTLISTED] "Senior MLOps Engineer" ΓåÆ connor.andrews@signify-tech.com | Peter Idah
+  [SHORTLISTED] "Software Engineer" ΓåÆ deeksha.s@sdnaglobal.com | Keagile Nduli
+  [SHORTLISTED] "DevOps Engineer" ΓåÆ anil@parvu.ai | Crispen Shiri
+  [SHORTLISTED] "Lead Data Engineer" ΓåÆ sowmya.a@varite.com | Jonas Mokgaola Nkosinathi Thamane
+  [SHORTLISTED] "Lead Data Engineer" ΓåÆ sowmya.a@varite.com | Titus Makumbe
+  [SHORTLISTED] "Lead Data Engineer" ΓåÆ sowmya.a@varite.com | Juan Charl Venter
+  [SHORTLISTED] "Senior Backend Engineer!" ΓåÆ georgia.siggers@revolutiontechnology.co.uk | Jeanre Swanepoel
+  [SHORTLISTED] "DevOps" ΓåÆ rohit@elitit.com | Thato Tswai
+  [SHORTLISTED] "DevOps Engineer" ΓåÆ anil@parvu.ai | Lesiba Serite
+  [SHORTLISTED] "DevOps Engineer" ΓåÆ anil@parvu.ai | Tanyaradzwa Tanatswa Mushonga
+  [SHORTLISTED] "Senior DevOps Engineer" ΓåÆ mark@unifytalentuk.com | Thato Tswai
+  [SHORTLISTED] "Role 1 ΓÇô SFCC Frontend / Full Stack Developer" ΓåÆ hr@sl-labs.net | Liliyosa Mbakureya
+  [SHORTLISTED] "Role 1 ΓÇô SFCC Frontend / Full Stack Developer" ΓåÆ hr@sl-labs.net | Pardington T Mureka
+  [SHORTLISTED] "Senior Backend Engineer!" ΓåÆ georgia.siggers@revolutiontechnology.co.uk | James Julius
+  [SHORTLISTED] "Senior Salesforce Developer" ΓåÆ swagatika@id4consultancy.com | James Tladi Tladi
+  [SHORTLISTED] "GCP Network Engineer" ΓåÆ aswin@cisworldwide.co.uk | Crispen Shiri
+  [SHORTLISTED] "Lead Data Engineer" ΓåÆ sowmya.a@varite.com | Petunia Motlhakane
+  [SHORTLISTED] "Automation Engineer in" ΓåÆ sevanthi.c@testyantra.co.uk | Keagile Nduli
+  [SHORTLISTED] "GCP Network Engineer" ΓåÆ aswin@cisworldwide.co.uk | Petunia Motlhakane
+  [SHORTLISTED] "GCP Network Engineer" ΓåÆ aswin@cisworldwide.co.uk | Isaac Rantu Mongae
+  [SHORTLISTED] "GCP Network Engineer" ΓåÆ aswin@cisworldwide.co.uk | Henco Freidberg
+  [SHORTLISTED] "GCP Network Engineer" ΓåÆ aswin@cisworldwide.co.uk | Tumelo Rahlau
+  [SHORTLISTED] "GCP Network Engineer" ΓåÆ aswin@cisworldwide.co.uk | Ronald Sidney Doyle
+  [SHORTLISTED] "GCP Network Engineer" ΓåÆ aswin@cisworldwide.co.uk | Sibusiso Ndlovu
+  [SHORTLISTED] "Business Analyst" ΓåÆ rahul.pahwa@beeutech.com | Vuyelwa Lushaba
+  [SHORTLISTED] "AI Architect Azure" ΓåÆ ivanchalin.p@vdartinc.com | Everswick Dambaza
+  [SHORTLISTED] "Azure Data Engineer |" ΓåÆ inquiry@tekvo.io | Jonas Mokgaola Nkosinathi Thamane
+  [SHORTLISTED] "AWS Data Engineer." ΓåÆ nitesh.kumar@vastekgroup.com | Njabulo
+  [SHORTLISTED] "Senior Frontend Developer" ΓåÆ bradley.smail@squareoneresources.com | Tanyaradzwa Tanatswa Mushonga
+  [SHORTLISTED] "Angular Developer" ΓåÆ paul.garrett@radleyjames.com | Kudzai Murimi
+  [SHORTLISTED] "Role 1 ΓÇô SFCC Frontend / Full Stack Developer" ΓåÆ hr@sl-labs.net | Jonathan Wagener
+  [SHORTLISTED] "DevOps" ΓåÆ rohit@elitit.com | Tanyaradzwa Tanatswa Mushonga
+  [SHORTLISTED] "DevOps" ΓåÆ rohit@elitit.com | Kgomotso Sello Dungeni
+  [SHORTLISTED] "Senior Software Engineer." ΓåÆ eddie@candergroup.com | Liliyosa Mbakureya
+  [SHORTLISTED] "AI / ML Engineer" ΓåÆ harsh.poswal@tanishasystems.com | Peter Idah
+  [SHORTLISTED] "DevOps Engineer" ΓåÆ anil@parvu.ai | Thato Tswai
+  [SHORTLISTED] "DevOps Engineer" ΓåÆ anil@parvu.ai | Liliyosa Mbakureya
+  [SHORTLISTED] "DevOps Engineer" ΓåÆ anil@parvu.ai | Riaan Snyders
+  [SHORTLISTED] "Senior DevOps Engineer" ΓåÆ fiona@talentroute.ai | Simphiwe Sikhonde
+  [SHORTLISTED] "Senior DevOps Engineer" ΓåÆ mark@unifytalentuk.com | Lesiba Serite
+  [SHORTLISTED] "Lead Data Engineer" ΓåÆ sowmya.a@varite.com | Ronald Sidney Doyle
+  [SHORTLISTED] "Data Engineer ΓÇô" ΓåÆ sathvika@parvu.ai | Titus Makumbe
+  [SHORTLISTED] "Power Platform/CoPilot Studio Developer" ΓåÆ hr@staginvs.com | Jonas Mokgaola Nkosinathi Thamane
+  [SHORTLISTED] "Business Analyst" ΓåÆ rahul.pahwa@beeutech.com | Sondra Methembe Sithole
+  [SHORTLISTED] "AWS Data Engineer." ΓåÆ nitesh.kumar@vastekgroup.com | Titus Makumbe
+  [SHORTLISTED] "Data Engineer ΓÇô GCP" ΓåÆ yugesh.balina@signitives.net | Everswick Dambaza
+  [SHORTLISTED] "Infrastructure Engineer" ΓåÆ vaishali.d@sdnaglobal.com | Paul Stegemann
+  [SHORTLISTED] "NEW Data / Analytics Engineer ΓÇô" ΓåÆ sam.oakley@prostaff.ch | Njabulo
+  [SHORTLISTED] "Frontend Developer" ΓåÆ suma.m@i-q.co | Liliyosa Mbakureya
+  [SHORTLISTED] "Sr Network Engineer" ΓåÆ mohammed.imran@vysystems.com | Petunia Motlhakane
+  [SHORTLISTED] "Data Engineer ΓÇô GCP" ΓåÆ yugesh.balina@signitives.net | Titus Makumbe
+  [SHORTLISTED] "Senior Frontend Developer" ΓåÆ bradley.smail@squareoneresources.com | Liliyosa Mbakureya
+  [SHORTLISTED] "Senior Frontend Developer" ΓåÆ bradley.smail@squareoneresources.com | Jonathan Wagener
+  [SHORTLISTED] "Infrastructure Engineer" ΓåÆ vaishali.d@sdnaglobal.com | Simphiwe Sikhonde
+  [SHORTLISTED] "Infrastructure Engineer" ΓåÆ vaishali.d@sdnaglobal.com | Isaac Rantu Mongae
+  [SHORTLISTED] "Infrastructure Engineer" ΓåÆ vaishali.d@sdnaglobal.com | Henco Freidberg
+  [SHORTLISTED] "Infrastructure Engineer" ΓåÆ vaishali.d@sdnaglobal.com | Jeanre Swanepoel
+  [SHORTLISTED] "Infrastructure Engineer" ΓåÆ vaishali.d@sdnaglobal.com | Heinrich Muller
+  [SHORTLISTED] "Infrastructure Engineer" ΓåÆ vaishali.d@sdnaglobal.com | Sibusiso Ndlovu
+  [SHORTLISTED] "DevOps Engineer" ΓåÆ anil@parvu.ai | Keagile Nduli
+  [SHORTLISTED] "Senior DevOps Engineer" ΓåÆ fiona@talentroute.ai | Tonderai Muchada
+  [SHORTLISTED] "Senior DevOps Engineer" ΓåÆ fiona@talentroute.ai | Kgomotso Sello Dungeni
+  [SHORTLISTED] "AWS Data Engineer." ΓåÆ nitesh.kumar@vastekgroup.com | Everswick Dambaza
+  [SHORTLISTED] "NEW Data / Analytics Engineer ΓÇô" ΓåÆ sam.oakley@prostaff.ch | Titus Makumbe
+  [SHORTLISTED] "Database Administrator" ΓåÆ abdul.shakeel@dabster.net | Jonas Mokgaola Nkosinathi Thamane
+  [SHORTLISTED] "Mainframe Developer COBOL / CICS / DB2" ΓåÆ k.harika@spartechnologyservices.com | Petunia Motlhakane
+  [SHORTLISTED] "Senior Software Engineer." ΓåÆ eddie@candergroup.com | Lesley Charinda
+  [SHORTLISTED] "Senior Network Engineer" ΓåÆ rajini.p@siriinfoinc.com | Henco Freidberg
+  [SHORTLISTED] "Senior Network Engineer" ΓåÆ rajini.p@siriinfoinc.com | Tumelo Rahlau
+  [SHORTLISTED] "Senior Network Engineer" ΓåÆ rajini.p@siriinfoinc.com | Ronald Sidney Doyle
+  [SHORTLISTED] "Senior Network Engineer" ΓåÆ rajini.p@siriinfoinc.com | Sibusiso Ndlovu
+  [SHORTLISTED] "Senior Software Engineer." ΓåÆ eddie@candergroup.com | Keagile Nduli
+  [SHORTLISTED] "Site Engineer" ΓåÆ c.osheen@prositeuk.com | Simphiwe Sikhonde
+  [SHORTLISTED] "Site Engineer" ΓåÆ c.osheen@prositeuk.com | Heinrich Muller
+  [SHORTLISTED] "Site Engineer" ΓåÆ c.osheen@prositeuk.com | Paul Stegemann
+  [SHORTLISTED] "Site Engineer" ΓåÆ c.osheen@prositeuk.com | Kgomotso Sello Dungeni
+
+Eligible for regeneration: 97
+
+
+Batch 1/97 ΓÇö processing 1 item(s)...
+  OK    "Cloud Engineer" / Kgomotso Sello Dungeni
+
+Batch 2/97 ΓÇö processing 1 item(s)...
+  OK    "Sr Network Engineer" / Ronald Sidney Doyle
+
+Batch 3/97 ΓÇö processing 1 item(s)...
+  OK    "Data Scientist & Analyst" / Titus Makumbe
+
+Batch 4/97 ΓÇö processing 1 item(s)...
+  OK    "Senior DevOps Engineer ΓÇö Azure & .NET" / Heinrich Muller
+
+Batch 5/97 ΓÇö processing 1 item(s)...
+  OK    "Senior Java Backend Engineer" / James Julius
+
+Batch 6/97 ΓÇö processing 1 item(s)...
+  OK    "Sr Network Engineer" / Henco Freidberg
+
+Batch 7/97 ΓÇö processing 1 item(s)...
+  FAIL  "DevOps" / Simphiwe Sikhonde ΓÇö HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+
+Batch 8/97 ΓÇö processing 1 item(s)...
+  FAIL  "Senior Software Engineer." / MPHO MORABA ΓÇö HTTP 409: Candidate role family does not match the opportunity. An engineer cannot be placed as an architect and vice versa.
+
+Batch 9/97 ΓÇö processing 1 item(s)...
+  OK    "Software Engineer" / Liliyosa Mbakureya
+
+Batch 10/97 ΓÇö processing 1 item(s)...
+  OK    "Sr Network Engineer" / Isaac Rantu Mongae
+
+Batch 11/97 ΓÇö processing 1 item(s)...
+  OK    "Sr Network Engineer" / Tumelo Rahlau
+
+Batch 12/97 ΓÇö processing 1 item(s)...
+  OK    "Sr Network Engineer" / Sibusiso Ndlovu
+
+Batch 13/97 ΓÇö processing 1 item(s)...
+  OK    "Technical Lead / Domain Architect" / Riaan Snyders
+
+Batch 14/97 ΓÇö processing 1 item(s)...
+  OK    "Data Engineer ΓÇô GCP" / Njabulo
+
+Batch 15/97 ΓÇö processing 1 item(s)...
+  OK    "Senior Frontend Developer" / Kudzai Murimi
+
+Batch 16/97 ΓÇö processing 1 item(s)...
+  OK    "DevOps Engineer" / Jeanre Swanepoel
+
+Batch 17/97 ΓÇö processing 1 item(s)...
+  OK    "Role 1 ΓÇô SFCC Frontend / Full Stack Developer" / Kudzai Murimi
+
+Batch 18/97 ΓÇö processing 1 item(s)...
+  OK    "Role 1 ΓÇô SFCC Frontend / Full Stack Developer" / Lesley Charinda
+
+Batch 19/97 ΓÇö processing 1 item(s)...

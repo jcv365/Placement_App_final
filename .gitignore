@@ -24,8 +24,13 @@
 # local test/build artefacts
 /test-results/
 *.db
+*.db-shm
+*.db-wal
 temp_upload_test.csv
 data/github-token.txt
+
+# secrets — never commit these
+.secrets/
 
 # production
 /build

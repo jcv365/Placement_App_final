@@ -4,7 +4,19 @@ import crypto from "node:crypto";
 
 export const runtime = "nodejs";
 
+const DEFAULT_PUBLIC_BASE_URL = "http://localhost:3001";
+
 function resolveBaseUrl(request: Request): string {
+  const configured = process.env.APP_BASE_URL?.trim();
+  if (configured && configured.length > 0) {
+    return configured;
+  }
+
+  // Prefer the public app URL so redirects stay on the canonical hostname.
+  if (DEFAULT_PUBLIC_BASE_URL) {
+    return DEFAULT_PUBLIC_BASE_URL;
+  }
+
   const host =
     request.headers.get("x-forwarded-host") ?? request.headers.get("host");
   const proto = request.headers.get("x-forwarded-proto") ?? "http";

@@ -1,0 +1,83 @@
+Using admin: charl.venter@dotcloud.africa
+Session minted for dotcloudconsulting tenant
+
+Found 37 unique pair(s):
+  [Azure Architect] => Jason Marc Dworkin
+  [Azure Architect] => Juan Charl Venter
+  [Azure Architect] => Heinrich Muller
+  [Azure Architect] => Jeanre Swanepoel
+  [Azure Architect] => Crispen Shiri
+  [DevOps] => Heinrich Muller
+  [DevOps] => Jeanre Swanepoel
+  [DevOps] => Crispen Shiri
+  [DevOps] => Jonathan Wagener
+  [DevOps] => Riaan Snyders
+  [Azure Engineer] => Heinrich Muller
+  [Azure Engineer] => Crispen Shiri
+  [Azure Engineer] => Jeanre Swanepoel
+  [Azure Engineer] => Riaan Snyders
+  [Azure Architect] => Riaan Snyders
+  [Senior Network & Security Architect ΓÇô Global Enterprise Transformation] => Ronald Sidney Doyle
+  [Senior Network & Security Architect ΓÇô Global Enterprise Transformation] => Tumelo Rahlau
+  [Senior Network & Security Architect ΓÇô Global Enterprise Transformation] => Jason Marc Dworkin
+  [Senior Network &amp; Security Architect] => Ronald Sidney Doyle
+  [Senior Network &amp; Security Architect] => Tumelo Rahlau
+  [Senior Network &amp; Security Architect] => Heinrich Muller
+  [Senior Network &amp; Security Architect] => Crispen Shiri
+  [DevOps Engineer] => Heinrich Muller
+  [DevOps engineer] => Crispen Shiri
+  [DevOps engineer] => Riaan Snyders
+  [DevOps engineer] => Jeanre Swanepoel
+  [DevOps engineer] => Jonathan Wagener
+  [Network Security Architect (Lead)] => Ronald Sidney Doyle
+  [Network Security Architect (Lead)] => Tumelo Rahlau
+  [Network Security Architect (Lead)] => Heinrich Muller
+  [Network Security Architect (Lead)] => Crispen Shiri
+  [AI] => Crispen Shiri
+  [job alert! robusta needs a DevOps Engineer Microsoft Dynamics - 11 Month] => Crispen Shiri
+  [job alert! robusta needs a DevOps Engineer Microsoft Dynamics - 11 Month] => Heinrich Muller
+  [job alert! robusta needs a DevOps Engineer Microsoft Dynamics - 11 Month] => Jeanre Swanepoel
+  [job alert! robusta needs a DevOps Engineer Microsoft Dynamics - 11 Month] => Riaan Snyders
+  [job alert! robusta needs a DevOps Engineer Microsoft Dynamics - 11 Month] => Jonathan Wagener
+
+Regenerating...
+
+  [1/37] Azure Architect / Jason Marc Dworkin ... OK "?"
+  [2/37] Azure Architect / Juan Charl Venter ... OK "?"
+  [3/37] Azure Architect / Heinrich Muller ... OK "?"
+  [4/37] Azure Architect / Jeanre Swanepoel ... OK "?"
+  [5/37] Azure Architect / Crispen Shiri ... OK "?"
+  [6/37] DevOps / Heinrich Muller ... OK "?"
+  [7/37] DevOps / Jeanre Swanepoel ... OK "?"
+  [8/37] DevOps / Crispen Shiri ... OK "?"
+  [9/37] DevOps / Jonathan Wagener ... OK "?"
+  [10/37] DevOps / Riaan Snyders ... OK "?"
+  [11/37] Azure Engineer / Heinrich Muller ... OK "?"
+  [12/37] Azure Engineer / Crispen Shiri ... OK "?"
+  [13/37] Azure Engineer / Jeanre Swanepoel ... OK "?"
+  [14/37] Azure Engineer / Riaan Snyders ... OK "?"
+  [15/37] Azure Architect / Riaan Snyders ... OK "?"
+  [16/37] Senior Network & Security Architect ΓÇô Global Enterprise Transformation / Ronald Sidney Doyle ... OK "?"
+  [17/37] Senior Network & Security Architect ΓÇô Global Enterprise Transformation / Tumelo Rahlau ... OK "?"
+  [18/37] Senior Network & Security Architect ΓÇô Global Enterprise Transformation / Jason Marc Dworkin ... OK "?"
+  [19/37] Senior Network &amp; Security Architect / Ronald Sidney Doyle ... OK "?"
+  [20/37] Senior Network &amp; Security Architect / Tumelo Rahlau ... OK "?"
+  [21/37] Senior Network &amp; Security Architect / Heinrich Muller ... OK "?"
+  [22/37] Senior Network &amp; Security Architect / Crispen Shiri ... OK "?"
+  [23/37] DevOps Engineer / Heinrich Muller ... OK "?"
+  [24/37] DevOps engineer / Crispen Shiri ... OK "?"
+  [25/37] DevOps engineer / Riaan Snyders ... OK "?"
+  [26/37] DevOps engineer / Jeanre Swanepoel ... OK "?"
+  [27/37] DevOps engineer / Jonathan Wagener ... OK "?"
+  [28/37] Network Security Architect (Lead) / Ronald Sidney Doyle ... OK "?"
+  [29/37] Network Security Architect (Lead) / Tumelo Rahlau ... OK "?"
+  [30/37] Network Security Architect (Lead) / Heinrich Muller ... OK "?"
+  [31/37] Network Security Architect (Lead) / Crispen Shiri ... OK "?"
+  [32/37] AI / Crispen Shiri ... OK "?"
+  [33/37] job alert! robusta needs a DevOps Engineer Microsoft Dynamics - 11 Month / Crispen Shiri ... OK "?"
+  [34/37] job alert! robusta needs a DevOps Engineer Microsoft Dynamics - 11 Month / Heinrich Muller ... OK "?"
+  [35/37] job alert! robusta needs a DevOps Engineer Microsoft Dynamics - 11 Month / Jeanre Swanepoel ... OK "?"
+  [36/37] job alert! robusta needs a DevOps Engineer Microsoft Dynamics - 11 Month / Riaan Snyders ... OK "?"
+  [37/37] job alert! robusta needs a DevOps Engineer Microsoft Dynamics - 11 Month / Jonathan Wagener ... OK "?"
+
+Done: 37 OK, 0 failed

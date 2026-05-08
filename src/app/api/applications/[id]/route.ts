@@ -1,4 +1,5 @@
 import { jsonError, jsonOk } from "@/lib/apiResponses";
+import { writeAuditLog } from "@/lib/auditLog";
 import { computeOpportunityId } from "@/lib/opportunity";
 import { prisma } from "@/lib/prisma";
 import { getOwnerFilter, resolveTenantAccessScope } from "@/lib/tenantAccess";
@@ -38,9 +39,8 @@ export async function GET(
 
     return jsonOk(application);
   } catch (error) {
-    return jsonError("Unable to load application", 500, {
-      message: (error as Error).message,
-    });
+    console.error("[APPLICATION_GET]", error);
+    return jsonError("Unable to load application", 500);
   }
 }
 
@@ -136,10 +136,16 @@ export async function PATCH(
       },
     });
 
+    await writeAuditLog({
+      tenantId: scope.tenantId,
+      entityType: "application",
+      entityId: id,
+      action: "UPDATE",
+    });
+
     return jsonOk(updated);
   } catch (error) {
-    return jsonError("Unable to update application details", 400, {
-      message: (error as Error).message,
-    });
+    console.error("[APPLICATION_PATCH]", error);
+    return jsonError("Unable to update application details", 400);
   }
 }

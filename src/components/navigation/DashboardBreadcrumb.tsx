@@ -21,7 +21,7 @@ export default function DashboardBreadcrumb() {
     <nav aria-label="Breadcrumb" className="text-xs text-slate-500">
       <ol className="flex flex-wrap items-center gap-1">
         <li>
-          <Link href="/applications" className="hover:text-slate-700">
+          <Link href="/overview" className="hover:text-slate-700">
             Home
           </Link>
         </li>

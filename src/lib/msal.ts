@@ -27,7 +27,6 @@ const config: Configuration = {
     clientId: process.env.NEXT_PUBLIC_AAD_CLIENT_ID ?? "",
     authority: process.env.NEXT_PUBLIC_AAD_AUTHORITY ?? "",
     redirectUri: resolveRedirectUri(),
-    navigateToLoginRequestUrl: false,
   },
   cache: {
     cacheLocation: "localStorage",

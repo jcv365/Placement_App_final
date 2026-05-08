@@ -19,7 +19,8 @@ export default function GraphAuthButton() {
         redirectUri: REDIRECT_URI,
       });
       const token = result.accessToken;
-      localStorage.setItem("graphAccessToken", token);
+      localStorage.removeItem("graphAccessToken");
+      sessionStorage.setItem("graphAccessToken", token);
       setStatus("Signed in for Microsoft Graph");
     } catch (error) {
       setStatus((error as Error).message);

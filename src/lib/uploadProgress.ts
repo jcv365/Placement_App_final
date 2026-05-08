@@ -7,6 +7,7 @@ type UploadProgressRecord = {
   percent: number;
   message: string;
   updatedAt: number;
+  summary?: Record<string, unknown>;
 };
 
 type StartUploadProgressInput = {
@@ -26,10 +27,30 @@ type FinishUploadProgressInput = {
   uploadId: string;
   tenantId: string;
   message: string;
+  summary?: Record<string, unknown>;
 };
 
 const uploadProgressStore = new Map<string, UploadProgressRecord>();
 const PROGRESS_TTL_MS = 30 * 60 * 1000;
+const MAX_STORE_SIZE = 10_000;
+const CLEANUP_INTERVAL_MS = 5 * 60 * 1000;
+
+// Periodic cleanup to prevent unbounded growth
+let cleanupTimer: ReturnType<typeof setInterval> | null = null;
+
+function ensurePeriodicCleanup(): void {
+  if (cleanupTimer) return;
+  cleanupTimer = setInterval(() => {
+    cleanupExpiredUploadProgress();
+    if (uploadProgressStore.size === 0 && cleanupTimer) {
+      clearInterval(cleanupTimer);
+      cleanupTimer = null;
+    }
+  }, CLEANUP_INTERVAL_MS);
+  if (typeof cleanupTimer === "object" && "unref" in cleanupTimer) {
+    cleanupTimer.unref();
+  }
+}
 
 function clampPercent(value: number): number {
   if (!Number.isFinite(value)) {
@@ -67,6 +88,17 @@ export function sanitiseUploadId(raw: unknown): string | undefined {
 
 export function startUploadProgress(input: StartUploadProgressInput): void {
   cleanupExpiredUploadProgress();
+  ensurePeriodicCleanup();
+
+  if (uploadProgressStore.size >= MAX_STORE_SIZE) {
+    // Evict oldest entries if store is full
+    const entries = Array.from(uploadProgressStore.entries()).sort(
+      (a, b) => a[1].updatedAt - b[1].updatedAt,
+    );
+    for (let i = 0; i < entries.length / 2; i++) {
+      uploadProgressStore.delete(entries[i][0]);
+    }
+  }
 
   const now = Date.now();
   uploadProgressStore.set(input.uploadId, {
@@ -106,6 +138,7 @@ export function completeUploadProgress(input: FinishUploadProgressInput): void {
     percent: 100,
     message: input.message,
     updatedAt: Date.now(),
+    ...(input.summary ? { summary: input.summary } : {}),
   });
 }
 

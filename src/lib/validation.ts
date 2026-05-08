@@ -45,6 +45,14 @@ const timesheetStatusSchema = z.enum([
 ]);
 
 const invoiceStatusSchema = z.enum(["DRAFT", "SENT", "PAID", "VOIDED"]);
+const billingModelSchema = z.enum(["PER_HOUR_PER_CANDIDATE", "PERCENTAGE"]);
+
+export const placementBillingModelSchema = z.enum([
+  "EOR_MARGIN",
+  "INDEPENDENT_CONTRACTOR_MARGIN",
+  "ONCE_OFF_PLACEMENT_FEE",
+  "PERMANENT_PLACEMENT_FEE",
+]);
 
 const applicationStageSchema = z.enum([
   "NEW",
@@ -84,6 +92,8 @@ export const candidateUpdateSchema = z.object({
   skillsCsv: z.string().trim(),
   certificationsCsv: z.string().trim(),
   suggestedRolesCsv: z.string().trim(),
+  preferredRolesCsv: z.string().trim().optional().default(""),
+  selfReportedHourlyRate: z.string().trim().max(100).optional(),
   status: candidateStatusSchema,
 });
 
@@ -101,6 +111,10 @@ export const applicationDetailsUpdateSchema = z.object({
 
 export const placementContractUpdateSchema = z.object({
   agreedHourlyRate: z.number().positive().optional(),
+  placementBillingModel: placementBillingModelSchema.optional(),
+  placementFeePercent: z.number().min(0).max(100).optional(),
+  annualCtc: z.number().positive().optional(),
+  contractValue: z.number().positive().optional(),
 });
 
 export const noteSchema = z.object({
@@ -113,10 +127,9 @@ export const emailGenerateSchema = z.object({
   candidateId: z.string().min(1),
   applicationId: z.string().optional(),
   rulesetId: z.string().optional(),
-  aiProvider: z
-    .enum(["auto", "azure-openai", "copilot-studio", "github-models"])
-    .optional(),
-  githubAccessToken: z.string().min(20).optional(),
+  // Optional: allow callers to request a specific AI model/provider for this generation
+  model: z.string().min(1).optional(),
+  aiProvider: z.string().min(1).optional(),
 });
 
 export const emailDraftSchema = z.object({
@@ -194,6 +207,25 @@ export const candidateVettingUpdateSchema = z.object({
   notes: z.string().optional(),
 });
 
+export const candidateAtsMatchSchema = z
+  .object({
+    jobId: z.string().min(1).optional(),
+    jobText: z.string().trim().min(40).optional(),
+  })
+  .refine((value) => Boolean(value.jobId || value.jobText), {
+    message: "Either jobId or jobText is required",
+  });
+
+export const candidateAtsFixSchema = z
+  .object({
+    jobId: z.string().min(1).optional(),
+    jobText: z.string().trim().min(40).optional(),
+    previewOnly: z.boolean().optional(),
+  })
+  .refine((value) => Boolean(value.jobId || value.jobText), {
+    message: "Either jobId or jobText is required",
+  });
+
 export const placementAlertCreateSchema = z.object({
   applicationId: z.string().min(1),
   title: z.string().trim().min(2),
@@ -208,19 +240,20 @@ export const placementAlertUpdateSchema = z.object({
   notes: z.string().trim().optional(),
 });
 
+const MAX_MONTHLY_HOURS = 350;
+
 export const timesheetCreateSchema = z.object({
   applicationId: z.string().min(1),
-  weekStartDate: z.string().datetime({ offset: true }),
-  weekEndDate: z.string().datetime({ offset: true }),
-  hoursWorked: z.number().positive(),
-  ratePerHour: z.number().positive(),
+  periodStartDate: z.string().datetime({ offset: true }),
+  periodEndDate: z.string().datetime({ offset: true }),
+  hoursWorked: z.number().positive().max(MAX_MONTHLY_HOURS),
   engineerRatePerHour: z.number().min(0),
   currency: z.string().trim().min(3).max(3).optional(),
 });
 
 export const timesheetUpdateSchema = z.object({
   status: timesheetStatusSchema.optional(),
-  hoursWorked: z.number().positive().optional(),
+  hoursWorked: z.number().positive().max(MAX_MONTHLY_HOURS).optional(),
   ratePerHour: z.number().positive().optional(),
   engineerRatePerHour: z.number().min(0).optional(),
   currency: z.string().trim().min(3).max(3).optional(),
@@ -240,12 +273,31 @@ export const adminLoginSchema = z.object({
   tenantId: z.string().trim().min(2).max(63).optional(),
 });
 
-export const companyRegistrationSchema = z.object({
-  displayName: z.string().trim().min(2).max(120),
-  adminName: z.string().trim().min(2).max(120),
-  adminEmail: z.string().trim().email(),
-  password: z.string().min(8).max(120),
-});
+export const companyRegistrationSchema = z
+  .object({
+    displayName: z.string().trim().min(2).max(120),
+    domain: z.string().trim().max(255).optional(),
+    adminName: z.string().trim().min(2).max(120),
+    adminEmail: z.string().trim().email(),
+    password: z.string().min(8).max(120),
+    brandName: z.string().trim().min(2).max(120),
+    billingContactEmail: z.string().trim().email(),
+    billingModel: billingModelSchema,
+    billingRatePerHour: z.number().min(0).optional(),
+    outlookMailbox: z.string().trim().email().optional(),
+  })
+  .superRefine((value, context) => {
+    if (
+      value.billingModel === "PER_HOUR_PER_CANDIDATE" &&
+      (value.billingRatePerHour === undefined || value.billingRatePerHour <= 0)
+    ) {
+      context.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["billingRatePerHour"],
+        message: "Billing rate per hour is required for per-hour billing.",
+      });
+    }
+  });
 
 export const tenantLoginSchema = z.object({
   tenantId: z.string().trim().min(2).max(63).optional(),
@@ -263,18 +315,11 @@ export const tenantUserRegistrationSchema = z.object({
 export const companySettingsUpdateSchema = z.object({
   companyId: z.string().min(1),
   revenueSplitPercent: z.number().min(0).max(100).optional(),
+  billingModel: z.enum(["PER_HOUR_PER_CANDIDATE", "PERCENTAGE"]).optional(),
+  billingRatePerHour: z.number().min(0).optional(),
   brandName: z.string().trim().min(2),
   outlookMailbox: z.string().trim().email().optional(),
-  reportRecipients: z
-    .array(z.string().trim().email())
-    .min(1)
-    .refine(
-      (items) =>
-        items
-          .map((item) => item.toLowerCase())
-          .includes("accounts@dotcloud.africa"),
-      "Report recipients must include accounts@dotcloud.africa",
-    ),
+  reportRecipients: z.array(z.string().trim().email()).min(1),
   currency: z.literal("ZAR").default("ZAR"),
 });
 

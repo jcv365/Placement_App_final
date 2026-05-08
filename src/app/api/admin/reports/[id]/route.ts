@@ -43,8 +43,6 @@ export async function GET(
       return jsonError("Admin sign-in is required", 401);
     }
 
-    return jsonError("Unable to download report", 400, {
-      message: (error as Error).message,
-    });
+    return jsonError("Unable to download report", 400);
   }
 }

@@ -54,27 +54,6 @@ type Vacancy = {
   };
 };
 
-const SAMPLE_ACCOUNTS: ClientAccount[] = [
-  {
-    id: "sample-client-1",
-    name: "Acme Consulting",
-    domain: "acme.example",
-    contractTerms: "Outside IR35 preferred, 3-month rolling.",
-    billingNotes: "Invoice weekly.",
-    isActive: true,
-    _count: { contacts: 1, vacancies: 1 },
-  },
-  {
-    id: "sample-client-2",
-    name: "Northwind Engineering",
-    domain: "northwind.example",
-    contractTerms: "Inside IR35 possible depending on scope.",
-    billingNotes: "Invoice monthly.",
-    isActive: true,
-    _count: { contacts: 1, vacancies: 1 },
-  },
-];
-
 export default function ClientsClient() {
   const [accounts, setAccounts] = React.useState<ClientAccount[]>([]);
   const [contacts, setContacts] = React.useState<ClientContact[]>([]);
@@ -148,7 +127,8 @@ export default function ClientsClient() {
     } finally {
       setLoading(false);
     }
-  }, [selectedAccountId, contactAccountId]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   React.useEffect(() => {
     load();
@@ -170,10 +150,7 @@ export default function ClientsClient() {
     });
   }, [accounts, search, statusFilter]);
 
-  const accountsToDisplay =
-    filteredAccounts.length > 0 || accounts.length > 0
-      ? filteredAccounts
-      : SAMPLE_ACCOUNTS;
+  const accountsToDisplay = filteredAccounts;
 
   React.useEffect(() => {
     if (!selectedAccountId && filteredAccounts[0]?.id) {
@@ -376,9 +353,6 @@ export default function ClientsClient() {
                                 (account._count?.vacancies ?? 0)}{" "}
                               linked
                             </Badge>
-                            {!accounts.length ? (
-                              <Badge className="ml-2">Sample</Badge>
-                            ) : null}
                           </td>
                           <td className="px-2 py-2">
                             <Button

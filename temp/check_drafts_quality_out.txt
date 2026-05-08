@@ -1,0 +1,402 @@
+Checking 100 drafts
+100/100 drafts have issues
+---
+id: cmog9cwip017uqf01bz10lssv
+createdAt: 2026-04-26T21:06:03.554Z
+subject: DevOps Engineer ΓÇô B2B ΓÇô Heinrich Muller
+candidate: Heinrich Muller
+job: DevOps Engineer
+wordCount: 328
+failures: few bullets
+---
+id: cmog95il2017oqf011jmc5wsn
+createdAt: 2026-04-26T21:00:18.903Z
+subject: Specialist in DevOps ΓÇô B2B / Outside IR35 ΓÇô Heinrich Muller
+candidate: Heinrich Muller
+job: Specialist in DevOps
+wordCount: 339
+failures: few bullets
+---
+id: cmog94t5s017iqf01a0lhz5h6
+createdAt: 2026-04-26T20:59:45.953Z
+subject: Azure Cloud Engineer Sr ΓÇô B2B ΓÇô Heinrich Muller
+candidate: Heinrich Muller
+job: Azure Cloud Engineer Sr
+wordCount: 340
+failures: few bullets
+---
+id: cmod50lfm017dqf01zfp7bv8p
+createdAt: 2026-04-24T16:41:12.322Z
+subject: Senior Network Engineer ΓÇô B2B ΓÇô Andre Lombaard
+candidate: Andre Lombaard
+job: Senior Network Engineer
+wordCount: 325
+failures: few bullets
+---
+id: cmod4ztjh017aqf01c8en4n7v
+createdAt: 2026-04-24T16:40:36.173Z
+subject: Senior Network Engineer ΓÇô B2B ΓÇô Andre Lombaard
+candidate: Andre Lombaard
+job: Senior Network Engineer
+wordCount: 335
+failures: few bullets
+---
+id: cmod4umtp0177qf01anoejkzv
+createdAt: 2026-04-24T16:36:34.189Z
+subject: 2 x Front end AEM developer ΓÇô B2B ΓÇô Sondra Methembe Sithole
+candidate: Sondra Methembe Sithole
+job: - 2 x Front end AEM developer
+wordCount: 278
+failures: few bullets
+---
+id: cmod4omh90175qf01cri41wuw
+createdAt: 2026-04-24T16:31:53.806Z
+subject: Azure Data Engineer ΓÇô B2B ΓÇô Everswick Dambaza
+candidate: Everswick Dambaza
+job: Azure Data Engineer |
+wordCount: 311
+failures: few bullets
+---
+id: cmod4o3dn0172qf01tzyv1sj6
+createdAt: 2026-04-24T16:31:29.051Z
+subject: Azure Data Engineer ΓÇô B2B ΓÇô Everswick Dambaza
+candidate: Everswick Dambaza
+job: Azure Data Engineer |
+wordCount: 293
+failures: few bullets
+---
+id: cmod4iuqv0170qf011hipyqle
+createdAt: 2026-04-24T16:27:24.583Z
+subject: Site Engineer ΓÇô B2B / Outside IR35 ΓÇô Jeanre Swanepoel
+candidate: Jeanre Swanepoel
+job: Site Engineer
+wordCount: 309
+failures: few bullets
+---
+id: cmod4hbtg016xqf01ml0y4weq
+createdAt: 2026-04-24T16:26:13.396Z
+subject: Site Engineer ΓÇô B2B / Outside IR35 ΓÇô Jeanre Swanepoel
+candidate: Jeanre Swanepoel
+job: Site Engineer
+wordCount: 303
+failures: few bullets
+---
+id: cmod4g37p016uqf01542alp7h
+createdAt: 2026-04-24T16:25:15.589Z
+subject: Lead JAVA AWS Developer ΓÇô B2B ΓÇô Everswick Dambaza
+candidate: Everswick Dambaza
+job: Lead JAVA AWS Developer
+wordCount: 307
+failures: few bullets
+---
+id: cmod4bs0e016rqf01ojkyzlgv
+createdAt: 2026-04-24T16:21:54.447Z
+subject: Database Administrator ΓÇô B2B ΓÇô Petunia Motlhakane
+candidate: Petunia Motlhakane
+job: Database Administrator
+wordCount: 300
+failures: few bullets
+---
+id: cmod461af016oqf01543c4owg
+createdAt: 2026-04-24T16:17:26.536Z
+subject: Angular Developer ΓÇô B2B ΓÇô MPHO MORABA
+candidate: MPHO MORABA
+job: Angular Developer
+wordCount: 261
+failures: few bullets
+---
+id: cmod3p9f7016lqf01s8euxq2u
+createdAt: 2026-04-24T16:04:23.923Z
+subject: Infrastructure Engineer ΓÇô B2B ΓÇô James Tladi Tladi
+candidate: James Tladi Tladi
+job: Infrastructure Engineer
+wordCount: 247
+failures: few bullets
+---
+id: cmod3hbj9016iqf019il0tzh0
+createdAt: 2026-04-24T15:58:13.413Z
+subject: Data Scientist & Analyst ΓÇô B2B ΓÇô Njabulo
+candidate: Njabulo
+job: Data Scientist & Analyst
+wordCount: 316
+failures: few bullets
+---
+id: cmod3e2o5016fqf01vko0hc3m
+createdAt: 2026-04-24T15:55:41.957Z
+subject: Salesforce Developer ΓÇô B2B / Inside IR35 ΓÇô James Tladi Tladi
+candidate: James Tladi Tladi
+job: Senior Salesforce
+wordCount: 336
+failures: few bullets
+---
+id: cmod31rnx016cqf01silakicl
+createdAt: 2026-04-24T15:46:07.821Z
+subject: Full Stack Engineer ΓÇô B2B / Outside IR35 ΓÇô Tanyaradzwa Tanatswa Mushonga
+candidate: Tanyaradzwa Tanatswa Mushonga
+job: Full Stack Engineer
+wordCount: 287
+failures: few bullets
+---
+id: cmod2jjyn0169qf01uc2tmxo4
+createdAt: 2026-04-24T15:31:58.032Z
+subject: Azure Cloud Engineer ΓÇô B2B ΓÇô Lesiba Serite
+candidate: Lesiba Serite
+job: Azure Cloud Engineer
+wordCount: 297
+failures: few bullets
+---
+id: cmod2dhk00166qf01izjwq258
+createdAt: 2026-04-24T15:27:14.977Z
+subject: Full Stack Developer ΓÇô B2B ΓÇô Tonderai Muchada
+candidate: Tonderai Muchada
+job: Full Stack Developer
+wordCount: 258
+failures: few bullets
+---
+id: cmod1y30g0163qf01u6k04k4s
+createdAt: 2026-04-24T15:15:16.288Z
+subject: 1 Data Engineer ΓÇô AWS / Redshift / PySpark ΓÇô B2B ΓÇô Njabulo
+candidate: Njabulo
+job: 1 Data Engineer ΓÇô AWS / Redshift / PySpark
+wordCount: 290
+failures: few bullets
+---
+id: cmocz5re60161qf01gvlg9ohg
+createdAt: 2026-04-24T13:57:15.630Z
+subject: AI / ML Engineer ΓÇô B2B ΓÇô Everswick Dambaza
+candidate: Everswick Dambaza
+job: AI / ML Engineer
+wordCount: 260
+failures: few bullets
+---
+id: cmocz5qyw015yqf0115m4vs4j
+createdAt: 2026-04-24T13:57:15.081Z
+subject: AI / ML Engineer ΓÇô B2B ΓÇô Everswick Dambaza
+candidate: Everswick Dambaza
+job: AI / ML Engineer
+wordCount: 278
+failures: few bullets
+---
+id: cmocz0my7015wqf01rnymgje4
+createdAt: 2026-04-24T13:53:16.591Z
+subject: Mainframe Developer COBOL / CICS / DB2 ΓÇô B2B ΓÇô Petunia Motlhakane
+candidate: Petunia Motlhakane
+job: Mainframe Developer COBOL / CICS / DB2
+wordCount: 317
+failures: few bullets
+---
+id: cmocz05uu015tqf014ljiehes
+createdAt: 2026-04-24T13:52:54.439Z
+subject: Mainframe Developer COBOL / CICS / DB2 ΓÇô B2B ΓÇô Petunia Motlhakane
+candidate: Petunia Motlhakane
+job: Mainframe Developer COBOL / CICS / DB2
+wordCount: 274
+failures: few bullets
+---
+id: cmocywd1x015rqf01fxgmhv7j
+createdAt: 2026-04-24T13:49:57.141Z
+subject: Database Administrator ΓÇô B2B ΓÇô Jonas Mokgaola Nkosinathi Thamane
+candidate: Jonas Mokgaola Nkosinathi Thamane
+job: Database Administrator
+wordCount: 285
+failures: few bullets
+---
+id: cmocyvofx015oqf01905zsbk6
+createdAt: 2026-04-24T13:49:25.245Z
+subject: Database Administrator ΓÇô B2B ΓÇô Jonas Mokgaola Nkosinathi Thamane
+candidate: Jonas Mokgaola Nkosinathi Thamane
+job: Database Administrator
+wordCount: 256
+failures: few bullets
+---
+id: cmocysb06015mqf01tvsfsp3q
+createdAt: 2026-04-24T13:46:47.862Z
+subject: NEW Data / Analytics Engineer ΓÇô B2B ΓÇô Titus Makumbe
+candidate: Titus Makumbe
+job: NEW Data / Analytics Engineer ΓÇô
+wordCount: 260
+failures: few bullets
+---
+id: cmocyrdn2015jqf011af59fca
+createdAt: 2026-04-24T13:46:04.622Z
+subject: NEW Data / Analytics Engineer ΓÇô B2B ΓÇô Titus Makumbe
+candidate: Titus Makumbe
+job: NEW Data / Analytics Engineer ΓÇô
+wordCount: 310
+failures: few bullets
+---
+id: cmocyn1ho015gqf0138pw6lin
+createdAt: 2026-04-24T13:42:42.252Z
+subject: Power Platform/CoPilot Studio Developer ΓÇô B2B ΓÇô Jonas Mokgaola Nkosinathi Thamane
+candidate: Jonas Mokgaola Nkosinathi Thamane
+job: Power Platform/CoPilot Studio Developer
+wordCount: 306
+failures: few bullets
+---
+id: cmocyk7s3015dqf01fow6l74s
+createdAt: 2026-04-24T13:40:30.435Z
+subject: Senior DevOps Engineer ΓÇô B2B / Outside IR35 ΓÇô Lesiba Serite
+candidate: Lesiba Serite
+job: Senior DevOps Engineer
+wordCount: 306
+failures: few bullets
+---
+id: cmocyhagt015aqf01fqwwpvxb
+createdAt: 2026-04-24T13:38:13.949Z
+subject: Angular Developer ΓÇô B2B ΓÇô Kudzai Murimi
+candidate: Kudzai Murimi
+job: Angular Developer
+wordCount: 312
+failures: few bullets
+---
+id: cmocu9dif0157qf012qe8ny4j
+createdAt: 2026-04-24T11:40:06.183Z
+subject: AI Engineer ΓÇô B2B ΓÇô Thato Tswai
+candidate: Thato Tswai
+job: AI Engineer
+wordCount: 268
+failures: few bullets
+---
+id: cmocu4l750154qf01h50eavm1
+createdAt: 2026-04-24T11:36:22.865Z
+subject: AI Engineer ΓÇô B2B ΓÇô Lesego Moncho
+candidate: Lesego Moncho
+job: AI Engineer
+wordCount: 304
+failures: few bullets
+---
+id: cmocu4jlo0151qf01kf2g76cv
+createdAt: 2026-04-24T11:36:20.797Z
+subject: AI Engineer ΓÇô B2B ΓÇô Juliet Ngoni
+candidate: Juliet Ngoni
+job: AI Engineer
+wordCount: 265
+failures: few bullets
+---
+id: cmocu02bh014yqf017r028jba
+createdAt: 2026-04-24T11:32:51.773Z
+subject: AI Architect Azure ΓÇô B2B ΓÇô Lesego Moncho
+candidate: Lesego Moncho
+job: AI Architect Azure
+wordCount: 275
+failures: few bullets
+---
+id: cmoctz5hb014vqf01boiewjqy
+createdAt: 2026-04-24T11:32:09.215Z
+subject: Business Analyst ΓÇô B2B ΓÇô Titus Makumbe
+candidate: Titus Makumbe
+job: Business Analyst
+wordCount: 222
+failures: few bullets
+---
+id: cmoctuxha014sqf01cjp9ocf2
+createdAt: 2026-04-24T11:28:52.222Z
+subject: Senior DevOps Engineer ΓÇô B2B / Outside IR35 ΓÇô Pardington T Mureka
+candidate: Pardington T Mureka
+job: Senior DevOps Engineer
+wordCount: 305
+failures: few bullets
+---
+id: cmoctrqwj014pqf01mcxrh74v
+createdAt: 2026-04-24T11:26:23.731Z
+subject: DevOps Engineer ΓÇô B2B ΓÇô Pardington T Mureka
+candidate: Pardington T Mureka
+job: DevOps Engineer
+wordCount: 300
+failures: few bullets
+---
+id: cmoctoi99014mqf01lee5mxms
+createdAt: 2026-04-24T11:23:52.558Z
+subject: Infrastructure Engineer ΓÇô B2B ΓÇô Kgomotso Sello Dungeni
+candidate: Kgomotso Sello Dungeni
+job: Infrastructure Engineer
+wordCount: 318
+failures: few bullets
+---
+id: cmocto9ej014jqf01iu6tj3al
+createdAt: 2026-04-24T11:23:41.084Z
+subject: Senior Network Engineer ΓÇô B2B ΓÇô Crispen Shiri
+candidate: Crispen Shiri
+job: Senior Network Engineer
+wordCount: 283
+failures: few bullets
+---
+id: cmoctkr9h014gqf01xkhj8qtj
+createdAt: 2026-04-24T11:20:57.605Z
+subject: Senior Network Engineer ΓÇô B2B ΓÇô Johannes Sekgoka
+candidate: Johannes Sekgoka
+job: Senior Network Engineer
+wordCount: 271
+failures: few bullets
+---
+id: cmoctgx84014dqf01u2v7uo9b
+createdAt: 2026-04-24T11:17:58.709Z
+subject: Azure Data Engineer | ΓÇô B2B ΓÇô Petunia Motlhakane
+candidate: Petunia Motlhakane
+job: Azure Data Engineer |
+wordCount: 297
+failures: few bullets
+---
+id: cmoctg60f014aqf010vvgj6n4
+createdAt: 2026-04-24T11:17:23.439Z
+subject: AI Engineer ΓÇô B2B ΓÇô James Tladi Tladi
+candidate: James Tladi Tladi
+job: AI Engineer
+wordCount: 341
+failures: few bullets
+---
+id: cmoctcnwi0147qf01ycl9stcr
+createdAt: 2026-04-24T11:14:40.003Z
+subject: Site Engineer ΓÇô B2B / Outside IR35 ΓÇô Crispen Shiri
+candidate: Crispen Shiri
+job: Site Engineer
+wordCount: 292
+failures: few bullets
+---
+id: cmoctc0vo0144qf01roabfvw5
+createdAt: 2026-04-24T11:14:10.165Z
+subject: Frontend Developer ΓÇô B2B ΓÇô Jonathan Wagener
+candidate: Jonathan Wagener
+job: Frontend Developer
+wordCount: 265
+failures: few bullets
+---
+id: cmoct69ee0141qf01o2knhomi
+createdAt: 2026-04-24T11:09:41.270Z
+subject: WeΓÇÖre Hiring: Application Developer (Desktop / Mobile / Web Apps) ΓÇô B2B ΓÇô Jonathan Wagener
+candidate: Jonathan Wagener
+job: WeΓÇÖre Hiring: Application Developer Desktop / Mobile / Web Apps
+wordCount: 292
+failures: few bullets
+---
+id: cmoct5pfb013yqf01fm1dqi5q
+createdAt: 2026-04-24T11:09:15.384Z
+subject: SOFTWARE ENGINEER C++/C# ΓÇô B2B / Outside IR35 ΓÇô Liliyosa Mbakureya
+candidate: Liliyosa Mbakureya
+job: SOFTWARE ENGINEER C++/C#
+wordCount: 296
+failures: few bullets
+---
+id: cmoct1zqn013vqf01p4hxyu8j
+createdAt: 2026-04-24T11:06:22.128Z
+subject: Senior MLOps Engineer ΓÇô B2B / Outside IR35 ΓÇô Crispen Shiri
+candidate: Crispen Shiri
+job: Senior MLOps Engineer
+wordCount: 238
+failures: few bullets
+---
+id: cmoct175x013sqf01qysgit6j
+createdAt: 2026-04-24T11:05:45.093Z
+subject: WeΓÇÖre Hiring: Application Developer Desktop / Mobile / Web Apps ΓÇô B2B ΓÇô Kudzai Murimi
+candidate: Kudzai Murimi
+job: WeΓÇÖre Hiring: Application Developer Desktop / Mobile / Web Apps
+wordCount: 281
+failures: few bullets
+---
+id: cmocsxhum013pqf01t0spmqhk
+createdAt: 2026-04-24T11:02:52.319Z
+subject: Senior Network Engineer ΓÇô B2B ΓÇô Girly Nomvula Lebelo
+candidate: Girly Nomvula Lebelo
+job: Senior Network Engineer
+wordCount: 299
+failures: few bullets

@@ -77,7 +77,7 @@ async function deleteApplicationGraph(
       },
       select: { id: true },
     })
-  ).map((timesheet) => timesheet.id);
+  ).map((timesheet: { id: string }) => timesheet.id);
 
   if (timesheetIds.length) {
     await tx.invoice.deleteMany({
@@ -309,9 +309,7 @@ export async function GET(request: Request) {
       return jsonError("Admin sign-in is required", 401);
     }
 
-    return jsonError("Unable to load deletion requests", 400, {
-      message: (error as Error).message,
-    });
+    return jsonError("Unable to load deletion requests", 400);
   }
 }
 
@@ -593,8 +591,6 @@ export async function POST(request: Request) {
       return jsonError("Admin sign-in is required", 401);
     }
 
-    return jsonError("Unable to review deletion request", 400, {
-      message: (error as Error).message,
-    });
+    return jsonError("Unable to review deletion request", 400);
   }
 }

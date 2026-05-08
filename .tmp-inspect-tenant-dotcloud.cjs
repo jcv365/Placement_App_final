@@ -5,7 +5,7 @@ const { PrismaClient } = require("@prisma/client");
     datasources: { db: { url: "file:./prod.db" } },
   });
   try {
-    const tenantId = "dotcloudconsulting";
+    const tenantId = process.env.TARGET_TENANT_ID || "default";
     const [jobs, candidates, applications, companies, rulesets] =
       await Promise.all([
         prisma.job.count({ where: { tenantId } }),

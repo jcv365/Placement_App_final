@@ -403,8 +403,6 @@ export async function POST(request: Request) {
       return jsonError("Admin sign-in is required", 401);
     }
 
-    return jsonError("Unable to clean imported data", 400, {
-      message: (error as Error).message,
-    });
+    return jsonError("Unable to clean imported data", 400);
   }
 }

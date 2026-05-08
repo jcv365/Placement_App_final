@@ -1,0 +1,25 @@
+
+Mailbox: placements@dotcloud.africa
+Checking Drafts + Sent Items (all time)...
+
+Fetching Drafts folder...
+  Total in Drafts:     249
+
+Fetching Sent Items folder...
+  Total in Sent Items: 139
+
+========================================
+  TOTAL (Drafts + Sent): 388
+========================================
+
+Sent Items breakdown by recipient domain:
+  dotcloud.africa: 188
+  example.com: 17
+  smartedgesolutions.co.uk: 4
+  sdnaglobal.com: 3
+  marutlethrone.co.za: 2
+  thoughtwavesoft.com: 2
+  paradigmrecruitment.co.za: 1
+  signify-tech.com: 1
+  ecsgrp.co.uk: 1
+  stealth-it.com: 1

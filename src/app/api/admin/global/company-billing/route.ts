@@ -105,8 +105,6 @@ export async function PATCH(request: Request) {
       return jsonError("Super admin access is required", 403);
     }
 
-    return jsonError("Unable to update company billing", 400, {
-      message,
-    });
+    return jsonError("Unable to update company billing", 400);
   }
 }

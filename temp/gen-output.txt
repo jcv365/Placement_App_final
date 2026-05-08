@@ -1,0 +1,19 @@
+Mailbox: placements@dotcloud.africa
+Fetching applications missing email drafts...
+  Total active applications: 88
+  Missing DB email records:  85
+
+Fetching Outlook Drafts and Sent Items subjects...
+  Drafts: 123 | Sent: 518 | Combined: 641
+
+Truly missing (not in Drafts or Sent Items): 85
+
+  FAIL (502): Peter Idah ΓåÆ Python Backend / AI Engineer ΓÇö {"ok":false,"error":{"message":"AI email generation failed","details":{"provider":"litellm","hint":"Fix LiteLLM configuration or availability, then regenerate."}}}
+  FAIL (409): Njabulo ΓåÆ Data Analyst ΓÇö {"ok":false,"error":{"message":"This opportunity does not appear to be remote. Email generation is only supported for remote roles.","details":{"hint":"Review the job description. If the role is genui
+  FAIL (409): Kgomotso Sello Dungeni ΓåÆ AWS Cloud Engineer ΓÇö {"ok":false,"error":{"message":"This opportunity does not appear to be remote. Email generation is only supported for remote roles.","details":{"hint":"Review the job description. If the role is genui
+  ERROR: Jonathan Wagener ΓåÆ Python Developer ΓÇö The operation was aborted due to timeout
+  FAIL (409): Petunia Motlhakane ΓåÆ Senior Network Engineer ΓÇö {"ok":false,"error":{"message":"This opportunity does not appear to be remote. Email generation is only supported for remote roles.","details":{"hint":"Review the job description. If the role is genui
+  FAIL (409): Tanyaradzwa Tanatswa Mushonga ΓåÆ Frontend Developer ΓÇö {"ok":false,"error":{"message":"This opportunity requires US work authorisation (USC/Green Card). Email generation is blocked ΓÇö this is a hard disqualification for candidates without US work authorisa
+  FAIL (409): Kudzai Murimi ΓåÆ Frontend Developer ΓÇö {"ok":false,"error":{"message":"This opportunity requires US work authorisation (USC/Green Card). Email generation is blocked ΓÇö this is a hard disqualification for candidates without US work authorisa
+  FAIL (409): Pardington T Mureka ΓåÆ DevOps ΓÇö {"ok":false,"error":{"message":"This opportunity does not appear to be remote. Email generation is only supported for remote roles.","details":{"hint":"Review the job description. If the role is genui
+  FAIL (409): Crispen Shiri ΓåÆ Azure Cloud Engineer Sr ΓÇö {"ok":false,"error":{"message":"This opportunity does not appear to be remote. Email generation is only supported for remote roles.","details":{"hint":"Review the job description. If the role is genui

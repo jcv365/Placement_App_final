@@ -1,0 +1,14 @@
+http:
+  routers:
+    master:
+      rule: "Host(`placements.dotcloud.africa`)"
+      entryPoints:
+        - websecure
+      tls: {}
+      service: master
+
+  services:
+    master:
+      loadBalancer:
+        servers:
+          - url: "http://contract_placements-app-1:3000"

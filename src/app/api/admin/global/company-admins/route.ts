@@ -47,9 +47,8 @@ export async function GET(request: Request) {
       return jsonError("Super admin access is required", 403);
     }
 
-    return jsonError("Unable to load company admins", 400, {
-      message,
-    });
+    console.error("[COMPANY_ADMINS_GET]", error);
+    return jsonError("Unable to load company admins", 400);
   }
 }
 
@@ -134,9 +133,8 @@ export async function POST(request: Request) {
       return jsonError("Super admin access is required", 403);
     }
 
-    return jsonError("Unable to add company admin", 400, {
-      message,
-    });
+    console.error("[COMPANY_ADMINS_POST]", error);
+    return jsonError("Unable to add company admin", 400);
   }
 }
 
@@ -193,8 +191,7 @@ export async function DELETE(request: Request) {
       return jsonError("Super admin access is required", 403);
     }
 
-    return jsonError("Unable to remove company admin", 400, {
-      message,
-    });
+    console.error("[COMPANY_ADMINS_DELETE]", error);
+    return jsonError("Unable to remove company admin", 400);
   }
 }

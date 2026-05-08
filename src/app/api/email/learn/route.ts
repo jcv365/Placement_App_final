@@ -1,13 +1,13 @@
-import { jsonError, jsonOk } from "@/lib/apiResponses";
+import { handleAuthError, jsonError, jsonOk } from "@/lib/apiResponses";
 import { prisma } from "@/lib/prisma";
-import { resolveTenantIdFromRequest } from "@/lib/tenant";
+import { requireAuthenticatedTenantId } from "@/lib/tenant";
 import { emailLearningSchema } from "@/lib/validation";
 
 export const runtime = "nodejs";
 
 export async function POST(request: Request) {
   try {
-    const tenantId = resolveTenantIdFromRequest(request);
+    const tenantId = requireAuthenticatedTenantId(request);
     const body = emailLearningSchema.parse(await request.json());
 
     const draft = await prisma.emailDraft.findFirst({
@@ -31,8 +31,9 @@ export async function POST(request: Request) {
 
     return jsonOk(updated);
   } catch (error) {
-    return jsonError("Unable to update learning preference", 400, {
-      message: (error as Error).message,
-    });
+    return (
+      handleAuthError(error) ??
+      jsonError("Unable to update learning preference", 400)
+    );
   }
 }

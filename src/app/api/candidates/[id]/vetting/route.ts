@@ -1,6 +1,6 @@
 import { jsonError, jsonOk } from "@/lib/apiResponses";
 import { prisma } from "@/lib/prisma";
-import { resolveTenantIdFromRequest } from "@/lib/tenant";
+import { requireAuthenticatedTenantId } from "@/lib/tenant";
 import { candidateVettingUpdateSchema } from "@/lib/validation";
 
 export const runtime = "nodejs";
@@ -10,7 +10,7 @@ export async function PATCH(
   context: { params: Promise<{ id: string }> },
 ) {
   try {
-    const tenantId = resolveTenantIdFromRequest(request);
+    const tenantId = requireAuthenticatedTenantId(request);
     const { id } = await context.params;
     const body = candidateVettingUpdateSchema.parse(await request.json());
 
@@ -67,8 +67,10 @@ export async function PATCH(
 
     return jsonOk(candidate);
   } catch (error) {
-    return jsonError("Unable to update candidate vetting", 400, {
-      message: (error as Error).message,
-    });
+    if ((error as Error).message === "UNAUTHENTICATED") {
+      return jsonError("Authentication required", 401);
+    }
+    console.error("[CANDIDATE_VETTING_UPDATE]", error);
+    return jsonError("Unable to update candidate vetting", 400);
   }
 }

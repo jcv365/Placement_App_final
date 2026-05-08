@@ -153,12 +153,17 @@ export async function GET(request: Request) {
         },
       }),
       prisma.timesheet.findMany({
+        where: {
+          periodStartDate: {
+            gte: new Date(Date.now() - 730 * 24 * 60 * 60 * 1000),
+          },
+        },
         select: {
           status: true,
           hoursWorked: true,
           ratePerHour: true,
           engineerRatePerHour: true,
-          weekStartDate: true,
+          periodStartDate: true,
           application: {
             select: {
               agreedHourlyRate: true,
@@ -199,7 +204,7 @@ export async function GET(request: Request) {
           timesheets: {
             select: {
               status: true,
-              weekStartDate: true,
+              periodStartDate: true,
             },
           },
         },
@@ -327,7 +332,7 @@ export async function GET(request: Request) {
               timesheet.status,
             ),
           )
-          .map((timesheet) => toMonthKey(timesheet.weekStartDate)),
+          .map((timesheet) => toMonthKey(timesheet.periodStartDate)),
       );
 
       const startMonth = application.placedAt ?? application.createdAt;
@@ -518,8 +523,6 @@ export async function GET(request: Request) {
       return jsonError("Super admin access is required", 403);
     }
 
-    return jsonError("Unable to load global admin overview", 400, {
-      message,
-    });
+    return jsonError("Unable to load global admin overview", 400);
   }
 }

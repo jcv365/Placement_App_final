@@ -1,14 +1,23 @@
 import { jsonError, jsonOk } from "@/lib/apiResponses";
+import { writeAuditLog } from "@/lib/auditLog";
+import { parsePagination } from "@/lib/pagination";
 import { prisma } from "@/lib/prisma";
-import { resolveTenantIdFromRequest } from "@/lib/tenant";
+import {
+  requireAuthenticatedTenantId,
+  resolveTenantIdFromRequest,
+} from "@/lib/tenant";
 import { placementAlertCreateSchema } from "@/lib/validation";
 
 export const runtime = "nodejs";
 
 export async function GET(request: Request) {
   const tenantId = resolveTenantIdFromRequest(request);
+  const { searchParams } = new URL(request.url);
+  const pagination = parsePagination(searchParams);
+
+  const where = { tenantId };
   const alerts = await prisma.placementAlert.findMany({
-    where: { tenantId },
+    where,
     include: {
       application: {
         select: {
@@ -20,14 +29,25 @@ export async function GET(request: Request) {
       },
     },
     orderBy: [{ dueDate: "asc" }, { createdAt: "desc" }],
+    ...(pagination ? { take: pagination.take, skip: pagination.skip } : {}),
   });
+
+  if (pagination) {
+    const total = await prisma.placementAlert.count({ where });
+    return jsonOk({
+      items: alerts,
+      total,
+      page: pagination.page,
+      pageSize: pagination.pageSize,
+    });
+  }
 
   return jsonOk(alerts);
 }
 
 export async function POST(request: Request) {
   try {
-    const tenantId = resolveTenantIdFromRequest(request);
+    const tenantId = requireAuthenticatedTenantId(request);
     const body = placementAlertCreateSchema.parse(await request.json());
 
     const application = await prisma.application.findFirst({
@@ -62,10 +82,19 @@ export async function POST(request: Request) {
       },
     });
 
+    await writeAuditLog({
+      tenantId,
+      entityType: "placementAlert",
+      entityId: alert.id,
+      action: "CREATE",
+    });
+
     return jsonOk(alert, { status: 201 });
   } catch (error) {
-    return jsonError("Unable to create placement alert", 400, {
-      message: (error as Error).message,
-    });
+    if ((error as Error).message === "UNAUTHENTICATED") {
+      return jsonError("Authentication required", 401);
+    }
+    console.error("[PLACEMENT_ALERT_CREATE]", error);
+    return jsonError("Unable to create placement alert", 400);
   }
 }

@@ -25,11 +25,11 @@ export async function GET(request: Request) {
       percent: progress.percent,
       message: progress.message,
       updatedAt: progress.updatedAt,
+      summary: progress.summary ?? null,
     });
   } catch (error) {
-    return jsonError("Failed to load upload progress", 500, {
-      message: (error as Error).message,
-    });
+    console.error("[UPLOAD_PROGRESS]", error);
+    return jsonError("Failed to load upload progress", 500);
   }
 }
 

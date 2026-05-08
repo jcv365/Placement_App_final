@@ -1,5 +1,6 @@
 import { jsonError, jsonOk } from "@/lib/apiResponses";
 import { hashPassword, normaliseTenantId } from "@/lib/appAuth";
+import { DEFAULT_OUTLOOK_MAILBOX } from "@/lib/constants";
 import { sendMail } from "@/lib/mailer";
 import { prisma } from "@/lib/prisma";
 import { companyRegistrationSchema } from "@/lib/validation";
@@ -7,10 +8,15 @@ import crypto from "node:crypto";
 
 export const runtime = "nodejs";
 
+const DEFAULT_PUBLIC_BASE_URL = "http://localhost:3001";
+const DEFAULT_REPORT_RECIPIENT =
+  process.env.DEFAULT_ACCOUNTS_EMAIL?.trim() || "";
+
 function resolveVerificationBaseUrl(request: Request): string {
   const configured = process.env.APP_BASE_URL?.trim();
   const fallback = new URL(request.url).origin;
-  const source = configured && configured.length > 0 ? configured : fallback;
+  const source =
+    configured && configured.length > 0 ? configured : DEFAULT_PUBLIC_BASE_URL;
 
   try {
     const parsed = new URL(source);
@@ -79,10 +85,36 @@ export async function POST(request: Request) {
       });
 
       // Seed a default company profile tied to this tenant for admin finance/settings screens.
-      await tx.company.create({
+      const company = await tx.company.create({
         data: {
           tenantId,
           name: body.displayName,
+          domain: body.domain?.trim() || null,
+        },
+      });
+
+      const reportRecipients = Array.from(
+        new Set(
+          [body.billingContactEmail.toLowerCase(), DEFAULT_REPORT_RECIPIENT]
+            .map((item) => item.trim())
+            .filter(Boolean),
+        ),
+      );
+
+      await tx.companySettings.create({
+        data: {
+          companyId: company.id,
+          brandName: body.brandName,
+          billingModel: body.billingModel,
+          billingRatePerHour:
+            body.billingModel === "PER_HOUR_PER_CANDIDATE"
+              ? (body.billingRatePerHour ?? 0)
+              : 0,
+          reportRecipientsCsv: reportRecipients.join(", "),
+          outlookMailbox:
+            body.outlookMailbox?.trim().toLowerCase() ||
+            DEFAULT_OUTLOOK_MAILBOX,
+          currency: "ZAR",
         },
       });
 
@@ -146,9 +178,7 @@ export async function POST(request: Request) {
     );
 
     return response;
-  } catch (error) {
-    return jsonError("Unable to register company", 400, {
-      message: (error as Error).message,
-    });
+  } catch {
+    return jsonError("Unable to register company", 400);
   }
 }

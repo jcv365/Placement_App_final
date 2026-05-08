@@ -1,38 +1,26 @@
 import { jsonError, jsonOk } from "@/lib/apiResponses";
 import { inferSuggestedRolesFromSkillsAndCertifications } from "@/lib/candidateProfile";
-import { readSharedGithubAccessToken } from "@/lib/githubAuthStore";
 import { prisma } from "@/lib/prisma";
-import { resolveTenantIdFromRequest } from "@/lib/tenant";
+import { requireAuthenticatedTenantId } from "@/lib/tenant";
+import { z } from "zod";
 
 export const runtime = "nodejs";
 
-function getCookieValue(request: Request, name: string): string | undefined {
-  const cookieHeader = request.headers.get("cookie");
-  if (!cookieHeader) return undefined;
-
-  const parts = cookieHeader.split(";").map((part) => part.trim());
-  for (const part of parts) {
-    const [cookieName, ...cookieValueParts] = part.split("=");
-    if (cookieName !== name) continue;
-    return decodeURIComponent(cookieValueParts.join("="));
-  }
-
-  return undefined;
-}
+const rolesBodySchema = z
+  .object({
+    skillsCsv: z.string().optional(),
+    certificationsCsv: z.string().optional(),
+  })
+  .default({});
 
 export async function POST(
   request: Request,
   context: { params: Promise<{ id: string }> },
 ) {
   try {
-    const tenantId = resolveTenantIdFromRequest(request);
+    const tenantId = requireAuthenticatedTenantId(request);
     const { id } = await context.params;
-    const body = (await request.json().catch(() => ({}))) as {
-      skillsCsv?: string;
-      certificationsCsv?: string;
-      githubAccessToken?: string;
-      aiProvider?: "auto" | "github-models" | "azure-openai" | "copilot-studio";
-    };
+    const body = rolesBodySchema.parse(await request.json().catch(() => ({})));
 
     const candidate = await prisma.candidate.findFirst({
       where: { id, tenantId },
@@ -40,14 +28,6 @@ export async function POST(
     if (!candidate) {
       return jsonError("Candidate not found", 404);
     }
-
-    const githubTokenFromCookie = getCookieValue(request, "githubAccessToken");
-    const githubTokenFromSharedStore = await readSharedGithubAccessToken();
-    const githubAccessToken =
-      body.githubAccessToken ??
-      githubTokenFromCookie ??
-      githubTokenFromSharedStore ??
-      process.env.GITHUB_MODELS_TOKEN;
 
     const skillsCsv =
       typeof body.skillsCsv === "string" ? body.skillsCsv : candidate.skillsCsv;
@@ -60,8 +40,6 @@ export async function POST(
       {
         skillsCsv,
         certificationsCsv,
-        githubAccessToken,
-        preferredProvider: body.aiProvider ?? "auto",
       },
     );
 
@@ -88,9 +66,15 @@ export async function POST(
       suggestedRoles,
     });
   } catch (error) {
+    if ((error as Error).message === "UNAUTHENTICATED") {
+      return jsonError("Authentication required", 401);
+    }
+    if (error instanceof z.ZodError) {
+      return jsonError("Invalid request body", 400);
+    }
+    console.error("[CANDIDATE_ROLES]", error);
     return jsonError("Unable to regenerate suggested roles", 400, {
-      message: (error as Error).message,
-      hint: "Connect GitHub Models or Azure OpenAI in Settings, and ensure skills/certifications are filled in.",
+      hint: "Ensure LiteLLM is configured and skills/certifications are filled in.",
     });
   }
 }

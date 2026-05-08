@@ -4,14 +4,23 @@ import {
   readSharedGithubAccessToken,
   writeSharedGithubAccessToken,
 } from "@/lib/githubAuthStore";
+import { z } from "zod";
 
 export const runtime = "nodejs";
 
+const syncBodySchema = z
+  .object({
+    accessToken: z.string().min(1).optional(),
+  })
+  .default({});
+
 export async function POST(request: Request) {
   const secureCookies = shouldUseSecureCookies(request);
-  const body = (await request.json()) as {
-    accessToken?: string;
-  };
+  const parsed = syncBodySchema.safeParse(
+    await request.json().catch(() => ({})),
+  );
+  if (!parsed.success) return jsonError("Invalid request body", 400);
+  const body = parsed.data;
 
   const providedToken = body.accessToken?.trim();
   const sharedToken = await readSharedGithubAccessToken();

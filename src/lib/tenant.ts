@@ -39,15 +39,33 @@ export function resolveTenantIdFromRequest(request: Request): string {
     return fromAdminSession;
   }
 
-  const fromHeader = normaliseTenantId(request.headers.get("x-tenant-id"));
-  if (fromHeader) {
-    return fromHeader;
-  }
-
   const fromCookie = normaliseTenantId(getCookieValue(request, TENANT_COOKIE));
   if (fromCookie) {
     return fromCookie;
   }
 
   return DEFAULT_TENANT_ID;
+}
+
+/**
+ * Returns the tenant ID only when the request carries a valid admin or
+ * app session. Throws if there is no authenticated session — use this
+ * for mutation endpoints that must not accept anonymous requests.
+ */
+export function requireAuthenticatedTenantId(request: Request): string {
+  const fromAppSession = normaliseTenantId(
+    getAppSessionFromRequest(request)?.tid,
+  );
+  if (fromAppSession) {
+    return fromAppSession;
+  }
+
+  const fromAdminSession = normaliseTenantId(
+    getAdminTenantIdFromRequest(request),
+  );
+  if (fromAdminSession) {
+    return fromAdminSession;
+  }
+
+  throw new Error("UNAUTHENTICATED");
 }

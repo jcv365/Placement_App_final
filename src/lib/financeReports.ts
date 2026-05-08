@@ -1,10 +1,15 @@
+import {
+  DEFAULT_OUTLOOK_MAILBOX,
+  DEFAULT_ACCOUNTS_EMAIL,
+  PLATFORM_PARTNER_NAME,
+} from "@/lib/constants";
 import { sendMail } from "@/lib/mailer";
 import { prisma } from "@/lib/prisma";
 
-const DEFAULT_RECIPIENT = "accounts@dotcloud.africa";
-const DEFAULT_OUTLOOK_MAILBOX = "charl.venter@dotcloud.africa";
-export const DOTCLOUD_PARTNER_NAME = "DotCloud Consulting";
-export const FIXED_REVENUE_SPLIT_PERCENT = 50;
+const DEFAULT_RECIPIENT = DEFAULT_ACCOUNTS_EMAIL;
+export const PARTNER_NAME = PLATFORM_PARTNER_NAME;
+/** @deprecated Use PARTNER_NAME instead */
+export const DOTCLOUD_PARTNER_NAME = PARTNER_NAME;
 
 type FinanceRow = {
   brandName: string;
@@ -14,15 +19,15 @@ type FinanceRow = {
   applicationId: string;
   candidateName: string;
   roleTitle: string;
-  weekStartDate: Date;
-  weekEndDate: Date;
+  periodStartDate: Date;
+  periodEndDate: Date;
   approvedHours: number;
   contractRate: number;
   engineerRate: number;
   marginRate: number;
   monthlyCharge: number;
   revenueSplitPercent: number;
-  dotCloudShareCharge: number;
+  partnerShareCharge: number;
   companyShareCharge: number;
   currency: string;
 };
@@ -33,7 +38,7 @@ function parseRecipientsCsv(value?: string | null): string[] {
     .map((item) => item.trim().toLowerCase())
     .filter(Boolean);
 
-  if (!parsed.includes(DEFAULT_RECIPIENT)) {
+  if (DEFAULT_RECIPIENT && !parsed.includes(DEFAULT_RECIPIENT)) {
     parsed.push(DEFAULT_RECIPIENT);
   }
 
@@ -58,15 +63,15 @@ function buildCsv(rows: FinanceRow[]): string {
     "application_id",
     "candidate_name",
     "role_title",
-    "week_start",
-    "week_end",
+    "period_start",
+    "period_end",
     "approved_hours",
     "contract_rate",
     "engineer_rate",
     "margin_rate",
     "monthly_charge",
     "revenue_split_percent",
-    "dotcloud_share_charge",
+    "partner_share_charge",
     "company_share_charge",
     "currency",
   ];
@@ -80,15 +85,15 @@ function buildCsv(rows: FinanceRow[]): string {
       row.applicationId,
       row.candidateName,
       row.roleTitle,
-      row.weekStartDate.toISOString(),
-      row.weekEndDate.toISOString(),
+      row.periodStartDate.toISOString(),
+      row.periodEndDate.toISOString(),
       row.approvedHours.toFixed(2),
       row.contractRate.toFixed(2),
       row.engineerRate.toFixed(2),
       row.marginRate.toFixed(2),
       row.monthlyCharge.toFixed(2),
       row.revenueSplitPercent.toFixed(2),
-      row.dotCloudShareCharge.toFixed(2),
+      row.partnerShareCharge.toFixed(2),
       row.companyShareCharge.toFixed(2),
       row.currency,
     ]
@@ -146,22 +151,13 @@ export async function ensureCompanySettings(
   }
 
   if (existing) {
-    if (existing.revenueSplitPercent === FIXED_REVENUE_SPLIT_PERCENT) {
-      return existing;
-    }
-
-    return prisma.companySettings.update({
-      where: { companyId },
-      data: {
-        revenueSplitPercent: FIXED_REVENUE_SPLIT_PERCENT,
-      },
-    });
+    return existing;
   }
 
   return prisma.companySettings.create({
     data: {
       companyId,
-      revenueSplitPercent: FIXED_REVENUE_SPLIT_PERCENT,
+      revenueSplitPercent: 50,
       brandName: null,
       logoUrl: null,
       reportRecipientsCsv: DEFAULT_RECIPIENT,
@@ -186,7 +182,7 @@ export async function calculateCompanyCharges(params: {
     where: {
       tenantId: params.tenantId,
       status: "APPROVED",
-      weekStartDate: {
+      periodStartDate: {
         gte: params.rangeStart,
         lt: params.rangeEnd,
       },
@@ -200,6 +196,10 @@ export async function calculateCompanyCharges(params: {
       application: {
         select: {
           agreedHourlyRate: true,
+          placementBillingModel: true,
+          placementFeePercent: true,
+          annualCtc: true,
+          contractValue: true,
           candidate: {
             select: {
               fullName: true,
@@ -218,37 +218,77 @@ export async function calculateCompanyCharges(params: {
         },
       },
     },
-    orderBy: [{ weekStartDate: "asc" }, { createdAt: "asc" }],
+    orderBy: [{ periodStartDate: "asc" }, { createdAt: "asc" }],
   });
+
+  // Track which applications have already had their one-time placement fee
+  // included so we don't charge it again on subsequent timesheets.
+  const chargedOnceOffApplications = new Set<string>();
 
   const rows: FinanceRow[] = timesheets.map(
     (timesheet: (typeof timesheets)[number]) => {
-      const contractRate =
-        timesheet.application.agreedHourlyRate ?? timesheet.ratePerHour;
-      const engineerRate = timesheet.engineerRatePerHour;
-      const marginRate = contractRate - engineerRate;
-      const monthlyCharge = marginRate * timesheet.hoursWorked;
-      const splitPercent = FIXED_REVENUE_SPLIT_PERCENT;
-      const dotCloudShareCharge = monthlyCharge * (splitPercent / 100);
-      const companyShareCharge = monthlyCharge * (splitPercent / 100);
+      const placementModel = timesheet.application.placementBillingModel;
+      let contractRate: number;
+      let engineerRate: number;
+      let marginRate: number;
+      let monthlyCharge: number;
+
+      if (placementModel === "ONCE_OFF_PLACEMENT_FEE") {
+        const cv = timesheet.application.contractValue ?? 0;
+        const pct = timesheet.application.placementFeePercent ?? 0;
+        if (chargedOnceOffApplications.has(timesheet.applicationId)) {
+          monthlyCharge = 0;
+        } else {
+          monthlyCharge = cv * (pct / 100);
+          chargedOnceOffApplications.add(timesheet.applicationId);
+        }
+        contractRate = cv;
+        engineerRate = 0;
+        marginRate = monthlyCharge;
+      } else if (placementModel === "PERMANENT_PLACEMENT_FEE") {
+        const ctc = timesheet.application.annualCtc ?? 0;
+        const pct = timesheet.application.placementFeePercent ?? 0;
+        if (chargedOnceOffApplications.has(timesheet.applicationId)) {
+          monthlyCharge = 0;
+        } else {
+          monthlyCharge = ctc * (pct / 100);
+          chargedOnceOffApplications.add(timesheet.applicationId);
+        }
+        contractRate = ctc;
+        engineerRate = 0;
+        marginRate = monthlyCharge;
+      } else {
+        contractRate =
+          timesheet.application.agreedHourlyRate ?? timesheet.ratePerHour;
+        engineerRate = timesheet.engineerRatePerHour;
+        marginRate = contractRate - engineerRate;
+        monthlyCharge = marginRate * timesheet.hoursWorked;
+      }
+
+      const splitPercent = Math.max(
+        0,
+        Math.min(100, settings.revenueSplitPercent ?? 50),
+      );
+      const partnerShareCharge = monthlyCharge * (splitPercent / 100);
+      const companyShareCharge = monthlyCharge * ((100 - splitPercent) / 100);
 
       return {
         brandName: settings.brandName ?? "",
         logoUrl: settings.logoUrl ?? "",
-        splitParties: `${DOTCLOUD_PARTNER_NAME} | ${timesheet.application.job.company?.name ?? "Client Company"}`,
+        splitParties: `${PARTNER_NAME} | ${timesheet.application.job.company?.name ?? "Client Company"}`,
         timesheetId: timesheet.id,
         applicationId: timesheet.applicationId,
         candidateName: timesheet.application.candidate.fullName,
         roleTitle: timesheet.application.job.title,
-        weekStartDate: timesheet.weekStartDate,
-        weekEndDate: timesheet.weekEndDate,
+        periodStartDate: timesheet.periodStartDate,
+        periodEndDate: timesheet.periodEndDate,
         approvedHours: timesheet.hoursWorked,
         contractRate,
         engineerRate,
         marginRate,
         monthlyCharge,
         revenueSplitPercent: splitPercent,
-        dotCloudShareCharge,
+        partnerShareCharge,
         companyShareCharge,
         currency: settings.currency,
       };
@@ -259,14 +299,14 @@ export async function calculateCompanyCharges(params: {
     (acc, row) => {
       acc.approvedHours += row.approvedHours;
       acc.monthlyCharge += row.monthlyCharge;
-      acc.dotCloudShareCharge += row.dotCloudShareCharge;
+      acc.partnerShareCharge += row.partnerShareCharge;
       acc.companyShareCharge += row.companyShareCharge;
       return acc;
     },
     {
       approvedHours: 0,
       monthlyCharge: 0,
-      dotCloudShareCharge: 0,
+      partnerShareCharge: 0,
       companyShareCharge: 0,
     },
   );
@@ -277,10 +317,10 @@ export async function calculateCompanyCharges(params: {
     totals: {
       approvedHours: Number(totals.approvedHours.toFixed(2)),
       monthlyCharge: Number(totals.monthlyCharge.toFixed(2)),
-      dotCloudShareCharge: Number(totals.dotCloudShareCharge.toFixed(2)),
+      partnerShareCharge: Number(totals.partnerShareCharge.toFixed(2)),
       companyShareCharge: Number(totals.companyShareCharge.toFixed(2)),
       currency: settings.currency,
-      splitPercent: FIXED_REVENUE_SPLIT_PERCENT,
+      splitPercent: settings.revenueSplitPercent,
     },
   };
 }
@@ -298,7 +338,7 @@ export async function calculateMonthToDateProjection(
       status: {
         in: ["DRAFT", "SUBMITTED", "APPROVED", "INVOICED"],
       },
-      weekStartDate: {
+      periodStartDate: {
         gte: range.start,
         lt: range.end,
       },
@@ -309,6 +349,7 @@ export async function calculateMonthToDateProjection(
       },
     },
     select: {
+      applicationId: true,
       status: true,
       hoursWorked: true,
       ratePerHour: true,
@@ -316,17 +357,45 @@ export async function calculateMonthToDateProjection(
       application: {
         select: {
           agreedHourlyRate: true,
+          placementBillingModel: true,
+          placementFeePercent: true,
+          annualCtc: true,
+          contractValue: true,
         },
       },
     },
   });
 
-  const projected = timesheets.reduce(
-    (sum: number, timesheet: (typeof timesheets)[number]) =>
-      sum +
+  const chargedProjectionApps = new Set<string>();
+
+  function chargeForTimesheet(timesheet: (typeof timesheets)[number]) {
+    const model = timesheet.application.placementBillingModel;
+    if (model === "ONCE_OFF_PLACEMENT_FEE") {
+      if (chargedProjectionApps.has(timesheet.applicationId)) return 0;
+      chargedProjectionApps.add(timesheet.applicationId);
+      return (
+        (timesheet.application.contractValue ?? 0) *
+        ((timesheet.application.placementFeePercent ?? 0) / 100)
+      );
+    }
+    if (model === "PERMANENT_PLACEMENT_FEE") {
+      if (chargedProjectionApps.has(timesheet.applicationId)) return 0;
+      chargedProjectionApps.add(timesheet.applicationId);
+      return (
+        (timesheet.application.annualCtc ?? 0) *
+        ((timesheet.application.placementFeePercent ?? 0) / 100)
+      );
+    }
+    return (
       ((timesheet.application.agreedHourlyRate ?? timesheet.ratePerHour) -
         timesheet.engineerRatePerHour) *
-        timesheet.hoursWorked,
+      timesheet.hoursWorked
+    );
+  }
+
+  const projected = timesheets.reduce(
+    (sum: number, timesheet: (typeof timesheets)[number]) =>
+      sum + chargeForTimesheet(timesheet),
     0,
   );
 
@@ -337,10 +406,7 @@ export async function calculateMonthToDateProjection(
     )
     .reduce(
       (sum: number, timesheet: (typeof timesheets)[number]) =>
-        sum +
-        ((timesheet.application.agreedHourlyRate ?? timesheet.ratePerHour) -
-          timesheet.engineerRatePerHour) *
-          timesheet.hoursWorked,
+        sum + chargeForTimesheet(timesheet),
       0,
     );
 
@@ -348,13 +414,13 @@ export async function calculateMonthToDateProjection(
     monthLabel: range.label,
     projectedCharge: Number(projected.toFixed(2)),
     approvedCharge: Number(approved.toFixed(2)),
-    dotCloudShareProjected: Number(
-      (projected * (FIXED_REVENUE_SPLIT_PERCENT / 100)).toFixed(2),
+    partnerShareProjected: Number(
+      (projected * (settings.revenueSplitPercent / 100)).toFixed(2),
     ),
     companyShareProjected: Number(
-      (projected * (FIXED_REVENUE_SPLIT_PERCENT / 100)).toFixed(2),
+      (projected * ((100 - settings.revenueSplitPercent) / 100)).toFixed(2),
     ),
-    splitPercent: FIXED_REVENUE_SPLIT_PERCENT,
+    splitPercent: settings.revenueSplitPercent,
     currency: settings.currency,
   };
 }

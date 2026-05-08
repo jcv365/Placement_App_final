@@ -1,6 +1,6 @@
 import {
-    isSuperAdminRequest,
-    requireAdminContextFromRequest,
+  isSuperAdminRequest,
+  requireAdminContextFromRequest,
 } from "@/lib/adminAuth";
 import { jsonError, jsonOk } from "@/lib/apiResponses";
 import { prisma } from "@/lib/prisma";
@@ -66,6 +66,6 @@ export async function POST(request: Request, { params }: Params) {
       return jsonError("Admin sign-in is required", 401);
     }
 
-    return jsonError("Unable to add support ticket comment", 400, { message });
+    return jsonError("Unable to add support ticket comment", 400);
   }
 }

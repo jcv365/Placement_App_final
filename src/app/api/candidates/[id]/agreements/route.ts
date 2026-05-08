@@ -1,7 +1,10 @@
 import { jsonError, jsonOk } from "@/lib/apiResponses";
 import { sendAgreementForSignature } from "@/lib/docusign";
 import { prisma } from "@/lib/prisma";
-import { resolveTenantIdFromRequest } from "@/lib/tenant";
+import {
+  requireAuthenticatedTenantId,
+  resolveTenantIdFromRequest,
+} from "@/lib/tenant";
 import { candidateAgreementSendSchema } from "@/lib/validation";
 
 export const runtime = "nodejs";
@@ -21,9 +24,8 @@ export async function GET(
 
     return jsonOk(agreements);
   } catch (error) {
-    return jsonError("Unable to load candidate agreements", 400, {
-      message: (error as Error).message,
-    });
+    console.error("[AGREEMENTS_GET]", error);
+    return jsonError("Unable to load candidate agreements", 400);
   }
 }
 
@@ -32,7 +34,7 @@ export async function POST(
   context: { params: Promise<{ id: string }> },
 ) {
   try {
-    const tenantId = resolveTenantIdFromRequest(request);
+    const tenantId = requireAuthenticatedTenantId(request);
     const { id } = await context.params;
     const body = candidateAgreementSendSchema.parse(await request.json());
 
@@ -83,8 +85,10 @@ export async function POST(
 
     return jsonOk(agreement, { status: 201 });
   } catch (error) {
-    return jsonError("Unable to send agreement", 400, {
-      message: (error as Error).message,
-    });
+    if ((error as Error).message === "UNAUTHENTICATED") {
+      return jsonError("Authentication required", 401);
+    }
+    console.error("[CANDIDATE_AGREEMENT_SEND]", error);
+    return jsonError("Unable to send agreement", 400);
   }
 }

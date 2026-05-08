@@ -28,7 +28,7 @@ const SOURCE_DB_URL =
 const TARGET_DB_URL =
   process.env.TARGET_DATABASE_URL ??
   `file:${path.resolve(process.cwd(), "prisma/prod.db")}`;
-const TARGET_TENANT_ID = process.env.TARGET_TENANT_ID ?? "dotcloudconsulting";
+const TARGET_TENANT_ID = process.env.TARGET_TENANT_ID ?? "default";
 
 function toVettingStatus(value: string): VettingStatus {
   if (value === "NOT_STARTED") {
@@ -62,7 +62,8 @@ async function ensureTargetTenant(targetPrisma: PrismaClient): Promise<void> {
     await targetPrisma.tenant.create({
       data: {
         tenantId: TARGET_TENANT_ID,
-        displayName: "DotCloud Consulting",
+        displayName:
+          process.env.PLATFORM_PARTNER_NAME?.trim() || TARGET_TENANT_ID,
       },
     });
   }

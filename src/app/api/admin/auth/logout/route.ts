@@ -1,5 +1,6 @@
 import { ADMIN_SESSION_COOKIE } from "@/lib/adminAuth";
 import { jsonOk } from "@/lib/apiResponses";
+import { APP_SESSION_COOKIE } from "@/lib/appAuth";
 import { shouldUseSecureCookies } from "@/lib/cookies";
 import { TENANT_COOKIE } from "@/lib/tenant";
 
@@ -8,24 +9,23 @@ export const runtime = "nodejs";
 export async function POST(request: Request) {
   const secureCookies = shouldUseSecureCookies(request);
   const response = jsonOk({ authenticated: false });
-  response.cookies.set({
-    name: ADMIN_SESSION_COOKIE,
-    value: "",
-    httpOnly: true,
-    sameSite: "lax",
-    secure: secureCookies,
-    path: "/",
-    maxAge: 0,
-  });
-  response.cookies.set({
-    name: TENANT_COOKIE,
-    value: "",
-    httpOnly: false,
-    sameSite: "lax",
-    secure: secureCookies,
-    path: "/",
-    maxAge: 0,
-  });
+
+  // Clear all session cookies so no token can be replayed
+  for (const name of [
+    ADMIN_SESSION_COOKIE,
+    APP_SESSION_COOKIE,
+    TENANT_COOKIE,
+  ]) {
+    response.cookies.set({
+      name,
+      value: "",
+      httpOnly: name !== TENANT_COOKIE,
+      sameSite: "lax",
+      secure: secureCookies,
+      path: "/",
+      maxAge: 0,
+    });
+  }
 
   return response;
 }

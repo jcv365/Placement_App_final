@@ -1,0 +1,492 @@
+======================================================================
+BULK MATCH + DRAFT
+  Date            : 2026-04-21T15:32:51.905Z
+  Tenant          : dotcloudconsulting
+  Score threshold : 75
+  Batch size      : 1
+  Delay (ms)      : 4000
+  Dry run         : false
+======================================================================
+
+Jobs with no applications : 202
+Active candidates          : 44
+
+Eligible pairs (score ΓëÑ 75 + role guard): 228
+
+  [96] "Sr Network Engineer" ΓåÆ mohammed.imran@vysystems.com | Ronald Sidney Doyle
+  [95] "Data Engineer ΓÇô" ΓåÆ sathvika@parvu.ai | Jonas Mokgaola Nkosinathi Thamane
+  [95] "Data Engineer ΓÇô" ΓåÆ sathvika@parvu.ai | Njabulo
+  [95] "Data Scientist & Analyst" ΓåÆ recruiting@wynwd.com | Titus Makumbe
+  [95] "Senior DevOps Engineer ΓÇö Azure & .NET" ΓåÆ bbdfbcdc.bcb.bm@amer.teams.ms | Heinrich Muller
+  [95] "Senior Java Backend Engineer" ΓåÆ swapnilpotdar0603@gmail.com | James Julius
+  [95] "Senior Salesforce" ΓåÆ moumita.datta@hays.com | James Tladi Tladi
+  [95] "Sr Network Engineer" ΓåÆ mohammed.imran@vysystems.com | Henco Freidberg
+  [94] "Data Scientist & Analyst" ΓåÆ recruiting@wynwd.com | Njabulo
+  [94] "DevOps" ΓåÆ rohit@elitit.com | Lesiba Serite
+  [94] "DevOps" ΓåÆ rohit@elitit.com | Simphiwe Sikhonde
+  [94] "DevOps" ΓåÆ rohit@elitit.com | Jeanre Swanepoel
+  [94] "DevOps" ΓåÆ rohit@elitit.com | Heinrich Muller
+  [94] "DevOps" ΓåÆ rohit@elitit.com | Paul Stegemann
+  [94] "Senior Software Engineer." ΓåÆ eddie@candergroup.com | MPHO MORABA
+  [94] "Software Engineer" ΓåÆ deeksha.s@sdnaglobal.com | Liliyosa Mbakureya
+  [94] "Sr Network Engineer" ΓåÆ mohammed.imran@vysystems.com | Isaac Rantu Mongae
+  [94] "Sr Network Engineer" ΓåÆ mohammed.imran@vysystems.com | Tumelo Rahlau
+  [94] "Sr Network Engineer" ΓåÆ mohammed.imran@vysystems.com | Sibusiso Ndlovu
+  [94] "Technical Lead / Domain Architect" ΓåÆ daisy@vieglobaltech.com | Riaan Snyders
+  [94] "Data Engineer ΓÇô GCP" ΓåÆ yugesh.balina@signitives.net | Njabulo
+  [94] "Senior Frontend Developer" ΓåÆ bradley.smail@squareoneresources.com | Kudzai Murimi
+  [94] "Infrastructure Engineer" ΓåÆ vaishali.d@sdnaglobal.com | James Tladi Tladi
+  [94] "DevOps Engineer" ΓåÆ anil@parvu.ai | Simphiwe Sikhonde
+  [94] "DevOps Engineer" ΓåÆ anil@parvu.ai | Jeanre Swanepoel
+  [94] "DevOps Engineer" ΓåÆ anil@parvu.ai | Heinrich Muller
+  [94] "DevOps Engineer" ΓåÆ anil@parvu.ai | Paul Stegemann
+  [94] "DevOps Engineer" ΓåÆ anil@parvu.ai | Kgomotso Sello Dungeni
+  [94] "Role 1 ΓÇô SFCC Frontend / Full Stack Developer" ΓåÆ hr@sl-labs.net | Kudzai Murimi
+  [94] "Role 1 ΓÇô SFCC Frontend / Full Stack Developer" ΓåÆ hr@sl-labs.net | Lesley Charinda
+  [94] "Role 1 ΓÇô SFCC Frontend / Full Stack Developer" ΓåÆ hr@sl-labs.net | Tanyaradzwa Tanatswa Mushonga
+  [94] "Role 1 ΓÇô SFCC Frontend / Full Stack Developer" ΓåÆ hr@sl-labs.net | Keagile Nduli
+  [94] "Role 1 ΓÇô SFCC Frontend / Full Stack Developer" ΓåÆ hr@sl-labs.net | Riaan Snyders
+  [93] "Senior MLOps Engineer" ΓåÆ connor.andrews@signify-tech.com | Peter Idah
+  [93] "Software Engineer" ΓåÆ deeksha.s@sdnaglobal.com | MPHO MORABA
+  [93] "Software Engineer" ΓåÆ deeksha.s@sdnaglobal.com | Keagile Nduli
+  [93] "AI Engineer" ΓåÆ sharanya@momentousa.com | Petunia Motlhakane
+  [93] "DevOps Engineer" ΓåÆ anil@parvu.ai | Crispen Shiri
+  [93] "Lead Data Engineer" ΓåÆ sowmya.a@varite.com | Jonas Mokgaola Nkosinathi Thamane
+  [93] "Lead Data Engineer" ΓåÆ sowmya.a@varite.com | Titus Makumbe
+  [93] "Lead Data Engineer" ΓåÆ sowmya.a@varite.com | Juan Charl Venter
+  [92] "Senior Backend Engineer!" ΓåÆ georgia.siggers@revolutiontechnology.co.uk | Jeanre Swanepoel
+  [91] "DevOps" ΓåÆ rohit@elitit.com | Thato Tswai
+  [91] "DevOps" ΓåÆ rohit@elitit.com | Liliyosa Mbakureya
+  [91] "Software Engineer" ΓåÆ deeksha.s@sdnaglobal.com | Lesley Charinda
+  [91] "DevOps Engineer" ΓåÆ anil@parvu.ai | Lesiba Serite
+  [91] "DevOps Engineer" ΓåÆ anil@parvu.ai | Tanyaradzwa Tanatswa Mushonga
+  [91] "Senior DevOps Engineer" ΓåÆ fiona@talentroute.ai | Jeanre Swanepoel
+  [91] "Senior DevOps Engineer" ΓåÆ mark@unifytalentuk.com | Thato Tswai
+  [91] "Senior DevOps Engineer" ΓåÆ mark@unifytalentuk.com | Jeanre Swanepoel
+  [91] "Senior DevOps Engineer" ΓåÆ mark@unifytalentuk.com | Heinrich Muller
+  [91] "Role 1 ΓÇô SFCC Frontend / Full Stack Developer" ΓåÆ hr@sl-labs.net | Liliyosa Mbakureya
+  [91] "Role 1 ΓÇô SFCC Frontend / Full Stack Developer" ΓåÆ hr@sl-labs.net | Pardington T Mureka
+  [90] "DevOps" ΓåÆ sam.wiltshire@experis.co.uk | Thato Tswai
+  [90] "Senior Backend Engineer!" ΓåÆ georgia.siggers@revolutiontechnology.co.uk | James Julius
+  [90] "Senior Salesforce Developer" ΓåÆ swagatika@id4consultancy.com | James Tladi Tladi
+  [90] "GCP Network Engineer" ΓåÆ aswin@cisworldwide.co.uk | Crispen Shiri
+  [90] "Lead Data Engineer" ΓåÆ sowmya.a@varite.com | Petunia Motlhakane
+  [89] "Data Engineer ΓÇô" ΓåÆ sathvika@parvu.ai | Everswick Dambaza
+  [89] "DevOps" ΓåÆ alexandra.necula@brevcoservices.com | Heinrich Muller
+  [89] "DevOps" ΓåÆ alexandra.necula@brevcoservices.com | Paul Stegemann
+  [89] "Automation Engineer in" ΓåÆ sevanthi.c@testyantra.co.uk | Keagile Nduli
+  [89] "DevOps" ΓåÆ rohit@elitit.com | Keagile Nduli
+  [89] "GCP Network Engineer" ΓåÆ aswin@cisworldwide.co.uk | Petunia Motlhakane
+  [89] "GCP Network Engineer" ΓåÆ aswin@cisworldwide.co.uk | Isaac Rantu Mongae
+  [89] "GCP Network Engineer" ΓåÆ aswin@cisworldwide.co.uk | Henco Freidberg
+  [89] "GCP Network Engineer" ΓåÆ aswin@cisworldwide.co.uk | Tumelo Rahlau
+  [89] "GCP Network Engineer" ΓåÆ aswin@cisworldwide.co.uk | Ronald Sidney Doyle
+  [89] "GCP Network Engineer" ΓåÆ aswin@cisworldwide.co.uk | Sibusiso Ndlovu
+  [89] "Business Analyst" ΓåÆ rahul.pahwa@beeutech.com | Vuyelwa Lushaba
+  [89] "AI Architect Azure" ΓåÆ ivanchalin.p@vdartinc.com | Everswick Dambaza
+  [89] "Azure Data Engineer |" ΓåÆ inquiry@tekvo.io | Jonas Mokgaola Nkosinathi Thamane
+  [89] "AWS Data Engineer." ΓåÆ nitesh.kumar@vastekgroup.com | Njabulo
+  [89] "Senior Frontend Developer" ΓåÆ bradley.smail@squareoneresources.com | Tanyaradzwa Tanatswa Mushonga
+  [89] "Angular Developer" ΓåÆ paul.garrett@radleyjames.com | Kudzai Murimi
+  [89] "Senior DevOps Engineer" ΓåÆ fiona@talentroute.ai | Crispen Shiri
+  [89] "Senior DevOps Engineer" ΓåÆ fiona@talentroute.ai | Paul Stegemann
+  [89] "Role 1 ΓÇô SFCC Frontend / Full Stack Developer" ΓåÆ hr@sl-labs.net | Jonathan Wagener
+  [88] "DevOps" ΓåÆ alexandra.necula@brevcoservices.com | Thato Tswai
+  [88] "DevOps" ΓåÆ rohit@elitit.com | MPHO MORABA
+  [88] "DevOps" ΓåÆ rohit@elitit.com | Tanyaradzwa Tanatswa Mushonga
+  [88] "DevOps" ΓåÆ rohit@elitit.com | Kgomotso Sello Dungeni
+  [88] "Senior Software Engineer." ΓåÆ eddie@candergroup.com | Liliyosa Mbakureya
+  [88] "AI / ML Engineer" ΓåÆ harsh.poswal@tanishasystems.com | Peter Idah
+  [88] "DevOps Engineer" ΓåÆ anil@parvu.ai | Thato Tswai
+  [88] "DevOps Engineer" ΓåÆ anil@parvu.ai | Liliyosa Mbakureya
+  [88] "DevOps Engineer" ΓåÆ anil@parvu.ai | Riaan Snyders
+  [88] "Senior DevOps Engineer" ΓåÆ fiona@talentroute.ai | Simphiwe Sikhonde
+  [88] "Senior DevOps Engineer" ΓåÆ mark@unifytalentuk.com | Lesiba Serite
+  [88] "Senior DevOps Engineer" ΓåÆ mark@unifytalentuk.com | Simphiwe Sikhonde
+  [88] "Lead Data Engineer" ΓåÆ sowmya.a@varite.com | Ronald Sidney Doyle
+  [87] "Data Engineer ΓÇô" ΓåÆ sathvika@parvu.ai | Titus Makumbe
+  [87] "Data Engineer ΓÇô" ΓåÆ sathvika@parvu.ai | Ronald Sidney Doyle
+  [87] "DevOps" ΓåÆ sam.wiltshire@experis.co.uk | Liliyosa Mbakureya
+  [87] "Power Platform/CoPilot Studio Developer" ΓåÆ hr@staginvs.com | Jonas Mokgaola Nkosinathi Thamane
+  [87] "Business Analyst" ΓåÆ rahul.pahwa@beeutech.com | Sondra Methembe Sithole
+  [87] "AWS Data Engineer." ΓåÆ nitesh.kumar@vastekgroup.com | Titus Makumbe
+  [87] "Business Analyst" ΓåÆ neelu@snapcodeinc.com | Vuyelwa Lushaba
+  [87] "Data Engineer ΓÇô GCP" ΓåÆ yugesh.balina@signitives.net | Everswick Dambaza
+  [87] "Principal Machine Learning Engineer" ΓåÆ mmatysik@trg-uk.com | Everswick Dambaza
+  [87] "Infrastructure Engineer" ΓåÆ vaishali.d@sdnaglobal.com | Paul Stegemann
+  [86] "NEW Data / Analytics Engineer ΓÇô" ΓåÆ sam.oakley@prostaff.ch | Njabulo
+  [86] "DevOps" ΓåÆ alexandra.necula@brevcoservices.com | MPHO MORABA
+  [86] "DevOps" ΓåÆ alexandra.necula@brevcoservices.com | Lesiba Serite
+  [86] "DevOps" ΓåÆ alexandra.necula@brevcoservices.com | Simphiwe Sikhonde
+  [86] "DevOps" ΓåÆ alexandra.necula@brevcoservices.com | Tanyaradzwa Tanatswa Mushonga
+  [86] "DevOps" ΓåÆ rohit@elitit.com | Riaan Snyders
+  [86] "DevOps" ΓåÆ rohit@elitit.com | Crispen Shiri
+  [86] "Frontend Developer" ΓåÆ suma.m@i-q.co | Liliyosa Mbakureya
+  [86] "Sr Network Engineer" ΓåÆ mohammed.imran@vysystems.com | Petunia Motlhakane
+  [86] "AI Engineer" ΓåÆ sharanya@momentousa.com | Crispen Shiri
+  [86] "Software Engineer" ΓåÆ justamrutha77@gmail.com | Liliyosa Mbakureya
+  [86] "Business Analyst" ΓåÆ neelu@snapcodeinc.com | Sondra Methembe Sithole
+  [86] "Data Engineer ΓÇô GCP" ΓåÆ yugesh.balina@signitives.net | Titus Makumbe
+  [86] "Principal Machine Learning Engineer" ΓåÆ mmatysik@trg-uk.com | Njabulo
+  [86] "Senior Frontend Developer" ΓåÆ bradley.smail@squareoneresources.com | Liliyosa Mbakureya
+  [86] "Senior Frontend Developer" ΓåÆ bradley.smail@squareoneresources.com | Jonathan Wagener
+  [86] "Angular Developer" ΓåÆ paul.garrett@radleyjames.com | MPHO MORABA
+  [86] "Infrastructure Engineer" ΓåÆ vaishali.d@sdnaglobal.com | Thato Tswai
+  [86] "Infrastructure Engineer" ΓåÆ vaishali.d@sdnaglobal.com | Simphiwe Sikhonde
+  [86] "Infrastructure Engineer" ΓåÆ vaishali.d@sdnaglobal.com | Isaac Rantu Mongae
+  [86] "Infrastructure Engineer" ΓåÆ vaishali.d@sdnaglobal.com | Henco Freidberg
+  [86] "Infrastructure Engineer" ΓåÆ vaishali.d@sdnaglobal.com | Jeanre Swanepoel
+  [86] "Infrastructure Engineer" ΓåÆ vaishali.d@sdnaglobal.com | Heinrich Muller
+  [86] "Infrastructure Engineer" ΓåÆ vaishali.d@sdnaglobal.com | Sibusiso Ndlovu
+  [86] "DevOps Engineer" ΓåÆ anil@parvu.ai | Keagile Nduli
+  [86] "Senior DevOps Engineer" ΓåÆ fiona@talentroute.ai | Tonderai Muchada
+  [86] "Senior DevOps Engineer" ΓåÆ fiona@talentroute.ai | MPHO MORABA
+  [86] "Senior DevOps Engineer" ΓåÆ fiona@talentroute.ai | Heinrich Muller
+  [86] "Senior DevOps Engineer" ΓåÆ fiona@talentroute.ai | Riaan Snyders
+  [86] "Senior DevOps Engineer" ΓåÆ fiona@talentroute.ai | Kgomotso Sello Dungeni
+  [86] "Senior DevOps Engineer" ΓåÆ mark@unifytalentuk.com | MPHO MORABA
+  [86] "Senior DevOps Engineer" ΓåÆ mark@unifytalentuk.com | Tanyaradzwa Tanatswa Mushonga
+  [86] "Senior DevOps Engineer" ΓåÆ mark@unifytalentuk.com | Crispen Shiri
+  [86] "Senior DevOps Engineer" ΓåÆ mark@unifytalentuk.com | Paul Stegemann
+  [86] "Senior DevOps Engineer" ΓåÆ mark@unifytalentuk.com | Kgomotso Sello Dungeni
+  [85] "Data Engineer ΓÇô" ΓåÆ sathvika@parvu.ai | Isaac Rantu Mongae
+  [85] "Automation Engineer in" ΓåÆ sevanthi.c@testyantra.co.uk | James Tladi Tladi
+  [85] "AWS Data Engineer." ΓåÆ nitesh.kumar@vastekgroup.com | Everswick Dambaza
+  [84] "NEW Data / Analytics Engineer ΓÇô" ΓåÆ sam.oakley@prostaff.ch | Titus Makumbe
+  [84] "Database Administrator" ΓåÆ abdul.shakeel@dabster.net | Petunia Motlhakane
+  [84] "Database Administrator" ΓåÆ abdul.shakeel@dabster.net | Jonas Mokgaola Nkosinathi Thamane
+  [84] "Mainframe Developer COBOL / CICS / DB2" ΓåÆ k.harika@spartechnologyservices.com | Petunia Motlhakane
+  [84] "Senior Software Engineer." ΓåÆ eddie@candergroup.com | Lesley Charinda
+  [84] "Senior Network Engineer" ΓåÆ rajini.p@siriinfoinc.com | Henco Freidberg
+  [84] "Senior Network Engineer" ΓåÆ rajini.p@siriinfoinc.com | Tumelo Rahlau
+  [84] "Senior Network Engineer" ΓåÆ rajini.p@siriinfoinc.com | Ronald Sidney Doyle
+  [84] "Senior Network Engineer" ΓåÆ rajini.p@siriinfoinc.com | Sibusiso Ndlovu
+  [84] "Senior DevOps Engineer" ΓåÆ fiona@talentroute.ai | Thato Tswai
+  [84] "Senior DevOps Engineer" ΓåÆ fiona@talentroute.ai | Liliyosa Mbakureya
+  [84] "Senior DevOps Engineer" ΓåÆ mark@unifytalentuk.com | Tonderai Muchada
+  [84] "Senior DevOps Engineer" ΓåÆ mark@unifytalentuk.com | Liliyosa Mbakureya
+  [84] "Senior DevOps Engineer" ΓåÆ mark@unifytalentuk.com | Riaan Snyders
+  [83] "Data Engineer ΓÇô" ΓåÆ sathvika@parvu.ai | Petunia Motlhakane
+  [83] "DevOps" ΓåÆ alexandra.necula@brevcoservices.com | Jeanre Swanepoel
+  [83] "DevOps" ΓåÆ alexandra.necula@brevcoservices.com | Crispen Shiri
+  [83] "DevOps" ΓåÆ alexandra.necula@brevcoservices.com | Kgomotso Sello Dungeni
+  [83] "DevOps" ΓåÆ rohit@elitit.com | Tonderai Muchada
+  [83] "Senior Software Engineer." ΓåÆ eddie@candergroup.com | Keagile Nduli
+  [83] "Site Engineer" ΓåÆ c.osheen@prositeuk.com | Simphiwe Sikhonde
+  [83] "Site Engineer" ΓåÆ c.osheen@prositeuk.com | Tanyaradzwa Tanatswa Mushonga
+  [83] "Site Engineer" ΓåÆ c.osheen@prositeuk.com | Jeanre Swanepoel
+  [83] "Site Engineer" ΓåÆ c.osheen@prositeuk.com | Heinrich Muller
+  [83] "Site Engineer" ΓåÆ c.osheen@prositeuk.com | Paul Stegemann
+  [83] "Site Engineer" ΓåÆ c.osheen@prositeuk.com | Kgomotso Sello Dungeni
+  [83] "AI Engineer" ΓåÆ sharanya@momentousa.com | Everswick Dambaza
+  [83] "AI Engineer" ΓåÆ sharanya@momentousa.com | Peter Idah
+  [83] "Software Engineer" ΓåÆ justamrutha77@gmail.com | Lesley Charinda
+  [83] "Software Engineer" ΓåÆ justamrutha77@gmail.com | Keagile Nduli
+  [83] "Senior Network Engineer" ΓåÆ rajini.p@siriinfoinc.com | Isaac Rantu Mongae
+  [83] "Senior Network Engineer" ΓåÆ rajini.p@siriinfoinc.com | Juan Charl Venter
+  [83] "Senior Network Engineer" ΓåÆ rajini.p@siriinfoinc.com | Peter Idah
+  [83] "Principal Machine Learning Engineer" ΓåÆ mmatysik@trg-uk.com | Peter Idah
+  [83] "DevOps Engineer" ΓåÆ anil@parvu.ai | Tonderai Muchada
+  [83] "DevOps Engineer" ΓåÆ anil@parvu.ai | MPHO MORABA
+  [83] "Software Engineer" ΓåÆ subba@parvu.ai | MPHO MORABA
+  [83] "Software Engineer" ΓåÆ subba@parvu.ai | Keagile Nduli
+  [83] "Senior DevOps Engineer" ΓåÆ fiona@talentroute.ai | Lesiba Serite
+  [82] "Data Engineer ΓÇô" ΓåÆ sathvika@parvu.ai | Juan Charl Venter
+  [82] "NEW Data / Analytics Engineer ΓÇô" ΓåÆ sam.oakley@prostaff.ch | Everswick Dambaza
+  [82] "SOFTWARE ENGINEER C++/C#" ΓåÆ d.brown@corecomconsulting.co.uk | Lesley Charinda
+  [82] "SOFTWARE ENGINEER C++/C#" ΓåÆ d.brown@corecomconsulting.co.uk | Keagile Nduli
+  [82] "Business Analyst" ΓåÆ rahul.pahwa@beeutech.com | Njabulo
+  [82] "Azure Data Engineer |" ΓåÆ inquiry@tekvo.io | Everswick Dambaza
+  [82] "AI Engineer" ΓåÆ sharanya@momentousa.com | mr landile
+  [82] "Azure Cloud Engineer Sr" ΓåÆ preeti.yadav@envisiontechsol.com | Crispen Shiri
+  [82] "Senior Network Engineer" ΓåÆ rajini.p@siriinfoinc.com | mr landile
+  [82] "Senior Network Engineer" ΓåÆ rajini.p@siriinfoinc.com | Juliet Ngoni
+  [82] "Senior Network Engineer" ΓåÆ rajini.p@siriinfoinc.com | Girly Nomvula Lebelo
+  [82] "Senior Network Engineer" ΓåÆ rajini.p@siriinfoinc.com | Heinrich Muller
+  [81] "Senior MLOps Engineer" ΓåÆ connor.andrews@signify-tech.com | Crispen Shiri
+  [81] "WeΓÇÖre Hiring: Application Developer Desktop / Mobile / Web Apps" ΓåÆ subba@parvu.ai | Kudzai Murimi
+  [81] "WeΓÇÖre Hiring: Application Developer Desktop / Mobile / Web Apps" ΓåÆ subba@parvu.ai | Jonathan Wagener
+  [81] "DevOps" ΓåÆ alexandra.necula@brevcoservices.com | Tonderai Muchada
+  [81] "DevOps" ΓåÆ alexandra.necula@brevcoservices.com | Liliyosa Mbakureya
+  [81] "DevOps" ΓåÆ alexandra.necula@brevcoservices.com | Keagile Nduli
+  [81] "DevOps" ΓåÆ alexandra.necula@brevcoservices.com | Pardington T Mureka
+  [81] "DevOps" ΓåÆ alexandra.necula@brevcoservices.com | Riaan Snyders
+  [81] "SOFTWARE ENGINEER C++/C#" ΓåÆ d.brown@corecomconsulting.co.uk | Liliyosa Mbakureya
+  [81] "DevOps" ΓåÆ rohit@elitit.com | Pardington T Mureka
+  [81] "- 2 x Front end AEM developer" ΓåÆ joshua@innovex-recruitment.com | Sondra Methembe Sithole
+  [81] "Frontend Developer" ΓåÆ suma.m@i-q.co | Kudzai Murimi
+  [81] "Frontend Developer" ΓåÆ suma.m@i-q.co | Tanyaradzwa Tanatswa Mushonga
+  [81] "Frontend Developer" ΓåÆ suma.m@i-q.co | Jonathan Wagener
+  [81] "Site Engineer" ΓåÆ c.osheen@prositeuk.com | Crispen Shiri
+  [81] "Azure Data Engineer |" ΓåÆ inquiry@tekvo.io | Petunia Motlhakane
+  [81] "AI Engineer" ΓåÆ sharanya@momentousa.com | James Tladi Tladi
+  [81] "Software Engineer" ΓåÆ justamrutha77@gmail.com | MPHO MORABA
+  [81] "Senior Network Engineer" ΓåÆ rajini.p@siriinfoinc.com | Petunia Motlhakane
+  [81] "Senior Network Engineer" ΓåÆ rajini.p@siriinfoinc.com | Andre Lombaard
+  [81] "Senior Network Engineer" ΓåÆ rajini.p@siriinfoinc.com | Johannes Sekgoka
+  [81] "Senior Network Engineer" ΓåÆ rajini.p@siriinfoinc.com | Crispen Shiri
+  [81] "Infrastructure Engineer" ΓåÆ vaishali.d@sdnaglobal.com | Kgomotso Sello Dungeni
+  [81] "DevOps Engineer" ΓåÆ anil@parvu.ai | Pardington T Mureka
+  [81] "Software Engineer" ΓåÆ subba@parvu.ai | Lesley Charinda
+  [81] "Software Engineer" ΓåÆ subba@parvu.ai | Liliyosa Mbakureya
+  [81] "Senior DevOps Engineer" ΓåÆ fiona@talentroute.ai | Tanyaradzwa Tanatswa Mushonga
+  [81] "Senior DevOps Engineer" ΓåÆ fiona@talentroute.ai | Keagile Nduli
+  [81] "Senior DevOps Engineer" ΓåÆ fiona@talentroute.ai | Pardington T Mureka
+  [81] "Senior DevOps Engineer" ΓåÆ mark@unifytalentuk.com | Keagile Nduli
+  [81] "Senior DevOps Engineer" ΓåÆ mark@unifytalentuk.com | Pardington T Mureka
+  [80] "AI Architect Azure" ΓåÆ ivanchalin.p@vdartinc.com | Lesego Moncho
+  [80] "Business Analyst" ΓåÆ neelu@snapcodeinc.com | Titus Makumbe
+  [79] "AI Engineer" ΓåÆ sharanya@momentousa.com | Lesego Moncho
+  [77] "Business Analyst" ΓåÆ rahul.pahwa@beeutech.com | Titus Makumbe
+  [76] "AI Engineer" ΓåÆ sharanya@momentousa.com | Juliet Ngoni
+  [76] "AI Engineer" ΓåÆ sharanya@momentousa.com | Thato Tswai
+  [76] "AI / ML Engineer" ΓåÆ harsh.poswal@tanishasystems.com | Everswick Dambaza
+
+Creating applicationsΓÇª
+  Γ£ô Created [96] "Sr Network Engineer" | Ronald Sidney Doyle
+  ┬╖ Skip    [95] "Data Engineer ΓÇô" | Jonas Mokgaola Nkosinathi Thamane (already has draft)
+  ┬╖ Skip    [95] "Data Engineer ΓÇô" | Njabulo (already has draft)
+  Γ£ô Created [95] "Data Scientist & Analyst" | Titus Makumbe
+  Γ£ô Created [95] "Senior DevOps Engineer ΓÇö Azure & .NET" | Heinrich Muller
+  Γ£ô Created [95] "Senior Java Backend Engineer" | James Julius
+  Γ£ô Created [95] "Senior Salesforce" | James Tladi Tladi
+  Γ£ô Created [95] "Sr Network Engineer" | Henco Freidberg
+  Γ£ô Created [94] "Data Scientist & Analyst" | Njabulo
+  Γ£ô Created [94] "DevOps" | Lesiba Serite
+  Γ£ô Created [94] "DevOps" | Simphiwe Sikhonde
+  Γ£ô Created [94] "DevOps" | Jeanre Swanepoel
+  ┬╖ Skip    [94] "DevOps" | Heinrich Muller (already has draft)
+  Γ£ô Created [94] "DevOps" | Paul Stegemann
+  Γ£ô Created [94] "Senior Software Engineer." | MPHO MORABA
+  Γ£ô Created [94] "Software Engineer" | Liliyosa Mbakureya
+  Γ£ô Created [94] "Sr Network Engineer" | Isaac Rantu Mongae
+  Γ£ô Created [94] "Sr Network Engineer" | Tumelo Rahlau
+  Γ£ô Created [94] "Sr Network Engineer" | Sibusiso Ndlovu
+  Γ£ô Created [94] "Technical Lead / Domain Architect" | Riaan Snyders
+  Γ£ô Created [94] "Data Engineer ΓÇô GCP" | Njabulo
+  Γ£ô Created [94] "Senior Frontend Developer" | Kudzai Murimi
+  Γ£ô Created [94] "Infrastructure Engineer" | James Tladi Tladi
+  ┬╖ Skip    [94] "DevOps Engineer" | Simphiwe Sikhonde (already has draft)
+  Γ£ô Created [94] "DevOps Engineer" | Jeanre Swanepoel
+  ┬╖ Skip    [94] "DevOps Engineer" | Heinrich Muller (already has draft)
+  ┬╖ Skip    [94] "DevOps Engineer" | Paul Stegemann (already has draft)
+  ┬╖ Skip    [94] "DevOps Engineer" | Kgomotso Sello Dungeni (already has draft)
+  Γ£ô Created [94] "Role 1 ΓÇô SFCC Frontend / Full Stack Developer" | Kudzai Murimi
+  Γ£ô Created [94] "Role 1 ΓÇô SFCC Frontend / Full Stack Developer" | Lesley Charinda
+  Γ£ô Created [94] "Role 1 ΓÇô SFCC Frontend / Full Stack Developer" | Tanyaradzwa Tanatswa Mushonga
+  Γ£ô Created [94] "Role 1 ΓÇô SFCC Frontend / Full Stack Developer" | Keagile Nduli
+  Γ£ô Created [94] "Role 1 ΓÇô SFCC Frontend / Full Stack Developer" | Riaan Snyders
+  Γ£ô Created [93] "Senior MLOps Engineer" | Peter Idah
+  ┬╖ Skip    [93] "Software Engineer" | MPHO MORABA (already has draft)
+  Γ£ô Created [93] "Software Engineer" | Keagile Nduli
+  ┬╖ Skip    [93] "AI Engineer" | Petunia Motlhakane (already has draft)
+  Γ£ô Created [93] "DevOps Engineer" | Crispen Shiri
+  Γ£ô Created [93] "Lead Data Engineer" | Jonas Mokgaola Nkosinathi Thamane
+  Γ£ô Created [93] "Lead Data Engineer" | Titus Makumbe
+  Γ£ô Created [93] "Lead Data Engineer" | Juan Charl Venter
+  Γ£ô Created [92] "Senior Backend Engineer!" | Jeanre Swanepoel
+  Γ£ô Created [91] "DevOps" | Thato Tswai
+  Γ£ô Created [91] "DevOps" | Liliyosa Mbakureya
+  ┬╖ Skip    [91] "Software Engineer" | Lesley Charinda (already has draft)
+  Γ£ô Created [91] "DevOps Engineer" | Lesiba Serite
+  Γ£ô Created [91] "DevOps Engineer" | Tanyaradzwa Tanatswa Mushonga
+  ┬╖ Skip    [91] "Senior DevOps Engineer" | Jeanre Swanepoel (already has draft)
+  Γ£ô Created [91] "Senior DevOps Engineer" | Thato Tswai
+  ┬╖ Skip    [91] "Senior DevOps Engineer" | Jeanre Swanepoel (already has draft)
+  ┬╖ Skip    [91] "Senior DevOps Engineer" | Heinrich Muller (already has draft)
+  Γ£ô Created [91] "Role 1 ΓÇô SFCC Frontend / Full Stack Developer" | Liliyosa Mbakureya
+  Γ£ô Created [91] "Role 1 ΓÇô SFCC Frontend / Full Stack Developer" | Pardington T Mureka
+  ~ Exists  [90] "DevOps" | Thato Tswai (no draft yet)
+  Γ£ô Created [90] "Senior Backend Engineer!" | James Julius
+  Γ£ô Created [90] "Senior Salesforce Developer" | James Tladi Tladi
+  Γ£ô Created [90] "GCP Network Engineer" | Crispen Shiri
+  Γ£ô Created [90] "Lead Data Engineer" | Petunia Motlhakane
+  ┬╖ Skip    [89] "Data Engineer ΓÇô" | Everswick Dambaza (already has draft)
+  ┬╖ Skip    [89] "DevOps" | Heinrich Muller (already has draft)
+  ~ Exists  [89] "DevOps" | Paul Stegemann (no draft yet)
+  Γ£ô Created [89] "Automation Engineer in" | Keagile Nduli
+  Γ£ô Created [89] "DevOps" | Keagile Nduli
+  Γ£ô Created [89] "GCP Network Engineer" | Petunia Motlhakane
+  Γ£ô Created [89] "GCP Network Engineer" | Isaac Rantu Mongae
+  Γ£ô Created [89] "GCP Network Engineer" | Henco Freidberg
+  Γ£ô Created [89] "GCP Network Engineer" | Tumelo Rahlau
+  Γ£ô Created [89] "GCP Network Engineer" | Ronald Sidney Doyle
+  Γ£ô Created [89] "GCP Network Engineer" | Sibusiso Ndlovu
+  Γ£ô Created [89] "Business Analyst" | Vuyelwa Lushaba
+  Γ£ô Created [89] "AI Architect Azure" | Everswick Dambaza
+  Γ£ô Created [89] "Azure Data Engineer |" | Jonas Mokgaola Nkosinathi Thamane
+  Γ£ô Created [89] "AWS Data Engineer." | Njabulo
+  Γ£ô Created [89] "Senior Frontend Developer" | Tanyaradzwa Tanatswa Mushonga
+  Γ£ô Created [89] "Angular Developer" | Kudzai Murimi
+  ┬╖ Skip    [89] "Senior DevOps Engineer" | Crispen Shiri (already has draft)
+  ┬╖ Skip    [89] "Senior DevOps Engineer" | Paul Stegemann (already has draft)
+  Γ£ô Created [89] "Role 1 ΓÇô SFCC Frontend / Full Stack Developer" | Jonathan Wagener
+  ~ Exists  [88] "DevOps" | Thato Tswai (no draft yet)
+  Γ£ô Created [88] "DevOps" | MPHO MORABA
+  Γ£ô Created [88] "DevOps" | Tanyaradzwa Tanatswa Mushonga
+  Γ£ô Created [88] "DevOps" | Kgomotso Sello Dungeni
+  Γ£ô Created [88] "Senior Software Engineer." | Liliyosa Mbakureya
+  Γ£ô Created [88] "AI / ML Engineer" | Peter Idah
+  Γ£ô Created [88] "DevOps Engineer" | Thato Tswai
+  Γ£ô Created [88] "DevOps Engineer" | Liliyosa Mbakureya
+  Γ£ô Created [88] "DevOps Engineer" | Riaan Snyders
+  Γ£ô Created [88] "Senior DevOps Engineer" | Simphiwe Sikhonde
+  Γ£ô Created [88] "Senior DevOps Engineer" | Lesiba Serite
+  ~ Exists  [88] "Senior DevOps Engineer" | Simphiwe Sikhonde (no draft yet)
+  Γ£ô Created [88] "Lead Data Engineer" | Ronald Sidney Doyle
+  Γ£ô Created [87] "Data Engineer ΓÇô" | Titus Makumbe
+  ┬╖ Skip    [87] "Data Engineer ΓÇô" | Ronald Sidney Doyle (already has draft)
+  ~ Exists  [87] "DevOps" | Liliyosa Mbakureya (no draft yet)
+  Γ£ô Created [87] "Power Platform/CoPilot Studio Developer" | Jonas Mokgaola Nkosinathi Thamane
+  Γ£ô Created [87] "Business Analyst" | Sondra Methembe Sithole
+  Γ£ô Created [87] "AWS Data Engineer." | Titus Makumbe
+  ~ Exists  [87] "Business Analyst" | Vuyelwa Lushaba (no draft yet)
+  Γ£ô Created [87] "Data Engineer ΓÇô GCP" | Everswick Dambaza
+  Γ£ô Created [87] "Principal Machine Learning Engineer" | Everswick Dambaza
+  Γ£ô Created [87] "Infrastructure Engineer" | Paul Stegemann
+  Γ£ô Created [86] "NEW Data / Analytics Engineer ΓÇô" | Njabulo
+  ~ Exists  [86] "DevOps" | MPHO MORABA (no draft yet)
+  ~ Exists  [86] "DevOps" | Lesiba Serite (no draft yet)
+  ~ Exists  [86] "DevOps" | Simphiwe Sikhonde (no draft yet)
+  ~ Exists  [86] "DevOps" | Tanyaradzwa Tanatswa Mushonga (no draft yet)
+  Γ£ô Created [86] "DevOps" | Riaan Snyders
+  Γ£ô Created [86] "DevOps" | Crispen Shiri
+  Γ£ô Created [86] "Frontend Developer" | Liliyosa Mbakureya
+  Γ£ô Created [86] "Sr Network Engineer" | Petunia Motlhakane
+  ┬╖ Skip    [86] "AI Engineer" | Crispen Shiri (already has draft)
+  ~ Exists  [86] "Software Engineer" | Liliyosa Mbakureya (no draft yet)
+  ~ Exists  [86] "Business Analyst" | Sondra Methembe Sithole (no draft yet)
+  Γ£ô Created [86] "Data Engineer ΓÇô GCP" | Titus Makumbe
+  Γ£ô Created [86] "Principal Machine Learning Engineer" | Njabulo
+  Γ£ô Created [86] "Senior Frontend Developer" | Liliyosa Mbakureya
+  Γ£ô Created [86] "Senior Frontend Developer" | Jonathan Wagener
+  Γ£ô Created [86] "Angular Developer" | MPHO MORABA
+  Γ£ô Created [86] "Infrastructure Engineer" | Thato Tswai
+  Γ£ô Created [86] "Infrastructure Engineer" | Simphiwe Sikhonde
+  Γ£ô Created [86] "Infrastructure Engineer" | Isaac Rantu Mongae
+  Γ£ô Created [86] "Infrastructure Engineer" | Henco Freidberg
+  Γ£ô Created [86] "Infrastructure Engineer" | Jeanre Swanepoel
+  Γ£ô Created [86] "Infrastructure Engineer" | Heinrich Muller
+  Γ£ô Created [86] "Infrastructure Engineer" | Sibusiso Ndlovu
+  Γ£ô Created [86] "DevOps Engineer" | Keagile Nduli
+  Γ£ô Created [86] "Senior DevOps Engineer" | Tonderai Muchada
+  ┬╖ Skip    [86] "Senior DevOps Engineer" | MPHO MORABA (already has draft)
+  ┬╖ Skip    [86] "Senior DevOps Engineer" | Heinrich Muller (already has draft)
+  ┬╖ Skip    [86] "Senior DevOps Engineer" | Riaan Snyders (already has draft)
+  Γ£ô Created [86] "Senior DevOps Engineer" | Kgomotso Sello Dungeni
+  ┬╖ Skip    [86] "Senior DevOps Engineer" | MPHO MORABA (already has draft)
+  ┬╖ Skip    [86] "Senior DevOps Engineer" | Tanyaradzwa Tanatswa Mushonga (already has draft)
+  ┬╖ Skip    [86] "Senior DevOps Engineer" | Crispen Shiri (already has draft)
+  ┬╖ Skip    [86] "Senior DevOps Engineer" | Paul Stegemann (already has draft)
+  ~ Exists  [86] "Senior DevOps Engineer" | Kgomotso Sello Dungeni (no draft yet)
+  ┬╖ Skip    [85] "Data Engineer ΓÇô" | Isaac Rantu Mongae (already has draft)
+  Γ£ô Created [85] "Automation Engineer in" | James Tladi Tladi
+  Γ£ô Created [85] "AWS Data Engineer." | Everswick Dambaza
+  Γ£ô Created [84] "NEW Data / Analytics Engineer ΓÇô" | Titus Makumbe
+  Γ£ô Created [84] "Database Administrator" | Petunia Motlhakane
+  Γ£ô Created [84] "Database Administrator" | Jonas Mokgaola Nkosinathi Thamane
+  Γ£ô Created [84] "Mainframe Developer COBOL / CICS / DB2" | Petunia Motlhakane
+  Γ£ô Created [84] "Senior Software Engineer." | Lesley Charinda
+  Γ£ô Created [84] "Senior Network Engineer" | Henco Freidberg
+  Γ£ô Created [84] "Senior Network Engineer" | Tumelo Rahlau
+  Γ£ô Created [84] "Senior Network Engineer" | Ronald Sidney Doyle
+  Γ£ô Created [84] "Senior Network Engineer" | Sibusiso Ndlovu
+  ~ Exists  [84] "Senior DevOps Engineer" | Thato Tswai (no draft yet)
+  ┬╖ Skip    [84] "Senior DevOps Engineer" | Liliyosa Mbakureya (already has draft)
+  ~ Exists  [84] "Senior DevOps Engineer" | Tonderai Muchada (no draft yet)
+  ┬╖ Skip    [84] "Senior DevOps Engineer" | Liliyosa Mbakureya (already has draft)
+  ┬╖ Skip    [84] "Senior DevOps Engineer" | Riaan Snyders (already has draft)
+  ┬╖ Skip    [83] "Data Engineer ΓÇô" | Petunia Motlhakane (already has draft)
+  ~ Exists  [83] "DevOps" | Jeanre Swanepoel (no draft yet)
+  ~ Exists  [83] "DevOps" | Crispen Shiri (no draft yet)
+  ~ Exists  [83] "DevOps" | Kgomotso Sello Dungeni (no draft yet)
+  Γ£ô Created [83] "DevOps" | Tonderai Muchada
+  Γ£ô Created [83] "Senior Software Engineer." | Keagile Nduli
+  Γ£ô Created [83] "Site Engineer" | Simphiwe Sikhonde
+  Γ£ô Created [83] "Site Engineer" | Tanyaradzwa Tanatswa Mushonga
+  Γ£ô Created [83] "Site Engineer" | Jeanre Swanepoel
+  Γ£ô Created [83] "Site Engineer" | Heinrich Muller
+  Γ£ô Created [83] "Site Engineer" | Paul Stegemann
+  Γ£ô Created [83] "Site Engineer" | Kgomotso Sello Dungeni
+  ┬╖ Skip    [83] "AI Engineer" | Everswick Dambaza (already has draft)
+  ~ Exists  [83] "AI Engineer" | Peter Idah (no draft yet)
+  ┬╖ Skip    [83] "Software Engineer" | Lesley Charinda (already has draft)
+  ~ Exists  [83] "Software Engineer" | Keagile Nduli (no draft yet)
+  Γ£ô Created [83] "Senior Network Engineer" | Isaac Rantu Mongae
+  Γ£ô Created [83] "Senior Network Engineer" | Juan Charl Venter
+  Γ£ô Created [83] "Senior Network Engineer" | Peter Idah
+  Γ£ô Created [83] "Principal Machine Learning Engineer" | Peter Idah
+  Γ£ô Created [83] "DevOps Engineer" | Tonderai Muchada
+  Γ£ô Created [83] "DevOps Engineer" | MPHO MORABA
+  ┬╖ Skip    [83] "Software Engineer" | MPHO MORABA (already has draft)
+  ~ Exists  [83] "Software Engineer" | Keagile Nduli (no draft yet)
+  ~ Exists  [83] "Senior DevOps Engineer" | Lesiba Serite (no draft yet)
+  ┬╖ Skip    [82] "Data Engineer ΓÇô" | Juan Charl Venter (already has draft)
+  Γ£ô Created [82] "NEW Data / Analytics Engineer ΓÇô" | Everswick Dambaza
+  Γ£ô Created [82] "SOFTWARE ENGINEER C++/C#" | Lesley Charinda
+  Γ£ô Created [82] "SOFTWARE ENGINEER C++/C#" | Keagile Nduli
+  Γ£ô Created [82] "Business Analyst" | Njabulo
+  Γ£ô Created [82] "Azure Data Engineer |" | Everswick Dambaza
+  Γ£ô Created [82] "AI Engineer" | mr landile
+  Γ£ô Created [82] "Azure Cloud Engineer Sr" | Crispen Shiri
+  Γ£ô Created [82] "Senior Network Engineer" | mr landile
+  Γ£ô Created [82] "Senior Network Engineer" | Juliet Ngoni
+  Γ£ô Created [82] "Senior Network Engineer" | Girly Nomvula Lebelo
+  Γ£ô Created [82] "Senior Network Engineer" | Heinrich Muller
+  Γ£ô Created [81] "Senior MLOps Engineer" | Crispen Shiri
+  Γ£ô Created [81] "WeΓÇÖre Hiring: Application Developer Desktop / Mobile / Web Apps" | Kudzai Murimi
+  Γ£ô Created [81] "WeΓÇÖre Hiring: Application Developer Desktop / Mobile / Web Apps" | Jonathan Wagener
+  ~ Exists  [81] "DevOps" | Tonderai Muchada (no draft yet)
+  ~ Exists  [81] "DevOps" | Liliyosa Mbakureya (no draft yet)
+  ~ Exists  [81] "DevOps" | Keagile Nduli (no draft yet)
+  Γ£ô Created [81] "DevOps" | Pardington T Mureka
+  ~ Exists  [81] "DevOps" | Riaan Snyders (no draft yet)
+  Γ£ô Created [81] "SOFTWARE ENGINEER C++/C#" | Liliyosa Mbakureya
+  ~ Exists  [81] "DevOps" | Pardington T Mureka (no draft yet)
+  Γ£ô Created [81] "- 2 x Front end AEM developer" | Sondra Methembe Sithole
+  Γ£ô Created [81] "Frontend Developer" | Kudzai Murimi
+  Γ£ô Created [81] "Frontend Developer" | Tanyaradzwa Tanatswa Mushonga
+  Γ£ô Created [81] "Frontend Developer" | Jonathan Wagener
+  Γ£ô Created [81] "Site Engineer" | Crispen Shiri
+  Γ£ô Created [81] "Azure Data Engineer |" | Petunia Motlhakane
+  Γ£ô Created [81] "AI Engineer" | James Tladi Tladi
+  ┬╖ Skip    [81] "Software Engineer" | MPHO MORABA (already has draft)
+  Γ£ô Created [81] "Senior Network Engineer" | Petunia Motlhakane
+  Γ£ô Created [81] "Senior Network Engineer" | Andre Lombaard
+  Γ£ô Created [81] "Senior Network Engineer" | Johannes Sekgoka
+  Γ£ô Created [81] "Senior Network Engineer" | Crispen Shiri
+  Γ£ô Created [81] "Infrastructure Engineer" | Kgomotso Sello Dungeni
+  Γ£ô Created [81] "DevOps Engineer" | Pardington T Mureka
+  ┬╖ Skip    [81] "Software Engineer" | Lesley Charinda (already has draft)
+  ~ Exists  [81] "Software Engineer" | Liliyosa Mbakureya (no draft yet)
+  ┬╖ Skip    [81] "Senior DevOps Engineer" | Tanyaradzwa Tanatswa Mushonga (already has draft)
+  ┬╖ Skip    [81] "Senior DevOps Engineer" | Keagile Nduli (already has draft)
+  Γ£ô Created [81] "Senior DevOps Engineer" | Pardington T Mureka
+  ┬╖ Skip    [81] "Senior DevOps Engineer" | Keagile Nduli (already has draft)
+  ~ Exists  [81] "Senior DevOps Engineer" | Pardington T Mureka (no draft yet)
+  Γ£ô Created [80] "AI Architect Azure" | Lesego Moncho
+  Γ£ô Created [80] "Business Analyst" | Titus Makumbe
+  Γ£ô Created [79] "AI Engineer" | Lesego Moncho
+  ~ Exists  [77] "Business Analyst" | Titus Makumbe (no draft yet)
+  Γ£ô Created [76] "AI Engineer" | Juliet Ngoni
+  Γ£ô Created [76] "AI Engineer" | Thato Tswai
+  Γ£ô Created [76] "AI / ML Engineer" | Everswick Dambaza
+
+Applications to email: 188, skipped (already drafted): 40
+
+Generating email draftsΓÇª
+
+  Γ£ô [96] "Sr Network Engineer" | Ronald Sidney Doyle
+  Γ£ô [95] "Data Scientist & Analyst" | Titus Makumbe
+  Γ£ô [95] "Senior DevOps Engineer ΓÇö Azure & .NET" | Heinrich Muller
+  Γ£ô [95] "Senior Java Backend Engineer" | James Julius
+  Γ£ù [95] "Senior Salesforce" | James Tladi Tladi ΓÇö [object Object]
+  Γ£ô [95] "Sr Network Engineer" | Henco Freidberg
+  Γ£ù [94] "Data Scientist & Analyst" | Njabulo ΓÇö [object Object]
+  Γ£ù [94] "DevOps" | Lesiba Serite ΓÇö [object Object]
+  Γ£ù [94] "DevOps" | Simphiwe Sikhonde ΓÇö [object Object]
+  Γ£ù [94] "DevOps" | Jeanre Swanepoel ΓÇö [object Object]
+  Γ£ù [94] "DevOps" | Paul Stegemann ΓÇö [object Object]
+  Γ£ô [94] "Senior Software Engineer." | MPHO MORABA
+  Γ£ô [94] "Software Engineer" | Liliyosa Mbakureya
+  Γ£ô [94] "Sr Network Engineer" | Isaac Rantu Mongae

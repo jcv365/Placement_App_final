@@ -1,6 +1,10 @@
 import { jsonError, jsonOk } from "@/lib/apiResponses";
+import { writeAuditLog } from "@/lib/auditLog";
 import { prisma } from "@/lib/prisma";
-import { resolveTenantIdFromRequest } from "@/lib/tenant";
+import {
+  requireAuthenticatedTenantId,
+  resolveTenantIdFromRequest,
+} from "@/lib/tenant";
 import { vacancyCreateSchema } from "@/lib/validation";
 
 export const runtime = "nodejs";
@@ -25,7 +29,7 @@ export async function GET(request: Request) {
 
 export async function POST(request: Request) {
   try {
-    const tenantId = resolveTenantIdFromRequest(request);
+    const tenantId = requireAuthenticatedTenantId(request);
     const body = vacancyCreateSchema.parse(await request.json());
 
     const [account, manager] = await Promise.all([
@@ -73,10 +77,19 @@ export async function POST(request: Request) {
       },
     });
 
+    await writeAuditLog({
+      tenantId,
+      entityType: "vacancy",
+      entityId: vacancy.id,
+      action: "CREATE",
+    });
+
     return jsonOk(vacancy, { status: 201 });
   } catch (error) {
-    return jsonError("Unable to create vacancy", 400, {
-      message: (error as Error).message,
-    });
+    if ((error as Error).message === "UNAUTHENTICATED") {
+      return jsonError("Authentication required", 401);
+    }
+    console.error("[VACANCY_CREATE]", error);
+    return jsonError("Unable to create vacancy", 400);
   }
 }

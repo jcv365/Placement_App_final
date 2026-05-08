@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-16"?>
+<!--
+  Windows Task Scheduler definition for the Contract Placements inbox reply agent.
+
+  IMPORT (requires admin PowerShell):
+    schtasks /Create /XML scripts\inbox-agent-task.xml /TN "\ContractPlacements\InboxReplyAgent" /F
+
+  Or via Task Scheduler GUI:
+    Action → Import Task → select this file
+
+  NOTE: Update the <WorkingDirectory> and <Arguments> paths below if the repo is
+        located somewhere other than C:\Code\Playground\contract_placements.
+        The task runs as the currently logged-in user (InteractiveToken). If the machine
+        is unattended, change <LogonType> to S4U and supply a <UserId>.
+-->
+<Task version="1.4" xmlns="http://schemas.microsoft.com/windows/2004/02/mit/task">
+  <RegistrationInfo>
+    <Date>2026-04-13T00:00:00</Date>
+    <Author>Contract Placements</Author>
+    <Description>Processes inbox replies from candidates every hour and updates the placement platform (rates, roles, agreements, opportunity intent).</Description>
+    <URI>\ContractPlacements\InboxReplyAgent</URI>
+  </RegistrationInfo>
+  <Triggers>
+    <CalendarTrigger>
+      <StartBoundary>2026-04-13T00:00:00</StartBoundary>
+      <Enabled>true</Enabled>
+      <ScheduleByDay>
+        <DaysInterval>1</DaysInterval>
+      </ScheduleByDay>
+      <Repetition>
+        <!-- Every 1 hour, for the whole day -->
+        <Interval>PT1H</Interval>
+        <Duration>P1D</Duration>
+        <StopAtDurationEnd>false</StopAtDurationEnd>
+      </Repetition>
+    </CalendarTrigger>
+  </Triggers>
+  <Principals>
+    <Principal id="Author">
+      <LogonType>InteractiveToken</LogonType>
+      <RunLevel>LeastPrivilege</RunLevel>
+    </Principal>
+  </Principals>
+  <Settings>
+    <MultipleInstancesPolicy>IgnoreNew</MultipleInstancesPolicy>
+    <DisallowStartIfOnBatteries>false</DisallowStartIfOnBatteries>
+    <StopIfGoingOnBatteries>false</StopIfGoingOnBatteries>
+    <AllowHardTerminate>true</AllowHardTerminate>
+    <!-- Run as soon as possible if a scheduled start was missed -->
+    <StartWhenAvailable>true</StartWhenAvailable>
+    <RunOnlyIfNetworkAvailable>true</RunOnlyIfNetworkAvailable>
+    <IdleSettings>
+      <StopOnIdleEnd>false</StopOnIdleEnd>
+      <RestartOnIdle>false</RestartOnIdle>
+    </IdleSettings>
+    <AllowStartOnDemand>true</AllowStartOnDemand>
+    <Enabled>true</Enabled>
+    <Hidden>false</Hidden>
+    <RunOnlyIfIdle>false</RunOnlyIfIdle>
+    <WakeToRun>false</WakeToRun>
+    <!-- Kill the task if it runs for more than 30 minutes (should complete in under 1 min normally) -->
+    <ExecutionTimeLimit>PT30M</ExecutionTimeLimit>
+    <Priority>7</Priority>
+  </Settings>
+  <Actions Context="Author">
+    <Exec>
+      <Command>powershell.exe</Command>
+      <Arguments>-NonInteractive -NoProfile -ExecutionPolicy Bypass -File "C:\Code\Playground\contract_placements\scripts\run-inbox-agent.ps1"</Arguments>
+      <WorkingDirectory>C:\Code\Playground\contract_placements</WorkingDirectory>
+    </Exec>
+  </Actions>
+</Task>

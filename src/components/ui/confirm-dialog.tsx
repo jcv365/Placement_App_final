@@ -2,46 +2,71 @@
 
 import { Button } from "@/components/ui/button";
 import {
-    Dialog,
-    DialogContent,
-    DialogHeader,
-    DialogTitle,
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
 } from "@/components/ui/dialog";
+
+interface ConfirmDialogProps {
+  open: boolean;
+  title?: string;
+  /** Use `description` or `message` — both are supported. */
+  description?: string;
+  message?: string;
+  confirmLabel?: string;
+  cancelLabel?: string;
+  /** Called when confirmed. */
+  onConfirm: () => void;
+  /** Called when the dialog is dismissed. Supports both APIs. */
+  onOpenChange?: (open: boolean) => void;
+  onCancel?: () => void;
+  /** When true the confirm button uses red styling. */
+  destructive?: boolean;
+}
 
 export function ConfirmDialog({
   open,
-  title,
+  title = "Confirm",
   description,
-  confirmLabel,
+  message,
+  confirmLabel = "Confirm",
   cancelLabel = "Cancel",
   onConfirm,
   onOpenChange,
-}: {
-  open: boolean;
-  title: string;
-  description: string;
-  confirmLabel: string;
-  cancelLabel?: string;
-  onConfirm: () => void;
-  onOpenChange: (open: boolean) => void;
-}) {
+  onCancel,
+  destructive = false,
+}: ConfirmDialogProps) {
+  const body = description ?? message ?? "";
+
+  const handleDismiss = (v: boolean) => {
+    if (!v) {
+      onCancel?.();
+      onOpenChange?.(false);
+    }
+  };
+
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
+    <Dialog open={open} onOpenChange={handleDismiss}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
         </DialogHeader>
-        <p className="text-sm text-slate-600">{description}</p>
+        <p className="text-sm text-slate-600">{body}</p>
         <div className="mt-4 flex justify-end gap-2">
-          <Button
-            className="border border-slate-300 bg-white text-slate-900 hover:bg-slate-50"
-            onClick={() => onOpenChange(false)}
-          >
+          <Button variant="outline" onClick={() => handleDismiss(false)}>
             {cancelLabel}
           </Button>
-          <Button onClick={onConfirm}>{confirmLabel}</Button>
+          <Button
+            className={destructive ? "bg-red-600 hover:bg-red-700" : undefined}
+            onClick={onConfirm}
+          >
+            {confirmLabel}
+          </Button>
         </div>
       </DialogContent>
     </Dialog>
   );
 }
+
+export default ConfirmDialog;

@@ -1,3 +1,4 @@
+import { classifyJob } from "./jobClassification";
 import { computeOpportunityId } from "./opportunity";
 import { prisma } from "./prisma";
 import { DEFAULT_RULES } from "./rules";
@@ -185,88 +186,92 @@ export async function seedFunctionalTestData(): Promise<SeedSummary> {
       {
         companyId: acmeCompany.id,
         revenueSplitPercent: 50,
-        brandName: "DotCloud Delivery",
-        logoUrl: "https://assets.dotcloud.africa/logo-dotcloud.png",
-        reportRecipientsCsv:
-          "charl.venter@dotcloud.africa, finance@dotcloud.africa",
+        brandName: "Acme Delivery",
+        logoUrl: "/logo-placeholder.png",
+        reportRecipientsCsv: "admin@example.com, finance@example.com",
         currency: "ZAR",
       },
       {
         companyId: northwindCompany.id,
         revenueSplitPercent: 50,
-        brandName: "DotCloud Northwind",
-        logoUrl: "https://assets.dotcloud.africa/logo-northwind.png",
-        reportRecipientsCsv:
-          "charl.venter@dotcloud.africa, northwind.finance@dotcloud.africa",
+        brandName: "Northwind Trading",
+        logoUrl: "/logo-placeholder.png",
+        reportRecipientsCsv: "admin@example.com, northwind.finance@example.com",
         currency: "ZAR",
       },
       {
         companyId: globexCompany.id,
         revenueSplitPercent: 50,
-        brandName: "DotCloud Globex",
-        logoUrl: "https://assets.dotcloud.africa/logo-globex.png",
-        reportRecipientsCsv:
-          "charl.venter@dotcloud.africa, globex.finance@dotcloud.africa",
+        brandName: "Globex Corporation",
+        logoUrl: "/logo-placeholder.png",
+        reportRecipientsCsv: "admin@example.com, globex.finance@example.com",
         currency: "ZAR",
       },
     ],
   });
 
-  const jobs = await Promise.all([
-    prisma.job.create({
-      data: {
-        title: "Senior Data Engineer",
-        rawText:
-          "LinkedIn opportunity: Senior Data Engineer contract in London. Must have Azure, SQL, Python, and stakeholder communication.",
-        opportunityUrl: "https://www.linkedin.com/jobs/view/100001",
-        opportunityEmail: "talent@acme-consulting.co.uk",
-        companyId: acmeCompany.id,
-      },
+  const jobDefs = [
+    {
+      title: "Senior Data Engineer",
+      rawText:
+        "LinkedIn opportunity: Senior Data Engineer contract in London. Must have Azure, SQL, Python, and stakeholder communication.",
+      opportunityUrl: "https://www.linkedin.com/jobs/view/100001",
+      opportunityEmail: "talent@acme-consulting.co.uk",
+      companyId: acmeCompany.id,
+    },
+    {
+      title: "Cloud Platform Engineer",
+      rawText:
+        "Contract role focused on AKS, Terraform, GitHub Actions, and production support.",
+      opportunityUrl: "https://www.linkedin.com/jobs/view/100002",
+      companyId: northwindCompany.id,
+    },
+    {
+      title: "Security Architect",
+      rawText:
+        "Security architecture contract for cloud-native systems, policy compliance, and SOC integration.",
+      opportunityEmail: "security.hiring@globex-finance.com",
+      companyId: globexCompany.id,
+    },
+    {
+      title: "Data Migration Lead",
+      rawText:
+        "Outside IR35 programme to migrate legacy ETL pipelines to modern Azure architecture.",
+      companyId: acmeCompany.id,
+    },
+    {
+      title: "DevOps Consultant",
+      rawText:
+        "Six-month contract to standardise deployment governance and SRE tooling.",
+      companyId: northwindCompany.id,
+    },
+    {
+      title: "FinOps Analyst",
+      rawText:
+        "LinkedIn referral role to optimise cloud spend, cost controls, and budget forecasting.",
+      opportunityUrl: "https://www.linkedin.com/jobs/view/100003",
+      companyId: globexCompany.id,
+    },
+  ];
+
+  const jobs = await Promise.all(
+    jobDefs.map((def) => {
+      const classification = classifyJob(def.title, def.rawText);
+      return prisma.job.create({
+        data: {
+          title: def.title,
+          rawText: def.rawText,
+          opportunityUrl: def.opportunityUrl,
+          opportunityEmail: def.opportunityEmail,
+          companyId: def.companyId,
+          isRemote: classification.isRemote,
+          requiresUsWorkAuth: classification.requiresUsWorkAuth,
+          requiresUkWorkAuth: classification.requiresUkWorkAuth,
+          requiresNonSaLocation: classification.requiresNonSaLocation,
+        },
+      });
     }),
-    prisma.job.create({
-      data: {
-        title: "Cloud Platform Engineer",
-        rawText:
-          "Contract role focused on AKS, Terraform, GitHub Actions, and production support.",
-        opportunityUrl: "https://www.linkedin.com/jobs/view/100002",
-        companyId: northwindCompany.id,
-      },
-    }),
-    prisma.job.create({
-      data: {
-        title: "Security Architect",
-        rawText:
-          "Security architecture contract for cloud-native systems, policy compliance, and SOC integration.",
-        opportunityEmail: "security.hiring@globex-finance.com",
-        companyId: globexCompany.id,
-      },
-    }),
-    prisma.job.create({
-      data: {
-        title: "Data Migration Lead",
-        rawText:
-          "Outside IR35 programme to migrate legacy ETL pipelines to modern Azure architecture.",
-        companyId: acmeCompany.id,
-      },
-    }),
-    prisma.job.create({
-      data: {
-        title: "DevOps Consultant",
-        rawText:
-          "Six-month contract to standardise deployment governance and SRE tooling.",
-        companyId: northwindCompany.id,
-      },
-    }),
-    prisma.job.create({
-      data: {
-        title: "FinOps Analyst",
-        rawText:
-          "LinkedIn referral role to optimise cloud spend, cost controls, and budget forecasting.",
-        opportunityUrl: "https://www.linkedin.com/jobs/view/100003",
-        companyId: globexCompany.id,
-      },
-    }),
-  ]);
+  );
 
   const candidates = await Promise.all([
     prisma.candidate.create({
@@ -580,8 +585,8 @@ export async function seedFunctionalTestData(): Promise<SeedSummary> {
   const submittedTimesheet = await prisma.timesheet.create({
     data: {
       applicationId: placedApp.id,
-      weekStartDate: new Date(today.getTime() - 14 * day),
-      weekEndDate: new Date(today.getTime() - 8 * day),
+      periodStartDate: new Date(today.getTime() - 14 * day),
+      periodEndDate: new Date(today.getTime() - 8 * day),
       hoursWorked: 37.5,
       ratePerHour: 82,
       engineerRatePerHour: 57,
@@ -594,8 +599,8 @@ export async function seedFunctionalTestData(): Promise<SeedSummary> {
   const invoicedTimesheet = await prisma.timesheet.create({
     data: {
       applicationId: placedApp.id,
-      weekStartDate: new Date(today.getTime() - 7 * day),
-      weekEndDate: new Date(today.getTime() - 1 * day),
+      periodStartDate: new Date(today.getTime() - 7 * day),
+      periodEndDate: new Date(today.getTime() - 1 * day),
       hoursWorked: 40,
       ratePerHour: 82,
       engineerRatePerHour: 57,
@@ -609,8 +614,8 @@ export async function seedFunctionalTestData(): Promise<SeedSummary> {
   await prisma.timesheet.create({
     data: {
       applicationId: draftedApp.id,
-      weekStartDate: new Date(today.getTime() - 7 * day),
-      weekEndDate: new Date(today.getTime() - 1 * day),
+      periodStartDate: new Date(today.getTime() - 7 * day),
+      periodEndDate: new Date(today.getTime() - 1 * day),
       hoursWorked: 16,
       ratePerHour: 75,
       engineerRatePerHour: 50,
@@ -658,9 +663,9 @@ export async function seedFunctionalTestData(): Promise<SeedSummary> {
         fileName: "finance-report-acme-consulting-prev-month.csv",
         csvContent:
           "brand_name,logo_url,timesheet_id,approved_hours,monthly_charge,currency\n" +
-          "DotCloud Delivery,https://assets.dotcloud.africa/logo-dotcloud.png,TS-ACME-001,77.50," +
+          "Acme Delivery,/logo-placeholder.png,TS-ACME-001,77.50," +
           `${acmeMonthlyCharge.toFixed(2)},ZAR`,
-        recipientsCsv: "charl.venter@dotcloud.africa, finance@dotcloud.africa",
+        recipientsCsv: "admin@example.com, finance@example.com",
         totalApprovedHours: 77.5,
         totalCharge: Number(acmeMonthlyCharge.toFixed(2)),
         currency: "ZAR",
@@ -675,9 +680,8 @@ export async function seedFunctionalTestData(): Promise<SeedSummary> {
         fileName: "finance-report-northwind-prev-month.csv",
         csvContent:
           "brand_name,logo_url,timesheet_id,approved_hours,monthly_charge,currency\n" +
-          "DotCloud Northwind,https://assets.dotcloud.africa/logo-northwind.png,TS-NORTH-001,0.00,0.00,ZAR",
-        recipientsCsv:
-          "charl.venter@dotcloud.africa, northwind.finance@dotcloud.africa",
+          "Northwind Trading,/logo-placeholder.png,TS-NORTH-001,0.00,0.00,ZAR",
+        recipientsCsv: "admin@example.com, northwind.finance@example.com",
         totalApprovedHours: 0,
         totalCharge: 0,
         currency: "ZAR",
@@ -693,9 +697,8 @@ export async function seedFunctionalTestData(): Promise<SeedSummary> {
         fileName: "finance-report-globex-prev-month.csv",
         csvContent:
           "brand_name,logo_url,timesheet_id,approved_hours,monthly_charge,currency\n" +
-          "DotCloud Globex,https://assets.dotcloud.africa/logo-globex.png,TS-GLOBEX-001,0.00,0.00,ZAR",
-        recipientsCsv:
-          "charl.venter@dotcloud.africa, globex.finance@dotcloud.africa",
+          "Globex Corporation,/logo-placeholder.png,TS-GLOBEX-001,0.00,0.00,ZAR",
+        recipientsCsv: "admin@example.com, globex.finance@example.com",
         totalApprovedHours: 0,
         totalCharge: 0,
         currency: "ZAR",
@@ -715,7 +718,7 @@ export async function seedFunctionalTestData(): Promise<SeedSummary> {
         action: "created",
         afterJson: {
           revenueSplitPercent: 50,
-          brandName: "DotCloud Delivery",
+          brandName: "Acme Delivery",
           currency: "ZAR",
         },
       },
