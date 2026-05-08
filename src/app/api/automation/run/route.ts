@@ -8,26 +8,16 @@ import {
     startAutomationRun,
     updateAutomationRun,
 } from "@/lib/automationProgress";
+import {
+    AutomationSourceConfig,
+    findLatestLinkedInFile,
+    parseAutomationSourceConfig,
+    validateFilesystemSource,
+    validateOneDriveSource,
+    validateSharePointSource,
+} from "@/lib/automationSources";
 import { prisma } from "@/lib/prisma";
 import { randomUUID } from "node:crypto";
-import fs from "node:fs";
-import fsAsync from "node:fs/promises";
-import path from "node:path";
-
-const SMB_TIMEOUT_MS = 10_000;
-
-function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
-  return Promise.race([
-    promise,
-    new Promise<never>((_, reject) =>
-      setTimeout(
-        () =>
-          reject(Object.assign(new Error("ETIMEDOUT"), { code: "ETIMEDOUT" })),
-        ms,
-      ),
-    ),
-  ]);
-}
 
 export const runtime = "nodejs";
 
@@ -46,37 +36,6 @@ function getAdminContext(
   } catch {
     return null;
   }
-}
-
-// ── File discovery ────────────────────────────────────────────────────────────
-
-async function findLinkedInOpportunitiesFile(
-  folderPath: string,
-): Promise<string | null> {
-  if (!fs.existsSync(folderPath)) return null;
-
-  let entries: string[];
-  try {
-    entries = await withTimeout(fsAsync.readdir(folderPath), SMB_TIMEOUT_MS);
-  } catch {
-    return null;
-  }
-
-  const pattern = /^linkedin_opportunities_(\d{4}-\d{2}-\d{2})(\..+)?$/i;
-  const matching = entries
-    .filter((name) => pattern.test(name))
-    .map((name) => ({ name, date: name.match(pattern)![1]! }))
-    .sort((a, b) => b.date.localeCompare(a.date)); // latest first
-
-  if (matching.length === 0) return null;
-  return path.join(folderPath, matching[0]!.name);
-}
-
-function getCurrentYearMonth(): string {
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = String(now.getMonth() + 1).padStart(2, "0");
-  return `${year}-${month}`;
 }
 
 // ── Upload polling ────────────────────────────────────────────────────────────
@@ -152,11 +111,11 @@ async function waitForEmailDrafts(
 async function runAutomationBackground(params: {
   runId: string;
   tenantId: string;
-  sourcePath: string;
+  sourceConfig: AutomationSourceConfig;
   cookieHeader: string;
   appBaseUrl: string;
 }): Promise<void> {
-  const { runId, tenantId, sourcePath, cookieHeader, appBaseUrl } = params;
+  const { runId, tenantId, sourceConfig, cookieHeader, appBaseUrl } = params;
   const runStart = new Date();
 
   try {
@@ -166,20 +125,25 @@ async function runAutomationBackground(params: {
       message: "Looking for LinkedIn opportunities file.",
     });
 
-    const yearMonth = getCurrentYearMonth();
-    const monthFolder = path.join(path.resolve(sourcePath), yearMonth);
-    const filePath = await findLinkedInOpportunitiesFile(monthFolder);
+    const found = await findLatestLinkedInFile(sourceConfig);
 
-    if (!filePath) {
+    if (!found) {
+      const location =
+        sourceConfig.sourceType === "filesystem"
+          ? sourceConfig.sourcePath
+          : sourceConfig.sourceType === "onedrive"
+            ? `OneDrive: ${sourceConfig.onedriveFolderPath} (${sourceConfig.onedriveUser})`
+            : `SharePoint: ${sourceConfig.sharepointFolderPath} (${sourceConfig.sharepointSite})`;
       throw new Error(
-        `No LinkedIn opportunities file found in ${monthFolder}. ` +
+        `No LinkedIn opportunities file found in ${location}/<current month>. ` +
           `Expected a file named: linkedin_opportunities_YYYY-MM-DD[.xlsx|.csv]`,
       );
     }
 
+    const { fileName, data: fileBuffer } = found;
+
     updateAutomationRun(runId, {
-      filePath,
-      message: `Found file: ${path.basename(filePath)}.`,
+      message: `Found file: ${fileName}.`,
     });
 
     // Phase 2 — upload
@@ -188,8 +152,6 @@ async function runAutomationBackground(params: {
       message: "Uploading opportunities file for processing.",
     });
 
-    const fileBuffer = fs.readFileSync(filePath);
-    const fileName = path.basename(filePath);
     const mimeType = /\.csv$/i.test(fileName)
       ? "text/csv"
       : "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
@@ -384,43 +346,31 @@ export async function POST(request: Request) {
     );
   }
 
-  const sourcePath =
-    typeof rulesJson.automation_source_path === "string" &&
-    rulesJson.automation_source_path.trim()
-      ? rulesJson.automation_source_path.trim()
-      : null;
-
-  if (!sourcePath || !path.isAbsolute(sourcePath)) {
+  const sourceConfig = parseAutomationSourceConfig(rulesJson);
+  if (!sourceConfig) {
     return jsonError(
-      "A valid absolute source folder path must be configured in the Automation settings.",
+      "Automation source is not fully configured. Check the Automation settings tab.",
       400,
     );
   }
 
-  // Validate the source path is accessible before starting a background run.
-  try {
-    const stat = await withTimeout(fsAsync.stat(sourcePath), SMB_TIMEOUT_MS);
-    if (!stat.isDirectory()) {
-      return jsonError(
-        `Source path exists but is not a directory: ${sourcePath}`,
-        400,
-      );
-    }
-    await withTimeout(fsAsync.readdir(sourcePath), SMB_TIMEOUT_MS); // confirm read permission
-  } catch (err) {
-    const code =
-      err instanceof Error && "code" in err
-        ? (err as NodeJS.ErrnoException).code
-        : undefined;
-    const message =
-      code === "ETIMEDOUT"
-        ? `SMB share did not respond within ${SMB_TIMEOUT_MS / 1000}s — ensure the share is mounted and reachable: ${sourcePath}`
-        : code === "ENOENT"
-          ? `Source path does not exist: ${sourcePath}`
-          : code === "EACCES"
-            ? `Source path is not accessible (permission denied): ${sourcePath}`
-            : `Source path error (${code ?? "unknown"}): ${sourcePath}`;
-    return jsonError(message, 400);
+  // Quick pre-flight validation before starting the background run.
+  let preflightResult: { valid: true } | { valid: false; error: string };
+  if (sourceConfig.sourceType === "filesystem") {
+    preflightResult = await validateFilesystemSource(sourceConfig.sourcePath);
+  } else if (sourceConfig.sourceType === "onedrive") {
+    preflightResult = await validateOneDriveSource(
+      sourceConfig.onedriveUser,
+      sourceConfig.onedriveFolderPath,
+    );
+  } else {
+    preflightResult = await validateSharePointSource(
+      sourceConfig.sharepointSite,
+      sourceConfig.sharepointFolderPath,
+    );
+  }
+  if (!preflightResult.valid) {
+    return jsonError(preflightResult.error, 400);
   }
 
   const runId = randomUUID();
@@ -434,7 +384,7 @@ export async function POST(request: Request) {
   void runAutomationBackground({
     runId,
     tenantId,
-    sourcePath,
+    sourceConfig,
     cookieHeader,
     appBaseUrl,
   });

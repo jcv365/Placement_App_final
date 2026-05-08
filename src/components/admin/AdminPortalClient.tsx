@@ -351,7 +351,18 @@ export default function AdminPortalClient({
   const [enforceUkWorkAuthGate, setEnforceUkWorkAuthGate] =
     React.useState(true);
   const [automationEnabled, setAutomationEnabled] = React.useState(false);
+  const [automationSourceType, setAutomationSourceType] = React.useState<
+    "filesystem" | "onedrive" | "sharepoint"
+  >("filesystem");
   const [automationSourcePath, setAutomationSourcePath] = React.useState("");
+  const [automationOnedriveUser, setAutomationOnedriveUser] =
+    React.useState("");
+  const [automationOnedriveFolderPath, setAutomationOnedriveFolderPath] =
+    React.useState("");
+  const [automationSharepointSite, setAutomationSharepointSite] =
+    React.useState("");
+  const [automationSharepointFolderPath, setAutomationSharepointFolderPath] =
+    React.useState("");
   const [automationPathValidating, setAutomationPathValidating] =
     React.useState(false);
   const [automationPathStatus, setAutomationPathStatus] = React.useState<{
@@ -734,7 +745,12 @@ export default function AdminPortalClient({
       setEnforceUsWorkAuthGate(true);
       setEnforceUkWorkAuthGate(true);
       setAutomationEnabled(false);
+      setAutomationSourceType("filesystem");
       setAutomationSourcePath("");
+      setAutomationOnedriveUser("");
+      setAutomationOnedriveFolderPath("");
+      setAutomationSharepointSite("");
+      setAutomationSharepointFolderPath("");
       return;
     }
 
@@ -771,9 +787,36 @@ export default function AdminPortalClient({
     setEnforceUsWorkAuthGate(rj.enforce_us_work_auth_gate !== false);
     setEnforceUkWorkAuthGate(rj.enforce_uk_work_auth_gate !== false);
     setAutomationEnabled(rj.automation_enabled === true);
+    setAutomationSourceType(
+      rj.automation_source_type === "onedrive"
+        ? "onedrive"
+        : rj.automation_source_type === "sharepoint"
+          ? "sharepoint"
+          : "filesystem",
+    );
     setAutomationSourcePath(
       typeof rj.automation_source_path === "string"
         ? rj.automation_source_path
+        : "",
+    );
+    setAutomationOnedriveUser(
+      typeof rj.automation_onedrive_user === "string"
+        ? rj.automation_onedrive_user
+        : "",
+    );
+    setAutomationOnedriveFolderPath(
+      typeof rj.automation_onedrive_folder === "string"
+        ? rj.automation_onedrive_folder
+        : "",
+    );
+    setAutomationSharepointSite(
+      typeof rj.automation_sharepoint_site === "string"
+        ? rj.automation_sharepoint_site
+        : "",
+    );
+    setAutomationSharepointFolderPath(
+      typeof rj.automation_sharepoint_folder === "string"
+        ? rj.automation_sharepoint_folder
         : "",
     );
     setAutomationPathStatus(null);
@@ -950,13 +993,38 @@ export default function AdminPortalClient({
     setAutomationPathStatus(null);
     try {
       const result = await fetchJson<{ valid: boolean; error?: string }>(
-        `/api/automation/validate-path?path=${encodeURIComponent(trimmed)}`,
+        `/api/automation/validate-source?type=filesystem&path=${encodeURIComponent(trimmed)}`,
       );
       setAutomationPathStatus(result);
     } catch {
       setAutomationPathStatus({
         valid: false,
         error: "Could not validate path — server error.",
+      });
+    } finally {
+      setAutomationPathValidating(false);
+    }
+  };
+
+  const handleValidateAutomationSource = async () => {
+    setAutomationPathValidating(true);
+    setAutomationPathStatus(null);
+    try {
+      let url = "";
+      if (automationSourceType === "onedrive") {
+        url = `/api/automation/validate-source?type=onedrive&user=${encodeURIComponent(automationOnedriveUser.trim())}&folder=${encodeURIComponent(automationOnedriveFolderPath.trim())}`;
+      } else if (automationSourceType === "sharepoint") {
+        url = `/api/automation/validate-source?type=sharepoint&site=${encodeURIComponent(automationSharepointSite.trim())}&folder=${encodeURIComponent(automationSharepointFolderPath.trim())}`;
+      } else {
+        await handleValidateAutomationPath(automationSourcePath);
+        return;
+      }
+      const result = await fetchJson<{ valid: boolean; error?: string }>(url);
+      setAutomationPathStatus(result);
+    } catch {
+      setAutomationPathStatus({
+        valid: false,
+        error: "Could not validate source — server error.",
       });
     } finally {
       setAutomationPathValidating(false);
@@ -1053,11 +1121,36 @@ export default function AdminPortalClient({
 
       // Automation
       nextRulesJson.automation_enabled = automationEnabled;
+      nextRulesJson.automation_source_type = automationSourceType;
       const trimmedSourcePath = automationSourcePath.trim();
       if (trimmedSourcePath) {
         nextRulesJson.automation_source_path = trimmedSourcePath;
       } else {
         delete nextRulesJson.automation_source_path;
+      }
+      const trimmedOnedriveUser = automationOnedriveUser.trim();
+      if (trimmedOnedriveUser) {
+        nextRulesJson.automation_onedrive_user = trimmedOnedriveUser;
+      } else {
+        delete nextRulesJson.automation_onedrive_user;
+      }
+      const trimmedOnedriveFolder = automationOnedriveFolderPath.trim();
+      if (trimmedOnedriveFolder) {
+        nextRulesJson.automation_onedrive_folder = trimmedOnedriveFolder;
+      } else {
+        delete nextRulesJson.automation_onedrive_folder;
+      }
+      const trimmedSpSite = automationSharepointSite.trim();
+      if (trimmedSpSite) {
+        nextRulesJson.automation_sharepoint_site = trimmedSpSite;
+      } else {
+        delete nextRulesJson.automation_sharepoint_site;
+      }
+      const trimmedSpFolder = automationSharepointFolderPath.trim();
+      if (trimmedSpFolder) {
+        nextRulesJson.automation_sharepoint_folder = trimmedSpFolder;
+      } else {
+        delete nextRulesJson.automation_sharepoint_folder;
       }
 
       if (defaultRulesetId) {
@@ -3631,32 +3724,174 @@ export default function AdminPortalClient({
               </label>
             </div>
 
-            {/* Source folder path */}
-            <div className="space-y-2">
+            {/* Source type */}
+            <div className="space-y-3">
               <label className="block text-sm font-medium text-slate-700">
-                Source folder path
+                File source type
               </label>
-              <Input
-                value={automationSourcePath}
-                onChange={(e) => {
-                  setAutomationSourcePath(e.target.value);
-                  setAutomationPathStatus(null);
-                }}
-                onBlur={(e) =>
-                  void handleValidateAutomationPath(e.target.value)
-                }
-                placeholder="/mnt/shared/linkedin-exports"
-                className={`font-mono text-sm ${
-                  automationPathStatus?.valid === false
-                    ? "border-red-400 focus-visible:ring-red-400"
-                    : automationPathStatus?.valid === true
-                      ? "border-green-500 focus-visible:ring-green-500"
-                      : ""
-                }`}
-              />
-              {automationPathValidating && (
-                <p className="text-xs text-slate-400">Checking path…</p>
+              <div className="flex gap-2">
+                {(
+                  [
+                    { value: "filesystem", label: "File System" },
+                    { value: "onedrive", label: "OneDrive" },
+                    { value: "sharepoint", label: "SharePoint" },
+                  ] as const
+                ).map(({ value, label }) => (
+                  <button
+                    key={value}
+                    type="button"
+                    onClick={() => {
+                      setAutomationSourceType(value);
+                      setAutomationPathStatus(null);
+                    }}
+                    className={`rounded-md border px-3 py-1.5 text-sm font-medium transition-colors ${
+                      automationSourceType === value
+                        ? "border-blue-600 bg-blue-50 text-blue-700"
+                        : "border-slate-200 bg-white text-slate-600 hover:bg-slate-50"
+                    }`}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
+
+              {/* Filesystem fields */}
+              {automationSourceType === "filesystem" && (
+                <div className="space-y-2">
+                  <Input
+                    value={automationSourcePath}
+                    onChange={(e) => {
+                      setAutomationSourcePath(e.target.value);
+                      setAutomationPathStatus(null);
+                    }}
+                    onBlur={(e) =>
+                      void handleValidateAutomationPath(e.target.value)
+                    }
+                    placeholder="/mnt/shared/linkedin-exports"
+                    className={`font-mono text-sm ${
+                      automationPathStatus?.valid === false
+                        ? "border-red-400 focus-visible:ring-red-400"
+                        : automationPathStatus?.valid === true
+                          ? "border-green-500 focus-visible:ring-green-500"
+                          : ""
+                    }`}
+                  />
+                  <p className="text-xs text-slate-500">
+                    Absolute path inside the container to the folder containing
+                    year-month sub-folders (e.g.&nbsp;
+                    <span className="font-mono">
+                      /mnt/smb/data/2025-07/linkedin_opportunities_2025-07-14.xlsx
+                    </span>
+                    ).
+                  </p>
+                </div>
               )}
+
+              {/* OneDrive fields */}
+              {automationSourceType === "onedrive" && (
+                <div className="space-y-3">
+                  <div className="space-y-1">
+                    <label className="block text-xs font-medium text-slate-600">
+                      User email (UPN)
+                    </label>
+                    <Input
+                      value={automationOnedriveUser}
+                      onChange={(e) => {
+                        setAutomationOnedriveUser(e.target.value);
+                        setAutomationPathStatus(null);
+                      }}
+                      placeholder="jan@yourcompany.com"
+                      className="text-sm"
+                    />
+                    <p className="text-xs text-slate-500">
+                      Email address of the user whose OneDrive to read. Requires
+                      Files.Read.All permission on the Graph app.
+                    </p>
+                  </div>
+                  <div className="space-y-1">
+                    <label className="block text-xs font-medium text-slate-600">
+                      Folder path in drive
+                    </label>
+                    <Input
+                      value={automationOnedriveFolderPath}
+                      onChange={(e) => {
+                        setAutomationOnedriveFolderPath(e.target.value);
+                        setAutomationPathStatus(null);
+                      }}
+                      placeholder="Placements/linkedinscanner/data"
+                      className="font-mono text-sm"
+                    />
+                    <p className="text-xs text-slate-500">
+                      Path relative to the drive root. Year-month sub-folders
+                      are expected here (e.g.&nbsp;
+                      <span className="font-mono">
+                        Placements/.../data/2025-07/linkedin_opportunities_2025-07-14.xlsx
+                      </span>
+                      ).
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {/* SharePoint fields */}
+              {automationSourceType === "sharepoint" && (
+                <div className="space-y-3">
+                  <div className="space-y-1">
+                    <label className="block text-xs font-medium text-slate-600">
+                      Site identifier
+                    </label>
+                    <Input
+                      value={automationSharepointSite}
+                      onChange={(e) => {
+                        setAutomationSharepointSite(e.target.value);
+                        setAutomationPathStatus(null);
+                      }}
+                      placeholder="yourcompany.sharepoint.com:/sites/Placements"
+                      className="font-mono text-sm"
+                    />
+                    <p className="text-xs text-slate-500">
+                      Format:{" "}
+                      <span className="font-mono">
+                        hostname:/sites/SiteName
+                      </span>
+                      . Requires Sites.Read.All permission on the Graph app.
+                    </p>
+                  </div>
+                  <div className="space-y-1">
+                    <label className="block text-xs font-medium text-slate-600">
+                      Folder path in site drive
+                    </label>
+                    <Input
+                      value={automationSharepointFolderPath}
+                      onChange={(e) => {
+                        setAutomationSharepointFolderPath(e.target.value);
+                        setAutomationPathStatus(null);
+                      }}
+                      placeholder="Shared Documents/linkedin/data"
+                      className="font-mono text-sm"
+                    />
+                  </div>
+                </div>
+              )}
+
+              {/* Validate button (OneDrive / SharePoint) + shared status */}
+              {automationSourceType !== "filesystem" && (
+                <div>
+                  <button
+                    type="button"
+                    onClick={() => void handleValidateAutomationSource()}
+                    disabled={automationPathValidating}
+                    className="rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-50 disabled:opacity-50"
+                  >
+                    {automationPathValidating ? "Checking…" : "Test connection"}
+                  </button>
+                </div>
+              )}
+
+              {automationPathValidating &&
+                automationSourceType === "filesystem" && (
+                  <p className="text-xs text-slate-400">Checking path…</p>
+                )}
               {!automationPathValidating &&
                 automationPathStatus?.valid === false && (
                   <p className="text-xs text-red-600">
@@ -3665,16 +3900,12 @@ export default function AdminPortalClient({
                 )}
               {!automationPathValidating &&
                 automationPathStatus?.valid === true && (
-                  <p className="text-xs text-green-600">Path is accessible.</p>
+                  <p className="text-xs text-green-600">
+                    {automationSourceType === "filesystem"
+                      ? "Path is accessible."
+                      : "Connection successful."}
+                  </p>
                 )}
-              <p className="text-xs text-slate-500">
-                Absolute path to the folder containing year-month sub-folders
-                (e.g.&nbsp;
-                <span className="font-mono">
-                  /your/path/2025-07/linkedin_opportunities_2025-07-14.xlsx
-                </span>
-                ).
-              </p>
             </div>
 
             {/* Save button */}
