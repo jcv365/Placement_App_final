@@ -33,158 +33,152 @@ A full-stack workflow for contract placements: upload a job description and cand
 
 ## Getting Started
 
-### Option 1: Docker (Recommended)
+### Production Deployment (Docker + WAF)
 
-1. **Create environment file**:
+This is the standard deployment path. The app runs in Docker behind an OWASP ModSecurity WAF.
 
-   ```bash
-   copy .env.example .env.local
-   ```
+#### Prerequisites
 
-   Fill in your Azure credentials in `.env.local`.
+- Docker Engine and Docker Compose plugin installed
+- SSL certificate files (e.g. a wildcard cert for your domain)
+- An Ollama instance (or other OpenAI-compatible LLM proxy) reachable from the Docker host
 
-2. **Run with Docker Compose** (development with hot reload):
+#### 1. Clone and prepare the server (first time only)
 
-   ```bash
-   docker-compose -f docker-compose.dev.yml up
-   ```
+```powershell
+git clone https://github.com/jcv365/Placement_App_final.git Contract_Placements
+cd Contract_Placements
+.\setup-server.ps1
+```
 
-   This starts the demo instance on `http://localhost:3000`.
+`setup-server.ps1` creates the required Docker networks (`placements_gateway`, `ollama_default`), the named database volume (`contract_placements_prod_db`), and checks for SSL certs and WAF config.
 
-   Or for production build:
+#### 2. Configure the environment
 
-   ```bash
-   docker-compose up --build
-   ```
+```powershell
+Copy-Item .env.example .env.local
+```
 
-   This starts the production instance on `http://localhost:3001`.
+Edit `.env.local` and replace all `REPLACE_…` placeholders. Key values:
 
-3. **Initialize the database** (first time only):
+| Variable                                                      | Description                                                                                          |
+| ------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `APP_BASE_URL`                                                | Public HTTPS URL, e.g. `https://placements.example.com`                                              |
+| `APP_SESSION_SECRET`                                          | Random base64 secret — `node -e "console.log(require('crypto').randomBytes(32).toString('base64'))"` |
+| `LLMLITE_API_BASE`                                            | OpenAI-compatible LLM proxy, e.g. `http://ollama-ollama-1:11434/v1`                                  |
+| `GRAPH_TENANT_ID` / `GRAPH_CLIENT_ID` / `GRAPH_CLIENT_SECRET` | Azure AD app registration for Outlook/Graph                                                          |
+| `SMTP_HOST` / `SMTP_USER` / `SMTP_PASS`                       | SMTP credentials for candidate welcome emails                                                        |
+| `ADMIN_USERNAME` / `ADMIN_PASSWORD`                           | Admin portal credentials                                                                             |
 
-   ```bash
-   docker-compose exec app npx prisma db push
-   docker-compose exec app npm run seed
-   ```
+#### 3. Add SSL certificates
 
-4. Open [http://localhost:3000](http://localhost:3000) for demo, or [http://localhost:3001](http://localhost:3001) for production.
+Copy your certificate files into `SSL/certs/`:
 
-5. **Stop containers**:
+```
+SSL/certs/fullchain.pem
+SSL/certs/privkey.pem
+```
 
-   ```bash
-   docker-compose down
-   ```
+#### 4. Add WAF exclusion rules
 
-### Option 2: Local Development
+Copy your WAF exclusion config to:
+
+```
+waf/REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf
+```
+
+A default empty file is sufficient if starting fresh.
+
+#### 5. Start the stack
+
+```powershell
+docker compose -p contract_placements_prod -f docker-compose.yml up -d --build
+```
+
+The app container starts on internal port `3000`. The WAF proxies HTTPS traffic on `<host>:8082` (configurable via `WAF_PORT` in `.env.local`).
+
+#### 6. Initialise the database (first time only)
+
+```powershell
+docker compose -p contract_placements_prod -f docker-compose.yml exec app npx prisma db push
+```
+
+#### 7. Open the app
+
+Navigate to `https://<server-ip>:8082/auth/signin` (or your configured `APP_BASE_URL`).
+
+---
+
+### Restoring data from an existing server
+
+```powershell
+.\migrate-db.ps1 -Action restore -BackupFile <path\to\backup.tar.gz>
+```
+
+Then restart the stack and re-run `prisma db push` to apply any new migrations.
+
+---
+
+### Local Development
 
 1. Install dependencies
 
-```bash
-npm install
+```powershell
+pnpm install
 ```
 
 2. Create environment file
 
-```bash
-copy .env.example .env.local
+```powershell
+Copy-Item .env.example .env.local
 ```
 
-3. Generate Prisma client and migrate
+3. Push the database schema
 
-```bash
-npm run prisma:generate
-npm run prisma:migrate
+```powershell
+pnpm run prisma:migrate
 ```
 
 4. Seed demo data (optional)
 
-```bash
-npm run seed
+```powershell
+pnpm run seed
 ```
 
-5. Start the app
-
-```bash
-npm run dev
-```
-
-### Option 3: Local Standalone Behind WAF (8081/8082)
-
-Use these PowerShell scripts to run both local instances behind a local WAF on IPv4.
-Each script uses its own standalone build directory to prevent chunk mismatch errors.
-Default WAF engine is `ModSecurity + OWASP CRS` (`owasp/modsecurity-crs:nginx`) for strict CRS-grade behaviour.
-
-1. Start demo instance (`8081` external WAF -> `3000` internal app, `demo.db`)
+5. Start the dev server
 
 ```powershell
-.\start-demo-local.ps1
+pnpm run dev
 ```
 
-2. Start prod-like instance (`8082` external WAF -> `3001` internal app, `prod.db`)
+Open [http://localhost:3000](http://localhost:3000).
 
-```powershell
-.\start-prod-local.ps1
-```
+---
 
-3. Stop all local standalone and WAF node servers
+### WAF (ModSecurity + OWASP CRS)
 
-```powershell
-.\stop-local.ps1
-```
+The production stack includes an `owasp/modsecurity-crs:nginx` WAF container that fronts the app.
 
-Optional: rebuild standalone bundle before start
+Default configuration (from `docker-compose.yml`):
 
-```powershell
-.\start-demo-local.ps1 -Rebuild
-.\start-prod-local.ps1 -Rebuild
-```
+- External HTTPS: `<WAF_LISTEN_ADDRESS>:<WAF_PORT>` (default `192.168.1.161:8082`)
+- Paranoia level: `1`, anomaly thresholds: `5` in / `4` out
+- Custom exclusion rules: `waf/REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf`
 
-Open using WAF IPv4 URLs:
-
-- `https://192.168.1.161:8081/auth/signin`
-- `https://192.168.1.161:8082/auth/signin`
-
-Internal app ports (`3000` and `3001`) stay bound to loopback by default so external traffic goes through WAF endpoints.
-
-WAF protection profile (strict CRS mode):
-
-- ModSecurity engine with OWASP Core Rule Set container
-- Paranoia and anomaly thresholds tuned for stricter blocking defaults
-- Full CRS request/response inspection pipeline
-
-Switching engines:
-
-- Default strict CRS mode:
-  - `./start-demo-local.ps1`
-  - `./start-prod-local.ps1`
-- Optional legacy Node proxy mode:
-  - `./start-demo-local.ps1 -WafEngine node-proxy`
-  - `./start-prod-local.ps1 -WafEngine node-proxy`
-
-Note: strict CRS mode requires Docker running locally.
-
-TLS certificates for local HTTPS are loaded from:
-
-- `SSL/certificate.crt`
-- `SSL/private.key`
-- Optional chain: `SSL/ca_bundle.crt`
-
-If the certificate or key file is missing, startup falls back to HTTP on the WAF ports.
+TLS certificates are loaded from `SSL/certs/fullchain.pem` and `SSL/certs/privkey.pem`.
 
 ## Scripts
 
-- `npm run dev` - start demo dev server on port `3000`
-- `npm run demo` - alias for demo server on port `3000`
-- `npm run build` - build for production
-- `npm run prod:build` - alias for production build
-- `npm run start` - run production server on port `3001`
-- `npm run prod:start` - alias for production server on port `3001`
-- `npm run lint` - lint
-- `npm run test` - unit tests (run `npx vitest run` for one-shot CI mode)
-- `npm run e2e` - Playwright smoke tests
-- `npm run prisma:generate` - generate Prisma client
-- `npm run prisma:migrate` - run migrations
-- `npm run seed` - seed functional journey test data (jobs, candidates, applications, clients, vacancies, alerts, timesheets, invoices)
-- `npm run seed:demo-policy` - enforce demo-only `@example.com` data policy and provision dummy demo logins
+- `pnpm run dev` - start dev server on port `3000`
+- `pnpm run build` - build for production
+- `pnpm run start` - run production server on port `3001`
+- `pnpm run lint` - lint
+- `pnpm run test` - unit tests
+- `pnpm run e2e` - Playwright smoke tests
+- `pnpm run prisma:generate` - generate Prisma client
+- `pnpm run prisma:migrate` - run migrations
+- `pnpm run seed` - seed functional journey test data (jobs, candidates, applications, clients, vacancies, alerts, timesheets, invoices)
+- `pnpm run seed:demo-policy` - enforce demo-only `@example.com` data policy and provision dummy demo logins
 
 ### Agent & operations scripts (run directly with `node` or `npx tsx`)
 
@@ -328,7 +322,7 @@ Each tenant gets an isolated Docker stack (separate DB, separate app container) 
 
 ### Gateway
 
-```bash
+```powershell
 cd tenants
 docker compose -f docker-compose.gateway.yml up -d
 ```
@@ -367,7 +361,7 @@ This will:
 
 ### Starting a tenant stack manually
 
-```bash
+```powershell
 cd tenants/nildata
 docker compose up -d
 ```
