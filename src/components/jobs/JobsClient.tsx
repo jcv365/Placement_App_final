@@ -322,6 +322,10 @@ export default function JobsClient() {
 
       if (summary.uploadOutcome === "queued") {
         // Background processing — poll progress until completed or failed.
+        // Force hasServerProgress=true so the weighted calculation is used
+        // immediately; without this the bar shows 100% (transfer) while the
+        // message still reflects the server's intermediate state.
+        setHasServerProgress(true);
         setOpportunitiesUploadProcessingPercent(25);
         setOpportunitiesUploadPhaseMessage("Processing in background…");
         setSuccessMessage("Upload accepted — processing in the background.");
@@ -342,6 +346,7 @@ export default function JobsClient() {
               data?: UploadProgressResponse;
             };
             if (!prog.ok || !prog.data) continue;
+            setHasServerProgress(true);
             setOpportunitiesUploadProcessingPercent(prog.data.percent);
             setOpportunitiesUploadPhaseMessage(prog.data.message);
             if (prog.data.status === "completed") {
